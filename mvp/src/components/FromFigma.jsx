@@ -56,7 +56,7 @@ const FromFigma = () => {
           <img
             src={profileData.employee.profilePhoto}
             alt="Profile"
-            className="w-50 h-50 md:w-60 md:h-60 rounded-full shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
+            className="w-40 h-40 md:w-60 md:h-60 rounded-full shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
             style={{ borderWidth: "10px" }}
           />
         </div>
