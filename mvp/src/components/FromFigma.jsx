@@ -62,7 +62,7 @@ const FromFigma = () => {
       {/* Main Content - Starts below profile photo */}
       <div className="pt-18 md:pt-25 px-2 md:px-52 lg:px-92 pb-7 max-w-6xl mx-auto">
         <div className="text-white uppercase flex items-center justify-center flex-col">
-          <h1 className="flex items-center gap-2 justify-center lg:justify-start">
+          <h1 className="flex items-center gap-2 justify-center lg:justify-start text-3xl">
             {profileData.employee.fullName}
             {profileData.employee.verified && (
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#1877F2] text-white shadow-sm">
@@ -70,9 +70,9 @@ const FromFigma = () => {
               </span>
             )}
           </h1>
-          <h1>{profileData.employee.designation}</h1>
+          <h1 className={"text-xl"}>{profileData.employee.designation}</h1>
           <h1>{profileData.employee.department}</h1>
-          <h1>{profileData.company.name}</h1>
+          <h1 className={"font-bold"}>{profileData.company.name}</h1>
           <span className=" text-[#F34242] px-4 py-2 rounded-full text-xl font-medium flex items-center gap-2">
             🩸 {profileData.employee.bloodGroup}
           </span>
