@@ -1,5 +1,5 @@
 import myPhoto from "../assets/WhatsApp Image 2025-06-26 at 12.32.06 AM.jpeg";
-import companyLogo from "../assets/WhatsApp Image 2025-06-26 at 12.40.32 AM.jpeg";
+import companyLogo from "../assets/WhatsApp_Image_2025-06-28_at_10.18.36_PM-removebg-preview.png";
 
 export const profileData = {
   company: {

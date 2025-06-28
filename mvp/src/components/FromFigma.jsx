@@ -26,7 +26,7 @@ const FromFigma = () => {
   return (
     <div className={"bg-[#0E191E]  "}>
       {/* Cover Photo */}
-      <div className="relative h-72 lg:h-96 max-w-6xl mx-auto">
+      <div className="relative h-60 lg:h-96 max-w-6xl mx-auto">
         <img
           src={profileData.company.coverPhoto}
           alt="Cover"
@@ -54,13 +54,13 @@ const FromFigma = () => {
           <img
             src={profileData.employee.profilePhoto}
             alt="Profile"
-            className="w-40 h-40 md:w-60 md:h-60 rounded-full shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
+            className=" md:w-60 md:h-60 rounded-full shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
             style={{ borderWidth: "10px" }}
           />
         </div>
       </div>
       {/* Main Content - Starts below profile photo */}
-      <div className="pt-32 px-2 md:px-52 lg:px-92 pb-7 max-w-6xl mx-auto">
+      <div className="pt-18 md:pt-25 px-2 md:px-52 lg:px-92 pb-7 max-w-6xl mx-auto">
         <div className="text-white uppercase flex items-center justify-center flex-col">
           <h1 className="flex items-center gap-2 justify-center lg:justify-start">
             {profileData.employee.fullName}
@@ -161,9 +161,11 @@ const FromFigma = () => {
               value: location.address,
             }))}
           />
-          <BusinessHoursCard />
         </div>
+
         <div className={"md:flex flex-col  justify-center items-center"}>
+          <BusinessHoursCard />
+
           <QRCodeSection qrCodeData={"https://techvibesbd.com/"} />
         </div>
       </div>
