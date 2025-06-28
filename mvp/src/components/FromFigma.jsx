@@ -9,17 +9,20 @@ import {
   Globe,
   MessagesSquare,
 } from "lucide-react";
-import {FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 import SocialIconsGlow from "./SocialIconsGlow.jsx";
 import ContactSection from "./ContactSection.jsx";
 import AddressSection from "./AddressSection.jsx";
 import BusinessHoursCard from "./BusinessHoursCard.jsx";
-import QrCodeSection from "./QrCodeSection.jsx";
+import QRCodeSection from "./QRCodeSection.jsx";
 
 const FromFigma = () => {
-
-
   return (
     <div className={"bg-[#0E191E]  "}>
       {/* Cover Photo */}
@@ -158,10 +161,11 @@ const FromFigma = () => {
               value: location.address,
             }))}
           />
-          <BusinessHoursCard/>
-          <QrCodeSection/>
+          <BusinessHoursCard />
         </div>
-
+        <div className={"md:flex flex-col  justify-center items-center"}>
+          <QRCodeSection qrCodeData={"https://techvibesbd.com/"} />
+        </div>
       </div>
     </div>
   );
