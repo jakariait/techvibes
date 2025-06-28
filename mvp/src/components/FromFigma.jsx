@@ -14,56 +14,11 @@ import {FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from "react-icons/fa
 import SocialIconsGlow from "./SocialIconsGlow.jsx";
 import ContactSection from "./ContactSection.jsx";
 import AddressSection from "./AddressSection.jsx";
+import BusinessHoursCard from "./BusinessHoursCard.jsx";
+import QrCodeSection from "./QrCodeSection.jsx";
 
 const FromFigma = () => {
-  const handleSaveContact = () => {
-    // Create vCard data
-    const vcard = `BEGIN:VCARD
-      VERSION:3.0
-      FN:${profileData.employee.fullName}
-      ORG:${profileData.company.name}
-      TITLE:${profileData.employee.designation}
-      EMAIL;TYPE=WORK:${profileData.contact.emails.office}
-      EMAIL;TYPE=HOME:${profileData.contact.emails.personal}
-      TEL;TYPE=WORK:${profileData.contact.phones.office}
-      TEL;TYPE=HOME:${profileData.contact.phones.personal}
-      ADR;TYPE=WORK:;;${profileData.locations[0].address}
-      URL:${profileData.social[0].url}
-      NOTE:${profileData.employee.bio}
-      END:VCARD`;
 
-    const blob = new Blob([vcard], { type: "text/vcard" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${profileData.employee.fullName.replace(
-      " ",
-      "_",
-    )}_contact.vcf`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  };
-
-  const handleConnect = () => {
-    alert("Connection request sent! Lead information captured.");
-  };
-
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: `${profileData.employee.fullName} - ${profileData.company.name}`,
-        text: `Connect with ${profileData.employee.fullName} from ${profileData.company.name}`,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert("Profile link copied to clipboard!");
-    }
-  };
-
-  const handleAppointment = () => {
-    window.open(`tel:${profileData.contact.phones.office}`, "_self");
-  };
 
   return (
     <div className={"bg-[#0E191E]  "}>
@@ -203,8 +158,10 @@ const FromFigma = () => {
               value: location.address,
             }))}
           />
-
+          <BusinessHoursCard/>
+          <QrCodeSection/>
         </div>
+
       </div>
     </div>
   );
