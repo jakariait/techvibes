@@ -64,7 +64,7 @@ const QRCodeSection = ({
 
   return (
     <div
-      className={`bg-[#212F35] mt-5 md:w-[400px] inner-glow p-6 rounded-xl overflow-hidden transition-all duration-500 ease-in-out ${
+      className={`bg-[#212F35] mt-5   inner-glow p-6 rounded-xl overflow-hidden transition-all duration-500 ease-in-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >

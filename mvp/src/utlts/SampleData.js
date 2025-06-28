@@ -1,5 +1,5 @@
-import myPhoto from "../assets/WhatsApp Image 2025-06-26 at 12.32.06 AM.jpeg";
-import companyLogo from "../assets/WhatsApp_Image_2025-06-28_at_10.18.36_PM-removebg-preview.png";
+import myPhoto from "../assets/WhatsApp Image 2025-06-28 at 10.14.36 PM.jpeg";
+import companyLogo from "../assets/Elite.png";
 
 export const profileData = {
   company: {
@@ -20,27 +20,30 @@ export const profileData = {
   },
   contact: {
     emails: {
-      personal: "sarah.johnson@gmail.com",
-      office: "sarah.j@techvibes.com",
+      personal: "zaman@elite-garments.com",
+      office: "zaman@elite-garments.com",
     },
     phones: {
-      personal: "+1 (555) 123-4567",
-      office: "+1 (555) 890-1234",
+      personal: "+880 1711-540452",
+      office: "+880 2 41082171-3",
     },
     whatsapp: {
-      personal: "+1 (555) 123-4567",
-      business: "+1 (555) 999-8888",
+      personal: "+880 1711-540452",
+      business: "+880 1730-357746",
     },
   },
   locations: [
     {
       type: "Head Office",
-      address: "123 Innovation Drive, Tech Park, Silicon Valley, CA 94043",
+      address:
+        "BTI Landmark (Level-10)\n" +
+        "16 Gulshan Avenue,\n" +
+        "Dhaka-1212, Bangladesh\n",
     },
     {
-      type: "Branch Office",
-      address: "456 Business Center, Downtown District, NY 10001",
-    }
+      type: "Factory Address",
+      address: "Bade Kalmeshwar, Board Bazar,\n" + "Gazipur, Bangladesh\n",
+    },
   ],
   social: [
     {
@@ -53,14 +56,19 @@ export const profileData = {
       url: "https://twitter.com/sarah_techvibes",
       icon: "🐦",
     },
-    {
-      platform: "Instagram",
-      url: "https://instagram.com/sarah.biz",
-      icon: "📸",
-    },
+    // {
+    //   platform: "Instagram",
+    //   url: "https://instagram.com/sarah.biz",
+    //   icon: "📸",
+    // },
     {
       platform: "Facebook",
       url: "https://facebook.com/sarah.johnson",
+      icon: "📘",
+    },
+    {
+      platform: "Website",
+      url: "https://elite-garments.com",
       icon: "📘",
     },
   ],

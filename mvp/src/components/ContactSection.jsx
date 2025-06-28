@@ -1,7 +1,13 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 
-const ContactSection = ({ title, icon: Icon, iconColor, items, linkPrefix }) => {
+const ContactSection = ({
+  title,
+  icon: Icon,
+  iconColor,
+  items,
+  linkPrefix,
+}) => {
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden">
       {/* Header: Icon and Title always in one row */}
@@ -13,18 +19,16 @@ const ContactSection = ({ title, icon: Icon, iconColor, items, linkPrefix }) => 
       </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-4 w-full">
+      <div className="flex flex-col gap-1 w-full">
         {items.map(({ label, value }, index) => (
           <div
             key={index}
             className="flex flex-wrap items-center justify-between gap-2 w-full"
           >
             <div className="flex flex-wrap items-center gap-1">
-              <span className="text-white w-[80px]">{label}</span>
+              <span className="text-white text-md w-[80px]">{label}</span>
               <span className="text-white">:</span>
-              <span className="text-white break-words max-w-[200px] sm:max-w-none">
-                {value}
-              </span>
+              <span className="text-white text-sm">{value}</span>
             </div>
 
             {linkPrefix && value && (

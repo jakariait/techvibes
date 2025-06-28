@@ -4,6 +4,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaFacebookF,
+  FaGlobe
 } from "react-icons/fa";
 
 const iconMap = {
@@ -21,6 +22,10 @@ const iconMap = {
   },
   Facebook: {
     icon: FaFacebookF,
+    color: "#1877F2",
+  },
+  Website: {
+    icon: FaGlobe,
     color: "#1877F2",
   },
 };

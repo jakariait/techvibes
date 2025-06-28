@@ -13,7 +13,7 @@ const AddressSection = ({ title, icon: Icon, iconColor, items }) => {
       </div>
 
       {/* Address Items */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
         {items.map(({ label, value }, index) => (
           <div key={index} className="w-full">
             {/* Label on its own line */}

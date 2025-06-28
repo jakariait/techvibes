@@ -21,6 +21,8 @@ import ContactSection from "./ContactSection.jsx";
 import AddressSection from "./AddressSection.jsx";
 import BusinessHoursCard from "./BusinessHoursCard.jsx";
 import QRCodeSection from "./QRCodeSection.jsx";
+import SisterConcernSection from "./SisterConcernSection.jsx";
+import TechVibesCard from "./TechVibesCard.jsx";
 
 const FromFigma = () => {
   return (
@@ -37,7 +39,7 @@ const FromFigma = () => {
           <img
             src={profileData.company.logo}
             alt="Company Logo"
-            className="w-20 h-20"
+            className="w-16 h-16"
           />
         </div>
         <div className="absolute right-10 top-8 flex items-center gap-4 z-10">
@@ -103,8 +105,16 @@ const FromFigma = () => {
       </div>
       <div className={"max-w-6xl mx-auto px-2 md:px-32 "}>
         <p className="text-white bg-[#212F35] inner-glow p-4 leading-relaxed rounded-xl flex flex-col gap-4">
-          <BriefcaseBusiness />
-          {profileData.employee.bio}
+          <div className={"flex gap-2"}>
+            <BriefcaseBusiness />
+            <h1>Departments / Responsibilities</h1>
+          </div>
+          <ul className="list-disc pl-5 text-white leading-relaxed space-y-1 grid md:grid-cols-2">
+            <li>Corporate Strategy & Leadership</li>
+            <li>Production Oversight & Quality Control</li>
+            <li>International Client Relations</li>
+            <li>Supply Chain & Compliance</li>
+          </ul>
         </p>
       </div>
       <div className={"max-w-6xl mx-auto px-2 md:px-10 overflow-hidden"}>
@@ -138,6 +148,7 @@ const FromFigma = () => {
             items={[
               { label: "Personal", value: profileData.contact.phones.personal },
               { label: "Office", value: profileData.contact.phones.office },
+              { label: "Office", value: "09602-112277" },
             ]}
             linkPrefix="tel:"
           />
@@ -147,7 +158,7 @@ const FromFigma = () => {
             icon={FaEnvelope}
             iconColor="#f87171" // red-400
             items={[
-              { label: "Personal", value: profileData.contact.emails.personal },
+              // { label: "Personal", value: profileData.contact.emails.personal },
               { label: "Office", value: profileData.contact.emails.office },
             ]}
             linkPrefix="mailto:"
@@ -164,9 +175,21 @@ const FromFigma = () => {
         </div>
 
         <div className={"md:flex flex-col  justify-center items-center"}>
-          <BusinessHoursCard />
-
-          <QRCodeSection qrCodeData={"https://techvibesbd.com/"} />
+          <div className={"grid lg:grid-cols-2 w-full gap-4 mt-5"}>
+            <BusinessHoursCard />
+            <SisterConcernSection
+              concerns={[
+                "Elite Garments",
+                "Elite Steel",
+                "Aqua Paints",
+                "Aqua Refinery",
+              ]}
+            />
+          </div>
+          <div className={"grid md:grid-cols-2 w-full gap-4 md:items-center md:justify-center"}>
+            <QRCodeSection qrCodeData={"https://techvibesbd.com/"} />
+            <TechVibesCard />
+          </div>
         </div>
       </div>
     </div>
