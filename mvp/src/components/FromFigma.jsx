@@ -5,10 +5,15 @@ import {
   Download,
   User,
   MessageCircle,
-  ExternalLink,
+  BriefcaseBusiness,
   Globe,
+  MessagesSquare,
 } from "lucide-react";
+import {FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from "react-icons/fa";
+
 import SocialIconsGlow from "./SocialIconsGlow.jsx";
+import ContactSection from "./ContactSection.jsx";
+import AddressSection from "./AddressSection.jsx";
 
 const FromFigma = () => {
   const handleSaveContact = () => {
@@ -88,17 +93,16 @@ const FromFigma = () => {
         </div>
         {/* Profile Photo - Overlapping */}
         <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 z-20">
-          <div className="relative">
-            <img
-              src={profileData.employee.profilePhoto}
-              alt="Profile"
-              className="w-60 h-60 rounded-full border-10 border-[0E181E] shadow-2xl object-cover -mb-30"
-            />
-          </div>
+          <img
+            src={profileData.employee.profilePhoto}
+            alt="Profile"
+            className="w-40 h-40 md:w-60 md:h-60 rounded-full shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
+            style={{ borderWidth: "10px" }}
+          />
         </div>
       </div>
       {/* Main Content - Starts below profile photo */}
-      <div className="pt-32 px-8 md:px-52 lg:px-92 pb-16 max-w-6xl mx-auto">
+      <div className="pt-32 px-2 md:px-52 lg:px-92 pb-7 max-w-6xl mx-auto">
         <div className="text-white uppercase flex items-center justify-center flex-col">
           <h1 className="flex items-center gap-2 justify-center lg:justify-start">
             {profileData.employee.fullName}
@@ -117,13 +121,13 @@ const FromFigma = () => {
           <div className="text-white bg-[rgba(255,255,255,0.18)] px-7 py-1 rounded-lg">
             ID: {profileData.employee.employeeId}
           </div>
-          <div className={"flex gap-10 mt-5"}>
-            <button className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4">
+          <div className={"flex gap-5 mt-5"}>
+            <button className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer">
               <Download />
               Save Contact
             </button>
 
-            <button className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4">
+            <button className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer">
               <MessageCircle />
               Connect
             </button>
@@ -137,6 +141,69 @@ const FromFigma = () => {
             </span>
             <SocialIconsGlow socials={profileData.social} />
           </div>
+        </div>
+      </div>
+      <div className={"max-w-6xl mx-auto px-2 md:px-32 "}>
+        <p className="text-white bg-[#212F35] inner-glow p-4 leading-relaxed rounded-xl flex flex-col gap-4">
+          <BriefcaseBusiness />
+          {profileData.employee.bio}
+        </p>
+      </div>
+      <div className={"max-w-6xl mx-auto px-2 md:px-10 overflow-hidden"}>
+        <h1
+          className={
+            "text-white flex gap-2 pt-5 pb-5 text-xl font-medium  items-center"
+          }
+        >
+          <MessagesSquare />
+          Get In Touch
+        </h1>
+        <div className={"grid md:grid-cols-2 gap-4 "}>
+          <ContactSection
+            title="WhatsApp"
+            icon={FaWhatsapp}
+            iconColor="#22c55e" // green-600
+            items={[
+              {
+                label: "Personal",
+                value: profileData.contact.whatsapp.personal,
+              },
+              { label: "Office", value: profileData.contact.whatsapp.business },
+            ]}
+            linkPrefix="https://wa.me/"
+          />
+
+          <ContactSection
+            title="Phone"
+            icon={FaPhoneAlt}
+            iconColor="#3b82f6" // blue-500
+            items={[
+              { label: "Personal", value: profileData.contact.phones.personal },
+              { label: "Office", value: profileData.contact.phones.office },
+            ]}
+            linkPrefix="tel:"
+          />
+
+          <ContactSection
+            title="Email"
+            icon={FaEnvelope}
+            iconColor="#f87171" // red-400
+            items={[
+              { label: "Personal", value: profileData.contact.emails.personal },
+              { label: "Office", value: profileData.contact.emails.office },
+            ]}
+            linkPrefix="mailto:"
+          />
+          <AddressSection
+            title="Locations"
+            icon={FaMapMarkerAlt}
+            iconColor="#fbbf24" // yellow-400
+            items={profileData.locations.map((location) => ({
+              label: location.type,
+              value: location.address,
+            }))}
+          />
+
         </div>
       </div>
     </div>

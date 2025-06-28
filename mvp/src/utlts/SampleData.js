@@ -40,11 +40,7 @@ export const profileData = {
     {
       type: "Branch Office",
       address: "456 Business Center, Downtown District, NY 10001",
-    },
-    {
-      type: "Local Address",
-      address: "789 Residential Ave, Hometown, CA 94022",
-    },
+    }
   ],
   social: [
     {
