@@ -39,7 +39,7 @@ const FromFigma = () => {
           <img
             src={profileData.company.logo}
             alt="Company Logo"
-            className="w-16 h-16"
+            className="w-16 h-16 object-contain "
           />
         </div>
         <div className="absolute right-10 top-8 flex items-center gap-4 z-10">
