@@ -1,19 +1,19 @@
 import myPhoto from "../assets/WhatsApp Image 2025-06-26 at 12.32.06 AM.jpeg";
+import companyLogo from "../assets/WhatsApp Image 2025-06-26 at 12.40.32 AM.jpeg";
 
 export const profileData = {
   company: {
-    name: "TechVibes Solutions",
-    logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop&crop=center",
+    name: "ELITE GARMENTS INDUSTRIES LTD.",
+    logo: companyLogo,
     coverPhoto:
       "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=300&fit=crop&crop=center",
   },
   employee: {
-    fullName: "Sarah Johnson",
-    designation: "Senior Business Development Manager",
-    department: "Sales & Marketing",
-    employeeId: "TV-2024-001",
-    profilePhoto:
-    myPhoto,
+    fullName: "MD. SHAHIDUZZAMAN",
+    designation: "Executive Director",
+    department: "Corporate Strategy & Leadership",
+    employeeId: "EG-2024-ED001",
+    profilePhoto: myPhoto,
     verified: true,
     bloodGroup: "O+",
     bio: "Passionate business development professional with 8+ years of experience in B2B sales, client relationship management, and strategic partnerships. Specialized in fintech and enterprise software solutions.",

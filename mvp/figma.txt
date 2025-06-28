@@ -1,0 +1,2909 @@
+/* rename */
+
+position: relative;
+width: 393px;
+height: 2169px;
+
+background: linear-gradient(180deg, #091015 0%, #314F62 114.36%);
+
+
+/* Rectangle 5204 */
+
+position: absolute;
+width: 393px;
+height: 197px;
+left: 0px;
+top: 0px;
+
+background: url(.jpg), linear-gradient(90deg, #000000 -42.62%, #2DA2C6 103.94%);
+
+
+/* WhatsApp Image 2025-06-27 at 15.26.31_5501d4a6 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 204px;
+height: 207px;
+left: calc(50% - 204px/2 - 0.5px);
+top: 86px;
+
+background: url(WhatsApp Image 2025-06-27 at 15.26.31_5501d4a6.jpg);
+border: 9px solid #0E181E;
+border-radius: 471px;
+
+
+/* EXECUTIVE DIRECTOR */
+
+position: absolute;
+width: 160px;
+height: 11px;
+left: calc(50% - 160px/2 + 0.5px);
+top: 318px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 11px;
+line-height: 13px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* CORPORATE STRATEGY & LEADERSHIP */
+
+position: absolute;
+width: 213px;
+height: 12px;
+left: calc(50% - 213px/2);
+top: 334px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 10px;
+line-height: 12px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* ELITE GARMENTS INDUSTRIES LTD. */
+
+position: absolute;
+width: 213px;
+height: 12px;
+left: calc(50% - 213px/2);
+top: 349px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 10px;
+line-height: 12px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552986 */
+
+position: absolute;
+width: 213px;
+height: 44px;
+left: calc(50% - 213px/2 + 4px);
+top: 293px;
+
+
+
+/* MD. SHAHIDUZZAMAN */
+
+position: absolute;
+width: 189px;
+height: 44px;
+left: calc(50% - 189px/2 - 8px);
+top: 293px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 600;
+font-size: 17.6484px;
+line-height: 22px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* lets-icons:check-fill */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 283px;
+top: 293px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+background: #47A9FF;
+
+
+/* image 1 */
+
+position: absolute;
+width: 52px;
+height: 62px;
+left: 16px;
+top: 15px;
+
+background: url(image.png);
+
+
+/* Component 124 */
+
+position: relative;
+width: 67px;
+height: 21px;
+left: 309px;
+top: 15px;
+
+
+
+/* Rectangle 5205 */
+
+box-sizing: border-box;
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+border: 1px solid rgba(255, 255, 255, 0.83);
+border-radius: 3.91379px;
+
+
+/* Group 1686552894 */
+
+position: absolute;
+height: 14.09px;
+left: 13.5%;
+right: 14.52%;
+top: calc(50% - 14.09px/2 - 0.46px);
+
+
+
+/* Login */
+
+position: absolute;
+left: 39.21%;
+right: 14.52%;
+top: 14.29%;
+bottom: 19.05%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 11.865px;
+line-height: 14px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* humbleicons:user */
+
+position: absolute;
+height: 14.09px;
+left: 13.5%;
+right: 65.47%;
+top: 3px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 25.01%;
+right: 24.99%;
+top: 20.82%;
+bottom: 20.85%;
+
+border: 0.782759px solid #FFFFFF;
+
+
+/* Group 1686552896 */
+
+position: absolute;
+width: 133px;
+height: 20px;
+left: 243px;
+top: 388px;
+
+
+
+/* Rectangle 5206 */
+
+position: absolute;
+width: 133px;
+height: 20px;
+left: calc(50% - 133px/2 + 113px);
+top: 388px;
+
+background: rgba(255, 255, 255, 0.18);
+border-radius: 6px;
+
+
+/* ID: EG-2024-ED001 */
+
+position: absolute;
+width: 101px;
+height: 12px;
+left: calc(50% - 101px/2 + 113px);
+top: 392px;
+
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 10px;
+line-height: 13px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552999 */
+
+position: absolute;
+width: 359px;
+height: 1228px;
+left: calc(50% - 359px/2);
+top: 482px;
+
+
+
+/* Group 1686553000 */
+
+position: absolute;
+width: 357px;
+height: 312px;
+left: calc(50% - 357px/2);
+top: 771px;
+
+
+
+/* Group 1686552944 */
+
+position: absolute;
+width: 123px;
+height: 19px;
+left: 19px;
+top: 771px;
+
+
+
+/* duo-icons:message-3 */
+
+position: absolute;
+height: 18px;
+left: 4.83%;
+right: 90.59%;
+top: 771px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 37.5%;
+right: 8.33%;
+top: 41.67%;
+bottom: 11.59%;
+
+background: #4CBAFE;
+opacity: 0.3;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 20.83%;
+top: 16.67%;
+bottom: 17.7%;
+
+background: #FFFFFF;
+
+
+/* Get in touch */
+
+position: absolute;
+width: 99px;
+height: 19px;
+left: 43px;
+top: 771px;
+
+font-family: 'Orbitron';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+line-height: 19px;
+/* identical to box height */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552950 */
+
+position: absolute;
+height: 87px;
+left: 4.58%;
+right: 4.58%;
+top: 900px;
+
+filter: drop-shadow(0px 1px 9px rgba(0, 0, 0, 0.12));
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+left: 4.58%;
+right: 4.58%;
+top: 41.49%;
+bottom: 54.5%;
+
+background: rgba(255, 255, 255, 0.18);
+box-shadow: inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+border-radius: 9px;
+
+
+/* Phone */
+
+position: absolute;
+left: 14.5%;
+right: 69.47%;
+top: 42.14%;
+bottom: 56.8%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+
+color: #6ABCFF;
+
+
+
+/* Group 1686552952 */
+
+position: absolute;
+left: 15.78%;
+right: 51.15%;
+top: 43.29%;
+bottom: 55.2%;
+
+
+
+/* +1 (555) 123-4567 */
+
+position: absolute;
+left: 28.5%;
+right: 51.15%;
+top: 43.29%;
+bottom: 56.07%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Personal : */
+
+position: absolute;
+left: 15.78%;
+right: 72.52%;
+top: 43.29%;
+bottom: 56.2%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Office : */
+
+position: absolute;
+left: 15.78%;
+right: 72.52%;
+top: 44.08%;
+bottom: 55.42%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* +1 (555) 123-4567 */
+
+position: absolute;
+left: 28.5%;
+right: 51.15%;
+top: 44.17%;
+bottom: 55.2%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* ion:call-outline */
+
+position: absolute;
+height: 25px;
+left: 7.38%;
+right: 86.26%;
+top: calc(50% - 25px/2 - 141px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 9.38%;
+top: 9.38%;
+bottom: 9.37%;
+
+border: 1.5625px solid #6ABCFF;
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 86.77%;
+right: 9.92%;
+top: calc(50% - 13px/2 - 139px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 86.77%;
+right: 9.92%;
+top: calc(50% - 13px/2 - 120px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* Group 1686552947 */
+
+position: absolute;
+width: 357px;
+height: 87px;
+left: 18px;
+top: 804px;
+
+filter: drop-shadow(0px 1px 9px rgba(0, 0, 0, 0.12));
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+left: 4.58%;
+right: 4.58%;
+top: 37.07%;
+bottom: 58.92%;
+
+background: rgba(255, 255, 255, 0.18);
+box-shadow: inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+border-radius: 9px;
+
+
+/* WhatsApp */
+
+position: absolute;
+left: 14.5%;
+right: 59.29%;
+top: 37.71%;
+bottom: 61.23%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+
+color: #4FFF6F;
+
+
+
+/* Group 1686552952 */
+
+position: absolute;
+width: 130px;
+height: 32.8px;
+left: 62px;
+top: 843px;
+
+
+
+/* +1 (555) 123-4567 */
+
+position: absolute;
+left: 28.5%;
+right: 51.15%;
+top: 38.87%;
+bottom: 60.5%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Personal : */
+
+position: absolute;
+left: 15.78%;
+right: 72.52%;
+top: 38.87%;
+bottom: 60.63%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Office : */
+
+position: absolute;
+left: 15.78%;
+right: 72.52%;
+top: 39.65%;
+bottom: 59.84%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* +1 (555) 123-4567 */
+
+position: absolute;
+left: 28.5%;
+right: 51.15%;
+top: 39.74%;
+bottom: 59.62%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* ic:baseline-whatsapp */
+
+position: absolute;
+height: 25px;
+left: 7.38%;
+right: 86.26%;
+top: calc(50% - 25px/2 - 237px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.55%;
+right: 8.54%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #4FFF6F;
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 86.77%;
+right: 9.92%;
+top: calc(50% - 13px/2 - 235px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 86.77%;
+right: 9.92%;
+top: calc(50% - 13px/2 - 216px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* Group 1686552951 */
+
+position: absolute;
+height: 87px;
+left: 4.58%;
+right: 4.58%;
+top: 996px;
+
+filter: drop-shadow(0px 1px 9px rgba(0, 0, 0, 0.12));
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+left: 4.58%;
+right: 4.58%;
+top: 45.92%;
+bottom: 50.07%;
+
+background: rgba(255, 255, 255, 0.18);
+box-shadow: inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+border-radius: 9px;
+
+
+/* Email */
+
+position: absolute;
+left: 14.5%;
+right: 71.76%;
+top: 46.57%;
+bottom: 52.37%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+
+color: #FF4D4D;
+
+
+
+/* Group 1686552952 */
+
+position: absolute;
+left: 15.78%;
+right: 31.04%;
+top: 47.63%;
+bottom: 50.85%;
+
+
+
+/* zaman@elite-garments.com */
+
+position: absolute;
+left: 28.5%;
+right: 38.17%;
+top: 47.63%;
+bottom: 51.74%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+
+color: #FFFFFF;
+
+
+
+/* Personal : */
+
+position: absolute;
+left: 15.78%;
+right: 72.52%;
+top: 47.63%;
+bottom: 51.87%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Office : */
+
+position: absolute;
+left: 15.78%;
+right: 72.52%;
+top: 48.41%;
+bottom: 51.08%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* shahiduzzaman@elite-garments.com */
+
+position: absolute;
+left: 28.5%;
+right: 31.04%;
+top: 48.5%;
+bottom: 50.85%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+
+color: #FFFFFF;
+
+
+
+/* material-symbols-light:mail-outline-rounded */
+
+position: absolute;
+height: 25px;
+left: 7.38%;
+right: 86.26%;
+top: calc(50% - 25px/2 - 45px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 20.83%;
+bottom: 20.84%;
+
+background: #FF4D4D;
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 86.77%;
+right: 9.92%;
+top: calc(50% - 13px/2 - 43px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 86.77%;
+right: 9.92%;
+top: calc(50% - 13px/2 - 24px);
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* Group 1686552955 */
+
+position: absolute;
+width: 331px;
+height: 87px;
+left: 19px;
+top: 482px;
+
+
+
+/* Group 1686552905 */
+
+position: absolute;
+width: 152px;
+height: 21px;
+left: 19px;
+top: 482px;
+
+
+
+/* lsicon:earth-outline */
+
+position: absolute;
+height: 18px;
+left: 4.83%;
+right: 90.59%;
+top: 484px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 9.38%;
+top: 9.38%;
+bottom: 9.38%;
+
+border: 1.125px solid #63D8E8;
+
+
+/* Connect Online */
+
+position: absolute;
+width: 128px;
+height: 21px;
+left: 43px;
+top: 482px;
+
+font-family: 'Orbitron';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+line-height: 19px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552954 */
+
+position: absolute;
+width: 306px;
+height: 48px;
+left: calc(50% - 306px/2 + 0.5px);
+top: 521px;
+
+
+
+/* Group 1686552940/Variant3 */
+
+position: absolute;
+width: 48px;
+height: 48px;
+left: 44px;
+top: 521px;
+
+
+
+/* Rectangle 5217 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #FF3C56;
+box-shadow: 0px 0px 9.5px #FF3C7B, inset -0.761905px 2.28571px 2.13333px rgba(255, 255, 255, 0.25);
+border-radius: 9.14286px;
+
+
+/* lets-icons:insta */
+
+position: absolute;
+height: 28.19px;
+left: 20.64%;
+right: 20.63%;
+top: 9.91px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 2.27579px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 62.51%;
+right: 24.99%;
+top: 25%;
+bottom: 62.5%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 37.5%;
+right: 37.5%;
+top: 37.5%;
+bottom: 37.5%;
+
+border: 2.27579px solid #FFFFFF;
+
+
+/* Group 1686552939/Variant2 */
+
+position: absolute;
+width: 48px;
+height: 48px;
+left: 130px;
+top: 521px;
+
+
+
+/* Rectangle 5217 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #3767BB;
+box-shadow: 0px 0px 9.5px #5A96FF, inset -0.761905px 2.28571px 2.13333px rgba(255, 255, 255, 0.25);
+border-radius: 9.14286px;
+
+
+/* basil:linkedin-outline */
+
+position: absolute;
+height: 28.19px;
+left: 20.63%;
+right: 20.64%;
+top: 9.91px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 5.2%;
+top: 5.2%;
+bottom: 9.39%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552938/Variant1 */
+
+position: absolute;
+width: 48px;
+height: 48px;
+left: 216px;
+top: 521px;
+
+
+
+/* Rectangle 5217 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #1E5EFF;
+box-shadow: 0px 0px 9.5px #659CBA, inset -0.761905px 3.04762px 2.13333px rgba(255, 255, 255, 0.22);
+border-radius: 9.14286px;
+
+
+/* iconoir:facebook */
+
+position: absolute;
+height: 28.19px;
+left: 20.64%;
+right: 20.63%;
+top: 9.91px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 25%;
+right: 29.17%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 1.7619px solid #FFFFFF;
+
+
+/* Group 1686552937/Variant3 */
+
+position: absolute;
+width: 48px;
+height: 48px;
+left: 302px;
+top: 521px;
+
+
+
+/* Rectangle 5217 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #0C184D;
+box-shadow: 0px 0px 9.5px #0D194D, inset -0.761905px 2.28571px 2.13333px rgba(255, 255, 255, 0.25);
+border-radius: 9.14286px;
+
+
+/* mingcute:earth-line */
+
+position: absolute;
+height: 28.19px;
+left: 20.63%;
+right: 20.64%;
+top: 9.91px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 0.78%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 50.31%;
+right: 46.2%;
+top: 96.43%;
+bottom: 0.78%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552985 */
+
+position: absolute;
+width: 328px;
+height: 222px;
+left: calc(50% - 328px/2 + 0.5px);
+top: 1334px;
+
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+width: 328px;
+height: 222px;
+left: calc(50% - 328px/2 + 0.5px);
+top: 1334px;
+
+background: rgba(255, 255, 255, 0.27);
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.09), inset 0px 2px 8.9px rgba(255, 255, 255, 0.65);
+backdrop-filter: blur(10.2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* SCAN . SAVE . CONNECT */
+
+position: absolute;
+width: 147px;
+height: 13px;
+left: calc(50% - 147px/2 + 1px);
+top: 1481px;
+
+font-family: 'Orbitron';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* image */
+
+position: absolute;
+width: 109px;
+height: 109px;
+left: calc(50% - 109px/2);
+top: 1358px;
+
+background: url(image.png);
+border-radius: 6px;
+
+
+/* Group 1686552984 */
+
+position: absolute;
+width: 239px;
+height: 30px;
+left: calc(50% - 239px/2);
+top: 1510px;
+
+
+
+/* Group 1686552975 */
+
+position: absolute;
+width: 105px;
+height: 30px;
+left: 211px;
+top: 1510px;
+
+
+
+/* Rectangle 5221 */
+
+position: absolute;
+width: 105px;
+height: 30px;
+left: 211px;
+top: 1510px;
+
+background: linear-gradient(128.77deg, rgba(74, 190, 252, 0) -32.47%, rgba(105, 141, 155, 0.82) 133.25%), #354D59;
+box-shadow: 0px 0px 4.3px 2px rgba(85, 148, 182, 0.82), inset 0px 4px 6.4px rgba(255, 255, 255, 0.51);
+border-radius: 7px;
+
+
+/* Group 1686552972 */
+
+position: absolute;
+width: 56px;
+height: 17px;
+left: 230px;
+top: 1516px;
+
+
+
+/* Share */
+
+position: absolute;
+width: 34px;
+height: 15px;
+left: 252px;
+top: 1518px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* material-symbols-light:share-outline */
+
+position: absolute;
+width: 17px;
+height: 17px;
+left: 230px;
+top: 1516px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 20.83%;
+top: 12.5%;
+bottom: 12.5%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552973 */
+
+position: absolute;
+width: 105px;
+height: 30px;
+left: 77px;
+top: 1510px;
+
+
+
+/* Rectangle 5220 */
+
+position: absolute;
+width: 105px;
+height: 30px;
+left: 77px;
+top: 1510px;
+
+background: linear-gradient(128.77deg, rgba(74, 190, 252, 0) -32.47%, rgba(105, 141, 155, 0.82) 133.25%), #354D59;
+box-shadow: 0px 0px 4.3px 2px rgba(85, 148, 182, 0.82), inset 0px 4px 6.4px rgba(255, 255, 255, 0.51);
+border-radius: 7px;
+
+
+/* Group 1686552972 */
+
+position: absolute;
+width: 77px;
+height: 17px;
+left: 91px;
+top: 1516px;
+
+
+
+/* Download */
+
+position: absolute;
+width: 58px;
+height: 15px;
+left: 110px;
+top: 1518px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* fluent-mdl2:installation */
+
+position: absolute;
+width: 17px;
+height: 17px;
+left: 91px;
+top: 1516px;
+
+
+
+/* Vector */
+
+position: absolute;
+width: 13.81px;
+left: calc(50% - 13.81px/2 + 0.41px);
+top: 6.25%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552943 */
+
+position: absolute;
+width: 359px;
+height: 160px;
+left: 17px;
+top: 590px;
+
+filter: drop-shadow(0px 0px 11.7px rgba(115, 115, 115, 0.25));
+
+
+/* Group 1686552932 */
+
+position: absolute;
+width: 359px;
+height: 160px;
+left: 17px;
+top: 590px;
+
+
+
+/* Rectangle 5209 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 359px;
+height: 160px;
+left: calc(50% - 359px/2);
+top: 590px;
+
+background: linear-gradient(312.29deg, rgba(255, 255, 255, 0.09) 11.23%, rgba(153, 153, 153, 0.09) 97.59%);
+box-shadow: inset 0px 2px 8.6px rgba(255, 255, 255, 0.5);
+border-radius: 9px;
+
+
+/* > PASSIONATE.SOFTWARE.ENGINEER > 8+.YEARS.FULLSTACK.DEV > REACT.NODEJS.CLOUD.SPECIALIST > READY.TO.CONNECT.AND.BUILD */
+
+position: absolute;
+width: 300.24px;
+height: 88px;
+left: calc(50% - 300.24px/2 - 20.38px);
+top: 637px;
+
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15.5294px;
+line-height: 144.5%;
+/* or 22px */
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552936 */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: 26px;
+top: 600px;
+
+
+
+/* Bio data */
+
+position: absolute;
+visibility: hidden;
+width: 92.8px;
+height: 27.55px;
+left: calc(50% - 92.8px/2 - 100.9px);
+top: 614px;
+
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 17.4px;
+line-height: 144.5%;
+/* or 25px */
+
+color: #1A1A1A;
+
+
+
+/* uil:bag */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: 26px;
+top: 600px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 12.5%;
+bottom: 12.5%;
+
+background: #FFFFFF;
+
+
+/* Rectangle 5214 */
+
+position: absolute;
+width: 138px;
+height: 64px;
+left: 17px;
+top: 590px;
+
+background: #4CBAFE;
+border-radius: 9px;
+
+
+/* Rectangle 5215 */
+
+position: absolute;
+width: 138px;
+height: 64px;
+left: 376px;
+top: 750px;
+
+background: #4CBAFE;
+border-radius: 9px;
+transform: rotate(180deg);
+
+
+/* Group 1686552990 */
+
+position: absolute;
+width: 357px;
+height: 87px;
+left: calc(50% - 357px/2);
+top: 1226px;
+
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+width: 357px;
+height: 87px;
+left: calc(50% - 357px/2);
+top: 1226px;
+
+background: rgba(255, 192, 167, 0.19);
+box-shadow: inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+border-radius: 9px;
+
+
+/* gridicons:time */
+
+position: absolute;
+height: 25px;
+left: 6.87%;
+right: 86.77%;
+top: 1260px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFB64F;
+
+
+/* BUSINESS.HOURS */
+
+position: absolute;
+width: 134px;
+height: 38px;
+left: 56px;
+top: 1248px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15.2941px;
+line-height: 19px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* SUN-THU: 09:00-18:00 BST */
+
+position: absolute;
+left: 14.25%;
+right: 62.34%;
+top: 58.51%;
+bottom: 40.48%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552934 */
+
+position: absolute;
+width: 143px;
+height: 43px;
+left: 219px;
+top: 1251px;
+
+
+
+/* Rectangle 5216 */
+
+position: absolute;
+width: 143px;
+height: 43px;
+left: 219px;
+top: 1251px;
+
+background: #F97316;
+box-shadow: inset 0px -4px 4px rgba(255, 255, 255, 0.25), inset 0px 4px 4px rgba(255, 255, 255, 0.25);
+border-radius: 6px;
+
+
+/* Group 1686552933 */
+
+position: absolute;
+width: 125px;
+height: 22px;
+left: 228px;
+top: 1262px;
+
+
+
+/* Appoinment */
+
+position: absolute;
+width: 100px;
+height: 21px;
+left: 253px;
+top: 1262px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 21px;
+/* identical to box height */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* hugeicons:date-time */
+
+position: absolute;
+width: 22px;
+height: 22px;
+left: 228px;
+top: 1262px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.7%;
+right: 6.05%;
+top: 6.55%;
+bottom: 3.86%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552926 */
+
+position: absolute;
+width: 288px;
+height: 70px;
+left: 54px;
+top: 1640px;
+
+
+
+/* Rectangle 5211 */
+
+position: absolute;
+width: 288px;
+height: 70px;
+left: calc(50% - 288px/2 + 1.5px);
+top: 1640px;
+
+background: rgba(245, 245, 245, 0.16);
+border-radius: 13px;
+
+
+/* Powered by TechVibes  */
+
+position: absolute;
+width: 215px;
+height: 18px;
+left: calc(50% - 215px/2 + 2px);
+top: 1655px;
+
+font-family: 'Orbitron';
+font-style: normal;
+font-weight: 500;
+font-size: 12.2727px;
+line-height: 15px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Tap • Connect • Grow */
+
+position: absolute;
+width: 130px;
+height: 18px;
+left: calc(50% - 130px/2 + 1.5px);
+top: 1679px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 12.2727px;
+line-height: 15px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Component 140 */
+
+position: absolute;
+width: 357px;
+height: 42px;
+left: calc(50% - 357px/2);
+top: 1577px;
+
+
+
+/* Group 1686552991 */
+
+position: absolute;
+left: 0%;
+right: 0.3%;
+top: 354.76%;
+bottom: -476.19%;
+
+
+
+/* Rectangle 5213 */
+
+position: absolute;
+left: 0%;
+right: 0.3%;
+top: 354.76%;
+bottom: -476.19%;
+
+background: rgba(255, 255, 255, 0.27);
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.09), inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+backdrop-filter: blur(13.8px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* material-symbols:manufacturing-rounded */
+
+position: absolute;
+height: 18.45px;
+left: 3.95%;
+right: 90.88%;
+top: 165px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.43%;
+right: 5.97%;
+top: 8.33%;
+bottom: 4.17%;
+
+background: #FFFFFF;
+
+
+/* MANUFACTURING: */
+
+position: absolute;
+left: 10.33%;
+right: 47.42%;
+top: 392.86%;
+bottom: -335.71%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+line-height: 18px;
+
+color: #FFFFFF;
+
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 22.23px;
+left: 88.75%;
+right: 5.02%;
+top: 165px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.51%;
+right: 12.49%;
+top: 12.51%;
+bottom: 12.49%;
+
+border: 1.58333px solid #FFFFFF;
+
+
+/* Group 1686552969 */
+
+position: absolute;
+left: 10.64%;
+right: 50.15%;
+top: 442.86%;
+bottom: -369.05%;
+
+
+
+/* Ellipse 2235 */
+
+position: absolute;
+left: 10.64%;
+right: 86.63%;
+top: 445.24%;
+bottom: -366.67%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* GARMENTS.PRODUCTION */
+
+position: absolute;
+left: 14.89%;
+right: 50.15%;
+top: 442.86%;
+bottom: -369.05%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552970 */
+
+position: absolute;
+left: 10.64%;
+right: 45.29%;
+top: 478.57%;
+bottom: -404.76%;
+
+
+
+/* Ellipse 2235 */
+
+position: absolute;
+left: 10.64%;
+right: 86.63%;
+top: 480.95%;
+bottom: -402.38%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* QUALITY.CONTROL.SYSTEMS */
+
+position: absolute;
+left: 14.89%;
+right: 45.29%;
+top: 478.57%;
+bottom: -404.76%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552971 */
+
+position: absolute;
+left: 10.64%;
+right: 50.15%;
+top: 514.29%;
+bottom: -440.48%;
+
+
+
+/* Ellipse 2235 */
+
+position: absolute;
+left: 10.64%;
+right: 86.63%;
+top: 516.67%;
+bottom: -438.1%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* INTERNATIONAL.EXPORT */
+
+position: absolute;
+left: 14.89%;
+right: 50.15%;
+top: 514.29%;
+bottom: -440.48%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552992 */
+
+position: absolute;
+left: 0%;
+right: 0.3%;
+top: 597.62%;
+bottom: -885.71%;
+
+
+
+/* Rectangle 5213 */
+
+position: absolute;
+left: 0%;
+right: 0.3%;
+top: 597.62%;
+bottom: -885.71%;
+
+background: rgba(255, 255, 255, 0.27);
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.09), inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+backdrop-filter: blur(13.8px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* mdi-light:factory */
+
+position: absolute;
+height: 17.36px;
+left: 3.95%;
+right: 91.19%;
+top: 267px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 12.5%;
+top: 12.5%;
+bottom: 8.33%;
+
+background: #FFFFFF;
+
+
+/* Products : */
+
+position: absolute;
+left: 10.33%;
+right: 47.42%;
+top: 633.33%;
+bottom: -576.19%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 15px;
+line-height: 18px;
+
+color: #FFFFFF;
+
+
+
+/* more */
+
+position: absolute;
+left: 28.88%;
+right: 28.88%;
+top: 904.76%;
+bottom: -847.62%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 22.23px;
+left: 88.75%;
+right: 5.02%;
+top: 267px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.51%;
+right: 12.49%;
+top: 12.51%;
+bottom: 12.49%;
+
+border: 1.58333px solid #FFFFFF;
+
+
+/* Group 1686552981 */
+
+position: absolute;
+left: 0.3%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Rectangle 5219 */
+
+position: absolute;
+left: 0.3%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: rgba(255, 255, 255, 0.27);
+box-shadow: inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+backdrop-filter: blur(22.2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* MORE INFORMATION */
+
+position: absolute;
+left: 4.86%;
+right: 41.95%;
+top: 28.57%;
+bottom: 28.57%;
+
+font-family: 'Orbitron';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 19px;
+
+color: #FFFFFF;
+
+
+
+/* mingcute:right-line */
+
+position: absolute;
+height: 25.74px;
+left: 89.06%;
+right: 3.73%;
+top: 9px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 34.71%;
+right: 33.34%;
+top: 22.33%;
+bottom: 22.2%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552983 */
+
+position: absolute;
+left: 0%;
+right: 0.3%;
+top: 126.19%;
+bottom: -233.33%;
+
+filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+left: 0%;
+right: 0.3%;
+top: 126.19%;
+bottom: -233.33%;
+
+background: rgba(255, 255, 255, 0.27);
+box-shadow: inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+backdrop-filter: blur(22.2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* Group 1686552919 */
+
+position: absolute;
+left: 48.94%;
+right: 17.96%;
+top: 266.67%;
+bottom: -192.86%;
+
+
+
+/* AQUA.REFINERY */
+
+position: absolute;
+left: 52.21%;
+right: 17.96%;
+top: 266.67%;
+bottom: -192.86%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+
+color: #FFFFFF;
+
+
+
+/* Ellipse 2236 */
+
+position: absolute;
+left: 48.94%;
+right: 48.94%;
+top: 273.81%;
+bottom: -190.48%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* Group 1686552917 */
+
+position: absolute;
+left: 10.64%;
+right: 56.25%;
+top: 266.67%;
+bottom: -192.86%;
+
+
+
+/* AQUA.PAINTS */
+
+position: absolute;
+left: 13.92%;
+right: 56.25%;
+top: 266.67%;
+bottom: -192.86%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+
+color: #FFFFFF;
+
+
+
+/* Ellipse 2236 */
+
+position: absolute;
+left: 10.64%;
+right: 87.23%;
+top: 273.81%;
+bottom: -190.48%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* Group 1686552918 */
+
+position: absolute;
+left: 48.94%;
+right: 17.96%;
+top: 221.43%;
+bottom: -147.62%;
+
+
+
+/* ELITE.STEEL */
+
+position: absolute;
+left: 52.21%;
+right: 17.96%;
+top: 221.43%;
+bottom: -147.62%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+
+color: #FFFFFF;
+
+
+
+/* Ellipse 2236 */
+
+position: absolute;
+left: 48.94%;
+right: 48.94%;
+top: 228.57%;
+bottom: -145.24%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* Group 1686552916 */
+
+position: absolute;
+left: 10.64%;
+right: 56.25%;
+top: 221.43%;
+bottom: -147.62%;
+
+
+
+/* ELITE.GARMENTS */
+
+position: absolute;
+left: 13.92%;
+right: 56.25%;
+top: 221.43%;
+bottom: -147.62%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+
+color: #FFFFFF;
+
+
+
+/* Ellipse 2235 */
+
+position: absolute;
+left: 10.64%;
+right: 87.23%;
+top: 228.57%;
+bottom: -145.24%;
+
+background: #81E2FF;
+box-shadow: 0px 0px 5.2px rgba(129, 226, 255, 0.76);
+
+
+/* f7:building */
+
+position: absolute;
+height: 17.36px;
+left: 3.95%;
+right: 91.19%;
+top: 70px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.07%;
+right: 17.26%;
+top: 5.36%;
+bottom: 5.36%;
+
+background: #FFFFFF;
+
+
+/* SISTER.CONCERNS */
+
+position: absolute;
+left: 10.33%;
+right: 42.86%;
+top: 164.29%;
+bottom: -107.14%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+
+color: #FFFFFF;
+
+
+
+/* Group 1686552993 */
+
+position: absolute;
+width: 304.91px;
+height: 65px;
+left: 27.13px;
+top: 297px;
+
+
+
+/* Rectangle 5222 */
+
+position: absolute;
+left: 7.6%;
+right: 72.64%;
+top: 707.14%;
+bottom: -761.9%;
+
+background: url(image.png);
+box-shadow: 0px 4px 8.4px rgba(0, 0, 0, 0.11), inset 0px 2px 5.3px rgba(142, 142, 142, 0.65);
+border-radius: 9px;
+
+
+/* Rectangle 5223 */
+
+position: absolute;
+left: 29.48%;
+right: 50.76%;
+top: 707.14%;
+bottom: -761.9%;
+
+background: url(image.png);
+box-shadow: 0px 4px 8.4px rgba(0, 0, 0, 0.11), inset 0px 2px 5.3px rgba(142, 142, 142, 0.65);
+border-radius: 9px;
+
+
+/* Rectangle 5224 */
+
+position: absolute;
+left: 51.37%;
+right: 28.88%;
+top: 707.14%;
+bottom: -761.9%;
+
+background: url(image.png);
+box-shadow: 0px 4px 8.4px rgba(0, 0, 0, 0.11), inset 0px 2px 5.3px rgba(142, 142, 142, 0.65);
+border-radius: 9px;
+
+
+/* Rectangle 5225 */
+
+position: absolute;
+left: 73.25%;
+right: 6.99%;
+top: 707.14%;
+bottom: -761.9%;
+
+background: url(image.png);
+box-shadow: 0px 4px 8.4px rgba(0, 0, 0, 0.11), inset 0px 2px 5.3px rgba(142, 142, 142, 0.65);
+border-radius: 9px;
+
+
+/* Group 1686552994 */
+
+position: absolute;
+width: 357px;
+height: 101px;
+left: calc(50% - 357px/2);
+top: 1104px;
+
+
+
+/* Group 1686552914 */
+
+position: absolute;
+left: 4.58%;
+right: 4.58%;
+top: 50.9%;
+bottom: 44.44%;
+
+
+
+/* Rectangle 5210 */
+
+position: absolute;
+left: 4.58%;
+right: 4.58%;
+top: 50.9%;
+bottom: 44.44%;
+
+background: rgba(255, 255, 255, 0.18);
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.09), inset 0px 2px 8.9px rgba(255, 255, 255, 0.5);
+backdrop-filter: blur(10.2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* teenyicons:building-outline */
+
+position: absolute;
+height: 13.55px;
+left: 14.65%;
+right: 81.9%;
+top: 1122px;
+
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 87.02%;
+right: 9.67%;
+top: 1142px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* Factory : */
+
+position: absolute;
+left: 14.5%;
+right: 70.23%;
+top: 54.03%;
+bottom: 45.46%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* icon-park-outline:share */
+
+position: absolute;
+height: 13px;
+left: 87.28%;
+right: 9.41%;
+top: 1172px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.08333px solid #FFFFFF;
+
+
+/* BTI LANDMARK (LEVEL-10) 16 GULSHAN AVENUE DHAKA-1212, BANGLADESH */
+
+position: absolute;
+left: 31.55%;
+right: 20.87%;
+top: 52.65%;
+bottom: 46.52%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 7.34935px;
+line-height: 9px;
+
+color: #FFFFFF;
+
+
+
+/* BADE KALMESHWAR BOARD BAZAR, GAZIPUR ,BANGLADESH */
+
+position: absolute;
+left: 31.55%;
+right: 20.1%;
+top: 54.03%;
+bottom: 45.12%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 7.5px;
+line-height: 9px;
+
+color: #FFFFFF;
+
+
+
+/* Locations */
+
+position: absolute;
+left: 13.99%;
+right: 66.92%;
+top: 51.59%;
+bottom: 47.58%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 18px;
+
+color: #FF3F58;
+
+
+
+/* Head Office : */
+
+position: absolute;
+left: 14.5%;
+right: 67.37%;
+top: 52.65%;
+bottom: 46.81%;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 9px;
+line-height: 11px;
+
+color: #FFFFF0;
+
+
+
+/* mingcute:location-fill */
+
+position: absolute;
+height: 17px;
+left: 7.38%;
+right: 88.3%;
+top: 1149px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 0.78%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 50.32%;
+right: 46.2%;
+top: 96.43%;
+bottom: 0.78%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 7.64%;
+
+background: #FF3F58;
+
+
+/* Group 1686552998 */
+
+position: absolute;
+width: 332px;
+height: 39px;
+left: calc(50% - 332px/2 + 0.5px);
+top: 422px;
+
+
+
+/* Group 1686552976 */
+
+position: absolute;
+width: 150px;
+height: 39px;
+left: 31px;
+top: 422px;
+
+filter: drop-shadow(0px 0px 8.4px rgba(0, 60, 92, 0.34));
+
+
+/* Rectangle 5220 */
+
+position: absolute;
+width: 150px;
+height: 39px;
+left: 31px;
+top: 422px;
+
+background: linear-gradient(128.77deg, rgba(74, 190, 252, 0) -32.47%, rgba(7, 159, 220, 0.34) 133.25%), rgba(27, 31, 33, 0.52);
+box-shadow: 0px 0px 8.6px 2.38251px rgba(85, 148, 182, 0.15), inset 0px 4.76503px 7.62405px rgba(255, 255, 255, 0.51);
+border-radius: 8.3388px;
+
+
+/* Group 1686552972 */
+
+position: absolute;
+width: 121.56px;
+height: 22.02px;
+left: 47.36px;
+top: 430px;
+
+
+
+/* Save Contact */
+
+position: absolute;
+width: 100.75px;
+height: 18.62px;
+left: 68.17px;
+top: 432px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 14.2954px;
+line-height: 17px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* fluent-mdl2:installation */
+
+position: absolute;
+width: 22.33px;
+height: 22.02px;
+left: 47.36px;
+top: 430px;
+
+
+
+/* Vector */
+
+position: absolute;
+width: 16.45px;
+left: calc(50% - 16.45px/2 + 0.44px);
+top: 6.28%;
+bottom: -0.68%;
+
+background: #FFFFFF;
+
+
+/* Group 1686552979 */
+
+position: absolute;
+width: 150px;
+height: 39px;
+left: 213px;
+top: 422px;
+
+filter: drop-shadow(0px 0px 8.4px rgba(0, 60, 92, 0.34));
+
+
+/* Rectangle 5221 */
+
+position: absolute;
+width: 150px;
+height: 39px;
+left: 213px;
+top: 422px;
+
+background: linear-gradient(128.77deg, rgba(74, 190, 252, 0) -32.47%, rgba(7, 159, 220, 0.34) 133.25%), rgba(27, 31, 33, 0.52);
+box-shadow: 0px 0px 8.6px 2.38251px rgba(85, 148, 182, 0.15), inset 0px 4.76503px 7.62405px rgba(255, 255, 255, 0.51);
+border-radius: 8.3388px;
+
+
+/* Group 1686552972 */
+
+position: absolute;
+width: 99.64px;
+height: 22.02px;
+left: 229.36px;
+top: 430px;
+
+
+
+/* Connect */
+
+position: absolute;
+width: 64px;
+height: 19px;
+left: 265px;
+top: 431.84px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 14.2954px;
+line-height: 17px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* mynaui:chat */
+
+position: absolute;
+width: 22.02px;
+height: 22.02px;
+left: 229.36px;
+top: 430px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 1.37652px solid #FFFFFF;
+
+
+/* Group 1686552989 */
+
+position: absolute;
+width: 36px;
+height: 17px;
+left: calc(50% - 36px/2 - 1.5px);
+top: 368px;
+
+
+
+/* B+ */
+
+position: absolute;
+width: 20px;
+height: 17px;
+left: 193px;
+top: 368px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 13px;
+line-height: 16px;
+
+color: #F34242;
+
+
+
+/* mdi:drop */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 177px;
+top: 369px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 13.54%;
+bottom: 16.67%;
+
+background: #F34242;
+
+
+/* Rectangle 5218 */
+
+position: absolute;
+visibility: hidden;
+width: 393px;
+height: 393px;
+left: 0px;
+top: 470px;
+
+background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, rgba(15, 29, 37, 0.53) 100%);
