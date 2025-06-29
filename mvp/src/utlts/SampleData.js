@@ -1,4 +1,4 @@
-import myPhoto from "../assets/WhatsApp Image 2025-06-28 at 10.14.36 PM.jpeg";
+import myPhoto from "../assets/profile.jpeg";
 import companyLogo from "../assets/Elite.png";
 
 export const profileData = {

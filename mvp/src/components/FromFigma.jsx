@@ -56,8 +56,7 @@ const FromFigma = () => {
           <img
             src={profileData.employee.profilePhoto}
             alt="Profile"
-            className="w-40 h-40 md:w-60 md:h-60  shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
-            style={{ borderWidth: "1px" }}
+            className="w-40 h-40 md:w-60 md:h-60 object-contain  -mb-16 md:-mb-24 "
           />
         </div>
       </div>
@@ -115,8 +114,8 @@ const FromFigma = () => {
           </ul>
         </p>
         <span className=" text-[#F34242] px-4 py-2 rounded-full text-xl font-medium flex items-center justify-center gap-2">
-            🩸 {profileData.employee.bloodGroup}
-          </span>
+          🩸 {profileData.employee.bloodGroup}
+        </span>
       </div>
 
       <div className={"max-w-6xl mx-auto px-2 md:px-10 overflow-hidden"}>
@@ -188,7 +187,11 @@ const FromFigma = () => {
               ]}
             />
           </div>
-          <div className={"grid md:grid-cols-2 w-full gap-4 md:items-center md:justify-center"}>
+          <div
+            className={
+              "grid md:grid-cols-2 w-full gap-4 md:items-center md:justify-center"
+            }
+          >
             <QRCodeSection qrCodeData={"https://techvibesbd.com/"} />
             <TechVibesCard />
           </div>
