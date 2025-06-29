@@ -56,8 +56,8 @@ const FromFigma = () => {
           <img
             src={profileData.employee.profilePhoto}
             alt="Profile"
-            className="w-40 h-40 md:w-60 md:h-60 rounded-full shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
-            style={{ borderWidth: "10px" }}
+            className="w-40 h-40 md:w-60 md:h-60  shadow-2xl object-cover -mb-16 md:-mb-24 border-[#0E181E]"
+            style={{ borderWidth: "1px" }}
           />
         </div>
       </div>
@@ -75,12 +75,10 @@ const FromFigma = () => {
           <h1 className={"text-xl"}>{profileData.employee.designation}</h1>
           <h1>{profileData.employee.department}</h1>
           <h1 className={"font-bold"}>{profileData.company.name}</h1>
-          <span className=" text-[#F34242] px-4 py-2 rounded-full text-xl font-medium flex items-center gap-2">
-            🩸 {profileData.employee.bloodGroup}
-          </span>
-          <div className="text-white bg-[rgba(255,255,255,0.18)] px-7 py-1 rounded-lg">
-            ID: {profileData.employee.employeeId}
-          </div>
+
+          {/*<div className="text-white bg-[rgba(255,255,255,0.18)] px-7 py-1 rounded-lg">*/}
+          {/*  ID: {profileData.employee.employeeId}*/}
+          {/*</div>*/}
           <div className={"flex gap-5 mt-5"}>
             <button className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer">
               <Download />
@@ -116,7 +114,11 @@ const FromFigma = () => {
             <li>Supply Chain & Compliance</li>
           </ul>
         </p>
+        <span className=" text-[#F34242] px-4 py-2 rounded-full text-xl font-medium flex items-center justify-center gap-2">
+            🩸 {profileData.employee.bloodGroup}
+          </span>
       </div>
+
       <div className={"max-w-6xl mx-auto px-2 md:px-10 overflow-hidden"}>
         <h1
           className={
