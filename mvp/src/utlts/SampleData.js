@@ -53,7 +53,7 @@ export const profileData = {
     },
     {
       platform: "Twitter",
-      url: "https://twitter.com/sarah_techvibes",
+      url: "https://www.wechat.com/",
       icon: "🐦",
     },
     // {

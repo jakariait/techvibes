@@ -1,7 +1,7 @@
 import React from "react";
 import {
   FaLinkedinIn,
-  FaTwitter,
+  FaWeixin,
   FaInstagram,
   FaFacebookF,
   FaGlobe
@@ -13,7 +13,7 @@ const iconMap = {
     color: "#0077B5",
   },
   Twitter: {
-    icon: FaTwitter,
+    icon: FaWeixin,
     color: "#1DA1F2",
   },
   Instagram: {
