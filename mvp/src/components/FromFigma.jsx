@@ -26,47 +26,33 @@ import TechVibesCard from "./TechVibesCard.jsx";
 
 const FromFigma = () => {
 
-  const handleSaveContact = async () => {
-    const profileImageUrl = profileData.employee.profilePhoto; // assuming it's a direct image URL (e.g., /uploads/xyz.jpg)
-
-    // Fetch the image and convert to Base64
-    const toBase64 = async (url) => {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(",")[1]); // Get only Base64 data
-        reader.readAsDataURL(blob);
-      });
-    };
-
-    const imageBase64 = await toBase64(profileImageUrl);
-
+  const handleSaveContact = () => {
+    // Create vCard data
     const vcard = `BEGIN:VCARD
-          VERSION:3.0
-          FN:${profileData.employee.fullName}
-          ORG:${profileData.company.name}
-          TITLE:${profileData.employee.designation}
-          EMAIL;TYPE=WORK:${profileData.contact.emails.office}
-          EMAIL;TYPE=HOME:${profileData.contact.emails.personal}
-          TEL;TYPE=WORK:${profileData.contact.phones.office}
-          TEL;TYPE=HOME:${profileData.contact.phones.personal}
-          ADR;TYPE=WORK:;;${profileData.locations[0].address}
-          URL:${profileData.social[0].url}
-          NOTE:${profileData.employee.bio}
-          PHOTO;ENCODING=b;TYPE=JPEG:${imageBase64}
-          END:VCARD`;
+VERSION:3.0
+FN:${profileData.employee.fullName}
+ORG:${profileData.company.name}
+TITLE:${profileData.employee.designation}
+EMAIL;TYPE=WORK:${profileData.contact.emails.office}
+EMAIL;TYPE=HOME:${profileData.contact.emails.personal}
+TEL;TYPE=WORK:${profileData.contact.phones.office}
+TEL;TYPE=HOME:${profileData.contact.phones.personal}
+ADR;TYPE=WORK:;;${profileData.locations[0].address}
+URL:${profileData.social[0].url}
+NOTE:${profileData.employee.bio}
+END:VCARD`;
 
     const blob = new Blob([vcard], { type: "text/vcard" });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${profileData.employee.fullName.replace(" ", "_")}_contact.vcf`;
+    a.download = `${profileData.employee.fullName.replace(
+      " ",
+      "_"
+    )}_contact.vcf`;
     a.click();
     window.URL.revokeObjectURL(url);
   };
-
-
 
   return (
     <div className={"bg-[#0E191E]  "}>
@@ -195,7 +181,7 @@ const FromFigma = () => {
             iconColor="#3b82f6" // blue-500
             items={[
               {
-                label: "Personal (Cell)",
+                label: "Cell",
                 value: profileData.contact.phones.personal,
               },
               { label: "Office", value: profileData.contact.phones.office },
