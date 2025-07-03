@@ -3,13 +3,13 @@ import companyLogo from "../assets/Elite.png";
 
 export const profileData = {
   company: {
-    name: "ELITE GARMENTS INDUSTRIES LTD.",
+    name: "Elite Garments Industries Ltd.",
     logo: companyLogo,
     coverPhoto:
       "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=300&fit=crop&crop=center",
   },
   employee: {
-    fullName: "MD. SHAHIDUZZAMAN",
+    fullName: "Md. Shahiduzzaman",
     designation: "Executive Director",
     department: "Corporate Strategy & Leadership",
     employeeId: "EG-2024-ED001",

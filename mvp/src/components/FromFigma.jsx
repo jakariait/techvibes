@@ -25,6 +25,33 @@ import SisterConcernSection from "./SisterConcernSection.jsx";
 import TechVibesCard from "./TechVibesCard.jsx";
 
 const FromFigma = () => {
+  const handleSaveContact = () => {
+    // Create vCard data
+    const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:${profileData.employee.fullName}
+ORG:${profileData.company.name}
+TITLE:${profileData.employee.designation}
+EMAIL;TYPE=WORK:${profileData.contact.emails.office}
+EMAIL;TYPE=HOME:${profileData.contact.emails.personal}
+TEL;TYPE=WORK:${profileData.contact.phones.office}
+TEL;TYPE=HOME:${profileData.contact.phones.personal}
+ADR;TYPE=WORK:;;${profileData.locations[0].address}
+URL:${profileData.social[0].url}
+NOTE:${profileData.employee.bio}
+END:VCARD`;
+
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${profileData.employee.fullName.replace(
+      " ",
+      "_",
+    )}_contact.vcf`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
   return (
     <div className={"bg-[#0E191E]  "}>
       {/* Cover Photo */}
@@ -62,7 +89,7 @@ const FromFigma = () => {
       </div>
       {/* Main Content - Starts below profile photo */}
       <div className="pt-18 md:pt-25 px-2 md:px-52 lg:px-92 pb-7 max-w-6xl mx-auto">
-        <div className="text-white uppercase flex items-center justify-center flex-col">
+        <div className="text-white  flex items-center justify-center flex-col">
           <h1 className="flex items-center gap-2 justify-center lg:justify-start text-3xl">
             {profileData.employee.fullName}
             {profileData.employee.verified && (
@@ -79,7 +106,10 @@ const FromFigma = () => {
           {/*  ID: {profileData.employee.employeeId}*/}
           {/*</div>*/}
           <div className={"flex gap-5 mt-5"}>
-            <button className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer">
+            <button
+              onClick={handleSaveContact}
+              className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer"
+            >
               <Download />
               Save Contact
             </button>
@@ -100,23 +130,24 @@ const FromFigma = () => {
           </div>
         </div>
       </div>
-      <div className={"max-w-6xl mx-auto px-2 md:px-32 "}>
-        <p className="text-white bg-[#212F35] inner-glow p-4 leading-relaxed rounded-xl flex flex-col gap-4">
-          <div className={"flex gap-2"}>
-            <BriefcaseBusiness />
-            <h1>Departments / Responsibilities</h1>
-          </div>
-          <ul className="list-disc pl-5 text-white leading-relaxed space-y-1 grid md:grid-cols-2">
-            <li>Corporate Strategy & Leadership</li>
-            <li>Production Oversight & Quality Control</li>
-            <li>International Client Relations</li>
-            <li>Supply Chain & Compliance</li>
-          </ul>
-        </p>
-        <span className=" text-[#F34242] px-4 py-2 rounded-full text-xl font-medium flex items-center justify-center gap-2">
-          🩸 {profileData.employee.bloodGroup}
-        </span>
-      </div>
+
+      {/*<div className={"max-w-6xl mx-auto px-2 md:px-32 "}>*/}
+      {/*  <p className="text-white bg-[#212F35] inner-glow p-4 leading-relaxed rounded-xl flex flex-col gap-4">*/}
+      {/*    <div className={"flex gap-2"}>*/}
+      {/*      <BriefcaseBusiness />*/}
+      {/*      <h1>Departments / Responsibilities</h1>*/}
+      {/*    </div>*/}
+      {/*    <ul className="list-disc pl-5 text-white leading-relaxed space-y-1 grid md:grid-cols-2">*/}
+      {/*      <li>Corporate Strategy & Leadership</li>*/}
+      {/*      <li>Production Oversight & Quality Control</li>*/}
+      {/*      <li>International Client Relations</li>*/}
+      {/*      <li>Supply Chain & Compliance</li>*/}
+      {/*    </ul>*/}
+      {/*  </p>*/}
+      {/*  <span className=" text-[#F34242] px-4 py-2 rounded-full text-xl font-medium flex items-center justify-center gap-2">*/}
+      {/*    🩸 {profileData.employee.bloodGroup}*/}
+      {/*  </span>*/}
+      {/*</div>*/}
 
       <div className={"max-w-6xl mx-auto px-2 md:px-10 overflow-hidden"}>
         <h1
@@ -137,7 +168,7 @@ const FromFigma = () => {
                 label: "Personal",
                 value: profileData.contact.whatsapp.personal,
               },
-              { label: "Office", value: profileData.contact.whatsapp.business },
+              // { label: "Office", value: profileData.contact.whatsapp.business },
             ]}
             linkPrefix="https://wa.me/"
           />
@@ -147,7 +178,10 @@ const FromFigma = () => {
             icon={FaPhoneAlt}
             iconColor="#3b82f6" // blue-500
             items={[
-              { label: "Personal", value: profileData.contact.phones.personal },
+              {
+                label: "Personal (Cell)",
+                value: profileData.contact.phones.personal,
+              },
               { label: "Office", value: profileData.contact.phones.office },
               { label: "Office", value: "09602-112277" },
             ]}
@@ -180,10 +214,11 @@ const FromFigma = () => {
             <BusinessHoursCard />
             <SisterConcernSection
               concerns={[
-                "Elite Garments",
-                "Elite Steel",
-                "Aqua Paints",
-                "Aqua Refinery",
+                "                Elite Garments Industries Ltd.\n",
+                "Octagon Fibres & Chemicals Ltd.",
+                "Elite Iron & Steel Industries Ltd.",
+                "Aqua Refinery Ltd.",
+                "Aqua Mineral Turpentine & Solvents Plant Ltd.",
               ]}
             />
           </div>
