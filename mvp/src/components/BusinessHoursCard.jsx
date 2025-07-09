@@ -17,7 +17,7 @@ const BusinessHoursCard = () => {
             </h2>
             <div className="text-gray-300 text-base sm:text-lg">
               <div className="font-semibold">SAT-THU:</div>
-              <div className="font-light">09:00 - 18:00 BST</div>
+              <div className="font-light">10:00 - 18:00 BST</div>
             </div>
           </div>
         </div>
