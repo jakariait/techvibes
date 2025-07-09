@@ -48,12 +48,12 @@ export const profileData = {
   social: [
     {
       platform: "LinkedIn",
-      url: "https://linkedin.com/in/sarah-johnson",
+      url: "",
       icon: "💼",
     },
     {
-      platform: "Twitter",
-      url: "https://www.wechat.com/",
+      platform: "WeChat",
+      url: "wxid_54ob95dauihv12",
       icon: "🐦",
     },
     // {

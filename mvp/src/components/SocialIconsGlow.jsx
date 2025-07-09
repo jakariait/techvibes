@@ -4,7 +4,7 @@ import {
   FaWeixin,
   FaInstagram,
   FaFacebookF,
-  FaGlobe
+  FaGlobe,
 } from "react-icons/fa";
 
 const iconMap = {
@@ -12,7 +12,7 @@ const iconMap = {
     icon: FaLinkedinIn,
     color: "#0077B5",
   },
-  Twitter: {
+  WeChat: {
     icon: FaWeixin,
     color: "#1DA1F2",
   },
@@ -31,6 +31,11 @@ const iconMap = {
 };
 
 const SocialIconsGlow = ({ socials }) => {
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    alert(`Copied: ${text}`);
+  };
+
   return (
     <div className="flex gap-6 items-center justify-center mt-5 flex-wrap px-10">
       {socials.map((social, index) => {
@@ -40,7 +45,22 @@ const SocialIconsGlow = ({ socials }) => {
         const Icon = platform.icon;
         const color = platform.color;
 
-        return (
+        const isWeChat = social.platform === "WeChat";
+
+        return isWeChat ? (
+          <button
+            key={index}
+            onClick={() => handleCopy(social.url)} // Treat `url` as WeChat ID here
+            className="p-3 rounded-md transition-all"
+            style={{
+              backgroundColor: color,
+              color: "#ffffff",
+              boxShadow: `0 0 10px ${color}, 0 0 5px ${color}`,
+            }}
+          >
+            <Icon className="text-xl" />
+          </button>
+        ) : (
           <a
             key={index}
             href={social.url}
@@ -49,7 +69,7 @@ const SocialIconsGlow = ({ socials }) => {
             className="p-3 rounded-md transition-all"
             style={{
               backgroundColor: color,
-              color: "#ffffff", // icon color
+              color: "#ffffff",
               boxShadow: `0 0 10px ${color}, 0 0 5px ${color}`,
             }}
           >

@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      required: true,
       unique: true,
-      sparse: true,
       trim: true,
       match: [
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -30,18 +30,13 @@ const userSchema = new mongoose.Schema(
         type: Date,
       },
     },
-    rewardPoints: {
-      type: Number,
-      default: 0,
-    },
     address: {
       type: String,
     },
     phone: {
       type: String,
-      unique: true,
-      sparse: true,
       match: [/^\d{10,15}$/, "Please enter a valid phone number"],
+      default: null,
     },
     password: {
       type: String,
@@ -59,15 +54,6 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true, versionKey: false },
 );
-
-// 🔁 Ensure either email or phone is provided
-userSchema.pre("validate", function (next) {
-  if (!this.email && !this.phone) {
-    this.invalidate("email", "Either email or phone number is required.");
-    this.invalidate("phone", "Either email or phone number is required.");
-  }
-  next();
-});
 
 // 🔐 Hash password before saving
 userSchema.pre("save", async function (next) {
