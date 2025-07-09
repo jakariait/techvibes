@@ -2,8 +2,11 @@ const asyncHandler = require("express-async-handler");
 const userService = require("../services/UserService");
 const UserModel = require("../models/UserModel");
 const generateToken = require("../utility/generateToken");
+const profileService = require("../services/ProfileService");
 
-// 🔐 Login user (email or phone)
+
+
+// 🔐 Login user email
 const loginUser = asyncHandler(async (req, res) => {
   try {
     const { emailOrPhone, password } = req.body;
@@ -24,7 +27,7 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       });
     } else {
-      res.status(401).json({ message: "Invalid email/phone or password" });
+      res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
     res.status(500).json({ message: "Login failed", error: error.message });
@@ -36,6 +39,9 @@ const createUser = asyncHandler(async (req, res) => {
   try {
     const user = await userService.createUser(req.body);
 
+    // ✅ Create default profile when user is created
+    await profileService.createProfileForUser(user);
+
     const token = generateToken(user._id); // ✅ use the helper
 
     res.status(201).json({
@@ -45,141 +51,13 @@ const createUser = asyncHandler(async (req, res) => {
     });
   } catch (error) {
     if (error.code === 11000) {
-      res.status(400).json({ message: "Email or phone already exists" });
+      res.status(400).json({ message: "Email already exists" });
     } else {
       res.status(500).json({
         message: "Failed to create user",
         error: error.message,
       });
     }
-  }
-});
-
-// 📤 Get all users
-const getAllUsers = asyncHandler(async (req, res) => {
-  try {
-    const users = await userService.getAllUsers();
-
-    // Count the number of registered users
-    const userCount = users.length;
-
-    if (userCount === 0) {
-      return res.status(200).json({ message: "No users found", userCount });
-    }
-
-    res.status(200).json({
-      message: "Users retrieved successfully",
-      userCount, // Include the user count in the response
-      users,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to fetch users",
-      error: error.message,
-    });
-  }
-});
-
-// 🔍 Get user by ID
-const getUserById = asyncHandler(async (req, res) => {
-  try {
-    const user = await userService.getUserById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.status(200).json({
-      message: "User retrieved successfully",
-      user,
-    });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to fetch user", error: error.message });
-  }
-});
-
-// ✏️ Update user
-const updateUser = asyncHandler(async (req, res) => {
-  try {
-    // 👉 Handle userImage update if file is uploaded
-    if (req.files && req.files.userImage && req.files.userImage.length > 0) {
-      req.body.userImage = req.files.userImage[0].filename;
-    }
-
-    const user = await userService.updateUser(req.params.id, req.body);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.status(200).json({
-      message: "User updated successfully",
-      user,
-    });
-  } catch (error) {
-    if (error.code === 11000) {
-      res.status(400).json({ message: "Email or phone already exists" });
-    } else {
-      res.status(500).json({
-        message: "Failed to update user",
-        error: error.message,
-      });
-    }
-  }
-});
-
-// ❌ Delete user
-const deleteUser = asyncHandler(async (req, res) => {
-  try {
-    const user = await userService.deleteUser(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.status(200).json({ message: "User deleted successfully" });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to delete user", error: error.message });
-  }
-});
-
-// 👤 Get logged-in user
-const getLoggedInUser = asyncHandler(async (req, res) => {
-  try {
-    const user = req.user;
-    res.status(200).json({
-      message: "User profile retrieved",
-      user,
-    });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to get user profile", error: error.message });
-  }
-});
-
-const requestAccountDeletion = asyncHandler(async (req, res) => {
-  try {
-    const userId = req.user._id; // Assuming auth middleware sets req.user
-
-    const updatedUser = await userService.updateUser(userId, {
-      accountDeletion: {
-        requested: true,
-        requestedAt: new Date(),
-      },
-    });
-
-    res.status(200).json({
-      message: "Account deletion request submitted",
-      user: updatedUser,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to request account deletion",
-      error: error.message,
-    });
   }
 });
 
@@ -201,14 +79,105 @@ const changePassword = asyncHandler(async (req, res) => {
   res.json(result);
 });
 
+
+
+// 🔍 Get user by slug (publicly accessible)
+const getUserBySlug = asyncHandler(async (req, res) => {
+  try {
+    const slug = req.params.slug;
+
+    const data = await userService.getUserBySlug(slug);
+
+    if (!data) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "User and profile fetched",
+      ...data,
+    });
+  } catch (error) {
+    console.error("Error in getUserBySlug:", error); // 👈 helpful log
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+});
+
+
+const deleteUserBySlug = asyncHandler(async (req, res) => {
+  try {
+    const result = await userService.deleteUserBySlug(req.params.slug);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to delete user and profile",
+      error: error.message,
+    });
+  }
+});
+
+// ✏️ Update user by slug (User only, not profile)
+const updateUserOnlyBySlug = asyncHandler(async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const updatedUser = await userService.updateUserOnlyBySlug(slug, req.body);
+
+    res.status(200).json({
+      message: "User updated successfully",
+      user: updatedUser.user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to update user",
+      error: error.message,
+    });
+  }
+});
+
+const updateProfileBySlug = asyncHandler(async (req, res) => {
+  try {
+    const slug = req.params.slug;
+
+    // 🔁 If Multer uploaded any files, attach their filenames to req.body
+    if (req.files?.profilePhoto?.[0]) {
+      req.body.profilePhoto = req.files.profilePhoto[0].filename;
+    }
+
+    if (req.files?.coverPhoto?.[0]) {
+      req.body.coverPhoto = req.files.coverPhoto[0].filename;
+    }
+
+    if (req.files?.brandLogo?.[0]) {
+      req.body.brandLogo = req.files.brandLogo[0].filename;
+    }
+
+
+
+
+
+
+    const updatedProfile = await userService.updateProfileBySlug(slug, req.body);
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      profile: updatedProfile,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to update profile",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = {
   loginUser,
   createUser,
-  getAllUsers,
-  getUserById,
-  updateUser,
-  deleteUser,
-  getLoggedInUser,
-  requestAccountDeletion,
-  changePassword
+  changePassword,
+  getUserBySlug,
+  deleteUserBySlug,
+  updateUserOnlyBySlug,
+  updateProfileBySlug
 };

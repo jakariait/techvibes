@@ -5,6 +5,7 @@ import ForgetPasswordPage from "./pages/ForgetPasswordPage.jsx";
 import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
 import UserProtectedRoute from "./component/UserProtectedRoute.jsx";
 import UserHomePage from "./pages/UserHomePage.jsx";
+import UserPublicProfile from "./pages/UserPublicProfile.jsx";
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
         <Route path="/forgot-password" element={<ForgetPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
 
+        {/*User Public Route*/}
+        <Route path="/profile/:slug" element={<UserPublicProfile/>} />
+
         {/* Protected User Routes */}
         <Route element={<UserProtectedRoute />}>
           <Route path="/user/home" element={<UserHomePage />} />
-
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const slugify = require("slugify");
 
 const userSchema = new mongoose.Schema(
   {
@@ -8,8 +9,19 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    userImage: {
+    isVarified:{
+      type: Boolean,
+      default: false,
+    },
+    slug: {
       type: String,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    counter: {
+      type: Number,
+      default: 0,
     },
     email: {
       type: String,
@@ -30,14 +42,7 @@ const userSchema = new mongoose.Schema(
         type: Date,
       },
     },
-    address: {
-      type: String,
-    },
-    phone: {
-      type: String,
-      match: [/^\d{10,15}$/, "Please enter a valid phone number"],
-      default: null,
-    },
+    role: { type: String, enum: ["normal", "corporate"], default: "normal" },
     password: {
       type: String,
       required: true,
@@ -55,12 +60,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false },
 );
 
-// 🔐 Hash password before saving
+// Password hashing
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   try {
-    const salt = await bcrypt.genSalt(10); // Salt rounds
+    const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
   } catch (err) {
@@ -68,7 +73,38 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// 🔑 Add method to compare password (for login)
+// Slug + counter generation and uniqueness check
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("fullName")) return next();
+
+  const baseSlug = slugify(this.fullName, { lower: true, strict: true });
+
+  // Find all slugs starting with baseSlug to find max counter
+  const regex = new RegExp(`^${baseSlug}(-\\d+)?$`);
+
+  const usersWithSlug = await mongoose.models.User.find({ slug: regex });
+
+  if (usersWithSlug.length === 0) {
+    this.counter = 0;
+    this.slug = `${baseSlug}-0`;
+  } else {
+    // Extract max counter from existing slugs
+    const counters = usersWithSlug
+      .map((u) => {
+        const match = u.slug.match(/-(\d+)$/);
+        return match ? parseInt(match[1], 10) : 0;
+      })
+      .sort((a, b) => b - a); // descending order
+
+    const maxCounter = counters[0];
+    this.counter = maxCounter + 1;
+    this.slug = `${baseSlug}-${this.counter}`;
+  }
+
+  next();
+});
+
+// Password compare method
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };

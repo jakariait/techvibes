@@ -101,6 +101,18 @@ const upload = multer({ storage }).fields([
     name: "userImage",
     maxCount: 1,
   },
+  {
+    name: "profilePhoto",
+    maxCount: 1,
+  },
+  {
+    name: "coverPhoto",
+    maxCount: 1,
+  },
+  {
+    name: "brandLogo",
+    maxCount: 1,
+  }
 ]);
 
 // Serve images from the 'uploads' folder as static files
@@ -266,41 +278,8 @@ router.delete(
   AdminController.deleteAdmin,
 );
 
-// User Login Route
 
-// 🚀 Public Routes
-router.post("/login", userController.loginUser); // User login (email/phone and password)
-router.post("/register", userController.createUser); // Create a new user
 
-// 🚀 Protected Routes (Requires Authentication)
-router.get("/profile", userProtect, userController.getLoggedInUser); // Get logged-in user's profile
-router.put("/updateUser/:id", upload, userController.updateUser);
-router.put(
-  "/request-deletion",
-  userProtect,
-  userController.requestAccountDeletion,
-);
-router.patch("/change-password", userProtect, userController.changePassword);
-
-// Admin Protected Routes
-router.get(
-  "/getAllUsers",
-  adminProtect,
-  checkPermission("view_customers"),
-  userController.getAllUsers,
-);
-router.get(
-  "/getUserById/:id",
-  adminProtect,
-  checkPermission("view_customers"),
-  userController.getUserById,
-);
-router.delete(
-  "/deleteUser/:id",
-  adminProtect,
-  checkPermission("delete_customers"),
-  userController.deleteUser,
-);
 
 // CRUD routes for Products Category
 router.get("/category", categoryController.getCategories);
@@ -720,10 +699,24 @@ router.get("/blog/:id", blogController.getBlogById);
 
 
 
+
+// User Login Route
+
+// 🚀 Public Routes
+router.post("/login", userController.loginUser); // User login (email and password)
+router.post("/register", userController.createUser); // Create a new user
+router.get("/userbyslug/:slug", userController.getUserBySlug); // Get User and Profile
+router.delete("/userbyslug/:slug", userController.deleteUserBySlug); // Delete User and Profile
+router.patch("/userbyslug/:slug", userController.updateUserOnlyBySlug); // Update User Data Only
+router.patch("/profilebyslug/:slug",upload, userController.updateProfileBySlug); // Update Profile Data
+
+
+// 🚀 Protected Routes (Requires Authentication)
+router.patch("/change-password", userProtect, userController.changePassword);
+
 // Password Reset Routes
 router.post("/request-reset", PassWordResetController.requestPasswordReset);
 router.post("/reset-password", PassWordResetController.resetPasswordWithOTP);
-
 
 
 module.exports = router;
