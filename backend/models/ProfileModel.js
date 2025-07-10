@@ -17,6 +17,8 @@ const profileSchema = new mongoose.Schema(
       enum: ["square", "circle"],
       default: "square",
     },
+    suffix: String,
+    prefix: String,
     designation: String,
     companyName: String,
 
@@ -49,6 +51,7 @@ const profileSchema = new mongoose.Schema(
     },
 
     // Other sections
+
     bio: String,
     bloodGroup: String,
     productAndServices: [String],
@@ -64,7 +67,7 @@ const profileSchema = new mongoose.Schema(
     },
 
     // Corporate Extras
-    appointmentHours: {
+    businessHours: {
       start: String,
       end: String,
     },
