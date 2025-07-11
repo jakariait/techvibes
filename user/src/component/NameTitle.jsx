@@ -8,7 +8,7 @@ const NameTitle = ({ profile, user }) => {
 
         <div className="flex  items-center gap-2 md:flex-row md:items-center md:justify-center">
           {/* Name */}
-          <div className="text-3xl text-center lg:text-left">
+          <div className="text-2xl text-center lg:text-left">
             {profile.prefix} {user.fullName}
             {profile.suffix && <span>, {profile.suffix}</span>}
           </div>

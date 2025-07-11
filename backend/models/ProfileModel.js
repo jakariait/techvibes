@@ -28,33 +28,52 @@ const profileSchema = new mongoose.Schema(
     idNumber: String,
 
     // Contact
-    contact: {
-      emails: [
-        {
-          value: { type: String, required: true },
-          label: { type: String, required: true },
-        },
-      ],
-      phones: [
-        {
-          value: { type: String, required: true },
-          label: { type: String, required: true },
-        },
-      ],
-      whatsapp: { type: String },
-      locations: [
-        {
-          value: { type: String, required: true },
-          label: { type: String, required: true },
-        },
-      ],
-    },
+
+    emails: [
+      {
+        value: { type: String, required: true },
+        label: { type: String, required: true },
+      },
+    ],
+    phones: [
+      {
+        value: { type: String, required: true },
+        label: { type: String, required: true },
+      },
+    ],
+    whatsapp: [
+      {
+        value: { type: String, required: true },
+        label: { type: String, required: true },
+      },
+    ],
+    locations: [
+      {
+        value: { type: String, required: true },
+        label: { type: String, required: true },
+      },
+    ],
 
     // Other sections
 
     bio: String,
     bloodGroup: String,
-    productAndServices: [String],
+    productAndServices: [
+      {
+        label: { type: String, required: true },
+        value: { type: String }, // Optional URL or reference link
+      },
+    ],
+
+    // Company Only
+    sisterConcerns: [
+      {
+        label: { type: String, required: true },
+        value: { type: String }, // Optional URL or reference link
+      },
+    ],
+
+
     portfolio: String,
     cvUrl: String,
     qrCodeUrl: String,
@@ -68,11 +87,19 @@ const profileSchema = new mongoose.Schema(
 
     // Corporate Extras
     businessHours: {
-      start: String,
-      end: String,
+      start: { type: String, default: "09:00 AM" },
+      end: { type: String, default: "06:00 PM" },
     },
-    brandLogo: String,
+    businessDay: {
+      start: { type: String, default: "Saturday" },
+      end: { type: String, default: "Thursday" },
+    },
+    businessTimeZone: {
+      type: String,
+      default: "BST",
+    },
 
+    brandLogo: String,
   },
   { timestamps: true, versionKey: false },
 );

@@ -19,7 +19,7 @@ const userService = {
 
   getUserBySlug: async (slug) => {
     const user = await UserModel.findOne({ slug }).select(
-      "-password -resetOTP -resetOTPExpiry",
+      "-password -resetOTP -resetOTPExpiry ",
     );
     if (!user) return null;
 

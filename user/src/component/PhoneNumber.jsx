@@ -1,26 +1,28 @@
 import React from "react";
-import { ExternalLink, Mail } from "lucide-react";
+import { ExternalLink, Phone } from "lucide-react";
 
-const Emails = ({ profile, user }) => {
-  const emails = profile?.emails || [];
-  const linkPrefix = "mailto:";
+const PhoneNumber = ({ profile, user }) => {
 
-  // Show only 2 emails for normal users, all for others
-  const visibleEmails =
-    user?.role === "normal" ? emails.slice(0, 2) : emails;
+
+  const phones = profile?.phones || [];
+  const linkPrefix = "tel:";
+
+  // Show only 2 phone numbers for "normal" users, all for others
+  const visiblePhones =
+    user?.role === "normal" ? phones.slice(0, 2) : phones;
 
   return (
-    visibleEmails.length > 0 && (
+    visiblePhones.length > 0 && (
       <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Mail className="w-5 h-5 text-red-400" />
-          <h2 className="text-xl font-medium text-red-400">Email</h2>
+          <Phone className="w-5 h-5 text-green-400" />
+          <h2 className="text-xl font-medium text-green-400">Phone</h2>
         </div>
 
-        {/* Email List */}
+        {/* Phone List */}
         <div className="flex flex-col gap-2 w-full">
-          {visibleEmails.map(({ label, value, _id }) => (
+          {visiblePhones.map(({ label, value, _id }) => (
             <div
               key={_id}
               className="flex flex-wrap items-center justify-between gap-2 w-full"
@@ -33,7 +35,7 @@ const Emails = ({ profile, user }) => {
 
               {value && (
                 <a
-                  href={`${linkPrefix}${value}`}
+                  href={`${linkPrefix}${value.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
@@ -49,4 +51,4 @@ const Emails = ({ profile, user }) => {
   );
 };
 
-export default Emails;
+export default PhoneNumber;

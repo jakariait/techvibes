@@ -1,26 +1,26 @@
 import React from "react";
-import { ExternalLink, Mail } from "lucide-react";
+import { ExternalLink, MessageCircle } from "lucide-react";
 
-const Emails = ({ profile, user }) => {
-  const emails = profile?.emails || [];
-  const linkPrefix = "mailto:";
+const WhatsAppNumbers = ({ profile, user }) => {
+  const whatsapps = profile?.whatsapp || [];
+  const linkPrefix = "https://wa.me/";
 
-  // Show only 2 emails for normal users, all for others
-  const visibleEmails =
-    user?.role === "normal" ? emails.slice(0, 2) : emails;
+  // Show only 2 WhatsApp numbers for "normal" users, all for others
+  const visibleNumbers =
+    user?.role === "normal" ? whatsapps.slice(0, 1) : whatsapps;
 
   return (
-    visibleEmails.length > 0 && (
+    visibleNumbers.length > 0 && (
       <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Mail className="w-5 h-5 text-red-400" />
-          <h2 className="text-xl font-medium text-red-400">Email</h2>
+          <MessageCircle className="w-5 h-5 text-green-400" />
+          <h2 className="text-xl font-medium text-green-400">WhatsApp</h2>
         </div>
 
-        {/* Email List */}
+        {/* WhatsApp List */}
         <div className="flex flex-col gap-2 w-full">
-          {visibleEmails.map(({ label, value, _id }) => (
+          {visibleNumbers.map(({ label, value, _id }) => (
             <div
               key={_id}
               className="flex flex-wrap items-center justify-between gap-2 w-full"
@@ -33,7 +33,7 @@ const Emails = ({ profile, user }) => {
 
               {value && (
                 <a
-                  href={`${linkPrefix}${value}`}
+                  href={`${linkPrefix}${value.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
@@ -49,4 +49,4 @@ const Emails = ({ profile, user }) => {
   );
 };
 
-export default Emails;
+export default WhatsAppNumbers;

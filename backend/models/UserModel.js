@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const slugify = require("slugify");
+const QRCode = require("qrcode");
+
+const BASE_URL = "https://user.techvibesbd.com/profile"; // Your site URL base for profiles
 
 const userSchema = new mongoose.Schema(
   {
@@ -9,7 +12,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    isVarified:{
+    isVarified: {
       type: Boolean,
       default: false,
     },
@@ -56,6 +59,9 @@ const userSchema = new mongoose.Schema(
       type: Date,
       select: false,
     },
+
+    // QR code field
+    qrCode: { type: String},
   },
   { timestamps: true, versionKey: false },
 );
@@ -102,6 +108,29 @@ userSchema.pre("save", async function (next) {
   }
 
   next();
+});
+
+// Generate QR code after slug is ready
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("slug")) return next();
+
+  try {
+    // Construct the full URL for the user profile
+    const fullUrl = `${BASE_URL}/${this.slug}`;
+
+    // Generate QR code as base64 PNG image
+    const qrCodeData = await QRCode.toDataURL(fullUrl, {
+      errorCorrectionLevel: "H",
+      type: "image/png",
+      margin: 1,
+      scale: 6,
+    });
+
+    this.qrCode = qrCodeData;
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Password compare method
