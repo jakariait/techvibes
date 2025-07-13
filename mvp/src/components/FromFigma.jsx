@@ -245,7 +245,7 @@ END:VCARD`;
               "grid md:grid-cols-2 w-full gap-4 md:items-center md:justify-center"
             }
           >
-            {/*<QRCodeSection qrCodeData={"https://techvibes-theta.vercel.app/"} />*/}
+            <QRCodeSection qrCodeData={"https://techvibes-theta.vercel.app/"} />
             <TechVibesCard />
           </div>
         </div>
