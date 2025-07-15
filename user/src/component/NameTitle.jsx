@@ -10,7 +10,7 @@ const NameTitle = ({ profile, user }) => {
           {/* Name */}
           <div className="text-2xl text-center lg:text-left">
             {profile.prefix} {user.fullName}
-            {profile.suffix && <span>, {profile.suffix}</span>}
+            {profile.suffix && <span className={"text-lg"}>, {profile.suffix}</span>}
           </div>
 
           {/* Verified Tick */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Download, Share2 } from "lucide-react";
 
-const QRCodeSection = ({ user }) => {
+const QRCodeSection = ({ user, profile }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [downloadStatus, setDownloadStatus] = useState("");
   const [shareStatus, setShareStatus] = useState("");
@@ -53,6 +53,9 @@ const QRCodeSection = ({ user }) => {
       }
     }
   };
+
+  // Only Show If Users Wants To Default True
+  if (!profile.qrCodeIsActive) return null;
 
   return (
     <div

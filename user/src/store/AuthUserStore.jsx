@@ -3,7 +3,7 @@ import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const useAuthUserStore = create((set, get) => ({
+const useAuthUserStore = create((set) => ({
   user: null,
   token: localStorage.getItem("user_token") || null,
   error: null,

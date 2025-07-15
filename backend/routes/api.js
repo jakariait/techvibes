@@ -33,6 +33,7 @@ const bkashConfigController = require("../controllers/bkashConfigController");
 const SteadfastConfigController = require("../controllers/SteadfastConfigController");
 const blogController = require("../controllers/BlogController");
 const PassWordResetController = require("../controllers/PassWordResetController");
+const profileViewController = require("../controllers/ProfileViewController");
 
 
 const { handleCourierCheck } = require("../controllers/courierController");
@@ -717,6 +718,12 @@ router.patch("/change-password", userProtect, userController.changePassword);
 // Password Reset Routes
 router.post("/request-reset", PassWordResetController.requestPasswordReset);
 router.post("/reset-password", PassWordResetController.resetPasswordWithOTP);
+
+
+// Profile View Routes
+router.get("/profile/:id/view", profileViewController.handleProfileView);
+router.get("/profile/:id/views", profileViewController.getProfileViewCount);
+router.get("/profile/:id/views/daily", profileViewController.getProfileDailyViews);
 
 
 module.exports = router;

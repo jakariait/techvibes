@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const slugify = require("slugify");
 const QRCode = require("qrcode");
 
-const BASE_URL = "https://user.techvibesbd.com/profile"; // Your site URL base for profiles
-
 const userSchema = new mongoose.Schema(
   {
     fullName: {
@@ -61,7 +59,12 @@ const userSchema = new mongoose.Schema(
     },
 
     // QR code field
-    qrCode: { type: String},
+    qrCode: { type: String },
+
+    baseUrl: {
+      type: String,
+      default: "user.techvibesbd.com",
+    },
   },
   { timestamps: true, versionKey: false },
 );
@@ -115,10 +118,13 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("slug")) return next();
 
   try {
-    // Construct the full URL for the user profile
-    const fullUrl = `${BASE_URL}/${this.slug}`;
+    // Use baseUrl field if set; fallback to default domain
+    const domain = this.baseUrl || "user.techvibesbd.com";
 
-    // Generate QR code as base64 PNG image
+    // Construct full profile URL
+    const fullUrl = `https://${domain}/profile/${this.slug}`;
+
+    // Generate QR code from the full URL
     const qrCodeData = await QRCode.toDataURL(fullUrl, {
       errorCorrectionLevel: "H",
       type: "image/png",
