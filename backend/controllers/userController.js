@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const userService = require("../services/UserService");
 const UserModel = require("../models/UserModel");
 const generateToken = require("../utility/generateToken");
-const profileService = require("../services/ProfileService");
+const profileService = require("../services/profileService");
 
 
 
