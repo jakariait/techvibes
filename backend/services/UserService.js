@@ -70,7 +70,15 @@ const userService = {
     return profile;
   },
 
+  getProfileBySlug: async (slug) => {
+    const user = await UserModel.findOne({ slug });
+    if (!user) throw new Error("User not found");
 
+    const profile = await ProfileModel.findOne({ user: user._id });
+    if (!profile) throw new Error("Profile not found");
+
+    return profile;
+  },
 
 };
 

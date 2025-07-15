@@ -113,6 +113,10 @@ const upload = multer({ storage }).fields([
   {
     name: "brandLogo",
     maxCount: 1,
+  },
+  {
+    name: "galleryPhotos",
+    maxCount: 4,
   }
 ]);
 

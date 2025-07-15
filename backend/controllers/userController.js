@@ -3,8 +3,8 @@ const userService = require("../services/UserService");
 const UserModel = require("../models/UserModel");
 const generateToken = require("../utility/generateToken");
 const profileService = require("../services/profileService");
-
-
+const fs = require("fs");
+const path = require("path");
 
 // 🔐 Login user email
 const loginUser = asyncHandler(async (req, res) => {
@@ -79,8 +79,6 @@ const changePassword = asyncHandler(async (req, res) => {
   res.json(result);
 });
 
-
-
 // 🔍 Get user by slug (publicly accessible)
 const getUserBySlug = asyncHandler(async (req, res) => {
   try {
@@ -104,7 +102,6 @@ const getUserBySlug = asyncHandler(async (req, res) => {
     });
   }
 });
-
 
 const deleteUserBySlug = asyncHandler(async (req, res) => {
   try {
@@ -136,29 +133,103 @@ const updateUserOnlyBySlug = asyncHandler(async (req, res) => {
   }
 });
 
+// const updateProfileBySlug = asyncHandler(async (req, res) => {
+//   try {
+//     const slug = req.params.slug;
+//
+//     // 🔁 If Multer uploaded any files, attach their filenames to req.body
+//     if (req.files?.profilePhoto?.[0]) {
+//       req.body.profilePhoto = req.files.profilePhoto[0].filename;
+//     }
+//
+//     if (req.files?.coverPhoto?.[0]) {
+//       req.body.coverPhoto = req.files.coverPhoto[0].filename;
+//     }
+//
+//     if (req.files?.brandLogo?.[0]) {
+//       req.body.brandLogo = req.files.brandLogo[0].filename;
+//     }
+//
+//     if (req.files?.galleryPhotos?.[0]) {
+//       req.body.galleryPhotos = req.files.galleryPhotos[0].filename;
+//     }
+//
+//
+//     const updatedProfile = await userService.updateProfileBySlug(
+//       slug,
+//       req.body,
+//     );
+//
+//     res.status(200).json({
+//       message: "Profile updated successfully",
+//       profile: updatedProfile,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       message: "Failed to update profile",
+//       error: error.message,
+//     });
+//   }
+// });
+
 const updateProfileBySlug = asyncHandler(async (req, res) => {
   try {
     const slug = req.params.slug;
 
-    // 🔁 If Multer uploaded any files, attach their filenames to req.body
+    // Attach single file fields if uploaded
     if (req.files?.profilePhoto?.[0]) {
       req.body.profilePhoto = req.files.profilePhoto[0].filename;
     }
-
     if (req.files?.coverPhoto?.[0]) {
       req.body.coverPhoto = req.files.coverPhoto[0].filename;
     }
-
     if (req.files?.brandLogo?.[0]) {
       req.body.brandLogo = req.files.brandLogo[0].filename;
     }
 
+    // Handle multiple gallery photos uploaded this request
+    const newGalleryPhotos =
+      req.files?.galleryPhotos?.map((file) => file.filename) || [];
 
+    // Fetch existing profile
+    const existingProfile = await userService.getProfileBySlug(slug);
+    if (!existingProfile) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
 
+    let existingGalleryPhotos = existingProfile.galleryPhotos || [];
 
+    // Remove photos specified in req.body.photosToRemove (array of filenames)
+    if (Array.isArray(req.body.photosToRemove)) {
+      // Delete files from disk
+      for (const filename of req.body.photosToRemove) {
+        const filePath = path.join(__dirname, "../uploads", filename);
+        if (fs.existsSync(filePath)) {
+          fs.unlink(filePath, (err) => {
+            if (err) console.error(`Failed to delete file ${filename}:`, err);
+          });
+        }
+      }
 
+      // Filter out removed photos from existingGalleryPhotos array
+      existingGalleryPhotos = existingGalleryPhotos.filter(
+        (photo) => !req.body.photosToRemove.includes(photo),
+      );
+    }
 
-    const updatedProfile = await userService.updateProfileBySlug(slug, req.body);
+    // Combine remaining photos with new uploads, limit to 4
+    const combinedGalleryPhotos = [
+      ...existingGalleryPhotos,
+      ...newGalleryPhotos,
+    ].slice(0, 4);
+
+    req.body.galleryPhotos = combinedGalleryPhotos;
+
+    // Update profile
+    const updatedProfile = await userService.updateProfileBySlug(
+      slug,
+      req.body,
+    );
 
     res.status(200).json({
       message: "Profile updated successfully",
@@ -179,5 +250,5 @@ module.exports = {
   getUserBySlug,
   deleteUserBySlug,
   updateUserOnlyBySlug,
-  updateProfileBySlug
+  updateProfileBySlug,
 };

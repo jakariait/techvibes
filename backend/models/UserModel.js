@@ -65,6 +65,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "user.techvibesbd.com",
     },
+
+    permission: {
+      type: [String],
+      default: []
+    }
   },
   { timestamps: true, versionKey: false },
 );

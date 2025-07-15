@@ -188,6 +188,11 @@ const profileSchema = new mongoose.Schema(
         order: { type: Number, default: 0 },
       },
     ],
+
+    // Gallery Controlled By Permission
+    galleryPhotos: [{ type: String }],
+
+
   },
   { timestamps: true, versionKey: false },
 );

@@ -19,6 +19,7 @@ import TechVibesCard from "../component/TechVibesCard.jsx";
 import axios from "axios";
 import Designations from "../component/Designations.jsx";
 import SocialMediaLinks from "../component/SocialMediaLinks.jsx";
+import Gallery from "../component/Gallery.jsx";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const UserPublicProfile = () => {
@@ -76,7 +77,13 @@ const UserPublicProfile = () => {
           <BusinessHoursCard profile={profile} user={user} />
           <QRCodeSection user={user} profile={profile} />
           <TechVibesCard />
+
         </div>
+        <div className={"p-2"}>
+          <Gallery profile={profile} user={user} />
+
+        </div>
+
         <ColorizedQR
           base64Data={user?.qrCode} // your original QR base64
           dotColor="" // Blue dots
