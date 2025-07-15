@@ -1,8 +1,10 @@
 import { create } from "zustand";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const useUserProfileStore = create((set) => ({
   user: null,
-  profile:null,
+  profile: null,
   loading: false,
   error: null,
 
@@ -10,15 +12,18 @@ const useUserProfileStore = create((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const res = await fetch(`http://localhost:5050/api/userbyslug/${slug}`);
+      const res = await fetch(`${apiUrl}/userbyslug/${slug}`);
       const data = await res.json();
 
       if (!res.ok) {
         throw new Error(data.message || "Failed to fetch user");
       }
 
-      set({ user: data.user, loading: false });
-      set({ profile: data.profile, loading: false });
+      set({
+        user: data.user,
+        profile: data.profile,
+        loading: false,
+      });
 
     } catch (error) {
       set({ error: error.message, loading: false });
