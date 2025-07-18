@@ -78,7 +78,7 @@ const UserPublicProfile = () => {
   }, [userId]);
 
   if (loading) return <LoadingLottie />;
-  if (error) return <div className="text-red-500 text-center">{error}</div>;
+  // if (error) return <div className="text-red-500 text-center">{error}</div>;
   if (!user) return <UserNotFound />;
 
   return (
