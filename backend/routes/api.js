@@ -34,6 +34,8 @@ const SteadfastConfigController = require("../controllers/SteadfastConfigControl
 const blogController = require("../controllers/BlogController");
 const PassWordResetController = require("../controllers/PassWordResetController");
 const profileViewController = require("../controllers/ProfileViewController");
+const companyController = require("../controllers/companyController");
+
 
 
 const { handleCourierCheck } = require("../controllers/courierController");
@@ -117,6 +119,14 @@ const upload = multer({ storage }).fields([
   {
     name: "galleryPhotos",
     maxCount: 4,
+  },
+  {
+    name: "productImages",
+    maxCount: 4,
+  },
+  {
+    name: "companyLogo",
+    maxCount: 1,
   }
 ]);
 
@@ -728,6 +738,15 @@ router.post("/reset-password", PassWordResetController.resetPasswordWithOTP);
 router.get("/profile/:id/view", profileViewController.handleProfileView);
 router.get("/profile/:id/views", profileViewController.getProfileViewCount);
 router.get("/profile/:id/views/daily", profileViewController.getProfileDailyViews);
+
+
+// Company Profile Routes
+router.post("/company", companyController.createCompany);
+router.get("/company", companyController.getCompanies);
+router.get("/company/:id", companyController.getCompanyById);
+router.put("/company/:id", upload, companyController.updateCompany);
+router.delete("/company/:id", companyController.deleteCompany);
+
 
 
 module.exports = router;

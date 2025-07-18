@@ -4,14 +4,14 @@ import { User } from "lucide-react";
 import { Link } from "react-router-dom";
 import techBibes from "../assets/TechVibes.png"
 
-const ProfileCoverPhoto = ({ profile, user }) => {
+const ProfileCoverPhoto = ({ profile, user, company }) => {
 
   return (
     <div>
       {/* Cover Photo */}
       <div className="relative h-60 lg:h-96 ">
         <ImageComponent
-          imageName={profile.coverPhoto}
+          imageName={profile?.coverPhoto}
           altName="Cover Photo"
           className={"w-full h-full object-cover opacity-90 absolute inset-0"}
         />
@@ -19,10 +19,10 @@ const ProfileCoverPhoto = ({ profile, user }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent" />
 
         {/*Company Logo Visible Only For Corporate Client*/}
-        {user.role === "corporate" && (
+        {user?.role === "corporate" && (
           <div className="absolute left-10 top-8 flex items-center gap-4 z-10">
             <ImageComponent
-              imageName={profile.brandLogo}
+              imageName={company?.companyLogo}
               altName="Cover Photo"
               className="w-16 h-16 object-contain"
             />
@@ -30,7 +30,7 @@ const ProfileCoverPhoto = ({ profile, user }) => {
         )}
 
         {/*TechVibes Logo Visible Only For Normal Client*/}
-        {user.role === "normal" && (
+        {user?.role === "normal" && (
           <div className="absolute left-10 top-8 flex items-center gap-4 z-10">
             <img
               src={techBibes}
@@ -53,7 +53,7 @@ const ProfileCoverPhoto = ({ profile, user }) => {
         {/* Profile Photo - Overlapping */}
 
         <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 z-20 ">
-          {profile.profilePhoto ? (
+          {profile?.profilePhoto ? (
             <ImageComponent
               imageName={profile.profilePhoto}
               altName={user.fullName}
@@ -68,9 +68,9 @@ const ProfileCoverPhoto = ({ profile, user }) => {
           ) : (
             <div
               className={` bg-white text-gray-500 flex items-center justify-center -mb-16 md:-mb-24 border border-gray-300 ${
-                profile.profilePhotoShape === "circle"
+                profile?.profilePhotoShape === "circle"
                   ? "rounded-full w-40 h-40 md:w-60 md:h-60"
-                  : profile.profilePhotoShape === "square"
+                  : profile?.profilePhotoShape === "square"
                     ? "rounded-xl w-33 h-40 md:w-50 md:h-60"
                     : "rounded-xl"
               }`}

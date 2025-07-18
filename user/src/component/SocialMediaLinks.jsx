@@ -70,11 +70,19 @@ const SOCIAL_ICONS = {
 const SocialMediaLinks = ({ profile }) => {
   const [snackOpen, setSnackOpen] = useState(false);
 
-  const socialMedia = Array.isArray(profile?.socialMedia) ? profile.socialMedia : [];
-  const customSocialMedia = Array.isArray(profile?.customSocialMedia) ? profile.customSocialMedia : [];
+  const socialMedia = Array.isArray(profile?.socialMedia)
+    ? profile.socialMedia
+    : [];
+  const customSocialMedia = Array.isArray(profile?.customSocialMedia)
+    ? profile.customSocialMedia
+    : [];
 
-  const sortedPredefined = socialMedia.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-  const sortedCustom = customSocialMedia.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const sortedPredefined = socialMedia.sort(
+    (a, b) => (a.order ?? 0) - (b.order ?? 0),
+  );
+  const sortedCustom = customSocialMedia.sort(
+    (a, b) => (a.order ?? 0) - (b.order ?? 0),
+  );
   const allSorted = [...sortedPredefined, ...sortedCustom];
 
   const handleCopy = (text) => {
@@ -97,7 +105,13 @@ const SocialMediaLinks = ({ profile }) => {
         <Icon className="text-xl" />
       </button>
     ) : (
-      <a key={key} href={url} target="_blank" rel="noopener noreferrer" {...props}>
+      <a
+        key={key}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
         <Icon className="text-xl" />
       </a>
     );
@@ -113,18 +127,22 @@ const SocialMediaLinks = ({ profile }) => {
         </span>
 
         {/* Icons */}
-        <div className="flex flex-wrap gap-4 items-center justify-center">
-          {allSorted.map((item, index) => {
-            const key = item.platform ? `${item.platform}-${index}` : `custom-${index}`;
-            const url = item.url;
-            const platform = item.platform?.toLowerCase();
-            const isWeChat = platform === "wechat";
-            const iconData = SOCIAL_ICONS[platform] || {};
-            const Icon = iconData.icon || FaLink;
-            const color = iconData.color || "#999";
+        <div className="overflow-x-auto w-full scrollbar-hide scroll-smooth max-w-[310px] md:max-w-2xl mx-auto">
+          <div className="flex gap-4 items-center justify-start px-4 py-2 min-w-max">
+            {allSorted.map((item, index) => {
+              const key = item.platform
+                ? `${item.platform}-${index}`
+                : `custom-${index}`;
+              const url = item.url;
+              const platform = item.platform?.toLowerCase();
+              const isWeChat = platform === "wechat";
+              const iconData = SOCIAL_ICONS[platform] || {};
+              const Icon = iconData.icon || FaLink;
+              const color = iconData.color || "#999";
 
-            return renderIconButton(Icon, url, color, key, isWeChat);
-          })}
+              return renderIconButton(Icon, url, color, key, isWeChat);
+            })}
+          </div>
         </div>
 
         {/* Snackbar */}
@@ -134,7 +152,11 @@ const SocialMediaLinks = ({ profile }) => {
           autoHideDuration={3000}
           onClose={() => setSnackOpen(false)}
         >
-          <MuiAlert severity="success" variant="filled" onClose={() => setSnackOpen(false)}>
+          <MuiAlert
+            severity="success"
+            variant="filled"
+            onClose={() => setSnackOpen(false)}
+          >
             WeChat ID copied!
           </MuiAlert>
         </Snackbar>

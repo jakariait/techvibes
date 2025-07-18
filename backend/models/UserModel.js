@@ -68,8 +68,14 @@ const userSchema = new mongoose.Schema(
 
     permission: {
       type: [String],
-      default: []
-    }
+      default: [],
+    },
+
+    company: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Company",
+    },
+
   },
   { timestamps: true, versionKey: false },
 );

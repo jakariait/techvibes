@@ -55,7 +55,7 @@ const QRCodeSection = ({ user, profile }) => {
   };
 
   // Only Show If Users Wants To Default True
-  if (!profile.qrCodeIsActive) return null;
+  if (!profile?.qrCodeIsActive) return null;
 
   return (
     <div

@@ -2,7 +2,7 @@ import React from "react";
 import { Package, ExternalLink } from "lucide-react";
 
 const ProductService = ({ profile }) => {
-  const services = profile.productAndServices || [];
+  const services = profile?.productAndServices || [];
 
   return Array.isArray(services) && services.length > 0 ? (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
@@ -16,7 +16,7 @@ const ProductService = ({ profile }) => {
 
       {/* Services List */}
       <div className="text-white flex flex-col gap-2">
-        {services.map((item, index) => {
+        {services?.map((item, index) => {
           const label = typeof item === "string" ? item : item.label;
           const value = typeof item === "object" && item.value;
 

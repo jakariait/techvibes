@@ -13,12 +13,12 @@ const Gallery = ({ profile }) => {
         <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-2 items-center justify-center">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 items-center justify-center">
         {photos.map((photo, idx) => (
           <div key={idx} className="overflow-hidden rounded-md">
             <ImageComponent
               imageName={photo}
-              className="object-cover rounded-md transition-transform hover:scale-105 cursor-pointer"
+              className="object-contain rounded-md transition-transform hover:scale-105 cursor-pointer aspect-square"
               altName={`Gallery photo ${idx + 1}`}
               skeletonHeight="200"
             />

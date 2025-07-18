@@ -88,7 +88,6 @@ const profileSchema = new mongoose.Schema(
 
     portfolio: String,
     cvUrl: String,
-    qrCodeUrl: String,
 
     // Theme
     themeAccessLevel: {
@@ -113,7 +112,6 @@ const profileSchema = new mongoose.Schema(
       default: "BST",
     },
 
-    brandLogo: String,
 
     qrCodeIsActive: {
       type: Boolean,
@@ -189,10 +187,7 @@ const profileSchema = new mongoose.Schema(
       },
     ],
 
-    // Gallery Controlled By Permission
-    galleryPhotos: [{ type: String }],
-
-
+    youtubeUrl: { type: String },
   },
   { timestamps: true, versionKey: false },
 );
