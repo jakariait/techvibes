@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ImageIcon } from "lucide-react";
 import ImageComponent from "./ImageComponent.jsx";
 
-const Gallery = ({ profile }) => {
-  const photos = profile?.galleryPhotos || [];
+const Gallery = ({ userId }) => {
+  const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const apiUrl = import.meta.env.VITE_API_URL; // your base API URL
+
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchGallery = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${apiUrl}/gallery/${userId}`);
+        if (!res.ok) throw new Error("Failed to fetch gallery");
+        const data = await res.json();
+
+        setPhotos(data.galleryImages || []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGallery();
+  }, [userId, apiUrl]);
+
+  if (loading) return <p>Loading gallery...</p>;
+  if (error) return <p>Error: {error}</p>;
   if (photos.length === 0) return null;
 
   return (
@@ -18,7 +46,7 @@ const Gallery = ({ profile }) => {
           <div key={idx} className="overflow-hidden rounded-md">
             <ImageComponent
               imageName={photo}
-              className="object-contain rounded-md transition-transform hover:scale-105 cursor-pointer aspect-square"
+              className="object-contain rounded-md transition-transform hover:scale-105 cursor-pointer"
               altName={`Gallery photo ${idx + 1}`}
               skeletonHeight="200"
             />
@@ -29,20 +57,4 @@ const Gallery = ({ profile }) => {
   );
 };
 
-const ProfilePage = ({ user, profile }) => {
-  const userPermissions = Array.isArray(user?.permission)
-    ? user.permission
-        .map((p) => p.trim().toLowerCase())
-        .filter((p) => p.length > 0)
-    : [];
-
-  const canViewGallery = userPermissions.includes("gallery");
-
-  if (!canViewGallery || !profile?.galleryPhotos?.length) {
-    return null;
-  }
-
-  return <Gallery profile={profile} />;
-};
-
-export default ProfilePage;
+export default Gallery;

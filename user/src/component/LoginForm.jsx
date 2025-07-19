@@ -1,29 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-
 import useAuthUserStore from "../store/AuthUserStore.jsx";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { login, loading, error } = useAuthUserStore();
+  const { login, loading, error, user } = useAuthUserStore();
 
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
-
-
+  const [attemptedLogin, setAttemptedLogin] = useState(false); // track login attempt
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setAttemptedLogin(true); // mark login attempt
 
     await login(emailOrPhone, password);
+  };
 
-    const token = localStorage.getItem("user_token");
-
-    if (token) {
+  // Redirect only after successful login detected by presence of user
+  useEffect(() => {
+    if (attemptedLogin && user) {
       navigate("/user/home");
     }
-  };
+  }, [attemptedLogin, user, navigate]);
 
   return (
     <div>
@@ -52,8 +52,8 @@ const LoginForm = () => {
             <div className="flex items-center bg-white rounded-md shadow-sm px-4 py-4">
               <FaUser className="primaryTextColor mr-5 text-2xl " />
               <input
-                type="email"
-                placeholder="Email "
+                type="text"
+                placeholder="Email or phone"
                 className="w-full outline-none text-sm bg-transparent"
                 value={emailOrPhone}
                 onChange={(e) => setEmailOrPhone(e.target.value)}
@@ -94,8 +94,6 @@ const LoginForm = () => {
             </button>
           </form>
         </div>
-
-
       </div>
     </div>
   );

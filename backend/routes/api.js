@@ -35,8 +35,7 @@ const blogController = require("../controllers/BlogController");
 const PassWordResetController = require("../controllers/PassWordResetController");
 const profileViewController = require("../controllers/ProfileViewController");
 const companyController = require("../controllers/companyController");
-
-
+const galleryController = require("../controllers/galleryController");
 
 const { handleCourierCheck } = require("../controllers/courierController");
 const {
@@ -127,6 +126,10 @@ const upload = multer({ storage }).fields([
   {
     name: "companyLogo",
     maxCount: 1,
+  },
+  {
+    name: "galleryImages",
+    maxCount: 4,
   }
 ]);
 
@@ -292,9 +295,6 @@ router.delete(
   checkPermission("admin-users"),
   AdminController.deleteAdmin,
 );
-
-
-
 
 // CRUD routes for Products Category
 router.get("/category", categoryController.getCategories);
@@ -712,19 +712,22 @@ router.get("/activeblog", blogController.getActiveBlogs);
 router.get("/blog/slug/:slug", blogController.getBlogBySlug);
 router.get("/blog/:id", blogController.getBlogById);
 
-
-
-
 // User Login Route
 
 // 🚀 Public Routes
 router.post("/login", userController.loginUser); // User login (email and password)
+
+router.get("/getLoggedInUser", userProtect, userController.getLoggedInUser); // Get logged-in user's profile
+
 router.post("/register", userController.createUser); // Create a new user
 router.get("/userbyslug/:slug", userController.getUserBySlug); // Get User and Profile
 router.delete("/userbyslug/:slug", userController.deleteUserBySlug); // Delete User and Profile
 router.patch("/userbyslug/:slug", userController.updateUserOnlyBySlug); // Update User Data Only
-router.patch("/profilebyslug/:slug",upload, userController.updateProfileBySlug); // Update Profile Data
-
+router.patch(
+  "/profilebyslug/:slug",
+  upload,
+  userController.updateProfileBySlug,
+); // Update Profile Data
 
 // 🚀 Protected Routes (Requires Authentication)
 router.patch("/change-password", userProtect, userController.changePassword);
@@ -733,12 +736,13 @@ router.patch("/change-password", userProtect, userController.changePassword);
 router.post("/request-reset", PassWordResetController.requestPasswordReset);
 router.post("/reset-password", PassWordResetController.resetPasswordWithOTP);
 
-
 // Profile View Routes
 router.get("/profile/:id/view", profileViewController.handleProfileView);
 router.get("/profile/:id/views", profileViewController.getProfileViewCount);
-router.get("/profile/:id/views/daily", profileViewController.getProfileDailyViews);
-
+router.get(
+  "/profile/:id/views/daily",
+  profileViewController.getProfileDailyViews,
+);
 
 // Company Profile Routes
 router.post("/company", companyController.createCompany);
@@ -747,6 +751,9 @@ router.get("/company/:id", companyController.getCompanyById);
 router.put("/company/:id", upload, companyController.updateCompany);
 router.delete("/company/:id", companyController.deleteCompany);
 
-
+// Gallery Routes Users
+router.get("/gallery/:userId", galleryController.getGallery);
+router.post("/gallery/:userId", upload, galleryController.addImages);
+router.delete("/gallery/:userId/:imageName", galleryController.deleteImage);
 
 module.exports = router;

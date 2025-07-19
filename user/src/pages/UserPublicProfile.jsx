@@ -26,6 +26,7 @@ import LinkedPhotoGallery from "../component/LinkedPhotoGallery.jsx";
 import useCompanyStore from "../store/useCompanyStore.jsx";
 import LoadingLottie from "../component/LoadingLottie.jsx";
 import UserNotFound from "../component/UserNotFound.jsx";
+import RequirePermission from "../component/RequirePermission.jsx";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -48,7 +49,6 @@ const UserPublicProfile = () => {
     })();
   }, [slug, fetchUserBySlug]);
 
-
   const userId = user?._id;
 
   const companyId = user?.company;
@@ -62,7 +62,6 @@ const UserPublicProfile = () => {
 
     fetchData();
   }, [companyId, fetchCompanyById]);
-
 
   useEffect(() => {
     const trackView = async () => {
@@ -87,7 +86,7 @@ const UserPublicProfile = () => {
         <div className={"max-w-6xl mx-auto"}>
           <ProfileCoverPhoto profile={profile} user={user} company={company} />
           <NameTitle profile={profile} user={user} company={company} />
-          <SocialMediaLinks profile={profile} />
+          <SocialMediaLinks profile={profile} user={user} company={company} />
 
           <div className={"p-2"}>
             <Bio profile={profile} />
@@ -99,9 +98,9 @@ const UserPublicProfile = () => {
             <Skills profile={profile} user={user} />
             <ProductService profile={profile} />
             <Emails profile={profile} user={user} />
-            <PhoneNumber profile={profile} user={user} />
+            <PhoneNumber profile={profile} user={user} company={company} />
             <WhatsAppNumbers profile={profile} user={user} />
-            <Address profile={profile} user={user} />
+            <Address profile={profile} user={user} company={company} />
             <SisterConcerns profile={profile} user={user} />
             <BusinessHoursCard profile={profile} user={user} />
             <QRCodeSection user={user} profile={profile} />
@@ -109,9 +108,15 @@ const UserPublicProfile = () => {
             <YouTubeEmbed url={profile?.youtubeUrl} />
             <LinkedPhotoGallery productImages={profile?.productImages || []} />
           </div>
-          <div className={"p-2"}>
-            <Gallery profile={profile} user={user} />
-          </div>
+
+          <RequirePermission
+            permission="gallery"
+            userPermissions={user.permission}
+          >
+            <div className={"p-2"}>
+              <Gallery userId={user._id} />
+            </div>
+          </RequirePermission>
 
           <ColorizedQR
             base64Data={user?.qrCode} // your original QR base64

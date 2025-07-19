@@ -14,13 +14,15 @@ const companySchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+
     phoneNumber: {
-      type: String,
-      trim: true,
+      value: { type: String },
+      label: { type: String , default: "Head Office" },
     },
+
     locations: {
-      type: String,
-      trim: true,
+      value: { type: String },
+      label: { type: String , default: "Head Office" },
     },
 
     // 👇 Multiple admins (array of ObjectId references to User)

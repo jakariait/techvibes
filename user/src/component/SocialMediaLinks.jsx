@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -16,8 +16,9 @@ import {
   FaLink,
   FaPodcast,
   FaGlobe,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
-
 import {
   SiFiverr,
   SiDribbble,
@@ -50,7 +51,6 @@ const SOCIAL_ICONS = {
   medium: { icon: FaMediumM, color: "#000000" },
   telegram: { icon: FaTelegramPlane, color: "#0088cc" },
   discord: { icon: FaDiscord, color: "#5865F2" },
-
   fiverr: { icon: SiFiverr, color: "#1DBF73" },
   dribbble: { icon: SiDribbble, color: "#EA4C89" },
   upwork: { icon: SiUpwork, color: "#6FDA44" },
@@ -67,8 +67,12 @@ const SOCIAL_ICONS = {
   website: { icon: FaGlobe, color: "#666" },
 };
 
-const SocialMediaLinks = ({ profile }) => {
+const SocialMediaLinks = ({ profile, user, company }) => {
   const [snackOpen, setSnackOpen] = useState(false);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(false);
+
+  const scrollRef = useRef();
 
   const socialMedia = Array.isArray(profile?.socialMedia)
     ? profile.socialMedia
@@ -83,11 +87,42 @@ const SocialMediaLinks = ({ profile }) => {
   const sortedCustom = customSocialMedia.sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0),
   );
-  const allSorted = [...sortedPredefined, ...sortedCustom];
+
+  let allSorted = [...sortedPredefined, ...sortedCustom];
+
+  if (user?.role === "corporate" && company?.website) {
+    allSorted.unshift({
+      platform: "website",
+      url: company.website,
+      order: -999,
+    });
+  }
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
     setSnackOpen(true);
+  };
+
+  const updateArrowVisibility = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setShowLeftArrow(el.scrollLeft > 10);
+    setShowRightArrow(el.scrollLeft + el.clientWidth < el.scrollWidth - 10);
+  };
+
+  useEffect(() => {
+    updateArrowVisibility();
+    const el = scrollRef.current;
+    if (el) el.addEventListener("scroll", updateArrowVisibility);
+    return () => {
+      if (el) el.removeEventListener("scroll", updateArrowVisibility);
+    };
+  }, []);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: direction * 200, behavior: "smooth" });
+    }
   };
 
   const renderIconButton = (Icon, url, color, key, isWeChat = false) => {
@@ -119,15 +154,37 @@ const SocialMediaLinks = ({ profile }) => {
 
   return (
     allSorted.length > 0 && (
-      <div className="p-4 rounded-xl overflow-hidden h-full max-w-2xl mx-auto">
+      <div className="relative p-4 rounded-xl overflow-hidden h-full max-w-2xl mx-auto">
         {/* Header */}
-        <span className="flex gap-4 mb-4">
+        <span className="flex gap-4 mb-4 items-center">
           <Globe className="text-green-600" />
-          <span className="text-white">Connect Online</span>
+          <span className="text-white text-lg font-medium">Connect Online</span>
         </span>
 
-        {/* Icons */}
-        <div className="overflow-x-auto w-full scrollbar-hide scroll-smooth max-w-[310px] md:max-w-2xl mx-auto">
+        {/* Arrows */}
+        {showLeftArrow && (
+          <button
+            onClick={() => scroll(-1)}
+            className="absolute left-0 top-22 transform -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full"
+          >
+            <FaChevronLeft />
+          </button>
+        )}
+
+        {showRightArrow && (
+          <button
+            onClick={() => scroll(1)}
+            className="absolute right-0 top-22 transform -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full"
+          >
+            <FaChevronRight />
+          </button>
+        )}
+
+        {/* Scrollable icons */}
+        <div
+          className="overflow-x-auto scrollbar-hide scroll-smooth"
+          ref={scrollRef}
+        >
           <div className="flex gap-4 items-center justify-start px-4 py-2 min-w-max">
             {allSorted.map((item, index) => {
               const key = item.platform

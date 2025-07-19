@@ -3,7 +3,7 @@ import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const useAuthUserStore = create((set) => ({
+const useAuthUserStore = create((set, get) => ({
   user: null,
   token: localStorage.getItem("user_token") || null,
   error: null,
@@ -41,7 +41,7 @@ const useAuthUserStore = create((set) => ({
     set({ loading: true });
 
     try {
-      const res = await axios.get(`${apiUrl}/profile`, {
+      const res = await axios.get(`${apiUrl}/getLoggedInUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
