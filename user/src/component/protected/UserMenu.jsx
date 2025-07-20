@@ -1,5 +1,5 @@
 import React from "react";
-import ImageComponent from "./ImageComponent.jsx";
+import ImageComponent from "../public/ImageComponent.jsx";
 import { Link } from "react-router-dom";
 import {
   FaSignOutAlt,

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginForm from "./component/LoginForm.jsx";
+import LoginForm from "./component/public/LoginForm.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage.jsx";
 import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
-import UserProtectedRoute from "./component/UserProtectedRoute.jsx";
+import UserProtectedRoute from "./component/protected/UserProtectedRoute.jsx";
 import UserHomePage from "./pages/UserHomePage.jsx";
 import UserPublicProfile from "./pages/UserPublicProfile.jsx";
 

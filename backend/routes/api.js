@@ -130,7 +130,7 @@ const upload = multer({ storage }).fields([
   {
     name: "galleryImages",
     maxCount: 4,
-  }
+  },
 ]);
 
 // Serve images from the 'uploads' folder as static files
@@ -738,7 +738,7 @@ router.post("/reset-password", PassWordResetController.resetPasswordWithOTP);
 
 // Profile View Routes
 router.get("/profile/:id/view", profileViewController.handleProfileView);
-router.get("/profile/:id/views", profileViewController.getProfileViewCount);
+router.get("/profile/:id/views", userProtect, profileViewController.getProfileViewCount);
 router.get(
   "/profile/:id/views/daily",
   profileViewController.getProfileDailyViews,
@@ -753,7 +753,16 @@ router.delete("/company/:id", companyController.deleteCompany);
 
 // Gallery Routes Users
 router.get("/gallery/:userId", galleryController.getGallery);
-router.post("/gallery/:userId", upload, galleryController.addImages);
-router.delete("/gallery/:userId/:imageName", galleryController.deleteImage);
+router.post(
+  "/gallery/:userId",
+  userProtect,
+  upload,
+  galleryController.addImages,
+);
+router.delete(
+  "/gallery/:userId/:imageName",
+  userProtect,
+  galleryController.deleteImage,
+);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ResetPassword from "../component/ResetPassword.jsx";
+import ResetPassword from "../component/public/ResetPassword.jsx";
 
 const ResetPasswordPage = () => {
   return (

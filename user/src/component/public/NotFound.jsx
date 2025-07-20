@@ -11,7 +11,7 @@ const NotFound = () => {
         </p>
         <div className="mt-4">
           <a
-            href="/"
+            href="/user/src/component/public"
             className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
             Go to Home

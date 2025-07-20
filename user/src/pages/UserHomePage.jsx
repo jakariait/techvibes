@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthUserStore from "../store/AuthUserStore.jsx";
 import useUserProfileStore from "../store/useUserProfileStore.jsx";
-import UserMenu from "../component/UserMenu.jsx";
-import LoadingLottie from "../component/LoadingLottie.jsx";
-import UserGallery from "../component/UserGallery.jsx";
+import LoadingLottie from "../component/public/LoadingLottie.jsx";
+import UserGallery from "../component/protected/UserGallery.jsx";
+import UserLayout from "../component/protected/UserLayout.jsx";
+
+import Analytics from "../component/protected/Analytics.jsx";
 
 const UserHomePage = () => {
   const {
@@ -13,7 +15,7 @@ const UserHomePage = () => {
     loading: authLoading,
     error: authError,
     logout,
-    token
+    token,
   } = useAuthUserStore();
 
   const {
@@ -77,10 +79,13 @@ const UserHomePage = () => {
   if (!authUser) return null;
 
   return (
-    <div className="xl:container mx-auto">
-      <UserMenu user={authUser} logout={logout} profile={profile} />
-      <UserGallery userId={authUser._id} token={token} />
-    </div>
+    <UserLayout user={authUser} logout={logout} profile={profile}>
+      <div className="xl:container mx-auto space-y-4 ">
+        <UserGallery userId={authUser._id} token={token} />
+
+        <Analytics userId={authUser._id} token={token} />
+      </div>
+    </UserLayout>
   );
 };
 

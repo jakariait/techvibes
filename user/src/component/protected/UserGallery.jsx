@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import ImageComponent from "./ImageComponent.jsx";
-import { X } from "lucide-react";
-
+import ImageComponent from "../public/ImageComponent.jsx";
+import { ImageIcon, X } from "lucide-react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -10,8 +9,8 @@ const UserGallery = ({ userId, token }) => {
   const [galleryImages, setGalleryImages] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef(null); // <-- Add this ref
 
-  // Fetch gallery on mount
   useEffect(() => {
     const fetchGallery = async () => {
       try {
@@ -55,6 +54,9 @@ const UserGallery = ({ userId, token }) => {
       );
       setGalleryImages(response.data.gallery.galleryImages || []);
       setSelectedFiles([]);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // <-- Reset input
+      }
     } catch (error) {
       console.error("Error uploading images:", error);
     } finally {
@@ -82,24 +84,30 @@ const UserGallery = ({ userId, token }) => {
   };
 
   return (
-    <div className="p-4 shadow rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">User Gallery</h2>
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <ImageIcon className="w-5 h-5 text-yellow-400" />
+        <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
+      </div>
 
-      <input
-        type="file"
-        multiple
-        accept="image/*"
-        onChange={handleFileChange}
-        className="mb-2"
-      />
+      <div>
+        <input
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={handleFileChange}
+          ref={fileInputRef} // <-- Add the ref here
+          className="mb-2 text-white"
+        />
 
-      <button
-        onClick={handleUpload}
-        disabled={loading || selectedFiles.length === 0}
-        className="bg-blue-600 text-white px-4 py-2 rounded mb-6 disabled:opacity-50"
-      >
-        {loading ? "Uploading..." : "Upload Images"}
-      </button>
+        <button
+          onClick={handleUpload}
+          disabled={loading || selectedFiles.length === 0}
+          className="bg-blue-600 text-white px-4 py-2 rounded mb-6 disabled:opacity-70"
+        >
+          {loading ? "Uploading..." : "Upload Images"}
+        </button>
+      </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 items-center justify-center gap-4">
         {galleryImages.length > 0 ? (

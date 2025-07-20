@@ -2,7 +2,7 @@ import React from "react";
 import ImageComponent from "./ImageComponent.jsx";
 import { User } from "lucide-react";
 import { Link } from "react-router-dom";
-import techBibes from "../assets/TechVibes.png"
+import techBibes from "../../assets/TechVibes.png"
 
 const ProfileCoverPhoto = ({ profile, user, company }) => {
 

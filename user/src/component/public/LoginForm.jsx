@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import useAuthUserStore from "../store/AuthUserStore.jsx";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const LoginForm = () => {
   const navigate = useNavigate();
