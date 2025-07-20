@@ -85,29 +85,32 @@ const UserGallery = ({ userId, token }) => {
 
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
-      <div className="flex items-center justify-center gap-2 mb-4">
+      <div className="flex items-center justify-center gap-2 mb-3">
         <ImageIcon className="w-5 h-5 text-yellow-400" />
         <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
+        <span className={"text-white text-xs"}>(Maximum 4)</span>
       </div>
 
-      <div>
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={handleFileChange}
-          ref={fileInputRef} // <-- Add the ref here
-          className="mb-2 text-white"
-        />
+      {galleryImages.length < 4 && (
+        <div>
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={handleFileChange}
+            ref={fileInputRef}
+            className="mb-2 text-white"
+          />
 
-        <button
-          onClick={handleUpload}
-          disabled={loading || selectedFiles.length === 0}
-          className="bg-blue-600 text-white px-4 py-2 rounded mb-6 disabled:opacity-70"
-        >
-          {loading ? "Uploading..." : "Upload Images"}
-        </button>
-      </div>
+          <button
+            onClick={handleUpload}
+            disabled={loading || selectedFiles.length === 0}
+            className="bg-blue-600 text-white px-4 py-2 rounded mb-6 disabled:opacity-70"
+          >
+            {loading ? "Uploading..." : "Upload Images"}
+          </button>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 items-center justify-center gap-4">
         {galleryImages.length > 0 ? (

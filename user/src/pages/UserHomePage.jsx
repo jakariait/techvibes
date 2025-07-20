@@ -7,6 +7,7 @@ import UserGallery from "../component/protected/UserGallery.jsx";
 import UserLayout from "../component/protected/UserLayout.jsx";
 
 import Analytics from "../component/protected/Analytics.jsx";
+import SocialLinksSection from "../component/protected/SocialLinksSection.jsx";
 
 const UserHomePage = () => {
   const {
@@ -84,6 +85,11 @@ const UserHomePage = () => {
         <UserGallery userId={authUser._id} token={token} />
 
         <Analytics userId={authUser._id} token={token} />
+        <SocialLinksSection
+          slug="jakaria-0"
+          token={token}
+          initialLinks={profile?.socialMedia}
+        />
       </div>
     </UserLayout>
   );
