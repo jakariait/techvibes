@@ -6,6 +6,7 @@ import {
   useSensor,
   useSensors,
   PointerSensor,
+  TouchSensor,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -94,10 +95,10 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
       <select
         value={link.platform || ""}
         onChange={handleSelectChange}
-        className=" bg-[#212F35]  text-white p-2 rounded min-w-[120px] focus: outline-none"
+        className=" bg-[#212F35]  text-white p-2 rounded min-w-[60px] focus: outline-none"
         onClick={(e) => e.stopPropagation()}
       >
-        <option value="">Select platform</option>
+        <option value="">Select Platform</option>
         {platforms.map((p) => (
           <option key={p} value={p}>
             {p}
@@ -111,7 +112,7 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
         onChange={handleInputChange}
         onClick={(e) => e.stopPropagation()}
         placeholder="Enter URL"
-        className="text-white focus: outline-none rounded flex-1"
+        className="text-white focus: outline-none rounded flex-1 min-w-[80px]"
       />
 
       <button
@@ -154,7 +155,13 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8, // Require 8px movement before drag starts
+        distance: 8,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
       },
     }),
   );
@@ -288,7 +295,7 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
           </SortableContext>
         </DndContext>
       ) : (
-        <p className="text-gray-500 mb-4">No social media links added yet.</p>
+        <p className="text-white mb-4">No social media links added yet.</p>
       )}
 
       {/* Add new social media */}
@@ -296,9 +303,9 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
         <select
           value={newLink.platform}
           onChange={(e) => setNewLink({ ...newLink, platform: e.target.value })}
-          className=" p-2 text-white focus:outline-none rounded min-w-[170px]"
+          className=" p-2 text-white focus:outline-none rounded min-w-[80px]"
         >
-          <option value="">Select platform</option>
+          <option value="">Platform</option>
           {platforms.map((p) => (
             <option key={p} value={p}>
               {p}
@@ -310,7 +317,7 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
           value={newLink.url}
           onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
           placeholder="Enter URL"
-          className="text-white focus:outline-none p-2 rounded flex-1"
+          className="text-white focus:outline-none p-2 rounded min-w-[80px] flex-1"
         />
         <button
           onClick={handleAdd}

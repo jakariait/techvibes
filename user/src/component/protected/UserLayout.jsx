@@ -9,7 +9,7 @@ const UserLayout = ({ children, user, logout, profile }) => {
 
   return (
     <div>
-      <div className={"xl:container xl:mx-auto p-3 flex   relative"}>
+      <div className={"xl:container xl:mx-auto p-3 flex items-center space-x-1  relative"}>
         {/*User Menu*/}
         <div className={"hidden lg:block"}>
           <UserMenu user={user} logout={logout} profile={profile} />

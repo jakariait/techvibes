@@ -29,7 +29,7 @@ const UserMenu = ({ user, logout, profile }) => {
   };
 
   return (
-    <div className="bg-white md:shadow-md rounded-xl p-4 w-60">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden  w-60">
       {/* Profile Box */}
       <div className="primaryBgColor accentTextColor rounded-xl p-2 py-5 flex flex-col items-center">
         {profile?.profilePhoto ? (

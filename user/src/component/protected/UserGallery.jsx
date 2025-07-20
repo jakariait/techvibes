@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ImageComponent from "../public/ImageComponent.jsx";
-import { ImageIcon, X } from "lucide-react";
+import { ImageIcon, Link2, X } from "lucide-react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -85,12 +85,13 @@ const UserGallery = ({ userId, token }) => {
 
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
-      <div className="flex items-center justify-center gap-2 mb-3">
-        <ImageIcon className="w-5 h-5 text-yellow-400" />
-        <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
-        <span className={"text-white text-xs"}>(Maximum 4)</span>
+      <div className={"flex flex-col items-center justify-center mb-2"}>
+        <div className="flex items-center justify-start gap-2 ">
+          <ImageIcon className="w-5 h-5 text-yellow-400" />
+          <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
+        </div>
+        <span className="text-sm text-gray-500 pt-2">Maximum 4</span>
       </div>
-
       {galleryImages.length < 4 && (
         <div>
           <input
@@ -112,7 +113,7 @@ const UserGallery = ({ userId, token }) => {
         </div>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-4 items-center justify-center gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 items-center justify-center gap-4">
         {galleryImages.length > 0 ? (
           galleryImages.map((image, index) => (
             <div key={index} className="relative group">
@@ -130,7 +131,7 @@ const UserGallery = ({ userId, token }) => {
             </div>
           ))
         ) : (
-          <p>No images uploaded yet.</p>
+          <p className={"text-white"}>No images uploaded yet.</p>
         )}
       </div>
     </div>

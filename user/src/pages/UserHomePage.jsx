@@ -8,6 +8,10 @@ import UserLayout from "../component/protected/UserLayout.jsx";
 
 import Analytics from "../component/protected/Analytics.jsx";
 import SocialLinksSection from "../component/protected/SocialLinksSection.jsx";
+import ContactListSection from "../component/protected/ContactListSection.jsx";
+import axios from "axios";
+
+const apiURL = import.meta.env.VITE_API_URL;
 
 const UserHomePage = () => {
   const {
@@ -85,10 +89,56 @@ const UserHomePage = () => {
         <UserGallery userId={authUser._id} token={token} />
 
         <Analytics userId={authUser._id} token={token} />
+
         <SocialLinksSection
-          slug="jakaria-0"
+          slug={authUser.slug}
           token={token}
           initialLinks={profile?.socialMedia}
+        />
+
+        <ContactListSection
+          title="Email Addresses"
+          type="Email"
+          initialItems={profile?.emails}
+          onSave={async (items) => {
+            await axios.patch(
+              `${apiURL}/profilebyslug/${authUser.slug}`,
+              { emails: items },
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              },
+            );
+          }}
+        />
+
+        <ContactListSection
+          title="Phone Numbers"
+          type="Phone"
+          initialItems={profile?.phones}
+          onSave={async (items) => {
+            await axios.patch(
+              `${apiURL}/profilebyslug/${authUser.slug}`,
+              { phones: items },
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              },
+            );
+          }}
+        />
+
+        <ContactListSection
+          title="Whatsapp"
+          type="Whatsapp"
+          initialItems={profile?.whatsapp}
+          onSave={async (items) => {
+            await axios.patch(
+              `${apiURL}/profilebyslug/${authUser.slug}`,
+              { whatsapp: items },
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              },
+            );
+          }}
         />
       </div>
     </UserLayout>
