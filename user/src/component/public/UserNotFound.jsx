@@ -12,7 +12,8 @@ const UserNotFound = () => {
       </div>
       <h1 className="text-3xl font-bold mb-2">User Not Found</h1>
       <p className="text-gray-300 max-w-md">
-        We couldn't find the profile you’re looking for. It might have been removed or the link is incorrect.
+        We couldn't find the profile you’re looking for. It might have been
+        removed or the link is incorrect.
       </p>
       <button
         onClick={() => navigate(-1)}

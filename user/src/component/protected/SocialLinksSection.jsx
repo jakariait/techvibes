@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   DndContext,
@@ -18,6 +18,8 @@ import { CSS } from "@dnd-kit/utilities";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { Link2, Trash2 } from "lucide-react";
+import LoadingLottie from "../public/LoadingLottie.jsx";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
@@ -60,7 +62,6 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
     transition,
   };
 
-  // Separate the drag handlers from input interactions
   const handleSelectChange = (e) => {
     e.stopPropagation();
     handleChange(id, "platform", e.target.value);
@@ -80,7 +81,7 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-2 mb-2 p-2  rounded inner-glow  "
+      className="flex items-center gap-2 mb-2 p-2 rounded inner-glow"
     >
       {/* Drag handle */}
       <div
@@ -95,7 +96,7 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
       <select
         value={link.platform || ""}
         onChange={handleSelectChange}
-        className=" bg-[#212F35]  text-white p-2 rounded min-w-[60px] focus: outline-none"
+        className="bg-[#212F35] text-white p-2 rounded min-w-[60px] focus:outline-none"
         onClick={(e) => e.stopPropagation()}
       >
         <option value="">Select Platform</option>
@@ -112,7 +113,7 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
         onChange={handleInputChange}
         onClick={(e) => e.stopPropagation()}
         placeholder="Enter URL"
-        className="text-white focus: outline-none rounded flex-1 min-w-[80px]"
+        className="text-white focus:outline-none rounded flex-1 min-w-[80px]"
       />
 
       <button
@@ -126,18 +127,15 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
   );
 };
 
-const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
-  // Initialize links with unique IDs and order
-  const [links, setLinks] = useState(() =>
-    initialLinks.map((link, index) => ({
-      ...link,
-      order: typeof link.order === "number" ? link.order : index,
-      id: link.id || `link-${Date.now()}-${index}`, // Ensure unique IDs
-    })),
-  );
+const SocialLinksSection = () => {
+  const { user, token } = useAuthUserStore();
 
+  const slug = user?.slug;
+
+  const [links, setLinks] = useState([]);
   const [newLink, setNewLink] = useState({ platform: "", url: "" });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
@@ -153,42 +151,58 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
   };
 
   const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    }),
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 250,
-        tolerance: 5,
-      },
+      activationConstraint: { delay: 250, tolerance: 5 },
     }),
   );
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!slug) return;
+
+      try {
+        setLoading(true);
+        const res = await fetch(`${apiURL}/userbyslug/${slug}`);
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.message || "Failed to fetch profile");
+
+        const fetchedLinks = (data?.profile?.socialMedia || []).map(
+          (link, index) => ({
+            ...link,
+            order: typeof link.order === "number" ? link.order : index,
+            id: link.id || `link-${Date.now()}-${index}`,
+          }),
+        );
+
+        setLinks(fetchedLinks);
+        setError(null);
+      } catch (err) {
+        setError(err.message || "Error fetching profile");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [slug]);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
-    if (!over || active.id === over.id) {
-      return;
-    }
+    if (!over || active.id === over.id) return;
 
     setLinks((prevLinks) => {
       const oldIndex = prevLinks.findIndex((link) => link.id === active.id);
       const newIndex = prevLinks.findIndex((link) => link.id === over.id);
 
-      if (oldIndex === -1 || newIndex === -1) {
-        return prevLinks;
-      }
+      if (oldIndex === -1 || newIndex === -1) return prevLinks;
 
-      const reordered = arrayMove(prevLinks, oldIndex, newIndex).map(
-        (l, i) => ({
-          ...l,
-          order: i,
-        }),
-      );
-
-      return reordered;
+      return arrayMove(prevLinks, oldIndex, newIndex).map((link, i) => ({
+        ...link,
+        order: i,
+      }));
     });
   };
 
@@ -197,36 +211,32 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
       const newLinkWithId = {
         ...newLink,
         order: links.length,
-        id: `link-${Date.now()}-${Math.random()}`, // More unique ID
+        id: `link-${Date.now()}-${Math.random()}`,
       };
-
-      setLinks((prevLinks) => [...prevLinks, newLinkWithId]);
+      setLinks((prev) => [...prev, newLinkWithId]);
       setNewLink({ platform: "", url: "" });
-      showSnackbar("Social media link added successfully!", "success");
+      showSnackbar("Social media link added successfully!");
     } else {
       showSnackbar("Please select a platform and enter a URL", "error");
     }
   };
 
   const handleRemove = (id) => {
-    setLinks((prevLinks) => {
-      const filtered = prevLinks.filter((link) => link.id !== id);
-      // Reorder after removal
-      return filtered.map((l, i) => ({ ...l, order: i }));
-    });
-    showSnackbar("Social media link removed successfully!", "success");
+    setLinks((prev) =>
+      prev
+        .filter((link) => link.id !== id)
+        .map((link, i) => ({ ...link, order: i })),
+    );
+    showSnackbar("Social media link removed successfully!");
   };
 
   const handleChange = (id, field, value) => {
-    setLinks((prevLinks) =>
-      prevLinks.map((link) =>
-        link.id === id ? { ...link, [field]: value } : link,
-      ),
+    setLinks((prev) =>
+      prev.map((link) => (link.id === id ? { ...link, [field]: value } : link)),
     );
   };
 
   const handleSave = async () => {
-    // Validate all links before saving
     const invalidLinks = links.filter((link) => !link.platform || !link.url);
     if (invalidLinks.length > 0) {
       showSnackbar(
@@ -238,16 +248,12 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
 
     setLoading(true);
     try {
-      const res = await axios.patch(
+      await axios.patch(
         `${apiURL}/profilebyslug/${slug}`,
         { socialMedia: links },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
+        { headers: { Authorization: `Bearer ${token}` } },
       );
-      showSnackbar("Social links updated successfully!", "success");
+      showSnackbar("Social links updated successfully!");
     } catch (err) {
       console.error("Failed to save social links", err);
       showSnackbar(
@@ -259,10 +265,12 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
     }
   };
 
+  if (loading) return <LoadingLottie />;
+
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
-      <div className={"flex flex-col items-center justify-center mb-2"}>
-        <div className="flex items-center justify-start gap-2 ">
+      <div className="flex flex-col items-center justify-center mb-2">
+        <div className="flex items-center justify-start gap-2">
           <Link2 className="w-5 h-5 text-yellow-400" />
           <h2 className="text-base font-medium text-yellow-400">
             Social Media Links
@@ -303,7 +311,7 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
         <select
           value={newLink.platform}
           onChange={(e) => setNewLink({ ...newLink, platform: e.target.value })}
-          className=" p-2 text-white focus:outline-none rounded min-w-[80px]"
+          className="p-2 text-white focus:outline-none rounded min-w-[80px]"
         >
           <option value="">Platform</option>
           {platforms.map((p) => (
@@ -326,17 +334,18 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
           Add
         </button>
       </div>
-      <div className={"flex items-center justify-center"}>
+
+      <div className="flex items-center justify-center">
         <button
           onClick={handleSave}
           disabled={loading}
-          className="border-2 border-white text-white  cursor-pointer px-4 py-2 rounded transition-colors"
+          className="border-2 border-white text-white cursor-pointer px-4 py-2 rounded transition-colors"
         >
           {loading ? "Saving..." : "Save Links"}
         </button>
       </div>
 
-      {/* MUI Snackbar + Alert for top-right notifications */}
+      {/* Snackbar for notifications */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
@@ -345,7 +354,7 @@ const SocialLinksSection = ({ initialLinks = [], slug, token }) => {
       >
         <Alert
           onClose={closeSnackbar}
-          severity={snackbar.type} // 'success', 'error', 'warning', 'info'
+          severity={snackbar.type}
           sx={{ width: "100%" }}
         >
           {snackbar.message}

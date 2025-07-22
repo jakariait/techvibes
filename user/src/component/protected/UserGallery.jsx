@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ImageComponent from "../public/ImageComponent.jsx";
 import { ImageIcon, Link2, X } from "lucide-react";
+import LoadingLottie from "../public/LoadingLottie.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -83,8 +84,10 @@ const UserGallery = ({ userId, token }) => {
     }
   };
 
+  if (loading) return <LoadingLottie />;
+
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden">
       <div className={"flex flex-col items-center justify-center mb-2"}>
         <div className="flex items-center justify-start gap-2 ">
           <ImageIcon className="w-5 h-5 text-yellow-400" />

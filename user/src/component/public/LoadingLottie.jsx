@@ -4,8 +4,12 @@ import loadingAnimation from "../../assets/Loading animation blue.json";
 
 const LoadingLottie = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <Lottie animationData={loadingAnimation} loop={true} style={{ height: 300, width: 300 }} />
+    <div className="flex justify-center items-center  bg-[#212F35] ">
+      <Lottie
+        animationData={loadingAnimation}
+        loop={true}
+        style={{ height: 300, width: 300 }}
+      />
     </div>
   );
 };

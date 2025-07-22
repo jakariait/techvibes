@@ -726,6 +726,7 @@ router.patch("/userbyslug/:slug", userController.updateUserOnlyBySlug); // Updat
 router.patch(
   "/profilebyslug/:slug",
   upload,
+  userProtect,
   userController.updateProfileBySlug,
 ); // Update Profile Data
 

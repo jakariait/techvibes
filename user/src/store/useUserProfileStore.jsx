@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const useUserProfileStore = create((set) => ({
+const useUserProfileStore = create((set, get) => ({
   user: null,
   profile: null,
   loading: false,
@@ -24,10 +24,16 @@ const useUserProfileStore = create((set) => ({
         profile: data.profile,
         loading: false,
       });
-
     } catch (error) {
       set({ error: error.message, loading: false });
     }
+  },
+
+  // New initialize method that takes a slug and fetches user & profile
+  initialize: async (slug) => {
+    if (!slug) return; // no slug, skip
+
+    await get().fetchUserBySlug(slug);
   },
 }));
 
