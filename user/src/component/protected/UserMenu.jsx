@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
 import RequirePermission from "../public/RequirePermission.jsx";
-import Gallery from "../public/Gallery.jsx";
 
 const menuItems = [
   { label: "Dashboard", path: "/user/home", active: true },
@@ -29,7 +28,7 @@ const UserMenu = ({ user, logout, profile }) => {
   };
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden w-60">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl  h-full overflow-y-auto scrollbar-hide">
       {/* Profile Box */}
       <div className="text-white rounded-xl p-2 py-1 flex flex-col items-center">
         {profile?.profilePhoto ? (
@@ -65,141 +64,30 @@ const UserMenu = ({ user, logout, profile }) => {
 
       {/* Menu */}
       <nav className="mt-6 space-y-2">
-        <Link
-          to={menuItems[0].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[0].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[1].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[1].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[2].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[2].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[3].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[3].label}</span>
-          </div>
-        </Link>
+        <Link to={menuItems[0].path} className="menu-link inner-glow">{menuItems[0].label}</Link>
+        <Link to={menuItems[1].path} className="menu-link inner-glow">{menuItems[1].label}</Link>
+        <Link to={menuItems[2].path} className="menu-link inner-glow">{menuItems[2].label}</Link>
+        <Link to={menuItems[3].path} className="menu-link inner-glow">{menuItems[3].label}</Link>
 
         {/*Gallery Render With Permission*/}
-        <RequirePermission
-          permission="gallery"
-          userPermissions={user?.permission}
-        >
-          <Link
-            to={menuItems[4].path}
-            className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-          >
-            <div className="flex items-center gap-3">
-              <span>{menuItems[4].label}</span>
-            </div>
-          </Link>
+        <RequirePermission permission="gallery" userPermissions={user?.permission}>
+          <Link to={menuItems[4].path} className="menu-link inner-glow">{menuItems[4].label}</Link>
         </RequirePermission>
 
+        <Link to={menuItems[5].path} className="menu-link inner-glow">{menuItems[5].label}</Link>
+        <Link to={menuItems[6].path} className="menu-link inner-glow">{menuItems[6].label}</Link>
+        <Link to={menuItems[7].path} className="menu-link inner-glow">{menuItems[7].label}</Link>
+        <Link to={menuItems[8].path} className="menu-link inner-glow">{menuItems[8].label}</Link>
+        <Link to={menuItems[9].path} className="menu-link inner-glow">{menuItems[9].label}</Link>
 
-        <Link
-          to={menuItems[5].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[5].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[6].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[6].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[7].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[7].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[8].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[8].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[9].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[9].label}</span>
-          </div>
-        </Link>
-
-        {/* Sister Concerns - conditionally rendered */}
-        {user?.role === "corporate"  && (
-          <Link
-            to={menuItems[10].path}
-            className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-          >
-            <div className="flex items-center gap-3">
-              <span>{menuItems[10].label}</span>
-            </div>
-          </Link>
+        {/* Sister Concerns only for corporate users */}
+        {user?.role === "corporate" && (
+          <Link to={menuItems[10].path} className="menu-link inner-glow">{menuItems[10].label}</Link>
         )}
 
-        <Link
-          to={menuItems[11].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[11].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[12].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[12].label}</span>
-          </div>
-        </Link>
-
-        <Link
-          to={menuItems[13].path}
-          className="flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white inner-glow"
-        >
-          <div className="flex items-center gap-3">
-            <span>{menuItems[13].label}</span>
-          </div>
-        </Link>
+        <Link to={menuItems[11].path} className="menu-link inner-glow">{menuItems[11].label}</Link>
+        <Link to={menuItems[12].path} className="menu-link inner-glow">{menuItems[12].label}</Link>
+        <Link to={menuItems[13].path} className="menu-link inner-glow">{menuItems[13].label}</Link>
       </nav>
     </div>
   );

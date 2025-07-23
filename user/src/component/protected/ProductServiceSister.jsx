@@ -118,21 +118,21 @@ const ProductServiceSister = ({
       {items.map((item, index) => (
         <div
           key={index}
-          className="flex items-center gap-2 mb-2 p-2 rounded inner-glow bg-[#1b252a]"
+          className="flex flex-col md:flex-row items-center gap-2 mb-2 p-2 rounded inner-glow bg-[#1b252a]"
         >
           <input
             type="text"
             placeholder="Label"
             value={item.label}
             onChange={(e) => handleChange(index, "label", e.target.value)}
-            className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1"
+            className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 w-full"
           />
           <input
             type="text"
             placeholder="Optional Link"
             value={item.value}
             onChange={(e) => handleChange(index, "value", e.target.value)}
-            className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1"
+            className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 w-full"
           />
           <button
             onClick={() => handleRemove(index)}
@@ -145,20 +145,20 @@ const ProductServiceSister = ({
       ))}
 
       {/* New item input */}
-      <div className="flex items-center gap-2 mb-4 p-2 rounded inner-glow bg-[#1b252a]">
+      <div className="flex flex-col md:flex-row items-center gap-2 mb-4 p-2 rounded inner-glow bg-[#1b252a]">
         <input
           type="text"
           placeholder="Label"
           value={newItem.label}
           onChange={(e) => setNewItem({ ...newItem, label: e.target.value })}
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 w-full"
         />
         <input
           type="text"
           placeholder="Optional Link"
           value={newItem.value}
           onChange={(e) => setNewItem({ ...newItem, value: e.target.value })}
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 w-full"
         />
         <button
           onClick={handleAdd}

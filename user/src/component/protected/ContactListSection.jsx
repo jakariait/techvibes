@@ -395,7 +395,7 @@ const ContactListSection = ({ title, type, fieldKey }) => {
               placeholder="Enter phone number"
               value={item.value}
               onChange={(phone) => handleChange(index, "value", phone)}
-              className="text-white bg-[#212F35] p-2 rounded border border-gray-600 w-full focus:outline-none"
+              className="text-white bg-[#212F35] p-2 rounded border border-gray-600 w-52 md:w-full focus:outline-none"
             />
           ) : (
             <input
@@ -437,7 +437,7 @@ const ContactListSection = ({ title, type, fieldKey }) => {
               placeholder="Enter phone number"
               value={newItem.value}
               onChange={(phone) => setNewItem({ ...newItem, value: phone })}
-              className="text-white bg-[#212F35] p-2 rounded border border-gray-600 w-full focus:outline-none"
+              className="text-white bg-[#212F35] p-2 rounded border border-gray-600 w-44 md:w-full focus:outline-none"
             />
           ) : (
             <input
@@ -447,7 +447,7 @@ const ContactListSection = ({ title, type, fieldKey }) => {
               onChange={(e) =>
                 setNewItem({ ...newItem, value: e.target.value })
               }
-              className="text-white flex-1 p-2 rounded focus:outline-none min-w-[150px] bg-[#212F35] border border-gray-600"
+              className="text-white flex-1 p-2 rounded focus:outline-none min-w-[120px] bg-[#212F35] border border-gray-600"
             />
           )}
 

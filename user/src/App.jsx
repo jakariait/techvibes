@@ -66,6 +66,7 @@ function App() {
             path="/user/name-login-email"
             element={<NameLoginEmailPage />}
           />
+
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

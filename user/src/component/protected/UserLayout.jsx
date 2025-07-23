@@ -33,7 +33,7 @@ const UserLayout = ({ children }) => {
   return (
     <div className="min-h-screen bg-[#f9f9f9]">
       {/* Main container with vertical layout */}
-      <div className="xl:container xl:mx-auto p-3 flex flex-col lg:flex-row  relative">
+      <div className="xl:container xl:mx-auto p-2 flex flex-col lg:flex-row  relative">
         {/* Desktop Sidebar */}
         <aside className="hidden lg:block w-[250px]">
           <UserMenu user={user} logout={logout} profile={profile} />
@@ -80,7 +80,7 @@ const UserLayout = ({ children }) => {
         </div>
 
         {/* Main Content */}
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full md:ml-3">{children}</main>
       </div>
     </div>
   );

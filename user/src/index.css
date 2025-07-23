@@ -82,3 +82,16 @@
   scrollbar-width: none;     /* Firefox */
 }
 
+.menu-link {
+  @apply flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white ;
+}
+
+/* In your global CSS */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+

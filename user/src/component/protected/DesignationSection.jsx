@@ -67,7 +67,10 @@ const DesignationSection = ({ title = "Designations" }) => {
 
   const handleAdd = () => {
     if (isLimitReached) {
-      showSnackbar(`You can only add up to ${MAX_DESIGNATIONS} designations`, "error");
+      showSnackbar(
+        `You can only add up to ${MAX_DESIGNATIONS} designations`,
+        "error",
+      );
       return;
     }
 
@@ -129,7 +132,7 @@ const DesignationSection = ({ title = "Designations" }) => {
           key={index}
           className="flex flex-col gap-2 mb-4 p-3 rounded inner-glow bg-[#1b252a]"
         >
-          <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row gap-2">
             <input
               type="text"
               placeholder="Designation"
@@ -137,7 +140,7 @@ const DesignationSection = ({ title = "Designations" }) => {
               onChange={(e) =>
                 handleChange(index, "designation", e.target.value)
               }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600"
+              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
             <input
               type="text"
@@ -146,7 +149,7 @@ const DesignationSection = ({ title = "Designations" }) => {
               onChange={(e) =>
                 handleChange(index, "department", e.target.value)
               }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600"
+              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
             <input
               type="text"
@@ -155,7 +158,7 @@ const DesignationSection = ({ title = "Designations" }) => {
               onChange={(e) =>
                 handleChange(index, "organization", e.target.value)
               }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600"
+              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
             <button
               onClick={() => handleRemove(index)}
@@ -171,7 +174,7 @@ const DesignationSection = ({ title = "Designations" }) => {
       {/* New Input */}
       {!isLimitReached && (
         <div className="flex flex-col gap-2 mb-4 p-3 rounded inner-glow bg-[#1b252a]">
-          <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row gap-2">
             <input
               type="text"
               placeholder="Designation"
@@ -179,7 +182,7 @@ const DesignationSection = ({ title = "Designations" }) => {
               onChange={(e) =>
                 setNewItem({ ...newItem, designation: e.target.value })
               }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600"
+              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
             <input
               type="text"
@@ -188,7 +191,7 @@ const DesignationSection = ({ title = "Designations" }) => {
               onChange={(e) =>
                 setNewItem({ ...newItem, department: e.target.value })
               }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600"
+              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
             <input
               type="text"
@@ -197,7 +200,7 @@ const DesignationSection = ({ title = "Designations" }) => {
               onChange={(e) =>
                 setNewItem({ ...newItem, organization: e.target.value })
               }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600"
+              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
             <button
               onClick={handleAdd}
