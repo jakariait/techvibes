@@ -34,15 +34,7 @@ const userSchema = new mongoose.Schema(
         "Please fill a valid email address",
       ],
     },
-    accountDeletion: {
-      requested: {
-        type: Boolean,
-        default: false,
-      },
-      requestedAt: {
-        type: Date,
-      },
-    },
+
     role: { type: String, enum: ["normal", "corporate"], default: "normal" },
     password: {
       type: String,

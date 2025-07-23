@@ -17,6 +17,8 @@ import ProductServicePage from "./pages/ProductServicePage.jsx";
 import SisterConcernsPage from "./pages/SisterConcernsPage.jsx";
 import GeneralInfoPage from "./pages/GeneralInfoPage.jsx";
 import ProfileCoverPhotoPage from "./pages/ProfileCoverPhotoPage.jsx";
+import ChangePasswordPage from "./pages/ChangePasswordPage.jsx";
+import NameLoginEmailPage from "./pages/NameLoginEmailPage.jsx";
 
 function App() {
   return (
@@ -54,6 +56,15 @@ function App() {
           <Route
             path="/user/profile-cover-photo"
             element={<ProfileCoverPhotoPage />}
+          />
+
+          <Route
+            path="/user/change-password"
+            element={<ChangePasswordPage />}
+          />
+          <Route
+            path="/user/name-login-email"
+            element={<NameLoginEmailPage />}
           />
         </Route>
         <Route path="*" element={<NotFoundPage />} />

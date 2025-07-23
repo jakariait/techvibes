@@ -268,7 +268,7 @@ const SocialLinksSection = () => {
   if (loading) return <LoadingLottie />;
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden ">
       <div className="flex flex-col items-center justify-center mb-2">
         <div className="flex items-center justify-start gap-2">
           <Link2 className="w-5 h-5 text-yellow-400" />
