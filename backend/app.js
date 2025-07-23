@@ -36,7 +36,6 @@ const clientUrl = process.env.CLIENT_URL
   ? process.env.CLIENT_URL.split(",").map((url) => url.replace(/\/$/, ""))
   : [];
 
-
 // CORS setup
 const corsOptions = {
   origin: clientUrl,

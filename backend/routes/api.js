@@ -36,6 +36,8 @@ const PassWordResetController = require("../controllers/PassWordResetController"
 const profileViewController = require("../controllers/ProfileViewController");
 const companyController = require("../controllers/companyController");
 const galleryController = require("../controllers/galleryController");
+const connectController = require("../controllers/connectController");
+
 
 const { handleCourierCheck } = require("../controllers/courierController");
 const {
@@ -739,7 +741,11 @@ router.post("/reset-password", PassWordResetController.resetPasswordWithOTP);
 
 // Profile View Routes
 router.get("/profile/:id/view", profileViewController.handleProfileView);
-router.get("/profile/:id/views", userProtect, profileViewController.getProfileViewCount);
+router.get(
+  "/profile/:id/views",
+  userProtect,
+  profileViewController.getProfileViewCount,
+);
 router.get(
   "/profile/:id/views/daily",
   profileViewController.getProfileDailyViews,
@@ -765,5 +771,15 @@ router.delete(
   userProtect,
   galleryController.deleteImage,
 );
+
+
+// Connect Routes
+router.post("/connect", connectController.createConnect);
+router.get("/connect/user/:userId", connectController.getConnectsByUserId);
+router.put("/connect/:id", connectController.updateConnect);
+router.delete("/connect/:id", connectController.deleteConnect);
+
+
+
 
 module.exports = router;

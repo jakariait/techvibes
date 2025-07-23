@@ -27,6 +27,7 @@ import useCompanyStore from "../store/useCompanyStore.jsx";
 import LoadingLottie from "../component/public/LoadingLottie.jsx";
 import UserNotFound from "../component/public/UserNotFound.jsx";
 import RequirePermission from "../component/public/RequirePermission.jsx";
+import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -86,11 +87,15 @@ const UserPublicProfile = () => {
         <div className={"max-w-6xl mx-auto"}>
           <ProfileCoverPhoto profile={profile} user={user} company={company} />
           <NameTitle profile={profile} user={user} company={company} />
+
+          <SaveContactConnect profile={profile} user={user}  company={company} />
+
           <SocialMediaLinks profile={profile} user={user} company={company} />
 
           <div className={"p-2"}>
             <Bio profile={profile} />
           </div>
+
           <GetInTouch />
 
           <div className="grid md:grid-cols-2 gap-2 mt-2 p-2 ">
@@ -118,11 +123,7 @@ const UserPublicProfile = () => {
             </div>
           </RequirePermission>
 
-          <ColorizedQR
-            base64Data={user?.qrCode} // your original QR base64
-            dotColor="" // Blue dots
-            backgroundColor="#ff5733" // Light background
-          />
+
 
           <div className={"p-2"}>
             <TechVibesCard />
