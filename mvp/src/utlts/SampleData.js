@@ -53,7 +53,7 @@ export const profileData = {
     },
     {
       platform: "WeChat",
-      url: "wxid_54ob95dauihv12",
+      url: "_Zaman68",
       icon: "🐦",
     },
     // {
