@@ -37,7 +37,7 @@ const profileViewController = require("../controllers/ProfileViewController");
 const companyController = require("../controllers/companyController");
 const galleryController = require("../controllers/galleryController");
 const connectController = require("../controllers/connectController");
-
+const appointmentController = require("../controllers/appointmentController");
 
 const { handleCourierCheck } = require("../controllers/courierController");
 const {
@@ -772,14 +772,33 @@ router.delete(
   galleryController.deleteImage,
 );
 
-
 // Connect Routes
 router.post("/connect", connectController.createConnect);
 router.get("/connect/user/:userId", connectController.getConnectsByUserId);
 router.put("/connect/:id", connectController.updateConnect);
 router.delete("/connect/:id", connectController.deleteConnect);
 
-
-
+// === Appointment API Routes ===
+router.post("/appointments", appointmentController.createAppointment);
+router.get(
+  "/appointments/user/:userId",
+  userProtect,
+  appointmentController.getAppointmentsByUser,
+);
+router.get(
+  "/appointments/:id",
+  userProtect,
+  appointmentController.getAppointmentById,
+);
+router.patch(
+  "/appointments/:id",
+  userProtect,
+  appointmentController.updateAppointment,
+);
+router.delete(
+  "/appointments/:id",
+  userProtect,
+  appointmentController.deleteAppointment,
+);
 
 module.exports = router;

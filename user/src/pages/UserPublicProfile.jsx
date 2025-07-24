@@ -28,6 +28,7 @@ import LoadingLottie from "../component/public/LoadingLottie.jsx";
 import UserNotFound from "../component/public/UserNotFound.jsx";
 import RequirePermission from "../component/public/RequirePermission.jsx";
 import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
+import AppointmentForm from "../component/public/AppointmentForm.jsx";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -122,7 +123,6 @@ const UserPublicProfile = () => {
               <Gallery userId={user._id} />
             </div>
           </RequirePermission>
-
 
 
           <div className={"p-2"}>

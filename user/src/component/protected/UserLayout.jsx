@@ -31,7 +31,7 @@ const UserLayout = ({ children }) => {
   const menuRef = useRef(null);
 
   return (
-    <div className="min-h-screen bg-[#f9f9f9]">
+    <div className="min-h-screen bg-[#0E191E]">
       {/* Main container with vertical layout */}
       <div className="xl:container xl:mx-auto p-2 flex flex-col lg:flex-row  relative">
         {/* Desktop Sidebar */}

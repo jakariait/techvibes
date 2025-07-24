@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { User, Save, X } from "lucide-react";
+import { User,  X } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
@@ -136,7 +136,7 @@ const GeneralProfileInfoSection = () => {
   const normalUserFields = ["companyName"];
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-6xl mx-auto">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
       <div className="flex items-center gap-2 mb-4 justify-center">
         <User className="w-5 h-5 text-green-400" />
         <h2 className="text-base font-medium text-green-400">

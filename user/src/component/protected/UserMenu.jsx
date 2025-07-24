@@ -20,6 +20,7 @@ const menuItems = [
   { label: "Location", path: "/user/location" },
   { label: "Name & Login Email", path: "/user/name-login-email" },
   { label: "Change Password", path: "/user/change-password" },
+  { label: "Connect", path: "/user/connect" },
 ];
 
 const UserMenu = ({ user, logout, profile }) => {
@@ -28,7 +29,7 @@ const UserMenu = ({ user, logout, profile }) => {
   };
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl  h-full overflow-y-auto scrollbar-hide">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl   overflow-y-auto scrollbar-hide">
       {/* Profile Box */}
       <div className="text-white rounded-xl p-2 py-1 flex flex-col items-center">
         {profile?.profilePhoto ? (
@@ -64,30 +65,64 @@ const UserMenu = ({ user, logout, profile }) => {
 
       {/* Menu */}
       <nav className="mt-6 space-y-2">
-        <Link to={menuItems[0].path} className="menu-link inner-glow">{menuItems[0].label}</Link>
-        <Link to={menuItems[1].path} className="menu-link inner-glow">{menuItems[1].label}</Link>
-        <Link to={menuItems[2].path} className="menu-link inner-glow">{menuItems[2].label}</Link>
-        <Link to={menuItems[3].path} className="menu-link inner-glow">{menuItems[3].label}</Link>
+        <Link to={menuItems[0].path} className="menu-link inner-glow">
+          {menuItems[0].label}
+        </Link>
+        <Link to={menuItems[14].path} className="menu-link inner-glow">
+          {menuItems[14].label}
+        </Link>
+        <Link to={menuItems[1].path} className="menu-link inner-glow">
+          {menuItems[1].label}
+        </Link>
+        <Link to={menuItems[2].path} className="menu-link inner-glow">
+          {menuItems[2].label}
+        </Link>
+        <Link to={menuItems[3].path} className="menu-link inner-glow">
+          {menuItems[3].label}
+        </Link>
 
         {/*Gallery Render With Permission*/}
-        <RequirePermission permission="gallery" userPermissions={user?.permission}>
-          <Link to={menuItems[4].path} className="menu-link inner-glow">{menuItems[4].label}</Link>
+        <RequirePermission
+          permission="gallery"
+          userPermissions={user?.permission}
+        >
+          <Link to={menuItems[4].path} className="menu-link inner-glow">
+            {menuItems[4].label}
+          </Link>
         </RequirePermission>
 
-        <Link to={menuItems[5].path} className="menu-link inner-glow">{menuItems[5].label}</Link>
-        <Link to={menuItems[6].path} className="menu-link inner-glow">{menuItems[6].label}</Link>
-        <Link to={menuItems[7].path} className="menu-link inner-glow">{menuItems[7].label}</Link>
-        <Link to={menuItems[8].path} className="menu-link inner-glow">{menuItems[8].label}</Link>
-        <Link to={menuItems[9].path} className="menu-link inner-glow">{menuItems[9].label}</Link>
+        <Link to={menuItems[5].path} className="menu-link inner-glow">
+          {menuItems[5].label}
+        </Link>
+        <Link to={menuItems[6].path} className="menu-link inner-glow">
+          {menuItems[6].label}
+        </Link>
+        <Link to={menuItems[7].path} className="menu-link inner-glow">
+          {menuItems[7].label}
+        </Link>
+        <Link to={menuItems[8].path} className="menu-link inner-glow">
+          {menuItems[8].label}
+        </Link>
+        <Link to={menuItems[9].path} className="menu-link inner-glow">
+          {menuItems[9].label}
+        </Link>
 
         {/* Sister Concerns only for corporate users */}
         {user?.role === "corporate" && (
-          <Link to={menuItems[10].path} className="menu-link inner-glow">{menuItems[10].label}</Link>
+          <Link to={menuItems[10].path} className="menu-link inner-glow">
+            {menuItems[10].label}
+          </Link>
         )}
 
-        <Link to={menuItems[11].path} className="menu-link inner-glow">{menuItems[11].label}</Link>
-        <Link to={menuItems[12].path} className="menu-link inner-glow">{menuItems[12].label}</Link>
-        <Link to={menuItems[13].path} className="menu-link inner-glow">{menuItems[13].label}</Link>
+        <Link to={menuItems[11].path} className="menu-link inner-glow">
+          {menuItems[11].label}
+        </Link>
+        <Link to={menuItems[12].path} className="menu-link inner-glow">
+          {menuItems[12].label}
+        </Link>
+        <Link to={menuItems[13].path} className="menu-link inner-glow">
+          {menuItems[13].label}
+        </Link>
       </nav>
     </div>
   );

@@ -78,12 +78,12 @@
   display: none;
 }
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .menu-link {
-  @apply flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white ;
+  @apply flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer text-white;
 }
 
 /* In your global CSS */
@@ -92,6 +92,14 @@
 }
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;    /* Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* inverts the icon to white */
+  cursor: pointer;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* inverts the icon to white */
+  cursor: pointer;
+}

@@ -1,0 +1,358 @@
+import React, { useEffect, useState } from "react";
+import { Trash2, CalendarDays, Pencil } from "lucide-react";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
+import Pagination from "@mui/material/Pagination";
+import TextField from "@mui/material/TextField";
+import axios from "axios";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
+import LoadingLottie from "../public/LoadingLottie.jsx";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+const apiURL = import.meta.env.VITE_API_URL;
+
+const AppointmentRequestsSection = () => {
+  const { user, token } = useAuthUserStore();
+  const [appointments, setAppointments] = useState([]);
+  const [statusCounts, setStatusCounts] = useState({
+    pending: 0,
+    accepted: 0,
+    declined: 0,
+  });
+  const [loading, setLoading] = useState(true);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    type: "success",
+  });
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [appointmentToDelete, setAppointmentToDelete] = useState(null);
+  const [appointmentToEdit, setAppointmentToEdit] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const appointmentsPerPage = 10;
+  const totalPages = Math.ceil(appointments.length / appointmentsPerPage);
+
+  const showSnackbar = (message, type = "success") =>
+    setSnackbar({ open: true, message, type });
+  const closeSnackbar = () =>
+    setSnackbar({ open: false, message: "", type: "success" });
+
+  const fetchAppointments = async () => {
+    if (!user?._id || !token) return;
+    try {
+      const res = await axios.get(`${apiURL}/appointments/user/${user._id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setAppointments(res.data.data || []);
+      setStatusCounts(res.data.statusCounts || {});
+    } catch (err) {
+      console.error("Fetch error:", err);
+      showSnackbar("Failed to load appointments", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [user?._id, token]);
+
+  const openDeleteDialog = (appointment) => {
+    setAppointmentToDelete(appointment);
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!appointmentToDelete) return;
+    try {
+      await axios.delete(`${apiURL}/appointments/${appointmentToDelete._id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      await fetchAppointments();
+      showSnackbar("Appointment deleted");
+    } catch (err) {
+      console.error("Delete error:", err);
+      showSnackbar("Failed to delete appointment", "error");
+    } finally {
+      setDeleteDialogOpen(false);
+      setAppointmentToDelete(null);
+    }
+  };
+
+  const openEditDialog = (appointment) => {
+    setAppointmentToEdit({ ...appointment });
+    setEditDialogOpen(true);
+  };
+
+  const confirmEdit = async () => {
+    try {
+      await axios.patch(
+        `${apiURL}/appointments/${appointmentToEdit._id}`,
+        appointmentToEdit,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      await fetchAppointments();
+      showSnackbar("Appointment updated");
+    } catch (err) {
+      console.error("Edit error:", err);
+      showSnackbar("Failed to update appointment", "error");
+    } finally {
+      setEditDialogOpen(false);
+      setAppointmentToEdit(null);
+    }
+  };
+
+  const handlePageChange = (event, value) => setCurrentPage(value);
+
+  const paginatedAppointments = appointments.slice(
+    (currentPage - 1) * appointmentsPerPage,
+    currentPage * appointmentsPerPage,
+  );
+
+  if (loading) return <LoadingLottie />;
+
+  return (
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
+      <div className="flex items-center gap-2 mb-4 justify-center">
+        <CalendarDays className="w-5 h-5 text-blue-400" />
+        <h2 className="text-base font-medium text-blue-400">
+          Total Appointments: {appointments.length}
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-white text-center">
+        <div className="bg-[#1a1f24] p-4 rounded-lg border border-gray-600">
+          <p className="text-lg font-semibold text-yellow-400">Pending</p>
+          <p className="text-2xl font-bold">{statusCounts.pending}</p>
+        </div>
+        <div className="bg-[#1a1f24] p-4 rounded-lg border border-gray-600">
+          <p className="text-lg font-semibold text-green-400">Accepted</p>
+          <p className="text-2xl font-bold">{statusCounts.accepted}</p>
+        </div>
+        <div className="bg-[#1a1f24] p-4 rounded-lg border border-gray-600">
+          <p className="text-lg font-semibold text-red-400">Declined</p>
+          <p className="text-2xl font-bold">{statusCounts.declined}</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        {paginatedAppointments.map((appointment) => (
+          <div
+            key={appointment._id}
+            className="border border-gray-600 rounded-lg p-4 text-white bg-[#1a1f24]"
+          >
+            <div className="flex justify-between items-start">
+              <div className="flex-1">
+                <p>
+                  <strong>Name:</strong> {appointment.requesterName}
+                </p>
+                <p>
+                  <strong>Email:</strong> {appointment.requesterEmail}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {appointment.requesterPhone}
+                </p>
+                <p>
+                  <strong>Date:</strong>{" "}
+                  {new Date(appointment.appointmentDate).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>Time:</strong> {appointment.appointmentTime}
+                </p>
+                <p>
+                  <strong>Message:</strong> {appointment.message || "-"}
+                </p>
+                <p>
+                  <strong>Status:</strong>{" "}
+                  {appointment.status.charAt(0).toUpperCase() +
+                    appointment.status.slice(1)}
+                </p>
+                <p className="text-sm text-gray-400">
+                  Submitted: {new Date(appointment.createdAt).toLocaleString()}
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <button
+                  onClick={() => openEditDialog(appointment)}
+                  className="text-yellow-500 hover:text-yellow-700 cursor-pointer"
+                  title="Edit"
+                >
+                  <Pencil className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => openDeleteDialog(appointment)}
+                  className="text-red-500 hover:text-red-700 cursor-pointer"
+                  title="Delete"
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {appointments.length > appointmentsPerPage && (
+        <div className="flex justify-center mt-4">
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+            variant="outlined"
+            shape="rounded"
+            sx={{
+              "& .MuiPaginationItem-root": {
+                color: "white",
+                borderColor: "#ccc",
+              },
+              "& .Mui-selected": {
+                backgroundColor: "#1976d2",
+                color: "white",
+              },
+            }}
+          />
+        </div>
+      )}
+
+      {/* Delete Dialog */}
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+      >
+        <DialogTitle>Delete Appointment</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this appointment request?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={confirmDelete} color="error">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Edit Dialog */}
+      <Dialog
+        open={editDialogOpen}
+        onClose={() => setEditDialogOpen(false)}
+        PaperProps={{
+          sx: {
+            backgroundColor: "#212F35",
+            color: "white",
+          },
+        }}
+      >
+        <DialogTitle>Edit Appointment</DialogTitle>
+        <DialogContent>
+          {[
+            "requesterName",
+            "requesterEmail",
+            "requesterPhone",
+            "appointmentTime",
+            "message",
+          ].map((field) => (
+            <TextField
+              key={field}
+              margin="dense"
+              label={field.charAt(0).toUpperCase() + field.slice(1)}
+              fullWidth
+              variant="outlined"
+              value={appointmentToEdit?.[field] || ""}
+              onChange={(e) =>
+                setAppointmentToEdit((prev) => ({
+                  ...prev,
+                  [field]: e.target.value,
+                }))
+              }
+              sx={{
+                mt: 1,
+                input: { color: "white" },
+                label: { color: "white" },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": { borderColor: "#ccc" },
+                  "&:hover fieldset": { borderColor: "#aaa" },
+                  "&.Mui-focused fieldset": { borderColor: "#1976d2" },
+                },
+              }}
+              InputLabelProps={{ style: { color: "white" } }}
+            />
+          ))}
+          {/* Status Selector */}
+          <FormControl fullWidth margin="dense">
+            <InputLabel sx={{ color: "white" }}>Status</InputLabel>
+            <Select
+              value={appointmentToEdit?.status || "pending"}
+              onChange={(e) =>
+                setAppointmentToEdit((prev) => ({
+                  ...prev,
+                  status: e.target.value,
+                }))
+              }
+              label="Status"
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#ccc",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#aaa",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#1976d2",
+                },
+              }}
+            >
+              {["pending", "accepted", "declined"].map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option.charAt(0).toUpperCase() + option.slice(1)}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setEditDialogOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={confirmEdit} color="success">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Snackbar */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={closeSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity={snackbar.type}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+};
+
+export default AppointmentRequestsSection;

@@ -19,6 +19,7 @@ import GeneralInfoPage from "./pages/GeneralInfoPage.jsx";
 import ProfileCoverPhotoPage from "./pages/ProfileCoverPhotoPage.jsx";
 import ChangePasswordPage from "./pages/ChangePasswordPage.jsx";
 import NameLoginEmailPage from "./pages/NameLoginEmailPage.jsx";
+import ConnectPage from "./pages/ConnectPage.jsx";
 
 function App() {
   return (
@@ -65,6 +66,10 @@ function App() {
           <Route
             path="/user/name-login-email"
             element={<NameLoginEmailPage />}
+          />
+          <Route
+            path="/user/connect"
+            element={<ConnectPage />}
           />
 
         </Route>

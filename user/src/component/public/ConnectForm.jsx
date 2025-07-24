@@ -3,7 +3,9 @@ import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-const ConnectForm = ({ userId }) => {
+const apiURL = import.meta.env.VITE_API_URL;
+
+const ConnectForm = ({ userId, onSuccess }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -31,8 +33,13 @@ const ConnectForm = ({ userId }) => {
     e.preventDefault();
     try {
       const payload = { ...formData, userId };
-      const res = await axios.post("http://localhost:5050/api/connect", payload);
-      setSnackbar({ open: true, message: res.data.message, severity: "success" });
+      const res = await axios.post(`${apiURL}/connect`, payload);
+
+      setSnackbar({
+        open: true,
+        message: res.data.message,
+        severity: "success",
+      });
       setFormData({
         fullName: "",
         email: "",
@@ -40,6 +47,10 @@ const ConnectForm = ({ userId }) => {
         socialLink: "",
         message: "",
       });
+
+      if (onSuccess) {
+        setTimeout(() => onSuccess(), 2000); // close after 1 second
+      }
     } catch (err) {
       const message = err.response?.data?.error || "Failed to submit connect.";
       setSnackbar({ open: true, message, severity: "error" });
@@ -47,9 +58,8 @@ const ConnectForm = ({ userId }) => {
   };
 
   return (
-    <div className="max-w-xl bg-[#212F35] inner-glow p-4 rounded-xl space-y-4">
-      <h2 className="text-2xl font-semibold text-center">Connect With Me</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-xl   rounded-xl">
+      <form onSubmit={handleSubmit} className="space-y-4 text-white">
         <input
           type="text"
           name="fullName"
@@ -57,7 +67,7 @@ const ConnectForm = ({ userId }) => {
           value={formData.fullName}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
         />
 
         <input
@@ -67,7 +77,7 @@ const ConnectForm = ({ userId }) => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
         />
 
         <input
@@ -77,7 +87,7 @@ const ConnectForm = ({ userId }) => {
           value={formData.phone}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
         />
 
         <input
@@ -86,7 +96,7 @@ const ConnectForm = ({ userId }) => {
           placeholder="Social Media Link"
           value={formData.socialLink}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
         />
 
         <textarea
@@ -95,15 +105,16 @@ const ConnectForm = ({ userId }) => {
           value={formData.message}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded resize-none h-24"
+          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
         />
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
-        >
-          Submit
-        </button>
+        <div className={"flex items-center justify-center"}>
+          <button
+            type="submit"
+            className="border-2 border-white text-white px-4 py-2 rounded cursor-pointer"
+          >
+            Submit
+          </button>
+        </div>
       </form>
 
       {/* Snackbar Notification */}
@@ -113,7 +124,11 @@ const ConnectForm = ({ userId }) => {
         onClose={closeSnackbar}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={closeSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+        <Alert
+          onClose={closeSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
           {snackbar.message}
         </Alert>
       </Snackbar>

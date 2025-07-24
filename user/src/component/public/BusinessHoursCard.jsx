@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Clock, Calendar } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import AppointmentForm from "./AppointmentForm.jsx";
 
 const BusinessHoursCard = ({ profile, user }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOpen = () => setOpenDialog(true);
+  const handleClose = () => setOpenDialog(false);
+
   if (user?.role !== "corporate") return null;
 
   return (
     <div className="bg-[#212F35] inner-glow p-6 rounded-xl overflow-hidden">
-      <div className="flex flex-col items-center sm:flex-row sm:items-center sm:justify-between gap-6">
+      <div className="flex flex-col items-center gap-6">
         {/* Left side - Business Hours */}
         <div className="flex flex-col items-center sm:flex-row sm:items-center gap-5 text-center sm:text-left">
           <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
@@ -20,7 +29,8 @@ const BusinessHoursCard = ({ profile, user }) => {
                 {profile.businessDay.start} - {profile.businessDay.end}:
               </div>
               <div className="font-light">
-                {profile.businessHours.start} - {profile.businessHours.end} {profile.businessTimeZone}
+                {profile.businessHours.start} - {profile.businessHours.end}{" "}
+                {profile.businessTimeZone}
               </div>
             </div>
           </div>
@@ -28,11 +38,36 @@ const BusinessHoursCard = ({ profile, user }) => {
 
         {/* Right side - Appointment Button */}
         <div>
-          <button className="bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white px-6 py-3 rounded-2xl font-bold shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 whitespace-nowrap">
+          <button
+            onClick={handleOpen}
+            className="bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white px-6 py-3 rounded-2xl font-bold shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 whitespace-nowrap cursor-pointer"
+          >
             <Calendar className="w-6 h-6" />
             <span>Appointment</span>
           </button>
         </div>
+        {/* MUI Dialog with ConnectForm */}
+        <Dialog
+          open={openDialog}
+          onClose={handleClose}
+          maxWidth="sm"
+          fullWidth
+          PaperProps={{
+            sx: {
+              backgroundColor: "#212F35", // light cyan
+            },
+          }}
+        >
+          <DialogTitle className="flex justify-between items-center text-white">
+            Set Appointment With {user.fullName}
+            <IconButton onClick={handleClose}>
+              <CloseIcon sx={{ color: "#fff" }} />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers>
+            <AppointmentForm userId={user._id} onSuccess={handleClose} />
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
