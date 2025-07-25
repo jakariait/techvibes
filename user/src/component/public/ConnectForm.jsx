@@ -104,7 +104,6 @@ const ConnectForm = ({ userId, onSuccess }) => {
           placeholder="Your Message"
           value={formData.message}
           onChange={handleChange}
-          required
           className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
         />
         <div className={"flex items-center justify-center"}>
@@ -112,7 +111,7 @@ const ConnectForm = ({ userId, onSuccess }) => {
             type="submit"
             className="border-2 border-white text-white px-4 py-2 rounded cursor-pointer"
           >
-            Submit
+            Connect
           </button>
         </div>
       </form>

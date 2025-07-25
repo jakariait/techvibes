@@ -30,7 +30,6 @@ const connectSchema = new mongoose.Schema(
     message: {
       type: String,
       trim: true,
-      required: true,
     },
   },
   {

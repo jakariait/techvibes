@@ -8,7 +8,6 @@ export default function ProfileViews({ userId, token, name }) {
   const [views, setViews] = useState(0);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     const fetchViews = async () => {
       try {
@@ -58,9 +57,30 @@ export default function ProfileViews({ userId, token, name }) {
             </div>
           ) : (
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-white">
-                {formatViews(views)}
-              </span>
+              {name === "Profile" && (
+                <span className="text-2xl font-bold text-white">
+                  {formatViews(views)}
+                </span>
+              )}
+
+              {name === "Service" && (
+                <span className="text-2xl font-bold text-white">
+                  {formatViews(views) - 4}
+                </span>
+              )}
+
+              {name === "Portfolio" && (
+                <span className="text-2xl font-bold text-white">
+                  {formatViews(views) - 6}
+                </span>
+              )}
+
+              {name === "Product" && (
+                <span className="text-2xl font-bold text-white">
+                  {formatViews(views) - 9}
+                </span>
+              )}
+
               <span className="text-sm text-white font-medium">
                 total views
               </span>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { UserX, Trash2, Download, Pencil } from "lucide-react";
+import { Contact, Trash2, Download, Pencil } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import Dialog from "@mui/material/Dialog";
@@ -31,10 +31,11 @@ const ConnectRequestsSection = () => {
   const [connectToDelete, setConnectToDelete] = useState(null);
   const [connectToEdit, setConnectToEdit] = useState(null);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const connectsPerPage = 10;
-  const totalPages = Math.ceil(connects.length / connectsPerPage);
+  const connectsPerPage = 6;
 
   const showSnackbar = (message, type = "success") =>
     setSnackbar({ open: true, message, type });
@@ -132,7 +133,18 @@ END:VCARD
 
   const handlePageChange = (event, value) => setCurrentPage(value);
 
-  const paginatedConnects = connects.slice(
+  const filteredConnects = connects.filter((connect) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      connect.fullName.toLowerCase().includes(term) ||
+      connect.email.toLowerCase().includes(term) ||
+      connect.phone.toLowerCase().includes(term)
+    );
+  });
+
+  const totalPages = Math.ceil(filteredConnects.length / connectsPerPage);
+
+  const paginatedConnects = filteredConnects.slice(
     (currentPage - 1) * connectsPerPage,
     currentPage * connectsPerPage,
   );
@@ -142,10 +154,19 @@ END:VCARD
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
       <div className="flex items-center gap-2 mb-4 justify-center">
-        <UserX className="w-5 h-5 text-red-400" />
-        <h2 className="text-base font-medium text-red-400">
+        <Contact className="w-5 h-5 text-green-400" />
+        <h2 className="text-base font-medium text-green-400">
           Total Connects: {connects.length}
         </h2>
+      </div>
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          placeholder="Search by name, email or phone..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-4 py-2 w-full max-w-md rounded-lg border border-gray-600 bg-[#1a1f24] text-white placeholder:text-gray-400 focus:outline-none focus:border-blue-400"
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {paginatedConnects.map((connect) => (
@@ -183,6 +204,16 @@ END:VCARD
                 <p className="text-sm text-gray-400">
                   Submitted: {new Date(connect.createdAt).toLocaleString()}
                 </p>
+                <div className={"flex items-center justify-center mt-5"}>
+                  <button
+                    onClick={() => downloadVCard(connect)}
+                    className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer"
+                    title="Download vCard"
+                  >
+                    <Download />
+                    Save Contact
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col items-center gap-2">
@@ -193,13 +224,7 @@ END:VCARD
                 >
                   <Pencil className="w-5 h-5" />
                 </button>
-                <button
-                  onClick={() => downloadVCard(connect)}
-                  className="text-green-400 hover:text-green-600 cursor-pointer"
-                  title="Download vCard"
-                >
-                  <Download className="w-5 h-5" />
-                </button>
+
                 <button
                   onClick={() => openDeleteDialog(connect)}
                   className="text-red-500 hover:text-red-700 cursor-pointer"
@@ -212,7 +237,6 @@ END:VCARD
           </div>
         ))}
       </div>
-
 
       {connects.length > connectsPerPage && (
         <div className="flex justify-center mt-4">

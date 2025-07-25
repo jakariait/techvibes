@@ -114,7 +114,6 @@ const GeneralProfileInfoSection = () => {
     }
   };
 
-  if (loading) return <LoadingLottie />;
 
   const properLabel = (str) =>
     str
@@ -126,14 +125,15 @@ const GeneralProfileInfoSection = () => {
     "prefix",
     "suffix",
     "designation",
-    "portfolio",
-    "cvUrl",
     "bloodGroup",
-    "youtubeUrl",
   ];
+
 
   const corporateFields = ["department", "idNumber"];
   const normalUserFields = ["companyName"];
+
+
+  if (loading) return <LoadingLottie />;
 
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
@@ -336,6 +336,28 @@ const GeneralProfileInfoSection = () => {
           </div>
         </>
       )}
+
+      {/* Moved fields to bottom */}
+      <div className="mt-6">
+        {["portfolio", "cvUrl", "youtubeUrl"].map((field) => (
+          <div
+            key={field}
+            className="flex flex-col md:flex-row md:items-center gap-2 mb-3"
+          >
+            <label className="text-white md:w-[180px] shrink-0">
+              {properLabel(field)}:
+            </label>
+            <input
+              type="text"
+              placeholder={`Enter ${properLabel(field)}`}
+              value={fields[field] || ""}
+              onChange={(e) => handleFieldChange(field, e.target.value)}
+              className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none"
+            />
+          </div>
+        ))}
+      </div>
+
 
       {/* Save Button */}
       <div className="flex justify-center mt-4">

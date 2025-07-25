@@ -13,6 +13,7 @@ const AppointmentForm = ({ userId, onSuccess }) => {
     appointmentDate: dayjs().format("YYYY-MM-DD"),
     appointmentTime: "09:00",
     message: "",
+    location: "",
   });
 
   const [snackbar, setSnackbar] = useState({
@@ -49,6 +50,7 @@ const AppointmentForm = ({ userId, onSuccess }) => {
         appointmentDate: dayjs().format("YYYY-MM-DD"),
         appointmentTime: "09:00",
         message: "",
+        location: "",
       });
 
       if (onSuccess) {
@@ -129,6 +131,15 @@ const AppointmentForm = ({ userId, onSuccess }) => {
             className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 text-white focus:outline-none"
           />
         </div>
+
+        <input
+          type="text"
+          name="location"
+          placeholder="Location"
+          value={formData.location}
+          onChange={(e) => handleChange("location", e.target.value)}
+          className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 placeholder-gray-400 focus:outline-none"
+        />
 
         <textarea
           name="message"

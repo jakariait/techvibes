@@ -13,11 +13,7 @@ const DesignationSection = ({ title = "Designations" }) => {
   const apiSlug = user?.slug;
 
   const [items, setItems] = useState([]);
-  const [newItem, setNewItem] = useState({
-    designation: "",
-    department: "",
-    organization: "",
-  });
+
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -69,20 +65,22 @@ const DesignationSection = ({ title = "Designations" }) => {
     if (isLimitReached) {
       showSnackbar(
         `You can only add up to ${MAX_DESIGNATIONS} designations`,
-        "error",
+        "error"
       );
       return;
     }
 
-    if (!newItem.designation || !newItem.organization) {
-      showSnackbar("Designation and Organization are required", "error");
-      return;
-    }
-
-    setItems((prev) => [...prev, newItem]);
-    setNewItem({ designation: "", department: "", organization: "" });
-    showSnackbar("Designation added", "success");
+    setItems((prev) => [
+      ...prev,
+      {
+        designation: "",
+        department: "",
+        organization: "",
+      },
+    ]);
+    showSnackbar("New designation row added");
   };
+
 
   const handleRemove = (index) => {
     setItems((prev) => prev.filter((_, i) => i !== index));
@@ -171,46 +169,17 @@ const DesignationSection = ({ title = "Designations" }) => {
         </div>
       ))}
 
-      {/* New Input */}
       {!isLimitReached && (
-        <div className="flex flex-col gap-2 mb-4 p-3 rounded inner-glow bg-[#1b252a]">
-          <div className="flex flex-col md:flex-row gap-2">
-            <input
-              type="text"
-              placeholder="Designation"
-              value={newItem.designation}
-              onChange={(e) =>
-                setNewItem({ ...newItem, designation: e.target.value })
-              }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
-            />
-            <input
-              type="text"
-              placeholder="Department"
-              value={newItem.department}
-              onChange={(e) =>
-                setNewItem({ ...newItem, department: e.target.value })
-              }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
-            />
-            <input
-              type="text"
-              placeholder="Organization"
-              value={newItem.organization}
-              onChange={(e) =>
-                setNewItem({ ...newItem, organization: e.target.value })
-              }
-              className="flex-1 bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
-            />
-            <button
-              onClick={handleAdd}
-              className="border-2 border-white text-white px-3 py-1 rounded hover:bg-white hover:text-[#212F35] cursor-pointer"
-            >
-              Add
-            </button>
-          </div>
+        <div className="flex justify-center mb-4">
+          <button
+            onClick={handleAdd}
+            className="border-2 border-white text-white px-4 py-2 rounded cursor-pointer hover:bg-white hover:text-[#212F35] transition-colors"
+          >
+            + Add Designation
+          </button>
         </div>
       )}
+
 
       {/* Save Button */}
       <div className="flex justify-center">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Trash2, CalendarDays, Pencil } from "lucide-react";
+import { Trash2, CalendarDays, Pencil, Download } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import Dialog from "@mui/material/Dialog";
@@ -20,6 +20,8 @@ const apiURL = import.meta.env.VITE_API_URL;
 const AppointmentRequestsSection = () => {
   const { user, token } = useAuthUserStore();
   const [appointments, setAppointments] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [statusCounts, setStatusCounts] = useState({
     pending: 0,
     accepted: 0,
@@ -36,9 +38,10 @@ const AppointmentRequestsSection = () => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [appointmentToDelete, setAppointmentToDelete] = useState(null);
   const [appointmentToEdit, setAppointmentToEdit] = useState(null);
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const appointmentsPerPage = 10;
+  const appointmentsPerPage = 6;
   const totalPages = Math.ceil(appointments.length / appointmentsPerPage);
 
   const showSnackbar = (message, type = "success") =>
@@ -115,10 +118,43 @@ const AppointmentRequestsSection = () => {
 
   const handlePageChange = (event, value) => setCurrentPage(value);
 
-  const paginatedAppointments = appointments.slice(
+  const filteredAppointments = appointments.filter((a) => {
+    const term = searchTerm.toLowerCase();
+    const matchesSearch =
+      a.requesterName?.toLowerCase().includes(term) ||
+      a.requesterEmail?.toLowerCase().includes(term) ||
+      a.requesterPhone?.toLowerCase().includes(term);
+
+    const matchesStatus = statusFilter === "all" || a.status === statusFilter;
+
+    return matchesSearch && matchesStatus;
+  });
+
+  const paginatedAppointments = filteredAppointments.slice(
     (currentPage - 1) * appointmentsPerPage,
     currentPage * appointmentsPerPage,
   );
+
+  const downloadVCard = (connect) => {
+    const vcard = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${connect.requesterName}
+EMAIL:${connect.requesterEmail}
+TEL:${connect.requesterPhone}
+END:VCARD
+    `.trim();
+
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${connect.fullName || "contact"}.vcf`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  console.table(appointments);
 
   if (loading) return <LoadingLottie />;
 
@@ -129,6 +165,29 @@ const AppointmentRequestsSection = () => {
         <h2 className="text-base font-medium text-blue-400">
           Total Appointments: {appointments.length}
         </h2>
+      </div>
+
+      <div className="flex justify-center mb-6">
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="px-4 py-2 w-full max-w-md rounded-lg border border-gray-600 bg-[#1a1f24] text-white focus:outline-none focus:border-blue-400"
+        >
+          <option value="all">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="declined">Declined</option>
+        </select>
+      </div>
+
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          placeholder="Search by name, email or phone..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-4 py-2 w-full max-w-md rounded-lg border border-gray-600 bg-[#1a1f24] text-white placeholder:text-gray-400 focus:outline-none focus:border-blue-400"
+        />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-white text-center">
@@ -171,16 +230,40 @@ const AppointmentRequestsSection = () => {
                   <strong>Time:</strong> {appointment.appointmentTime}
                 </p>
                 <p>
+                  <strong>Location:</strong> {appointment.location}
+                </p>
+                <p>
                   <strong>Message:</strong> {appointment.message || "-"}
                 </p>
                 <p>
                   <strong>Status:</strong>{" "}
-                  {appointment.status.charAt(0).toUpperCase() +
-                    appointment.status.slice(1)}
+                  <span
+                    className={
+                      appointment.status === "pending"
+                        ? "text-yellow-400"
+                        : appointment.status === "accepted"
+                          ? "text-green-400"
+                          : "text-red-400"
+                    }
+                  >
+                    {appointment.status.charAt(0).toUpperCase() +
+                      appointment.status.slice(1)}
+                  </span>
                 </p>
+
                 <p className="text-sm text-gray-400">
                   Submitted: {new Date(appointment.createdAt).toLocaleString()}
                 </p>
+                <div className={"flex items-center justify-center mt-5"}>
+                  <button
+                    onClick={() => downloadVCard(appointment)}
+                    className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer"
+                    title="Download vCard"
+                  >
+                    <Download />
+                    Save Contact
+                  </button>
+                </div>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <button
@@ -307,6 +390,8 @@ const AppointmentRequestsSection = () => {
               label="Status"
               sx={{
                 color: "white",
+                svg: { color: "white" }, // ✅ This makes the dropdown arrow white
+
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderColor: "#ccc",
                 },

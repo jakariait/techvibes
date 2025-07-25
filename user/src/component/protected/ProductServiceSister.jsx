@@ -17,7 +17,6 @@ const ProductServiceSister = ({
   const slug = user?.slug;
 
   const [items, setItems] = useState([]);
-  const [newItem, setNewItem] = useState({ label: "", value: "" });
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -63,14 +62,13 @@ const ProductServiceSister = ({
   };
 
   const handleAdd = () => {
-    if (!newItem.label.trim()) {
-      showSnackbar("Label is required", "error");
-      return;
-    }
-
-    setItems((prev) => [...prev, newItem]);
-    setNewItem({ label: "", value: "" });
-    showSnackbar("Item added", "success");
+    setItems((prev) => [
+      ...prev,
+      {
+        label: "",
+        value: "",
+      },
+    ]);
   };
 
   const handleRemove = (index) => {
@@ -144,27 +142,12 @@ const ProductServiceSister = ({
         </div>
       ))}
 
-      {/* New item input */}
-      <div className="flex flex-col md:flex-row items-center gap-2 mb-4 p-2 rounded inner-glow bg-[#1b252a]">
-        <input
-          type="text"
-          placeholder="Label"
-          value={newItem.label}
-          onChange={(e) => setNewItem({ ...newItem, label: e.target.value })}
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 w-full"
-        />
-        <input
-          type="text"
-          placeholder="Optional Link"
-          value={newItem.value}
-          onChange={(e) => setNewItem({ ...newItem, value: e.target.value })}
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 w-full"
-        />
+      <div className="flex justify-center mb-4">
         <button
           onClick={handleAdd}
-          className="border-2 border-white text-white px-3 py-1 rounded  cursor-pointer"
+          className="border-2 border-white text-white px-4 py-2 rounded cursor-pointer hover:bg-white hover:text-[#212F35] transition-colors"
         >
-          Add
+          + Add Row
         </button>
       </div>
 

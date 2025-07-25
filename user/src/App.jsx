@@ -19,11 +19,12 @@ import GeneralInfoPage from "./pages/GeneralInfoPage.jsx";
 import ProfileCoverPhotoPage from "./pages/ProfileCoverPhotoPage.jsx";
 import ChangePasswordPage from "./pages/ChangePasswordPage.jsx";
 import NameLoginEmailPage from "./pages/NameLoginEmailPage.jsx";
-import ConnectPage from "./pages/ConnectPage.jsx";
+import ScrollToTop from "./component/public/ScrollToTop.jsx";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* General User Routes */}
         <Route path="/" element={<LoginForm />} />
@@ -67,10 +68,7 @@ function App() {
             path="/user/name-login-email"
             element={<NameLoginEmailPage />}
           />
-          <Route
-            path="/user/connect"
-            element={<ConnectPage />}
-          />
+
 
         </Route>
         <Route path="*" element={<NotFoundPage />} />

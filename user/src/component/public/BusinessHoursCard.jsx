@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import AppointmentForm from "./AppointmentForm.jsx";
+import ImageComponent from "./ImageComponent.jsx";
 
 const BusinessHoursCard = ({ profile, user }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -58,11 +59,24 @@ const BusinessHoursCard = ({ profile, user }) => {
             },
           }}
         >
-          <DialogTitle className="flex justify-between items-center text-white">
-            Set Appointment With {user.fullName}
-            <IconButton onClick={handleClose}>
+          <DialogTitle className="relative text-white px-6 pt-6 pb-4">
+            {/* Close button absolutely positioned in top right */}
+            <IconButton
+              onClick={handleClose}
+              className="!absolute top-2 right-2"
+              aria-label="close"
+            >
               <CloseIcon sx={{ color: "#fff" }} />
             </IconButton>
+
+            {/* Centered content */}
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <ImageComponent
+                imageName={profile?.profilePhoto}
+                className="h-40 w-40 object-cover rounded-full"
+              />
+              <p>Set Appointmen With {user.fullName}</p>
+            </div>
           </DialogTitle>
           <DialogContent dividers>
             <AppointmentForm userId={user._id} onSuccess={handleClose} />

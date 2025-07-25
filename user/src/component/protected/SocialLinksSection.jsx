@@ -133,7 +133,6 @@ const SocialLinksSection = () => {
   const slug = user?.slug;
 
   const [links, setLinks] = useState([]);
-  const [newLink, setNewLink] = useState({ platform: "", url: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [snackbar, setSnackbar] = useState({
@@ -207,19 +206,16 @@ const SocialLinksSection = () => {
   };
 
   const handleAdd = () => {
-    if (newLink.platform && newLink.url) {
-      const newLinkWithId = {
-        ...newLink,
-        order: links.length,
-        id: `link-${Date.now()}-${Math.random()}`,
-      };
-      setLinks((prev) => [...prev, newLinkWithId]);
-      setNewLink({ platform: "", url: "" });
-      showSnackbar("Social media link added successfully!");
-    } else {
-      showSnackbar("Please select a platform and enter a URL", "error");
-    }
+    const newEmptyLink = {
+      id: `link-${Date.now()}-${Math.random()}`,
+      platform: "",
+      url: "",
+      order: links.length,
+    };
+    setLinks((prev) => [...prev, newEmptyLink]);
+    showSnackbar("New social media row added");
   };
+
 
   const handleRemove = (id) => {
     setLinks((prev) =>
@@ -306,34 +302,16 @@ const SocialLinksSection = () => {
         <p className="text-white mb-4">No social media links added yet.</p>
       )}
 
-      {/* Add new social media */}
-      <div className="flex items-center gap-2 mb-4 p-2 inner-glow rounded">
-        <select
-          value={newLink.platform}
-          onChange={(e) => setNewLink({ ...newLink, platform: e.target.value })}
-          className="p-2 text-white focus:outline-none rounded min-w-[80px]"
-        >
-          <option value="">Platform</option>
-          {platforms.map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          value={newLink.url}
-          onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
-          placeholder="Enter URL"
-          className="text-white focus:outline-none p-2 rounded min-w-[80px] flex-1"
-        />
+      {/* Add Button only */}
+      <div className="flex justify-center mb-4">
         <button
           onClick={handleAdd}
-          className="border-2 border-white text-white px-3 cursor-pointer py-1 rounded transition-colors"
+          className="border-2 border-white text-white px-4 py-2 rounded cursor-pointer "
         >
-          Add
+          + Add Social Link
         </button>
       </div>
+
 
       <div className="flex items-center justify-center">
         <button

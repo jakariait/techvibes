@@ -123,18 +123,16 @@ const CustomSocialLinksSection = () => {
   }, [slug]);
 
   const handleAdd = () => {
-    if (!newLink.platform || !newLink.url) {
-      return showSnackbar("Platform and URL are required", "error");
-    }
     const newEntry = {
-      ...newLink,
-      order: links.length,
       id: `custom-link-${Date.now()}-${Math.random()}`,
+      platform: "",
+      url: "",
+      order: links.length,
     };
     setLinks((prev) => [...prev, newEntry]);
-    setNewLink({ platform: "", url: "" });
-    showSnackbar("Custom link added!");
+    showSnackbar("New row added");
   };
+
 
   const handleChange = (id, field, value) => {
     setLinks((prev) =>
@@ -225,28 +223,15 @@ const CustomSocialLinksSection = () => {
         <p className="text-white mb-4">No custom links added yet.</p>
       )}
 
-      <div className="flex items-center gap-2 mb-4 p-2 inner-glow rounded">
-        <input
-          type="text"
-          value={newLink.platform}
-          onChange={(e) => setNewLink({ ...newLink, platform: e.target.value })}
-          placeholder="Platform"
-          className="p-2 text-white focus:outline-none rounded min-w-[40px] border border-gray-600"
-        />
-        <input
-          type="text"
-          value={newLink.url}
-          onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
-          placeholder="Enter URL"
-          className="text-white focus:outline-none p-2 rounded flex-1 border min-w-[150px] border-gray-600"
-        />
+      <div className="flex justify-center mb-4">
         <button
           onClick={handleAdd}
-          className="border-2 border-white text-white px-3 py-1 rounded"
+          className="border-2 border-white text-white px-4 py-2 rounded cursor-pointer "
         >
-          Add
+          + Add Custom Link
         </button>
       </div>
+
 
       <div className="flex items-center justify-center">
         <button

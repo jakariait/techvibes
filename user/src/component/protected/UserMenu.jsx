@@ -1,35 +1,38 @@
 import React from "react";
-import ImageComponent from "../public/ImageComponent.jsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
+import ImageComponent from "../public/ImageComponent.jsx";
 import RequirePermission from "../public/RequirePermission.jsx";
 
 const menuItems = [
-  { label: "Dashboard", path: "/user/home", active: true },
+  { label: "Dashboard", path: "/user/home" },
   { label: "General Info", path: "/user/general-info" },
   { label: "Profile & Cover Photo", path: "/user/profile-cover-photo" },
   { label: "Social Media", path: "/user/social-media" },
-  { label: "Gallery", path: "/user/gallery" },
+  { label: "Gallery", path: "/user/gallery", permission: "gallery" },
   { label: "Email", path: "/user/email" },
   { label: "Phone", path: "/user/phone" },
   { label: "Whatsapp", path: "/user/whatsapp" },
   { label: "Designations", path: "/user/designations" },
   { label: "Products & Services", path: "/user/products-services" },
-  { label: "Sister Concerns", path: "/user/sister-concerns" },
+  { label: "Sister Concerns", path: "/user/sister-concerns", role: "corporate" },
   { label: "Location", path: "/user/location" },
   { label: "Name & Login Email", path: "/user/name-login-email" },
   { label: "Change Password", path: "/user/change-password" },
-  { label: "Connect", path: "/user/connect" },
 ];
 
 const UserMenu = ({ user, logout, profile }) => {
+  const location = useLocation();
+
   const handleLogout = () => {
     logout();
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl   overflow-y-auto scrollbar-hide">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-y-auto scrollbar-hide">
       {/* Profile Box */}
       <div className="text-white rounded-xl p-2 py-1 flex flex-col items-center">
         {profile?.profilePhoto ? (
@@ -65,64 +68,44 @@ const UserMenu = ({ user, logout, profile }) => {
 
       {/* Menu */}
       <nav className="mt-6 space-y-2">
-        <Link to={menuItems[0].path} className="menu-link inner-glow">
-          {menuItems[0].label}
-        </Link>
-        <Link to={menuItems[14].path} className="menu-link inner-glow">
-          {menuItems[14].label}
-        </Link>
-        <Link to={menuItems[1].path} className="menu-link inner-glow">
-          {menuItems[1].label}
-        </Link>
-        <Link to={menuItems[2].path} className="menu-link inner-glow">
-          {menuItems[2].label}
-        </Link>
-        <Link to={menuItems[3].path} className="menu-link inner-glow">
-          {menuItems[3].label}
-        </Link>
+        {menuItems.map((item) => {
+          // Permission-based rendering
+          if (item.permission) {
+            return (
+              <RequirePermission
+                key={item.path}
+                permission={item.permission}
+                userPermissions={user?.permission}
+              >
+                <Link
+                  to={item.path}
+                  className={`menu-link inner-glow ${
+                    isActive(item.path) ? "!bg-red-200 !text-[#212F35]" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </RequirePermission>
+            );
+          }
 
-        {/*Gallery Render With Permission*/}
-        <RequirePermission
-          permission="gallery"
-          userPermissions={user?.permission}
-        >
-          <Link to={menuItems[4].path} className="menu-link inner-glow">
-            {menuItems[4].label}
-          </Link>
-        </RequirePermission>
+          // Role-based rendering (e.g. Sister Concerns for corporate users)
+          if (item.role && item.role !== user?.role) {
+            return null;
+          }
 
-        <Link to={menuItems[5].path} className="menu-link inner-glow">
-          {menuItems[5].label}
-        </Link>
-        <Link to={menuItems[6].path} className="menu-link inner-glow">
-          {menuItems[6].label}
-        </Link>
-        <Link to={menuItems[7].path} className="menu-link inner-glow">
-          {menuItems[7].label}
-        </Link>
-        <Link to={menuItems[8].path} className="menu-link inner-glow">
-          {menuItems[8].label}
-        </Link>
-        <Link to={menuItems[9].path} className="menu-link inner-glow">
-          {menuItems[9].label}
-        </Link>
-
-        {/* Sister Concerns only for corporate users */}
-        {user?.role === "corporate" && (
-          <Link to={menuItems[10].path} className="menu-link inner-glow">
-            {menuItems[10].label}
-          </Link>
-        )}
-
-        <Link to={menuItems[11].path} className="menu-link inner-glow">
-          {menuItems[11].label}
-        </Link>
-        <Link to={menuItems[12].path} className="menu-link inner-glow">
-          {menuItems[12].label}
-        </Link>
-        <Link to={menuItems[13].path} className="menu-link inner-glow">
-          {menuItems[13].label}
-        </Link>
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`menu-link inner-glow ${
+                isActive(item.path) ? "!bg-red-200 !text-[#212F35]" : ""
+              }`}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
     </div>
   );
