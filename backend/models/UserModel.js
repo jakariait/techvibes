@@ -36,6 +36,13 @@ const userSchema = new mongoose.Schema(
     },
 
     role: { type: String, enum: ["normal", "corporate"], default: "normal" },
+
+    isMainAdmin: {
+      type: Boolean,
+      default: false,
+    },
+
+
     password: {
       type: String,
       required: true,

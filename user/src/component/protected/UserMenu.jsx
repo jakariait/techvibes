@@ -4,9 +4,12 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
 import ImageComponent from "../public/ImageComponent.jsx";
 import RequirePermission from "../public/RequirePermission.jsx";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const menuItems = [
   { label: "Dashboard", path: "/user/home" },
+  { label: "Company Admin", path: "/user/company-admin" },
+
   { label: "General Info", path: "/user/general-info" },
   { label: "Profile & Cover Photo", path: "/user/profile-cover-photo" },
   { label: "Social Media", path: "/user/social-media" },
@@ -16,7 +19,11 @@ const menuItems = [
   { label: "Whatsapp", path: "/user/whatsapp" },
   { label: "Designations", path: "/user/designations" },
   { label: "Products & Services", path: "/user/products-services" },
-  { label: "Sister Concerns", path: "/user/sister-concerns", role: "corporate" },
+  {
+    label: "Sister Concerns",
+    path: "/user/sister-concerns",
+    role: "corporate",
+  },
   { label: "Location", path: "/user/location" },
   { label: "Name & Login Email", path: "/user/name-login-email" },
   { label: "Change Password", path: "/user/change-password" },
@@ -25,6 +32,8 @@ const menuItems = [
 const UserMenu = ({ user, logout, profile }) => {
   const location = useLocation();
 
+  const isAdmin = useAuthUserStore((state) => state.isAdmin);
+
   const handleLogout = () => {
     logout();
   };
@@ -32,7 +41,7 @@ const UserMenu = ({ user, logout, profile }) => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-y-auto scrollbar-hide">
+    <div className="bg-[#212F35] inner-glow p-4 md:rounded-xl h-screen  overflow-y-auto scrollbar-hide">
       {/* Profile Box */}
       <div className="text-white rounded-xl p-2 py-1 flex flex-col items-center">
         {profile?.profilePhoto ? (
@@ -69,6 +78,11 @@ const UserMenu = ({ user, logout, profile }) => {
       {/* Menu */}
       <nav className="mt-6 space-y-2">
         {menuItems.map((item) => {
+          // Conditionally render "Company Admin" only if isAdmin is true
+          if (item.label === "Company Admin" && !isAdmin) {
+            return null;
+          }
+
           // Permission-based rendering
           if (item.permission) {
             return (
@@ -80,7 +94,7 @@ const UserMenu = ({ user, logout, profile }) => {
                 <Link
                   to={item.path}
                   className={`menu-link inner-glow ${
-                    isActive(item.path) ? "!bg-red-200 !text-[#212F35]" : ""
+                    isActive(item.path) ? "!bg-blue-200 !text-[#212F35]" : ""
                   }`}
                 >
                   {item.label}
@@ -89,7 +103,7 @@ const UserMenu = ({ user, logout, profile }) => {
             );
           }
 
-          // Role-based rendering (e.g. Sister Concerns for corporate users)
+          // Role-based rendering
           if (item.role && item.role !== user?.role) {
             return null;
           }
@@ -99,7 +113,7 @@ const UserMenu = ({ user, logout, profile }) => {
               key={item.path}
               to={item.path}
               className={`menu-link inner-glow ${
-                isActive(item.path) ? "!bg-red-200 !text-[#212F35]" : ""
+                isActive(item.path) ? "!bg-blue-200 !text-[#212F35]" : ""
               }`}
             >
               {item.label}

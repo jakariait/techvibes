@@ -23,7 +23,11 @@ const PhotoUploadSection = ({ type = "profilePhoto" }) => {
   const [loading, setLoading] = useState(false);
 
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [snackbar, setSnackbar] = useState({ open: false, message: "", type: "success" });
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    type: "success",
+  });
 
   const label = type === "coverPhoto" ? "Cover Photo" : "Profile Photo";
 
@@ -62,12 +66,16 @@ const PhotoUploadSection = ({ type = "profilePhoto" }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
 
       if (response?.data?.profile?.[type]) {
         setPhoto(response.data.profile[type]);
-        setSnackbar({ open: true, message: `${label} updated successfully`, type: "success" });
+        setSnackbar({
+          open: true,
+          message: `${label} updated successfully`,
+          type: "success",
+        });
 
         setTimeout(() => {
           window.location.reload();
@@ -94,7 +102,7 @@ const PhotoUploadSection = ({ type = "profilePhoto" }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       setPhoto("");
       setSnackbar({ open: true, message: `${label} deleted`, type: "success" });

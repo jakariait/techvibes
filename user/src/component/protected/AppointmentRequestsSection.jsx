@@ -154,7 +154,6 @@ END:VCARD
     URL.revokeObjectURL(url);
   };
 
-  console.table(appointments);
 
   if (loading) return <LoadingLottie />;
 

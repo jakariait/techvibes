@@ -179,6 +179,42 @@ const getLoggedInUser = asyncHandler(async (req, res) => {
   }
 });
 
+const getUsersByCompany = async (req, res) => {
+  try {
+    const users = await userService.getUsersByCompanyId(req.params.companyId);
+    res.json({
+      message: `${users.length} user${users.length !== 1 ? "s" : ""} found for this company`,
+      total: users.length,
+      users,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getAllUsers = asyncHandler(async (req, res) => {
+  try {
+    const { page, limit, search } = req.query;
+
+    const { users, totalUsers, allTimeUsers, pages } =
+      await userService.getAllUsers({ page, limit, search });
+
+    res.status(200).json({
+      message: `${totalUsers} user${totalUsers.length !== 1 ? "s" : ""} found`,
+      total: totalUsers,
+      allTimeTotal: allTimeUsers,
+      page: parseInt(page) || 1,
+      pages,
+      users,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch users",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = {
   loginUser,
   createUser,
@@ -187,5 +223,7 @@ module.exports = {
   deleteUserBySlug,
   updateUserOnlyBySlug,
   updateProfileBySlug,
-  getLoggedInUser
+  getLoggedInUser,
+  getUsersByCompany,
+  getAllUsers,
 };

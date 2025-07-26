@@ -732,6 +732,14 @@ router.patch(
   userController.updateProfileBySlug,
 ); // Update Profile Data
 
+// Users under same company
+router.get("/by-company/:companyId", userController.getUsersByCompany);
+
+// Get All Registered Users
+router.get("/getAllUsers", userController.getAllUsers);
+
+
+
 // 🚀 Protected Routes (Requires Authentication)
 router.patch("/change-password", userProtect, userController.changePassword);
 

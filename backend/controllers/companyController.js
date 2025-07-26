@@ -14,11 +14,19 @@ const createCompany = async (req, res) => {
 const getCompanies = async (req, res) => {
   try {
     const companies = await companyService.getAllCompanies();
-    res.status(200).json(companies);
+    res.status(200).json({
+      message: `${companies.length} compan${companies.length === 1 ? "y" : "ies"} found`,
+      total: companies.length,
+      companies,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching companies", error: error.message });
+    res.status(500).json({
+      message: "Error fetching companies",
+      error: error.message,
+    });
   }
 };
+
 
 const getCompanyById = async (req, res) => {
   try {
@@ -31,6 +39,7 @@ const getCompanyById = async (req, res) => {
     res.status(500).json({ message: "Error fetching company", error: error.message });
   }
 };
+
 
 
 const updateCompany = asyncHandler(async (req, res) => {

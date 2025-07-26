@@ -13,6 +13,9 @@ import ProductModel from "../models/ProductModel.js";
 import UserModel from "../models/UserModel.js";
 import BlogModel from "../models/BlogModel.js";
 import ProfileModel from "../models/ProfileModel.js";
+import GalleryModel from "../models/GalleryModel.js";
+import CompanyModel from "../models/CompanyModel.js";
+
 
 // Setup __dirname for ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -75,6 +78,19 @@ const collectUsedImages = async () => {
   // Blogs
   const blogs = await BlogModel.find({}, "thumbnailImage");
   blogs.forEach(({ thumbnailImage }) => addImage(thumbnailImage));
+
+  // Company
+  const company = await CompanyModel.find({}, "companyLogo");
+  company.forEach(({ companyLogo }) => addImage(companyLogo));
+
+
+// Gallery
+  const gallery = await GalleryModel.find({}, "galleryImages");
+  gallery.forEach(({ galleryImages }) =>
+    galleryImages.forEach((image) => addImage(image))
+  );
+
+
 };
 
 await collectUsedImages();

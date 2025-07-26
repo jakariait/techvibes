@@ -39,11 +39,10 @@ const userService = {
   },
 
   updateUserOnlyBySlug: async (slug, userUpdates = {}) => {
-    const user = await UserModel.findOneAndUpdate(
-      { slug },
-      userUpdates,
-      { new: true, runValidators: true }
-    );
+    const user = await UserModel.findOneAndUpdate({ slug }, userUpdates, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!user) throw new Error("User not found");
 
@@ -53,7 +52,6 @@ const userService = {
     };
   },
 
-
   // 📝 Update profile by slug
   updateProfileBySlug: async (slug, profileData) => {
     const user = await UserModel.findOne({ slug });
@@ -62,7 +60,7 @@ const userService = {
     const profile = await ProfileModel.findOneAndUpdate(
       { user: user._id },
       profileData,
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!profile) throw new Error("Profile not found");
@@ -79,6 +77,38 @@ const userService = {
 
     return profile;
   },
+
+  getUsersByCompanyId: (companyId) => {
+    return UserModel.find({ company: companyId }, "_id fullName email slug");
+  },
+
+  // New: Get all users with pagination and search
+  getAllUsers: async ({ page = 1, limit = 10, search = "" }) => {
+    const searchRegex = new RegExp(search, "i");
+
+    const query = {
+      $or: [{ fullName: searchRegex }, { email: searchRegex }],
+    };
+
+    const totalUsers = await UserModel.countDocuments(query); // filtered
+    const allTimeUsers = await UserModel.countDocuments();    // all time
+
+    const pages = Math.ceil(totalUsers / limit);
+    const users = await UserModel.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .select("-password -resetOTP -resetOTPExpiry -qrCode")
+      .lean();
+
+    return {
+      users,
+      totalUsers,
+      allTimeUsers,
+      pages,
+    };
+  },
+
 
 };
 

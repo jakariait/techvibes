@@ -8,9 +8,8 @@ import LoadingLottie from "../public/LoadingLottie.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const GeneralProfileInfoSection = () => {
+const GeneralProfileInfoSection = ({slug}) => {
   const { user, token } = useAuthUserStore();
-  const slug = user?.slug;
   const isCorporate = user?.role === "corporate";
 
   const [fields, setFields] = useState({

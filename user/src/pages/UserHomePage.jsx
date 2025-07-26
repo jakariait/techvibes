@@ -5,12 +5,16 @@ import UserLayout from "../component/protected/UserLayout.jsx";
 import Analytics from "../component/protected/Analytics.jsx";
 import AppointmentRequestsSection from "../component/protected/AppointmentRequestsSection.jsx";
 import ConnectRequestsSection from "../component/protected/ConnectRequestsSection.jsx";
+import RegisterUserForm from "../component/protected/RegisterUserForm.jsx";
+import AllUsersSection from "../component/protected/AllUsersSection.jsx";
 
 const UserHomePage = () => {
   const { initialize, user: authUser, token } = useAuthUserStore();
 
   const navigate = useNavigate();
   const [isInitialized, setIsInitialized] = useState(false);
+
+  const isAdmin = useAuthUserStore((state) => state.isAdmin);
 
   // Run initialize once on mount to load user from token
   useEffect(() => {
@@ -38,9 +42,11 @@ const UserHomePage = () => {
   return (
     <UserLayout>
       <div className="xl:container mx-auto space-y-4 ">
+        <RegisterUserForm/>
+        <AllUsersSection/>
         <Analytics userId={authUser._id} token={token} />
-        <ConnectRequestsSection/>
-        <AppointmentRequestsSection/>
+        <ConnectRequestsSection />
+        <AppointmentRequestsSection />
       </div>
     </UserLayout>
   );

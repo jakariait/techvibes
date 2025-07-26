@@ -20,6 +20,8 @@ import ProfileCoverPhotoPage from "./pages/ProfileCoverPhotoPage.jsx";
 import ChangePasswordPage from "./pages/ChangePasswordPage.jsx";
 import NameLoginEmailPage from "./pages/NameLoginEmailPage.jsx";
 import ScrollToTop from "./component/public/ScrollToTop.jsx";
+import CompanyAdminPage from "./pages/CompanyAdminPage.jsx";
+import AdminEditUserPage from "./pages/AdminEditUserPage.jsx";
 
 function App() {
   return (
@@ -68,7 +70,15 @@ function App() {
             path="/user/name-login-email"
             element={<NameLoginEmailPage />}
           />
+          <Route
+            path="/user/company-admin"
+            element={<CompanyAdminPage />}
+          />
 
+          <Route
+            path="/user/edit-user-admin/:slug"
+            element={<AdminEditUserPage/>}
+          />
 
         </Route>
         <Route path="*" element={<NotFoundPage />} />
