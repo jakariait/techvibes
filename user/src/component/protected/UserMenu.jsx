@@ -8,6 +8,9 @@ import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const menuItems = [
   { label: "Dashboard", path: "/user/home" },
+  { label: "TechVibes User", path: "/user/techvibes-user" },
+  { label: "TechVibes Company", path: "/user/techvibes-company" },
+
   { label: "Company Admin", path: "/user/company-admin" },
 
   { label: "General Info", path: "/user/general-info" },
@@ -33,6 +36,8 @@ const UserMenu = ({ user, logout, profile }) => {
   const location = useLocation();
 
   const isAdmin = useAuthUserStore((state) => state.isAdmin);
+
+  const isMainAdmin = user?.isMainAdmin;
 
   const handleLogout = () => {
     logout();
@@ -80,6 +85,13 @@ const UserMenu = ({ user, logout, profile }) => {
         {menuItems.map((item) => {
           // Conditionally render "Company Admin" only if isAdmin is true
           if (item.label === "Company Admin" && !isAdmin) {
+            return null;
+          }
+
+
+
+          // Hide "TechVibes User" and "TechVibes Company" if isAdmin is true
+          if (!isMainAdmin && (item.label === "TechVibes User" || item.label === "TechVibes Company")) {
             return null;
           }
 

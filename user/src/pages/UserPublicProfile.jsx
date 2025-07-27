@@ -14,7 +14,6 @@ import Address from "../component/public/Address.jsx";
 import SisterConcerns from "../component/public/SisterConcerns.jsx";
 import BusinessHoursCard from "../component/public/BusinessHoursCard.jsx";
 import QRCodeSection from "../component/public/QRCodeSection.jsx";
-import ColorizedQR from "../component/public/ColorizedQR.jsx";
 import TechVibesCard from "../component/public/TechVibesCard.jsx";
 import axios from "axios";
 import Designations from "../component/public/Designations.jsx";
@@ -28,7 +27,24 @@ import LoadingLottie from "../component/public/LoadingLottie.jsx";
 import UserNotFound from "../component/public/UserNotFound.jsx";
 import RequirePermission from "../component/public/RequirePermission.jsx";
 import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
-import AppointmentForm from "../component/public/AppointmentForm.jsx";
+
+const sectionComponentMap = {
+  designations: (props) => <Designations {...props} />,
+  skills: (props) => <Skills {...props} />,
+  productAndServices: (props) => <ProductService {...props} />,
+  emails: (props) => <Emails {...props} />,
+  phones: (props) => <PhoneNumber {...props} />,
+  whatsapp: (props) => <WhatsAppNumbers {...props} />,
+  locations: (props) => <Address {...props} />,
+  sisterConcerns: (props) => <SisterConcerns {...props} />,
+  businessHours: (props) => <BusinessHoursCard {...props} />,
+  qrcode: (props) => <QRCodeSection {...props} />,
+  portfolio: (props) => <PortfolioAndCV {...props} />,
+  youtube: (props) => <YouTubeEmbed url={props.profile?.youtubeUrl} />,
+  photoGallery: (props) => (
+    <LinkedPhotoGallery productImages={props.profile?.productImages || []} />
+  ),
+};
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -89,7 +105,7 @@ const UserPublicProfile = () => {
           <ProfileCoverPhoto profile={profile} user={user} company={company} />
           <NameTitle profile={profile} user={user} company={company} />
 
-          <SaveContactConnect profile={profile} user={user}  company={company} />
+          <SaveContactConnect profile={profile} user={user} company={company} />
 
           <SocialMediaLinks profile={profile} user={user} company={company} />
 
@@ -99,20 +115,17 @@ const UserPublicProfile = () => {
 
           <GetInTouch />
 
-          <div className="grid md:grid-cols-2 gap-2 mt-2 p-2 ">
-            <Designations profile={profile} />
-            <Skills profile={profile} user={user} />
-            <ProductService profile={profile} />
-            <Emails profile={profile} user={user} />
-            <PhoneNumber profile={profile} user={user} company={company} />
-            <WhatsAppNumbers profile={profile} user={user} />
-            <Address profile={profile} user={user} company={company} />
-            <SisterConcerns profile={profile} user={user} />
-            <BusinessHoursCard profile={profile} user={user} />
-            <QRCodeSection user={user} profile={profile} />
-            <PortfolioAndCV profile={profile} />
-            <YouTubeEmbed url={profile?.youtubeUrl} />
-            <LinkedPhotoGallery productImages={profile?.productImages || []} />
+          {/*Re-Arranged Sections Will Print Here*/}
+          <div className="grid md:grid-cols-2 gap-2 mt-2 p-2">
+            {(profile.sectionOrder || []).map((key) => {
+              const Component = sectionComponentMap[key];
+              if (!Component) return null;
+              return (
+                <div key={key}>
+                  <Component profile={profile} user={user} company={company} />
+                </div>
+              );
+            })}
           </div>
 
           <RequirePermission
@@ -123,7 +136,6 @@ const UserPublicProfile = () => {
               <Gallery userId={user._id} />
             </div>
           </RequirePermission>
-
 
           <div className={"p-2"}>
             <TechVibesCard />

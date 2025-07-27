@@ -112,7 +112,6 @@ const profileSchema = new mongoose.Schema(
       default: "BST",
     },
 
-
     qrCodeIsActive: {
       type: Boolean,
       default: true,
@@ -188,6 +187,24 @@ const profileSchema = new mongoose.Schema(
     ],
 
     youtubeUrl: { type: String },
+
+    sectionOrder: {
+      type: [String],
+      default: [
+        "designations",
+        "skills",
+        "productAndServices",
+        "emails",
+        "phones",
+        "whatsapp",
+        "locations",
+        "sisterConcerns",
+        "businessHours",
+        "qrcode",
+        "portfolio",
+        "youtube",
+      ],
+    },
   },
   { timestamps: true, versionKey: false },
 );

@@ -12,9 +12,9 @@ const ProductServiceSister = ({
   title = "Info List",
   type = "productAndServices", // or "sisterConcerns"
   icon = <PackageSearch className="w-5 h-5 text-green-400" />,
+  slug
 }) => {
-  const { user, token } = useAuthUserStore();
-  const slug = user?.slug;
+  const {  token } = useAuthUserStore();
 
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);

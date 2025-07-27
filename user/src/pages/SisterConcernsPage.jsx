@@ -14,6 +14,7 @@ const SisterConcernsPage = () => {
           title="Sister Concerns"
           type="sisterConcerns"
           icon={<Building2 className="w-5 h-5 text-green-400" />}
+          slug={user?.slug}
         />
       )}
     </UserLayout>

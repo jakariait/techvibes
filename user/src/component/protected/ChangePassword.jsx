@@ -85,7 +85,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="bg-[#212F35] inner-glow p-6 rounded-xl max-w-6xl mx-auto mb-8">
+    <div className="bg-[#212F35] inner-glow p-6 rounded-xl max-w-7xl mx-auto mb-8">
       <h2 className=" text-center text-green-400 mb-6 flex items-center justify-center gap-2">
         <Key className="w-5 h-5" />
         Change Password

@@ -72,9 +72,8 @@ const SortableCustomItem = ({ id, link, handleChange, handleRemove }) => {
   );
 };
 
-const CustomSocialLinksSection = () => {
-  const { user, token } = useAuthUserStore();
-  const slug = user?.slug;
+const CustomSocialLinksSection = ({slug}) => {
+  const {  token } = useAuthUserStore();
 
   const [links, setLinks] = useState([]);
   const [newLink, setNewLink] = useState({ platform: "", url: "" });

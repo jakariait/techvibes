@@ -3,10 +3,13 @@ import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { UserPlus } from "lucide-react";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const RegisterUserForm = () => {
+const RegisterUserForm = ({ onUserCreated }) => {
+  const { token } = useAuthUserStore();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -40,7 +43,11 @@ const RegisterUserForm = () => {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/company`);
+        const res = await axios.get(`${apiUrl}/company`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setCompanies(res.data.companies || []);
       } catch (err) {
         showSnackbar("Failed to load companies", "error");
@@ -73,8 +80,14 @@ const RegisterUserForm = () => {
       const payload = { ...formData };
       if (payload.role !== "corporate") delete payload.company;
 
-      await axios.post(`${apiUrl}/register`, payload);
+      await axios.post(`${apiUrl}/register`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       showSnackbar("✅ User registered successfully!", "success");
+      // ✅ Trigger parent to reload users
+      onUserCreated?.();
 
       setFormData({
         fullName: "",
@@ -98,7 +111,7 @@ const RegisterUserForm = () => {
   };
 
   return (
-    <div className="bg-[#212F35] inner-glow p-6 rounded-xl max-w-6xl mx-auto text-white">
+    <div className="bg-[#212F35] inner-glow p-6 rounded-xl max-w-7xl mx-auto text-white">
       <div className="flex items-center justify-center gap-2 mb-2">
         <UserPlus className="w-5 h-5 text-green-400" />
         <h2 className="text-base font-medium text-green-400">
@@ -128,7 +141,7 @@ const RegisterUserForm = () => {
         />
 
         <input
-          type="password"
+          type="text"
           name="password"
           placeholder="Password"
           value={formData.password}

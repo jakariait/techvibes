@@ -7,9 +7,8 @@ import LoadingLottie from "../public/LoadingLottie.jsx";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-const UpdateUserInfo = () => {
-  const { token, user } = useAuthUserStore();
-  const slug = user?.slug;
+const UpdateUserInfo = ({slug}) => {
+  const { token } = useAuthUserStore();
 
   const baseUrl = import.meta.env.VITE_API_URL;
   const patchUrl = `${baseUrl}/userbyslug/${slug}`;

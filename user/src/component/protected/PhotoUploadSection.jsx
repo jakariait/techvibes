@@ -14,9 +14,8 @@ import {
   Alert,
 } from "@mui/material";
 
-const PhotoUploadSection = ({ type = "profilePhoto" }) => {
-  const { user, token } = useAuthUserStore();
-  const slug = user?.slug;
+const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
+  const {  token } = useAuthUserStore();
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [photo, setPhoto] = useState("");

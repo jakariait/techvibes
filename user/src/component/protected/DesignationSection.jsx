@@ -8,9 +8,9 @@ import LoadingLottie from "../public/LoadingLottie.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const DesignationSection = ({ title = "Designations" }) => {
-  const { user, token } = useAuthUserStore();
-  const apiSlug = user?.slug;
+const DesignationSection = ({ title = "Designations" , slug }) => {
+  const {  token } = useAuthUserStore();
+  const apiSlug = slug;
 
   const [items, setItems] = useState([]);
 

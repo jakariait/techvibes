@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { UserPlus, UserMinus, Shield, Users, Search, X } from "lucide-react";
+import {UserPlus, UserMinus, Shield, Users, Search, X, Eye} from "lucide-react";
 import { Snackbar, Alert, CircularProgress } from "@mui/material";
 import useAuthUserStore from "../../store/AuthUserStore";
 import LoadingLottie from "../public/LoadingLottie";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const AdminManagementSection = () => {
-  const { user, token } = useAuthUserStore();
-  const companyId = user?.company;
+const AdminManagementSection = ({companyId}) => {
+  const {  token } = useAuthUserStore();
 
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
@@ -194,7 +193,7 @@ const AdminManagementSection = () => {
   };
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-4xl mx-auto">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-2 mb-6 justify-center">
         <Shield className="w-5 h-5 text-green-400" />
@@ -403,20 +402,32 @@ const AdminManagementSection = () => {
                       />
                     </div>
                   </div>
-
-                  <button
-                    onClick={() => addAdmin(user._id)}
-                    className="text-green-400 hover:text-green-300 hover:bg-green-400/10 flex items-center gap-1 px-3 py-1 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-                    title="Add as Admin"
-                    disabled={processing}
-                  >
-                    {processing ? (
-                      <CircularProgress size={14} color="inherit" />
-                    ) : (
-                      <UserPlus size={16} />
+                  <div className="flex gap-4 ">
+                    {user.slug && (
+                      <a
+                        href={`/profile/${user.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:text-blue-200 text-sm flex items-center gap-1"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </a>
                     )}
-                    Add
-                  </button>
+                    <button
+                      onClick={() => addAdmin(user._id)}
+                      className="text-green-400 hover:text-green-300 hover:bg-green-400/10 flex items-center gap-1 px-3 py-1 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                      title="Add as Admin"
+                      disabled={processing}
+                    >
+                      {processing ? (
+                        <CircularProgress size={14} color="inherit" />
+                      ) : (
+                        <UserPlus size={16} />
+                      )}
+                      Add
+                    </button>
+                  </div>
+
                 </div>
               ))}
             </div>

@@ -22,6 +22,9 @@ import NameLoginEmailPage from "./pages/NameLoginEmailPage.jsx";
 import ScrollToTop from "./component/public/ScrollToTop.jsx";
 import CompanyAdminPage from "./pages/CompanyAdminPage.jsx";
 import AdminEditUserPage from "./pages/AdminEditUserPage.jsx";
+import AdminEditCompanyPage from "./pages/AdminEditCompanyPage.jsx";
+import TechVibesUserPages from "./pages/TechVibesUserPages.jsx";
+import TechVibesCompanyPage from "./pages/TechVibesCompanyPage.jsx";
 
 function App() {
   return (
@@ -70,16 +73,23 @@ function App() {
             path="/user/name-login-email"
             element={<NameLoginEmailPage />}
           />
-          <Route
-            path="/user/company-admin"
-            element={<CompanyAdminPage />}
-          />
+          <Route path="/user/company-admin" element={<CompanyAdminPage />} />
 
           <Route
             path="/user/edit-user-admin/:slug"
-            element={<AdminEditUserPage/>}
+            element={<AdminEditUserPage />}
           />
 
+          <Route
+            path="/user/edit-company/:id"
+            element={<AdminEditCompanyPage />}
+          />
+          <Route path="/user/techvibes-user" element={<TechVibesUserPages />} />
+
+          <Route
+            path="/user/techvibes-company"
+            element={<TechVibesCompanyPage />}
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

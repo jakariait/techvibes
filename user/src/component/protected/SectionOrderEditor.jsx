@@ -1,0 +1,188 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { GripVertical, Link2 } from "lucide-react";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
+
+const apiURL = import.meta.env.VITE_API_URL;
+
+// Define your available sections with readable labels
+const AVAILABLE_SECTIONS = [
+  { key: "designations", label: "Designations" },
+  { key: "skills", label: "Skills" },
+  { key: "productAndServices", label: "Products & Services" },
+  { key: "emails", label: "Emails" },
+  { key: "phones", label: "Phone Numbers" },
+  { key: "whatsapp", label: "WhatsApp Numbers" },
+  { key: "locations", label: "Address" },
+  { key: "sisterConcerns", label: "Sister Concerns" },
+  { key: "businessHours", label: "Business Hours" },
+  { key: "qrcode", label: "QR Code" },
+  { key: "portfolio", label: "Portfolio & CV" },
+  { key: "youtube", label: "YouTube Video" },
+];
+
+const SortableItem = ({ id, label }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <li
+      ref={setNodeRef}
+      style={style}
+      className="flex items-center justify-between bg-[#1a2a30] text-white p-2 cursor-pointer rounded shadow mb-2"
+    >
+      <span className="flex items-center gap-2" {...attributes} {...listeners}>
+        <GripVertical className="w-4 h-4" />
+        {label}
+      </span>
+    </li>
+  );
+};
+
+const SectionOrderEditor = ({ slug }) => {
+  const { token } = useAuthUserStore();
+  const [sectionOrder, setSectionOrder] = useState([]);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    type: "success",
+  });
+
+  // Mobile + desktop drag support
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, {
+      activationConstraint: { delay: 200, tolerance: 5 },
+    }),
+  );
+
+  const showSnackbar = (message, type = "success") => {
+    setSnackbar({ open: true, message, type });
+  };
+
+  const closeSnackbar = () => {
+    setSnackbar({ open: false, message: "", type: "success" });
+  };
+
+  useEffect(() => {
+    const fetchSectionOrder = async () => {
+      try {
+        const res = await axios.get(`${apiURL}/userbyslug/${slug}`);
+        const fetchedOrder =
+          res.data.profile.sectionOrder || AVAILABLE_SECTIONS.map((s) => s.key);
+        setSectionOrder(fetchedOrder);
+      } catch (err) {
+        showSnackbar("Failed to load section order", "error");
+      }
+    };
+    fetchSectionOrder();
+  }, [slug]);
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = sectionOrder.indexOf(active.id);
+    const newIndex = sectionOrder.indexOf(over.id);
+    const newOrder = arrayMove(sectionOrder, oldIndex, newIndex);
+    setSectionOrder(newOrder);
+  };
+
+  const handleSave = async () => {
+    try {
+      await axios.patch(
+        `${apiURL}/profilebyslug/${slug}`,
+        { sectionOrder },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      showSnackbar("Section order saved successfully!");
+    } catch (err) {
+      console.error(err);
+      showSnackbar("Failed to save section order", "error");
+    }
+  };
+
+  return (
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl max-w-7xl mx-auto mt-6">
+      <div className="flex flex-col items-center justify-center mb-2">
+        <div className="flex items-center justify-start gap-2">
+          <GripVertical className="w-5 h-5 text-yellow-400" />
+          <h2 className="text-base font-medium text-yellow-400">
+            Reorder Profile Sections
+          </h2>
+        </div>
+        <span className="text-sm text-gray-500">
+          Drag and drop to rearrange the links
+        </span>
+      </div>
+
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={sectionOrder}
+          strategy={verticalListSortingStrategy}
+        >
+          <ul>
+            {sectionOrder.map((key) => {
+              const section = AVAILABLE_SECTIONS.find((s) => s.key === key);
+              return section ? (
+                <SortableItem key={key} id={key} label={section.label} />
+              ) : null;
+            })}
+          </ul>
+        </SortableContext>
+      </DndContext>
+
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handleSave}
+          className="border-2 border-white text-white cursor-pointer px-4 py-2 rounded transition-colors"
+        >
+          Save Order
+        </button>
+      </div>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={closeSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity={snackbar.type}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+};
+
+export default SectionOrderEditor;

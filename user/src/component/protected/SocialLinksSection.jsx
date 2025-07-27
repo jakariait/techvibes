@@ -127,10 +127,9 @@ const SortableItem = ({ id, link, handleChange, handleRemove }) => {
   );
 };
 
-const SocialLinksSection = () => {
-  const { user, token } = useAuthUserStore();
+const SocialLinksSection = ({slug}) => {
+  const {  token } = useAuthUserStore();
 
-  const slug = user?.slug;
 
   const [links, setLinks] = useState([]);
   const [loading, setLoading] = useState(false);

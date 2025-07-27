@@ -16,9 +16,8 @@ import ImageComponent from "../public/ImageComponent";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const CompanyGeneralInfoSection = () => {
-  const { user, token } = useAuthUserStore();
-  const companyId = user?.company;
+const CompanyGeneralInfoSection = ({ companyId }) => {
+  const { token } = useAuthUserStore();
 
   const [loading, setLoading] = useState(true);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -136,7 +135,7 @@ const CompanyGeneralInfoSection = () => {
   if (loading) return <LoadingLottie />;
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-4xl mx-auto">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
       <div className="flex items-center gap-2 mb-4 justify-center">
         <Building2 className="w-5 h-5 text-green-400" />
         <h2 className="text-base font-medium text-green-400">
@@ -146,7 +145,7 @@ const CompanyGeneralInfoSection = () => {
 
       {/* Company Name */}
       <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
-        <label className="text-white md:w-[180px]">Company Name:</label>
+        <label className="text-white md:w-[180px]">Company Name</label>
         <input
           type="text"
           value={fields.companyName}
@@ -157,7 +156,7 @@ const CompanyGeneralInfoSection = () => {
 
       {/* Website */}
       <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
-        <label className="text-white md:w-[180px]">Website:</label>
+        <label className="text-white md:w-[180px]">Website</label>
         <input
           type="text"
           value={fields.website}
@@ -169,7 +168,7 @@ const CompanyGeneralInfoSection = () => {
 
       {/* Phone */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center mb-3">
-        <label className="text-white md:w-[180px]">Phone Number:</label>
+        <label className="text-white md:w-[180px]">Number</label>
         <input
           type="text"
           value={fields.phoneNumber?.label}
@@ -192,7 +191,7 @@ const CompanyGeneralInfoSection = () => {
 
       {/* Location */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center mb-3">
-        <label className="text-white md:w-[180px]">Office Location:</label>
+        <label className="text-white md:w-[180px]">Location</label>
         <input
           type="text"
           value={fields.locations?.label}

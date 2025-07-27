@@ -10,10 +10,10 @@ import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const ContactListSection = ({ title, type, fieldKey }) => {
+const ContactListSection = ({ title, type, fieldKey, slug }) => {
   const { user, token } = useAuthUserStore();
 
-  const apiSlug = user?.slug;
+  const apiSlug = slug;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({
