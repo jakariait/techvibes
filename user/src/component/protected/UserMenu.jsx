@@ -8,6 +8,8 @@ import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const menuItems = [
   { label: "Dashboard", path: "/user/home" },
+  { label: "Reorder Profile Sections", path: "/user/reorder-profile" },
+
   { label: "TechVibes User", path: "/user/techvibes-user" },
   { label: "TechVibes Company", path: "/user/techvibes-company" },
 

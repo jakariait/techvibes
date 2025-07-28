@@ -40,7 +40,7 @@ const UserLayout = ({ children }) => {
         </aside>
 
         {/* Mobile menu toggle button */}
-        <div className="lg:hidden fixed left-0 top-1/2 -translate-y-1/2 z-50 bg-[#212F35] text-white p-3 rounded-r-lg cursor-pointer">
+        <div className="lg:hidden fixed left-0 top-1/2 -translate-y-1/2 z-50 bg-blue-500/60 text-white p-3 rounded-r-lg cursor-pointer">
           <FaUser
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-2xl"

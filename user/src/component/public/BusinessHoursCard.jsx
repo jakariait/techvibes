@@ -15,7 +15,7 @@ const BusinessHoursCard = ({ profile, user }) => {
   if (user?.role !== "corporate") return null;
 
   return (
-    <div className="bg-[#212F35] inner-glow p-6 rounded-xl overflow-hidden">
+    <div className="bg-[#212F35] inner-glow p-6 rounded-xl h-full overflow-hidden">
       <div className="flex flex-col items-center gap-6">
         {/* Left side - Business Hours */}
         <div className="flex flex-col items-center sm:flex-row sm:items-center gap-5 text-center sm:text-left">

@@ -25,6 +25,7 @@ import AdminEditUserPage from "./pages/AdminEditUserPage.jsx";
 import AdminEditCompanyPage from "./pages/AdminEditCompanyPage.jsx";
 import TechVibesUserPages from "./pages/TechVibesUserPages.jsx";
 import TechVibesCompanyPage from "./pages/TechVibesCompanyPage.jsx";
+import ReorderProfilePage from "./pages/ReorderProfilePage.jsx";
 
 function App() {
   return (
@@ -89,6 +90,11 @@ function App() {
           <Route
             path="/user/techvibes-company"
             element={<TechVibesCompanyPage />}
+          />
+
+          <Route
+            path="/user/reorder-profile"
+            element={<ReorderProfilePage />}
           />
         </Route>
         <Route path="*" element={<NotFoundPage />} />

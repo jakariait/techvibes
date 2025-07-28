@@ -21,12 +21,12 @@ import SocialMediaLinks from "../component/public/SocialMediaLinks.jsx";
 import Gallery from "../component/public/Gallery.jsx";
 import PortfolioAndCV from "../component/public/PortfolioAndCV.jsx";
 import YouTubeEmbed from "../component/public/YouTubeEmbed.jsx";
-import LinkedPhotoGallery from "../component/public/LinkedPhotoGallery.jsx";
 import useCompanyStore from "../store/useCompanyStore.jsx";
 import LoadingLottie from "../component/public/LoadingLottie.jsx";
 import UserNotFound from "../component/public/UserNotFound.jsx";
 import RequirePermission from "../component/public/RequirePermission.jsx";
 import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
+import UserProductGalleryViewer from "../component/public/UserProductGalleryViewer.jsx";
 
 const sectionComponentMap = {
   designations: (props) => <Designations {...props} />,
@@ -41,9 +41,46 @@ const sectionComponentMap = {
   qrcode: (props) => <QRCodeSection {...props} />,
   portfolio: (props) => <PortfolioAndCV {...props} />,
   youtube: (props) => <YouTubeEmbed url={props.profile?.youtubeUrl} />,
-  photoGallery: (props) => (
-    <LinkedPhotoGallery productImages={props.profile?.productImages || []} />
-  ),
+};
+
+// Function to check if a section has actual content
+const hasContent = (key, profile, user, company) => {
+  if (!profile) return false;
+
+  switch (key) {
+    case "designations":
+      return profile?.designationInfo && profile.designationInfo.length > 0;
+
+    case "skills":
+      return profile?.skills && profile.skills.length > 0;
+    case "productAndServices":
+      return (
+        profile?.productAndServices && profile.productAndServices.length > 0
+      );
+    case "emails":
+      return profile?.emails && profile.emails.length > 0;
+    case "phones":
+      return profile?.phones && profile.phones.length > 0;
+    case "whatsapp":
+      return profile?.whatsapp && profile.whatsapp.length > 0;
+    case "locations":
+      return profile?.locations && profile.locations.length > 0;
+    case "sisterConcerns":
+      return profile?.sisterConcerns && profile.sisterConcerns.length > 0;
+    case "businessHours":
+      return (
+        profile?.businessHours && Object.keys(profile.businessHours).length > 0
+      );
+    case "qrcode":
+      return profile?.qrCode || user?.qrCode;
+    case "portfolio":
+      return profile?.portfolio || profile?.cv;
+    case "youtube":
+      return profile?.youtubeUrl && profile.youtubeUrl.trim() !== "";
+
+    default:
+      return false;
+  }
 };
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -68,7 +105,6 @@ const UserPublicProfile = () => {
   }, [slug, fetchUserBySlug]);
 
   const userId = user?._id;
-
   const companyId = user?.company;
 
   useEffect(() => {
@@ -95,8 +131,13 @@ const UserPublicProfile = () => {
   }, [userId]);
 
   if (loading) return <LoadingLottie />;
-  // if (error) return <div className="text-red-500 text-center">{error}</div>;
   if (!user) return <UserNotFound />;
+
+  // Filter sections that have actual content
+  const validSections = (profile?.sectionOrder || []).filter((key) => {
+    const Component = sectionComponentMap[key];
+    return Component && hasContent(key, profile, user, company);
+  });
 
   return (
     <>
@@ -116,17 +157,22 @@ const UserPublicProfile = () => {
           <GetInTouch />
 
           {/*Re-Arranged Sections Will Print Here*/}
-          <div className="grid md:grid-cols-2 gap-2 mt-2 p-2">
-            {(profile.sectionOrder || []).map((key) => {
-              const Component = sectionComponentMap[key];
-              if (!Component) return null;
-              return (
-                <div key={key}>
-                  <Component profile={profile} user={user} company={company} />
-                </div>
-              );
-            })}
-          </div>
+          {validSections.length > 0 && (
+            <div className="grid md:grid-cols-2 gap-2 mt-2 p-2">
+              {validSections.map((key) => {
+                const Component = sectionComponentMap[key];
+                return (
+                  <div key={key}>
+                    <Component
+                      profile={profile}
+                      user={user}
+                      company={company}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           <RequirePermission
             permission="gallery"
@@ -134,6 +180,14 @@ const UserPublicProfile = () => {
           >
             <div className={"p-2"}>
               <Gallery userId={user._id} />
+            </div>
+          </RequirePermission>
+          <RequirePermission
+            permission="productgallery"
+            userPermissions={user.permission}
+          >
+            <div className={"p-2"}>
+              <UserProductGalleryViewer userId={user._id} />
             </div>
           </RequirePermission>
 

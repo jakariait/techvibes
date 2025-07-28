@@ -3,6 +3,7 @@ import UserLayout from "../component/protected/UserLayout.jsx";
 import RegisterUserForm from "../component/protected/RegisterUserForm.jsx";
 import AllUsersSection from "../component/protected/AllUsersSection.jsx";
 import useAuthUserStore from "../store/AuthUserStore.jsx";
+import LoadingLottie from "../component/public/LoadingLottie.jsx";
 
 const TechVibesUserPages = () => {
   const { user } = useAuthUserStore();
@@ -13,9 +14,7 @@ const TechVibesUserPages = () => {
   if (!isMainAdmin) {
     return (
       <UserLayout>
-        <p className="text-center text-red-500 mt-10">
-          Access denied. You are not authorized to view this page.
-        </p>
+        <LoadingLottie/>
       </UserLayout>
     );
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ImageIcon } from "lucide-react";
 import ImageComponent from "./ImageComponent.jsx";
+import LoadingLottie from "./LoadingLottie.jsx";
 
 const Gallery = ({ userId }) => {
   const [photos, setPhotos] = useState([]);
@@ -30,8 +31,7 @@ const Gallery = ({ userId }) => {
     fetchGallery();
   }, [userId, apiUrl]);
 
-  if (loading) return <p>Loading gallery...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <LoadingLottie/>;
   if (photos.length === 0) return null;
 
   return (

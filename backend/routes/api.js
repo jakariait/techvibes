@@ -38,6 +38,8 @@ const companyController = require("../controllers/companyController");
 const galleryController = require("../controllers/galleryController");
 const connectController = require("../controllers/connectController");
 const appointmentController = require("../controllers/appointmentController");
+const userProductGalleryController = require("../controllers/userProductGalleryController");
+
 
 const { handleCourierCheck } = require("../controllers/courierController");
 const {
@@ -132,6 +134,10 @@ const upload = multer({ storage }).fields([
   {
     name: "galleryImages",
     maxCount: 4,
+  },
+  {
+    name: "productImage",
+    maxCount: 1,
   },
 ]);
 
@@ -808,5 +814,13 @@ router.delete(
   userProtect,
   appointmentController.deleteAppointment,
 );
+
+// === User Product Gallery API Routes ===
+router.post("/user-product-gallery/:userId", upload, userProductGalleryController.createProduct);
+router.get("/user-product-gallery/:userId",  userProductGalleryController.getAllProducts);
+router.put("/user-product-gallery/:userId/:index", upload,  userProductGalleryController.updateProduct);
+router.delete("/user-product-gallery/:userId/:index",   userProductGalleryController.deleteProduct);
+
+
 
 module.exports = router;

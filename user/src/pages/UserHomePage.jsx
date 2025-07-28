@@ -5,7 +5,6 @@ import UserLayout from "../component/protected/UserLayout.jsx";
 import Analytics from "../component/protected/Analytics.jsx";
 import AppointmentRequestsSection from "../component/protected/AppointmentRequestsSection.jsx";
 import ConnectRequestsSection from "../component/protected/ConnectRequestsSection.jsx";
-import SectionOrderEditor from "../component/protected/SectionOrderEditor.jsx";
 
 const UserHomePage = () => {
   const { initialize, user: authUser, token } = useAuthUserStore();
@@ -40,8 +39,6 @@ const UserHomePage = () => {
     <UserLayout>
       <div className="xl:container mx-auto space-y-4 ">
         <Analytics userId={authUser._id} token={token} />
-        <SectionOrderEditor slug={authUser?.slug} />
-
         <ConnectRequestsSection />
         <AppointmentRequestsSection />
       </div>

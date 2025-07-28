@@ -94,7 +94,7 @@ const SectionOrderEditor = ({ slug }) => {
           res.data.profile.sectionOrder || AVAILABLE_SECTIONS.map((s) => s.key);
         setSectionOrder(fetchedOrder);
       } catch (err) {
-        showSnackbar("Failed to load section order", "error");
+        // showSnackbar("Failed to load section order", "error");
       }
     };
     fetchSectionOrder();
@@ -125,7 +125,7 @@ const SectionOrderEditor = ({ slug }) => {
   };
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl max-w-7xl mx-auto mt-6">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl max-w-7xl mx-auto">
       <div className="flex flex-col items-center justify-center mb-2">
         <div className="flex items-center justify-start gap-2">
           <GripVertical className="w-5 h-5 text-yellow-400" />

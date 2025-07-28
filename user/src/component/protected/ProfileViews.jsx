@@ -59,25 +59,25 @@ export default function ProfileViews({ userId, token, name }) {
             <div className="flex items-baseline gap-2">
               {name === "Profile" && (
                 <span className="text-2xl font-bold text-white">
-                  {formatViews(views)}
+                  {views >= 0 ? formatViews(views) : "—"}
                 </span>
               )}
 
               {name === "Service" && (
                 <span className="text-2xl font-bold text-white">
-                  {formatViews(views) - 4}
+                  {views - 4 >= 0 ? formatViews(views - 4) : "—"}
                 </span>
               )}
 
               {name === "Portfolio" && (
                 <span className="text-2xl font-bold text-white">
-                  {formatViews(views) - 6}
+                  {views - 6 >= 0 ? formatViews(views - 6) : "—"}
                 </span>
               )}
 
               {name === "Product" && (
                 <span className="text-2xl font-bold text-white">
-                  {formatViews(views) - 9}
+                  {views - 9 >= 0 ? formatViews(views - 9) : "—"}
                 </span>
               )}
 
