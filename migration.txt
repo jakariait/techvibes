@@ -1,0 +1,113 @@
+const mysql = require('mysql2/promise');
+const mongoose = require('mongoose');
+const User = require('./models/User');       // Your User model
+const Profile = require('./models/Profile'); // Your Profile model
+
+async function migrate() {
+  // 1. Connect to MySQL
+  const mysqlConn = await mysql.createConnection({
+    host: 'localhost',
+    user: 'your_mysql_user',
+    password: 'your_mysql_pass',
+    database: 'your_mysql_db',
+  });
+
+  // 2. Connect to MongoDB
+  await mongoose.connect('mongodb://localhost:27017/your_mongo_db');
+
+  // 3. Fetch all users from MySQL
+  const [rows] = await mysqlConn.execute('SELECT * FROM users_table'); // Adjust table name
+
+  for (const row of rows) {
+    // 4. Build User document
+    const fullName = `${row.first_name} ${row.last_name}`.trim();
+
+    // Map role (example: '1' → 'corporate', else 'normal')
+    const role = row.role === '1' ? 'corporate' : 'normal';
+
+    // Create User (password already hashed in MySQL)
+    const newUser = new User({
+      fullName,
+      email: row.email,
+      password: row.password,
+      role,
+      // you can add more fields if needed, e.g., baseUrl, permission etc
+    });
+
+    await newUser.save(); // This triggers pre-save for slug and QR code
+
+    // 5. Prepare socialMedia array from separate social fields + links field
+
+    // Helper to push social media if URL is not empty
+    const socialMedia = [];
+
+    const addSocial = (platform, url) => {
+      if (url && url.trim()) {
+        socialMedia.push({ platform: platform.toLowerCase(), url: url.trim(), order: socialMedia.length });
+      }
+    };
+
+    // Individual fields
+    addSocial('facebook', row.Facebook);
+    addSocial('instagram', row.Instagram);
+    addSocial('linkedin', row.LinkedIn);
+    addSocial('youtube', row.YouTube);
+    addSocial('twitter', row.Twitter);
+    addSocial('pinterest', row.Pinterest);
+    addSocial('upwork', row.Upwork);
+    addSocial('wechat', row.Wechat);
+    // ... add others as needed
+
+    // Parse `links` string: "url,Platform;url,Platform;..."
+    if (row.links) {
+      const links = row.links.split(';');
+      for (const link of links) {
+        const [url, platform] = link.split(',');
+        if (url && platform) {
+          addSocial(platform, url);
+        }
+      }
+    }
+
+    // 6. Prepare Profile document linked to User._id
+    const profileDoc = new Profile({
+      user: newUser._id,
+      profilePhoto: row.image_name || '',
+      designation: row.designation,
+      companyName: row.company,
+      bio: row.biography,
+      themeAccessLevel: row.theme || 'dark',
+      // Contact fields
+      emails: row.email ? [{ value: row.email, label: 'primary' }] : [],
+      phones: [],
+      whatsapp: [],
+      locations: [],
+      socialMedia,
+      // Add phones & whatsapp if available
+    });
+
+    if (row.phone) {
+      profileDoc.phones.push({ value: row.phone, label: 'mobile' });
+    }
+    if (row.telephone) {
+      profileDoc.phones.push({ value: row.telephone, label: 'telephone' });
+    }
+    if (row.whatsapp) {
+      profileDoc.whatsapp.push({ value: row.whatsapp, label: 'primary' });
+    }
+    if (row.address) {
+      profileDoc.locations.push({ value: row.address, label: 'primary' });
+    }
+
+    // Save Profile
+    await profileDoc.save();
+
+    console.log(`Migrated user ${fullName} with email ${row.email}`);
+  }
+
+  await mysqlConn.end();
+  await mongoose.disconnect();
+  console.log('Migration completed.');
+}
+
+migrate().catch(console.error);

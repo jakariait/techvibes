@@ -144,6 +144,7 @@ const profileSchema = new mongoose.Schema(
           required: true,
           enum: [
             "facebook",
+            "facebook page",
             "twitter",
             "instagram",
             "linkedin",

@@ -77,7 +77,6 @@ const AllUsersSection = ({ reload }) => {
       showSnackbar(`User ${userToDelete.fullName} deleted`, "success");
       setDeleteDialogOpen(false);
       fetchUsers(); // refetch after deletion
-      if (refreshUsers) refreshUsers();
     } catch (err) {
       showSnackbar("Failed to delete user", "error");
     }
@@ -134,7 +133,9 @@ const AllUsersSection = ({ reload }) => {
                   Role: {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                 </span>
                 <a
-                  href={`https://${user.baseUrl}/profile/${user.slug}`}
+                  // href={`https://${user.baseUrl}/profile/${user.slug}`}
+
+                  href={`/profile/${user.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -164,7 +165,7 @@ const AllUsersSection = ({ reload }) => {
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="text-white border px-3 py-1 rounded disabled:opacity-50"
+            className="text-white border px-3 py-1 rounded cursor-pointer disabled:opacity-50"
           >
             Prev
           </button>
@@ -174,7 +175,7 @@ const AllUsersSection = ({ reload }) => {
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="text-white border px-3 py-1 rounded disabled:opacity-50"
+            className="text-white border px-3 py-1 rounded cursor-pointer disabled:opacity-50"
           >
             Next
           </button>
