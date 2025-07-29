@@ -178,7 +178,7 @@ const UserPublicProfile = () => {
             permission="gallery"
             userPermissions={user.permission}
           >
-            <div className={"p-2"}>
+            <div className={"px-2"}>
               <Gallery userId={user._id} />
             </div>
           </RequirePermission>

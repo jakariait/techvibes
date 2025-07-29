@@ -8,7 +8,6 @@ import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const menuItems = [
   { label: "Dashboard", path: "/user/home" },
-  { label: "Reorder Profile Sections", path: "/user/reorder-profile" },
 
   { label: "TechVibes User", path: "/user/techvibes-user" },
   { label: "TechVibes Company", path: "/user/techvibes-company" },
@@ -30,6 +29,7 @@ const menuItems = [
     role: "corporate",
   },
   { label: "Location", path: "/user/location" },
+  { label: "Reorder Profile Sections", path: "/user/reorder-profile" },
   { label: "Name & Login Email", path: "/user/name-login-email" },
   { label: "Change Password", path: "/user/change-password" },
 ];

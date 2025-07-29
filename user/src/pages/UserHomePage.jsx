@@ -39,8 +39,8 @@ const UserHomePage = () => {
     <UserLayout>
       <div className="xl:container mx-auto space-y-4 ">
         <Analytics userId={authUser._id} token={token} />
-        <ConnectRequestsSection />
-        <AppointmentRequestsSection />
+        <ConnectRequestsSection  userId={authUser._id} />
+        <AppointmentRequestsSection userId={authUser._id} />
       </div>
     </UserLayout>
   );

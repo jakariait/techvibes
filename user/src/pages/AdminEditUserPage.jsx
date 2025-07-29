@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserLayout from "../component/protected/UserLayout.jsx";
 import GeneralProfileInfoSection from "../component/protected/GeneralProfileInfoSection.jsx";
@@ -12,15 +12,51 @@ import ProductServiceSister from "../component/protected/ProductServiceSister.js
 import { Building2, PackageSearch } from "lucide-react";
 import UpdateUserInfo from "../component/protected/UpdateUserInfo.jsx";
 import UpdateUserForm from "../component/protected/UpdateUserForm.jsx";
+import axios from "axios";
+import Analytics from "../component/protected/Analytics.jsx";
+import useAuthUserStore from "../store/AuthUserStore.jsx";
+import ConnectRequestsSection from "../component/protected/ConnectRequestsSection.jsx";
+import AppointmentRequestsSection from "../component/protected/AppointmentRequestsSection.jsx";
+import UserGallery from "../component/protected/UserGallery.jsx";
+import UserProductGallerySection from "../component/protected/UserProductGallerySection.jsx";
+
+const apiURL = import.meta.env.VITE_API_URL;
 
 const AdminEditUserPage = () => {
   const { slug } = useParams(); // 👈 Get slug from route params
+  const [userData, setUserData] = useState(null);
+  const { token } = useAuthUserStore();
+
+  useEffect(() => {
+    const fetchUserBySlug = async () => {
+      try {
+        const response = await axios.get(`${apiURL}/userbyslug/${slug}`);
+        const data = response.data.data ?? response.data;
+        setUserData(data);
+      } catch (err) {
+        console.error("Error fetching user by slug:", err);
+      } finally {
+      }
+    };
+    fetchUserBySlug();
+  }, [slug]);
+
+  const userId = userData?.user?._id;
 
   return (
     <UserLayout>
       <UpdateUserForm slug={slug} />
 
       <div className={"flex  flex-col mt-5 gap-2"}>
+        <AccordionSection title="Analytics">
+          <Analytics userId={userId} token={token} />
+        </AccordionSection>
+        <AccordionSection title="Connect Request">
+          <ConnectRequestsSection userId={userId} />
+        </AccordionSection>
+        <AccordionSection title="Appointments">
+          <AppointmentRequestsSection userId={userId} />
+        </AccordionSection>
         <AccordionSection title="General Profile Info">
           <GeneralProfileInfoSection slug={slug} />
         </AccordionSection>
@@ -68,6 +104,7 @@ const AdminEditUserPage = () => {
             icon={<PackageSearch className="w-5 h-5 text-green-400" />}
             slug={slug}
           />
+          <UserProductGallerySection userId={userId} />
         </AccordionSection>
         <AccordionSection title="Sister Concerns">
           <ProductServiceSister
@@ -84,6 +121,9 @@ const AdminEditUserPage = () => {
             fieldKey="locations"
             slug={slug}
           />
+        </AccordionSection>
+        <AccordionSection title="Gallery">
+          <UserGallery userId={userId} token={token} />
         </AccordionSection>
         <AccordionSection title="Update User Info">
           <UpdateUserInfo slug={slug} />

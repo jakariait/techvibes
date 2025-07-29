@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Contact, Trash2, Download, Pencil } from "lucide-react";
+import { Contact, Trash2, Download, Pencil, FileDown } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import Dialog from "@mui/material/Dialog";
@@ -16,8 +16,8 @@ import LoadingLottie from "../public/LoadingLottie.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const ConnectRequestsSection = () => {
-  const { user, token } = useAuthUserStore();
+const ConnectRequestsSection = ({ userId }) => {
+  const {  token } = useAuthUserStore();
   const [connects, setConnects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({
@@ -43,9 +43,9 @@ const ConnectRequestsSection = () => {
     setSnackbar({ open: false, message: "", type: "success" });
 
   const fetchConnects = async () => {
-    if (!user?._id || !token) return;
+    if (!userId || !token) return;
     try {
-      const res = await axios.get(`${apiURL}/connect/user/${user._id}`, {
+      const res = await axios.get(`${apiURL}/connect/user/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setConnects(res.data.data || []);
@@ -59,7 +59,7 @@ const ConnectRequestsSection = () => {
 
   useEffect(() => {
     fetchConnects();
-  }, [user?._id, token]);
+  }, [userId, token]);
 
   const openDeleteDialog = (connect) => {
     setConnectToDelete(connect);
@@ -131,6 +131,39 @@ END:VCARD
     URL.revokeObjectURL(url);
   };
 
+  const downloadCSV = () => {
+    const headers = [
+      "Name",
+      "Email",
+      "Phone",
+      "SocialLink",
+      "Message",
+      "SubmittedAt",
+    ];
+    const rows = filteredConnects.map((c) => [
+      c.fullName,
+      c.email,
+      c.phone,
+      c.socialLink || "",
+      c.message,
+      new Date(c.createdAt).toLocaleString(),
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map((row) =>
+        row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","),
+      )
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `connects_${Date.now()}.csv`);
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   const handlePageChange = (event, value) => setCurrentPage(value);
 
   const filteredConnects = connects.filter((connect) => {
@@ -153,11 +186,20 @@ END:VCARD
 
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
-      <div className="flex items-center gap-2 mb-4 justify-center">
-        <Contact className="w-5 h-5 text-green-400" />
-        <h2 className="text-base font-medium text-green-400">
-          Total Connects: {connects.length}
-        </h2>
+      <div className="flex items-center gap-2 mb-4 justify-between">
+        <div className="flex items-center gap-2">
+          <Contact className="w-5 h-5 text-green-400" />
+          <h2 className="text-base font-medium text-green-400">
+            Total Connects: {connects.length}
+          </h2>
+        </div>
+
+        <button
+          onClick={downloadCSV}
+          className="flex items-center gap-2 px-4 py-1 border border-white text-white cursor-pointer rounded "
+        >
+          <FileDown className="w-4 h-4" /> Export CSV
+        </button>
       </div>
       <div className="flex justify-center mb-6">
         <input
@@ -211,7 +253,7 @@ END:VCARD
                     title="Download vCard"
                   >
                     <Download />
-                    Save Contact
+                    Save This Contact
                   </button>
                 </div>
               </div>

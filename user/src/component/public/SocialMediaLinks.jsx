@@ -165,7 +165,7 @@ const SocialMediaLinks = ({ profile, user, company }) => {
         {showLeftArrow && (
           <button
             onClick={() => scroll(-1)}
-            className="absolute left-0 top-22 transform -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full"
+            className="absolute left-0 top-22 transform -translate-y-1/2 z-10 cursor-pointer bg-[#212F35]  text-white p-2 rounded-full"
           >
             <FaChevronLeft />
           </button>
@@ -174,7 +174,7 @@ const SocialMediaLinks = ({ profile, user, company }) => {
         {showRightArrow && (
           <button
             onClick={() => scroll(1)}
-            className="absolute right-0 top-22 transform -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full"
+            className="absolute right-0 top-22 transform -translate-y-1/2 z-10 bg-[#212F35] cursor-pointer text-white p-2 rounded-full"
           >
             <FaChevronRight />
           </button>

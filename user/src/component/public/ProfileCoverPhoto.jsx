@@ -18,37 +18,33 @@ const ProfileCoverPhoto = ({ profile, user, company }) => {
 
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent" />
 
-        {/*Company Logo Visible Only For Corporate Client*/}
-        {user?.role === "corporate" && (
-          <div className="absolute left-10 top-8 flex items-center gap-4 z-10">
+        {/* Top bar: Logo + Login */}
+        <div className="absolute top-0 inset-x-0 flex justify-between items-start px-10 pt-6 z-10">
+          {/* Left: Logo */}
+          {user?.role === "corporate" ? (
             <ImageComponent
               imageName={company?.companyLogo}
-              altName="Cover Photo"
+              altName="Company Logo"
               className="w-16 h-16 object-contain"
             />
-          </div>
-        )}
-
-        {/*TechVibes Logo Visible Only For Normal Client*/}
-        {user?.role === "normal" && (
-          <div className="absolute left-10 top-8 flex items-center gap-4 z-10">
+          ) : user?.role === "normal" ? (
             <img
               src={techBibes}
-              alt="Tech Bibes"
-              className="w-20 h-20 object-contain "
+              alt="Tech Vibes"
+              className="w-30 h-30 -mt-10 object-contain"
             />
+          ) : null}
 
-          </div>
-        )}
-
-        <div className="absolute right-10 top-8 flex items-center gap-4 z-10">
+          {/* Right: Login Button */}
           <Link
             to="/"
-            className="text-white border-2 border-white px-2 py-1 rounded-md flex items-center justify-center gap-2 cursor-pointer"
+            className="text-white border-2 border-white px-3 py-1.5 rounded-md flex items-center gap-2 hover:bg-white hover:text-blue-900 transition"
           >
-            <User /> Login
+            <User className="w-4 h-4" />
+            Login
           </Link>
         </div>
+
 
         {/* Profile Photo - Overlapping */}
 

@@ -17,8 +17,8 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
-const AppointmentRequestsSection = () => {
-  const { user, token } = useAuthUserStore();
+const AppointmentRequestsSection = ({ userId }) => {
+  const {  token } = useAuthUserStore();
   const [appointments, setAppointments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -50,9 +50,9 @@ const AppointmentRequestsSection = () => {
     setSnackbar({ open: false, message: "", type: "success" });
 
   const fetchAppointments = async () => {
-    if (!user?._id || !token) return;
+    if (!userId || !token) return;
     try {
-      const res = await axios.get(`${apiURL}/appointments/user/${user._id}`, {
+      const res = await axios.get(`${apiURL}/appointments/user/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments(res.data.data || []);
@@ -67,7 +67,7 @@ const AppointmentRequestsSection = () => {
 
   useEffect(() => {
     fetchAppointments();
-  }, [user?._id, token]);
+  }, [userId, token]);
 
   const openDeleteDialog = (appointment) => {
     setAppointmentToDelete(appointment);
@@ -154,16 +154,60 @@ END:VCARD
     URL.revokeObjectURL(url);
   };
 
-
+  const downloadCSV = () => {
+    const headers = [
+      "Name",
+      "Email",
+      "Phone",
+      "Date",
+      "Time",
+      "Location",
+      "Message",
+      "Status",
+      "SubmittedAt",
+    ];
+    const rows = filteredAppointments.map((a) => [
+      a.requesterName,
+      a.requesterEmail,
+      a.requesterPhone,
+      new Date(a.appointmentDate).toLocaleDateString(),
+      a.appointmentTime,
+      a.location,
+      a.message || "",
+      a.status.charAt(0).toUpperCase() + a.status.slice(1),
+      new Date(a.createdAt).toLocaleString(),
+    ]);
+    const csvContent = [headers, ...rows]
+      .map((row) =>
+        row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","),
+      )
+      .join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `appointments_${Date.now()}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
   if (loading) return <LoadingLottie />;
 
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
-      <div className="flex items-center gap-2 mb-4 justify-center">
-        <CalendarDays className="w-5 h-5 text-blue-400" />
-        <h2 className="text-base font-medium text-blue-400">
-          Total Appointments: {appointments.length}
-        </h2>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <CalendarDays className="w-5 h-5 text-blue-400" />
+          <h2 className="text-base font-medium text-blue-400">
+            Total Appointments: {appointments.length}
+          </h2>
+        </div>
+        <button
+          onClick={downloadCSV}
+          className="flex items-center gap-2 px-4 py-1 border border-white text-white cursor-pointer rounded "
+        >
+          <Download className="w-4 h-4" />
+          Download CSV
+        </button>
       </div>
 
       <div className="flex justify-center mb-6">

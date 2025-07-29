@@ -109,7 +109,7 @@ const UserProductGallerySection = ({ userId }) => {
   };
 
   return (
-    <div className="p-4 bg-[#1a2a30] text-white rounded-lg max-w-4xl mx-auto">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex flex-col items-center justify-center mb-2">
         <div className="flex items-center justify-start gap-2">
