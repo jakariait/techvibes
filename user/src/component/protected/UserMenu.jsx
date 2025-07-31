@@ -21,7 +21,7 @@ const menuItems = [
   { label: "Email", path: "/user/email" },
   { label: "Phone", path: "/user/phone" },
   { label: "Whatsapp", path: "/user/whatsapp" },
-  { label: "Designations", path: "/user/designations" },
+  { label: "Career Journey", path: "/user/career-journey" },
   { label: "Products & Services", path: "/user/products-services" },
   {
     label: "Sister Concerns",

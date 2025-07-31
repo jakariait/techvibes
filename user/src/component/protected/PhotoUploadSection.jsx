@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 
 const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
-  const {  token } = useAuthUserStore();
+  const { token } = useAuthUserStore();
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [photo, setPhoto] = useState("");
@@ -28,7 +28,22 @@ const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
     type: "success",
   });
 
-  const label = type === "coverPhoto" ? "Cover Photo" : "Profile Photo";
+  const IMAGE_LABELS = {
+    coverPhoto: "Cover Photo",
+    profilePhoto: "Profile Photo",
+    brandLogo: "Brand Logo",
+  };
+  const label = IMAGE_LABELS[type] || "Image";
+
+  const IMAGE_TIPS = {
+    coverPhoto:
+      "Tip: Upload a wide cover image, at least 1200×400px (aspect ratio 3:1 or wider) for best fit.\n",
+    profilePhoto:
+      "Tip: Upload a square photo (1:1 ratio, e.g. 400x400px). Square images fit best for profile photos.",
+    brandLogo:
+      "Tip: Upload a transparent PNG or SVG for best logo quality. Recommended size: at least 200x200px.",
+  };
+  const tip = IMAGE_TIPS[type] || "";
 
   useEffect(() => {
     const fetchPhoto = async () => {
@@ -128,6 +143,10 @@ const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
         {iconMap[type] || <ImageIcon className="text-green-400 w-5 h-5 mr-1" />}
         {label}
       </h2>
+
+      {tip && (
+        <p className="text-xs text-gray-400 mt-2 mb-2 text-center">{tip}</p>
+      )}
 
       <label className="cursor-pointer inline-flex items-center inner-glow text-white px-4 py-2 rounded-md shadow">
         <Upload size={18} className="mr-2" />

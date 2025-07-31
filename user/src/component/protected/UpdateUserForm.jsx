@@ -176,7 +176,7 @@ const UpdateUserForm = ({ slug }) => {
         <div>
           <p className="font-semibold mb-1">Permissions:</p>
           <div className="grid grid-cols-2 gap-2">
-            {["gallery", "productgallery"].map((perm) => (
+            {["gallery", "productgallery", "brandLogo"].map((perm) => (
               <label key={perm} className="flex items-center gap-2">
                 <input
                   type="checkbox"

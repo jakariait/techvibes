@@ -13,11 +13,12 @@ import {
   FaMediumM,
   FaTelegramPlane,
   FaDiscord,
-  FaLink,
   FaPodcast,
+  FaLink,
   FaGlobe,
-  FaChevronLeft,
   FaChevronRight,
+  FaChevronLeft,
+  FaFacebookSquare,
 } from "react-icons/fa";
 import {
   SiFiverr,
@@ -31,7 +32,11 @@ import {
   SiBehance,
   SiApplemusic,
   SiWechat,
+  SiThreads,
+  SiX,
 } from "react-icons/si";
+import { SiFreelancer } from "react-icons/si";
+import { SiTinder } from "react-icons/si";
 
 import { Globe } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
@@ -39,7 +44,9 @@ import MuiAlert from "@mui/material/Alert";
 
 const SOCIAL_ICONS = {
   facebook: { icon: FaFacebookF, color: "#1877F2" },
+  "facebook page": { icon: FaFacebookSquare, color: "#1877F2" },
   twitter: { icon: FaTwitter, color: "#1DA1F2" },
+  "x.com": { icon: SiX, color: "#000000" },
   instagram: { icon: FaInstagram, color: "#E1306C" },
   linkedin: { icon: FaLinkedinIn, color: "#0077B5" },
   youtube: { icon: FaYoutube, color: "#FF0000" },
@@ -51,20 +58,23 @@ const SOCIAL_ICONS = {
   medium: { icon: FaMediumM, color: "#000000" },
   telegram: { icon: FaTelegramPlane, color: "#0088cc" },
   discord: { icon: FaDiscord, color: "#5865F2" },
-  fiverr: { icon: SiFiverr, color: "#1DBF73" },
-  dribbble: { icon: SiDribbble, color: "#EA4C89" },
-  upwork: { icon: SiUpwork, color: "#6FDA44" },
+  website: { icon: FaGlobe, color: "#666" },
+  teams: { icon: FaLink, color: "#6264A7" },
   quora: { icon: SiQuora, color: "#B92B27" },
   twitch: { icon: SiTwitch, color: "#9146FF" },
   soundcloud: { icon: SiSoundcloud, color: "#FF5500" },
   vimeo: { icon: SiVimeo, color: "#1AB7EA" },
   spotify: { icon: SiSpotify, color: "#1DB954" },
   behance: { icon: SiBehance, color: "#1769FF" },
+  fiverr: { icon: SiFiverr, color: "#1DBF73" },
+  dribbble: { icon: SiDribbble, color: "#EA4C89" },
+  upwork: { icon: SiUpwork, color: "#6FDA44" },
+  wechat: { icon: SiWechat, color: "#7BB32E" },
   "apple music": { icon: SiApplemusic, color: "#FA233B" },
   podcast: { icon: FaPodcast, color: "#FF2D55" },
-  teams: { icon: FaLink, color: "#6264A7" },
-  wechat: { icon: SiWechat, color: "#7BB32E" },
-  website: { icon: FaGlobe, color: "#666" },
+  freelancer: { icon: SiFreelancer, color: "#29B2FE" },
+  threads: { icon: SiThreads, color: "#000000" },
+  tinder: { icon: SiTinder, color: "#FF6B6B" },
 };
 
 const SocialMediaLinks = ({ profile, user, company }) => {

@@ -19,6 +19,7 @@ import ConnectRequestsSection from "../component/protected/ConnectRequestsSectio
 import AppointmentRequestsSection from "../component/protected/AppointmentRequestsSection.jsx";
 import UserGallery from "../component/protected/UserGallery.jsx";
 import UserProductGallerySection from "../component/protected/UserProductGallerySection.jsx";
+import ColorizedQR from "../component/protected/ColorizedQR.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
@@ -45,9 +46,12 @@ const AdminEditUserPage = () => {
 
   return (
     <UserLayout>
-      <UpdateUserForm slug={slug} />
+      <div className={"space-y-2"}>
+        <UpdateUserForm slug={slug} />
+        <ColorizedQR base64Data={userData?.user?.qrCode} />
+      </div>
 
-      <div className={"flex  flex-col mt-5 gap-2"}>
+      <div className={"flex  flex-col mt-2 gap-2"}>
         <AccordionSection title="Analytics">
           <Analytics userId={userId} token={token} />
         </AccordionSection>

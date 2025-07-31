@@ -40,7 +40,6 @@ const connectController = require("../controllers/connectController");
 const appointmentController = require("../controllers/appointmentController");
 const userProductGalleryController = require("../controllers/userProductGalleryController");
 
-
 const { handleCourierCheck } = require("../controllers/courierController");
 const {
   createSteadfastOrder,
@@ -727,10 +726,18 @@ router.post("/login", userController.loginUser); // User login (email and passwo
 
 router.get("/getLoggedInUser", userProtect, userController.getLoggedInUser); // Get logged-in user's profile
 
-router.post("/register", userController.createUser); // Create a new user
+router.post("/register", userProtect, userController.createUser); // Create a new user
 router.get("/userbyslug/:slug", userController.getUserBySlug); // Get User and Profile
-router.delete("/userbyslug/:slug", userController.deleteUserBySlug); // Delete User and Profile
-router.patch("/userbyslug/:slug", userController.updateUserOnlyBySlug); // Update User Data Only
+router.delete(
+  "/userbyslug/:slug",
+  userProtect,
+  userController.deleteUserBySlug,
+); // Delete User and Profile
+router.patch(
+  "/userbyslug/:slug",
+  userProtect,
+  userController.updateUserOnlyBySlug,
+); // Update User Data Only
 router.patch(
   "/profilebyslug/:slug",
   upload,
@@ -743,8 +750,6 @@ router.get("/by-company/:companyId", userController.getUsersByCompany);
 
 // Get All Registered Users
 router.get("/getAllUsers", userController.getAllUsers);
-
-
 
 // 🚀 Protected Routes (Requires Authentication)
 router.patch("/change-password", userProtect, userController.changePassword);
@@ -816,11 +821,23 @@ router.delete(
 );
 
 // === User Product Gallery API Routes ===
-router.post("/user-product-gallery/:userId", upload, userProductGalleryController.createProduct);
-router.get("/user-product-gallery/:userId",  userProductGalleryController.getAllProducts);
-router.put("/user-product-gallery/:userId/:index", upload,  userProductGalleryController.updateProduct);
-router.delete("/user-product-gallery/:userId/:index",   userProductGalleryController.deleteProduct);
-
-
+router.post(
+  "/user-product-gallery/:userId",
+  upload,
+  userProductGalleryController.createProduct,
+);
+router.get(
+  "/user-product-gallery/:userId",
+  userProductGalleryController.getAllProducts,
+);
+router.put(
+  "/user-product-gallery/:userId/:index",
+  upload,
+  userProductGalleryController.updateProduct,
+);
+router.delete(
+  "/user-product-gallery/:userId/:index",
+  userProductGalleryController.deleteProduct,
+);
 
 module.exports = router;

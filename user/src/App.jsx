@@ -49,7 +49,7 @@ function App() {
           <Route path="/user/phone" element={<PhonePages />} />
           <Route path="/user/whatsapp" element={<WhatsappPage />} />
           <Route path="/user/location" element={<LocationPage />} />
-          <Route path="/user/designations" element={<DesignationsPage />} />
+          <Route path="/user/career-journey" element={<DesignationsPage />} />
           <Route
             path="/user/products-services"
             element={<ProductServicePage />}

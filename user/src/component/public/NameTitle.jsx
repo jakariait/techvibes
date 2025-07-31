@@ -5,21 +5,20 @@ const NameTitle = ({ profile, user, company }) => {
   return (
     <div className={"pt-18 md:pt-27 px-2 "}>
       <div className="text-white  flex items-center justify-center flex-col">
-
-        <div className="flex  items-center gap-2 md:flex-row md:items-center md:justify-center">
-          {/* Name */}
-          <div className="text-2xl text-center lg:text-left">
-            {profile?.prefix && `${profile?.prefix} `}{user?.fullName}
-            {profile?.suffix && <span className="text-xs">, {profile?.suffix}</span>}
-          </div>
-
-
-          {/* Verified Tick */}
-          {user?.isVarified && (
-            <div className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#1877F2] text-white shadow-sm">
-              <Check className="w-3 h-3" strokeWidth={3} />
-            </div>
-          )}
+        <div className="text-2xl text-center lg:text-left">
+          <span className="break-words">
+            {profile?.prefix && `${profile.prefix} `}
+            {user.fullName}
+            {profile?.suffix && (
+              <span className="!text-xs">, {profile?.suffix}</span>
+            )}
+            {user.isVarified && (
+              <Check
+                className="inline-block p-0.5 ml-1 w-5 h-5 flex-shrink-0 bg-[#1877F2] rounded-full text-white"
+                strokeWidth={3}
+              />
+            )}
+          </span>
         </div>
 
         {/*Designation*/}
@@ -36,7 +35,6 @@ const NameTitle = ({ profile, user, company }) => {
         {user?.role === "normal" && profile.companyName && (
           <h1 className={"font-bold"}>{profile.companyName}</h1>
         )}
-
 
         {user?.role === "corporate" && company?.companyName && (
           <h1 className={"font-bold"}>{company?.companyName}</h1>

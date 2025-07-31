@@ -2,10 +2,9 @@ import React from "react";
 import ImageComponent from "./ImageComponent.jsx";
 import { User } from "lucide-react";
 import { Link } from "react-router-dom";
-import techBibes from "../../assets/TechVibes.png"
+import techBibes from "../../assets/TechVibes.png";
 
 const ProfileCoverPhoto = ({ profile, user, company }) => {
-
   return (
     <div>
       {/* Cover Photo */}
@@ -27,6 +26,14 @@ const ProfileCoverPhoto = ({ profile, user, company }) => {
               altName="Company Logo"
               className="w-16 h-16 object-contain"
             />
+          ) : user?.role === "normal" &&
+            user?.permission?.includes("brandLogo") &&
+            profile?.brandLogo ? (
+            <ImageComponent
+              imageName={profile?.brandLogo}
+              altName="Brand Logo"
+              className="w-16 h-16 object-contain"
+            />
           ) : user?.role === "normal" ? (
             <img
               src={techBibes}
@@ -38,13 +45,12 @@ const ProfileCoverPhoto = ({ profile, user, company }) => {
           {/* Right: Login Button */}
           <Link
             to="/"
-            className="text-white border-2 border-white px-3 py-1.5 rounded-md flex items-center gap-2 hover:bg-white hover:text-blue-900 transition"
+            className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-2 cursor-pointer"
           >
             <User className="w-4 h-4" />
             Login
           </Link>
         </div>
-
 
         {/* Profile Photo - Overlapping */}
 
@@ -57,7 +63,7 @@ const ProfileCoverPhoto = ({ profile, user, company }) => {
                 profile.profilePhotoShape === "circle"
                   ? "rounded-full w-40 h-40 md:w-60 md:h-60"
                   : profile.profilePhotoShape === "square"
-                    ? "rounded-xl w-33 h-40 md:w-50 md:h-60"
+                    ? "rounded-xl w-43 h-40 md:w-60 md:h-60"
                     : "rounded-xl" // default fallback
               }`}
             />

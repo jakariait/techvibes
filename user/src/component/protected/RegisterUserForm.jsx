@@ -22,7 +22,7 @@ const RegisterUserForm = ({ onUserCreated }) => {
     permission: [],
   });
 
-  const [permissionsList] = useState(["gallery", "productgallery"]);
+  const [permissionsList] = useState(["gallery", "productgallery", "brandLogo"]);
 
   const [companies, setCompanies] = useState([]);
   const [submitting, setSubmitting] = useState(false);

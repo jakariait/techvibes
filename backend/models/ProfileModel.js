@@ -26,7 +26,16 @@ const profileSchema = new mongoose.Schema(
 
     designation: String,
 
+    // Corporate-only
+    editDesignationCompany: {
+      type: Boolean,
+      default: false,
+    },
+
     companyName: String,
+
+    // For Normal User On Permission Only
+    brandLogo: String,
 
     // Corporate-only
     department: String,
@@ -133,6 +142,24 @@ const profileSchema = new mongoose.Schema(
           required: true,
           trim: true,
         },
+        // new fields for start date
+        startMonth: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        startYear: {
+          type: Number,
+          required: true,
+        },
+        // new fields for end date (optional)
+        endMonth: {
+          type: String,
+          trim: true,
+        },
+        endYear: {
+          type: Number,
+        },
       },
     ],
 
@@ -171,6 +198,10 @@ const profileSchema = new mongoose.Schema(
             "wechat",
             "apple music",
             "podcast",
+            "freelancer",
+            "threads",
+            "tinder",
+            "x.com",
           ],
         },
         url: { type: String, required: true, trim: true },

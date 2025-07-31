@@ -63,6 +63,10 @@ const UserGallery = ({ userId, token }) => {
           <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
         </div>
         <span className="text-sm text-gray-500 pt-2">Maximum 4</span>
+        <p className="text-xs text-gray-400 mt-1">
+          Tip:Upload a square photo (1:1 ratio, e.g. 400x400px). Square images fit.
+        </p>
+
       </div>
 
       {/* Upload Button */}

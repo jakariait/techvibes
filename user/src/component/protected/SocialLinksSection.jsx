@@ -25,6 +25,7 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 const platforms = [
   "facebook",
+  "facebook page",
   "twitter",
   "instagram",
   "linkedin",
@@ -51,6 +52,10 @@ const platforms = [
   "wechat",
   "apple music",
   "podcast",
+  "freelancer",
+  "threads",
+  "tinder",
+  "x.com",
 ];
 
 // Sortable item component
