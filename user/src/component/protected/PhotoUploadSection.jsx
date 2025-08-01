@@ -39,7 +39,7 @@ const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
     coverPhoto:
       "Tip: Upload a wide cover image, at least 1200×400px (aspect ratio 3:1 or wider) for best fit.\n",
     profilePhoto:
-      "Tip: Upload a square photo (1:1 ratio, e.g. 400x400px). Square images fit best for profile photos.",
+      "Tip: Upload 7:9 ratio, (e.g. 700x900px).",
     brandLogo:
       "Tip: Upload a transparent PNG or SVG for best logo quality. Recommended size: at least 200x200px.",
   };

@@ -1,3 +1,4 @@
+//
 // require("dotenv").config();
 //
 // const mysql = require("mysql2/promise");
@@ -29,11 +30,23 @@
 //     const newUser = new User({
 //       ...(fullName && { fullName }),
 //       ...(row.email && { email: row.email }),
-//       password: row.password ,
+//       password: row.password || "RESET_REQUIRED",
 //       ...(row.username && { slug: row.username }),
 //     });
 //
-//     await newUser.save();
+//     // 👇 Handle duplicate email error gracefully
+//     let savedUser;
+//     try {
+//       savedUser = await newUser.save();
+//     } catch (err) {
+//       if (err.code === 11000 && err.keyPattern?.email) {
+//         console.warn(`⚠️ Skipping duplicate email: ${row.email}`);
+//         continue; // skip to next user
+//       } else {
+//         console.error(`❌ Failed to save user ${fullName}:`, err);
+//         continue;
+//       }
+//     }
 //
 //     // SOCIAL MEDIA
 //     const socialMedia = [];
@@ -48,7 +61,6 @@
 //       }
 //     };
 //
-//     // Add from individual columns
 //     addSocial("facebook", row.Facebook);
 //     addSocial("facebook page", row.Facebook_page);
 //     addSocial("instagram", row.Instagram);
@@ -72,7 +84,6 @@
 //     addSocial("upwork", row.Upwork);
 //     addSocial("wechat", row.Wechat);
 //
-//     // Add from `links` column
 //     if (row.links) {
 //       const links = row.links.split(";");
 //       for (const link of links) {
@@ -84,22 +95,22 @@
 //     }
 //
 //     // CONTACT FIELDS
-//     const emails = row.email ? [{ value: row.email, label: "Primary" }] : [];
+//     const emails = row.email ? [{ value: row.email, label: "Personal" }] : [];
 //
 //     const phones = [];
-//     if (row.phone) phones.push({ value: row.phone, label: "Mobile" });
+//     if (row.phone) phones.push({ value: row.phone, label: "Personal" });
 //     if (row.telephone)
-//       phones.push({ value: row.telephone, label: "Telephone" });
+//       phones.push({ value: row.telephone, label: "Business" });
 //
 //     const whatsapp = [];
-//     if (row.whatsapp) whatsapp.push({ value: row.whatsapp, label: "Primary" });
+//     if (row.whatsapp) whatsapp.push({ value: row.whatsapp, label: "Personal" });
 //
 //     const locations = [];
 //     if (row.address) locations.push({ value: row.address, label: "Primary" });
 //
 //     // Create Profile
 //     const profileDoc = new Profile({
-//       user: newUser._id,
+//       user: savedUser._id,
 //       ...(row.image_name?.trim() && { profilePhoto: row.image_name.trim() }),
 //       ...(row.designation?.trim() && { designation: row.designation.trim() }),
 //       ...(row.company?.trim() && { companyName: row.company.trim() }),
@@ -115,7 +126,12 @@
 //       ...(socialMedia.length && { socialMedia }),
 //     });
 //
-//     await profileDoc.save();
+//     try {
+//       await profileDoc.save();
+//     } catch (err) {
+//       console.error(`❌ Failed to save profile for ${fullName}:`, err);
+//       continue;
+//     }
 //
 //     console.log(`✅ Migrated user ${fullName} (${row.email})`);
 //   }
@@ -135,9 +151,10 @@ const mysql = require("mysql2/promise");
 const mongoose = require("mongoose");
 const User = require("../models/UserModel");
 const Profile = require("../models/ProfileModel");
+const Connect = require("../models/ConnectModel"); // your model
 
 async function migrate() {
-  // 1. Connect to MySQL
+  // 1. MySQL
   const mysqlConn = await mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -145,16 +162,19 @@ async function migrate() {
     database: "techvibes",
   });
 
-  // 2. Connect to MongoDB
+  // 2. MongoDB
   await mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
 
-  // 3. Fetch all users from MySQL
-  const [rows] = await mysqlConn.execute("SELECT * FROM users");
+  // Username → Mongo ID map
+  const usernameToId = {};
 
-  for (const row of rows) {
+  // 3. USERS & PROFILES
+  const [users] = await mysqlConn.execute("SELECT * FROM users");
+
+  for (const row of users) {
     const fullName = `${row.first_name || ""} ${row.last_name || ""}`.trim();
 
     const newUser = new User({
@@ -164,14 +184,16 @@ async function migrate() {
       ...(row.username && { slug: row.username }),
     });
 
-    // 👇 Handle duplicate email error gracefully
     let savedUser;
     try {
       savedUser = await newUser.save();
+      if (row.username) {
+        usernameToId[row.username] = savedUser._id;
+      }
     } catch (err) {
       if (err.code === 11000 && err.keyPattern?.email) {
         console.warn(`⚠️ Skipping duplicate email: ${row.email}`);
-        continue; // skip to next user
+        continue;
       } else {
         console.error(`❌ Failed to save user ${fullName}:`, err);
         continue;
@@ -180,7 +202,6 @@ async function migrate() {
 
     // SOCIAL MEDIA
     const socialMedia = [];
-
     const addSocial = (platform, url) => {
       if (url && url.trim()) {
         socialMedia.push({
@@ -190,7 +211,6 @@ async function migrate() {
         });
       }
     };
-
     addSocial("facebook", row.Facebook);
     addSocial("facebook page", row.Facebook_page);
     addSocial("instagram", row.Instagram);
@@ -224,21 +244,17 @@ async function migrate() {
       }
     }
 
-    // CONTACT FIELDS
-    const emails = row.email ? [{ value: row.email, label: "Primary" }] : [];
-
+    // CONTACTS
+    const emails = row.email ? [{ value: row.email, label: "Personal" }] : [];
     const phones = [];
-    if (row.phone) phones.push({ value: row.phone, label: "Mobile" });
-    if (row.telephone)
-      phones.push({ value: row.telephone, label: "Telephone" });
-
+    if (row.phone) phones.push({ value: row.phone, label: "Personal" });
+    if (row.telephone) phones.push({ value: row.telephone, label: "Business" });
     const whatsapp = [];
-    if (row.whatsapp) whatsapp.push({ value: row.whatsapp, label: "Primary" });
-
+    if (row.whatsapp) whatsapp.push({ value: row.whatsapp, label: "Personal" });
     const locations = [];
     if (row.address) locations.push({ value: row.address, label: "Primary" });
 
-    // Create Profile
+    // PROFILE
     const profileDoc = new Profile({
       user: savedUser._id,
       ...(row.image_name?.trim() && { profilePhoto: row.image_name.trim() }),
@@ -266,6 +282,34 @@ async function migrate() {
     console.log(`✅ Migrated user ${fullName} (${row.email})`);
   }
 
+  // 4. MIGRATE CONNECT TABLE
+  const [connectRows] = await mysqlConn.execute("SELECT * FROM connects");
+
+  for (const conn of connectRows) {
+    const mongoUserId = usernameToId[conn.username];
+    if (!mongoUserId) {
+      console.warn(`⚠️ Skipping connect entry - user not found: ${conn.username}`);
+      continue;
+    }
+
+    const connectDoc = new Connect({
+      userId: mongoUserId,
+      fullName: conn.name || "Unknown",
+      email: conn.email || "",
+      phone: conn.phone || "",
+      socialLink: conn.social_link || "",
+      message: conn.message || "",
+    });
+
+    try {
+      await connectDoc.save();
+      console.log(`📩 Migrated connect for ${conn.username}`);
+    } catch (err) {
+      console.error(`❌ Failed to save connect for ${conn.username}:`, err);
+    }
+  }
+
+  // 5. CLOSE CONNECTIONS
   await mysqlConn.end();
   await mongoose.disconnect();
   console.log("🚀 Migration completed.");

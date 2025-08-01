@@ -213,7 +213,7 @@ const CompanyGeneralInfoSection = ({ companyId }) => {
       </div>
 
       {/* Logo Upload */}
-      <div className="flex mt-5 gap-10 items-center justify-center">
+      <div className="flex mt-5 gap-10 items-center  justify-center">
         <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
           <label className="cursor-pointer inline-flex items-center text-white px-4 py-2 rounded-md border border-white">
             <Upload size={16} className="mr-2" /> Upload Logo
@@ -224,6 +224,9 @@ const CompanyGeneralInfoSection = ({ companyId }) => {
               className="hidden"
             />
           </label>
+          <p className="text-xs text-gray-300 mt-1 italic">
+            📌 We recommend using a 1:1 ratio image for the best logo display.
+          </p>
         </div>
 
         {fields.companyLogo && (
