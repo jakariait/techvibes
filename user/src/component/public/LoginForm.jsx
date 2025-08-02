@@ -42,7 +42,25 @@ const LoginForm = () => {
             {error}
           </div>
         )}
-
+        {/* Important Notice */}
+        <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-3 rounded mb-6 text-sm text-left">
+          <div className="flex items-start gap-2">
+            <span className="text-lg">🔐</span>
+            <div>
+              <strong className="block mb-1">Important Notice for Login</strong>
+              <p className="mb-1">
+                We’ve upgraded your Digital Profile with new features and enhanced sections to serve you better.
+              </p>
+              <p className="mb-1">
+                To access your updated profile, please reset your password during login for security and compatibility reasons.
+              </p>
+              <p className="mb-1">
+                👉 Click on <strong>“Forgot Password?”</strong> to reset and enjoy the new experience.
+              </p>
+              <p className="mt-2">Thank you for being with us.<br />— Team TechVibes</p>
+            </div>
+          </div>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           {/* Email / Phone */}
           <div className="flex items-center bg-white rounded-md shadow-sm px-4 py-4">

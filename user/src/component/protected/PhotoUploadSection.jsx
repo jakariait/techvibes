@@ -39,7 +39,24 @@ const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
     coverPhoto:
       "Tip: Upload a wide cover image, at least 1200×400px (aspect ratio 3:1 or wider) for best fit.\n",
     profilePhoto:
-      "Tip: Upload 7:9 ratio, (e.g. 700x900px).",
+      "📸 Profile Image Upload Guidelines\n" +
+      "To ensure your profile looks clean, professional, and visually balanced, please follow the image ratio guidelines below:\n" +
+      "\n" +
+      "🟦 Option 1: Rounded Corner Profile Image\n" +
+      "If you prefer a rectangular image with slightly rounded corners:\n" +
+      "\n" +
+      "Recommended Ratio: 7:9\n" +
+      "\n" +
+      "Recommended Size: 700 x 900 pixels\n" +
+      "✅ This format fits perfectly into the profile layout and gives a sleek, modern look.\n" +
+      "\n" +
+      "⚪ Option 2: Circular (Round) Profile Image\n" +
+      "If you prefer a fully circular profile picture:\n" +
+      "\n" +
+      "Recommended Ratio: 1:1\n" +
+      "\n" +
+      "Recommended Size: 1000 x 1000 pixels\n" +
+      "✅ This format centers your face and displays beautifully in a circle frame.",
     brandLogo:
       "Tip: Upload a transparent PNG or SVG for best logo quality. Recommended size: at least 200x200px.",
   };
@@ -145,8 +162,19 @@ const PhotoUploadSection = ({ type = "profilePhoto", slug }) => {
       </h2>
 
       {tip && (
-        <p className="text-xs text-gray-400 mt-2 mb-2 text-center">{tip}</p>
+        <div className="mt-3 mb-3  p-3 rounded-lg  text-xs text-gray-300 text-left">
+          {tip.split("\n").map((line, index) =>
+            line.trim() ? (
+              <p key={index} className="mb-1">
+                {line}
+              </p>
+            ) : (
+              <br key={index} />
+            )
+          )}
+        </div>
       )}
+
 
       <label className="cursor-pointer inline-flex items-center inner-glow text-white px-4 py-2 rounded-md shadow">
         <Upload size={18} className="mr-2" />

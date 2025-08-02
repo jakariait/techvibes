@@ -59,14 +59,13 @@ const ProfileCoverPhoto = ({ profile, user, company }) => {
             <ImageComponent
               imageName={profile.profilePhoto}
               altName={user.fullName}
-              className={`object-cover -mb-16 md:-mb-24 ${
+              className={` object-cover -mb-16 md:-mb-24 ${
                 profile.profilePhotoShape === "circle"
-                  ? "rounded-full aspect-[7/9] w-40 md:w-60"
+                  ? "rounded-full w-40 h-40 md:w-60 md:h-60"
                   : profile.profilePhotoShape === "square"
-                    ? "rounded-xl aspect-[7/9] w-40 md:w-60"
-                    : "rounded-xl aspect-[7/9] w-40 md:w-60" // default fallback
+                    ? "rounded-xl w-30 h-40 md:w-50 md:h-60"
+                    : "rounded-xl" // default fallback
               }`}
-
             />
           ) : (
             <div

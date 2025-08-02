@@ -771,11 +771,16 @@ router.get(
 );
 
 // Company Profile Routes
-router.post("/company", companyController.createCompany);
+router.post("/company", userProtect, companyController.createCompany);
 router.get("/company", companyController.getCompanies);
 router.get("/company/:id", companyController.getCompanyById);
-router.put("/company/:id", upload, companyController.updateCompany);
-router.delete("/company/:id", companyController.deleteCompany);
+router.put(
+  "/company/:id",
+  upload,
+  userProtect,
+  companyController.updateCompany,
+);
+router.delete("/company/:id", userProtect, companyController.deleteCompany);
 
 // Gallery Routes Users
 router.get("/gallery/:userId", galleryController.getGallery);
@@ -793,9 +798,13 @@ router.delete(
 
 // Connect Routes
 router.post("/connect", connectController.createConnect);
-router.get("/connect/user/:userId", connectController.getConnectsByUserId);
-router.put("/connect/:id", connectController.updateConnect);
-router.delete("/connect/:id", connectController.deleteConnect);
+router.get(
+  "/connect/user/:userId",
+  userProtect,
+  connectController.getConnectsByUserId,
+);
+router.put("/connect/:id", userProtect, connectController.updateConnect);
+router.delete("/connect/:id", userProtect, connectController.deleteConnect);
 
 // === Appointment API Routes ===
 router.post("/appointments", appointmentController.createAppointment);
@@ -824,6 +833,7 @@ router.delete(
 router.post(
   "/user-product-gallery/:userId",
   upload,
+  userProtect,
   userProductGalleryController.createProduct,
 );
 router.get(
@@ -833,10 +843,14 @@ router.get(
 router.put(
   "/user-product-gallery/:userId/:index",
   upload,
+  userProtect,
+
   userProductGalleryController.updateProduct,
 );
 router.delete(
   "/user-product-gallery/:userId/:index",
+  userProtect,
+
   userProductGalleryController.deleteProduct,
 );
 
