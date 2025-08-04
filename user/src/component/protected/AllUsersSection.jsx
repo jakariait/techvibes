@@ -11,10 +11,15 @@ import {
   DialogTitle,
   Button,
 } from "@mui/material";
+import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const AllUsersSection = ({ reload }) => {
+
+  const { token } = useAuthUserStore();
+
+
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -73,8 +78,14 @@ const AllUsersSection = ({ reload }) => {
   const confirmDelete = async () => {
     if (!userToDelete) return;
     try {
-      await axios.delete(`${apiUrl}/userbyslug/${userToDelete.slug}`);
-      showSnackbar(`User ${userToDelete.fullName} deleted`, "success");
+      await axios.delete(
+        `${apiUrl}/userbyslug/${userToDelete.slug}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );      showSnackbar(`User ${userToDelete.fullName} deleted`, "success");
       setDeleteDialogOpen(false);
       fetchUsers(); // refetch after deletion
     } catch (err) {

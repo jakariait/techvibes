@@ -61,6 +61,7 @@ const LoginForm = () => {
             </div>
           </div>
         </div>
+
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           {/* Email / Phone */}
           <div className="flex items-center bg-white rounded-md shadow-sm px-4 py-4">

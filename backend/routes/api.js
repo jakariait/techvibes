@@ -141,7 +141,11 @@ const upload = multer({ storage }).fields([
 ]);
 
 // Serve images from the 'uploads' folder as static files
-router.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// router.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
+
+
 
 //   Routes for General Information
 router.get("/getGeneralInfo", generalInfoController.getGeneralInfo);

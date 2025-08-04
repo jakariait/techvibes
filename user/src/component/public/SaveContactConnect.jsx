@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Download, MessageCircle } from "lucide-react";
 import ConnectForm from "./ConnectForm.jsx";
@@ -11,6 +12,7 @@ import ImageComponent from "./ImageComponent.jsx";
 const apiURL = import.meta.env.VITE_API_URL;
 
 const SaveContactConnect = ({ profile, user, company }) => {
+
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleOpen = () => setOpenDialog(true);
@@ -19,93 +21,83 @@ const SaveContactConnect = ({ profile, user, company }) => {
   const handleSaveContact = async () => {
     try {
       if (!user?.fullName) {
-        alert("Missing user info");
         return;
       }
 
-      console.log("⏳ Saving contact...");
+      // Simple and reliable base64 conversion with resizing
+      const convertImageToBase64 = async (url) => {
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
 
-      // Convert any image URL to base64 PNG (with canvas)
-      const getBase64AsPNG = async (url) => {
-        const response = await fetch(url);
-        const blob = await response.blob();
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
 
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.crossOrigin = "anonymous";
+            img.onload = () => {
+              const canvas = document.createElement("canvas");
+              const ctx = canvas.getContext("2d");
 
-          img.onload = () => {
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-
-            // Resize image to reasonable size for vCard (max 128px for iOS)
-            const maxSize = 128;
-            let { width, height } = img;
-
-            if (width > maxSize || height > maxSize) {
-              if (width > height) {
-                height = (height * maxSize) / width;
-                width = maxSize;
-              } else {
-                width = (width * maxSize) / height;
-                height = maxSize;
+              // Resize to reasonable size (max 128px)
+              const maxSize = 128;
+              let { width, height } = img;
+              if (width > maxSize || height > maxSize) {
+                if (width > height) {
+                  height = (height * maxSize) / width;
+                  width = maxSize;
+                } else {
+                  width = (width * maxSize) / height;
+                  height = maxSize;
+                }
               }
-            }
 
-            canvas.width = width;
-            canvas.height = height;
+              canvas.width = width;
+              canvas.height = height;
 
-            // Fill white background
-            ctx.fillStyle = "#FFFFFF";
-            ctx.fillRect(0, 0, width, height);
-            ctx.drawImage(img, 0, 0, width, height);
+              // Fill white background
+              ctx.fillStyle = "#FFFFFF";
+              ctx.fillRect(0, 0, width, height);
+              ctx.drawImage(img, 0, 0, width, height);
 
-            const pngDataUrl = canvas.toDataURL("image/png");
-            const base64 = pngDataUrl.split(",")[1];
+              // Use PNG format
+              const dataUrl = canvas.toDataURL("image/png");
+              const base64 = dataUrl.split(",")[1];
 
-            resolve({ base64, extension: "png" });
-            URL.revokeObjectURL(img.src);
-          };
+              resolve(base64);
+            };
 
-          img.onerror = (error) => {
-            console.error("Image load error:", error);
-            reject(new Error("Failed to load image for conversion"));
-          };
+            img.onerror = (error) => {
+              reject(new Error(`Failed to load image: ${error.message}`));
+            };
 
-          img.src = URL.createObjectURL(blob);
-        });
-      };
-
-      // Helper function to wrap base64 data at 75 characters per line (no leading space)
-      const wrapBase64 = (base64String) => {
-        const chunks = [];
-        for (let i = 0; i < base64String.length; i += 75) {
-          chunks.push(base64String.substring(i, i + 75));
+            img.src = URL.createObjectURL(blob);
+          });
+        } catch (error) {
+          throw new Error(`Failed to convert image: ${error.message}`);
         }
-        return chunks.join("\r\n");
       };
 
-      let base64 = "";
       let photoData = "";
 
       if (profile?.profilePhoto) {
-        const imageUrl = `${apiURL.replace("/api", "")}/uploads/${
-          profile.profilePhoto
-        }`;
-        console.log("🖼️ Processing image:", imageUrl);
+        const imageUrl = `${apiURL.replace("/api", "")}/uploads/${profile.profilePhoto}`;
 
         try {
-          const imageData = await getBase64AsPNG(imageUrl);
-          base64 = imageData.base64;
+          const base64 = await convertImageToBase64(imageUrl);
 
-          // Format photo data for vCard 3.0 (PNG)
-          const wrappedBase64 = wrapBase64(base64);
-          photoData = `PHOTO;ENCODING=BASE64;TYPE=PNG:${wrappedBase64}`;
+          // Determine file type
+          const fileExtension = profile.profilePhoto
+            .split(".")
+            .pop()
+            .toLowerCase();
+          const imageType = fileExtension === "png" ? "PNG" : "JPEG";
 
-          console.log("✅ Image converted to PNG base64, size:", base64.length);
+          // Use simple base64 encoding (no line wrapping for now)
+          photoData = `PHOTO;ENCODING=b;TYPE=${imageType}:${base64}`;
         } catch (err) {
-          console.warn("⚠️ Image conversion failed:", err.message);
-          photoData = "";
+
+          // Fallback: try with photo URL instead of embedded
+          photoData = `PHOTO;VALUE=URL:${imageUrl}`;
         }
       }
 
@@ -129,11 +121,27 @@ const SaveContactConnect = ({ profile, user, company }) => {
         )
         .join("\r\n");
 
-      const locationLines = (profile?.locations || [])
+      // Handle locations: Use company.locations if role is corporate, else profile.locations
+      // Handle both array and single object cases
+      let locationsToUse = [];
+
+      if (user?.role === "corporate" && company?.locations) {
+        if (Array.isArray(company.locations)) {
+          locationsToUse = company.locations;
+        } else if (typeof company.locations === 'object' && company.locations !== null) {
+          locationsToUse = [company.locations];
+        }
+      } else if (profile?.locations) {
+        if (Array.isArray(profile.locations)) {
+          locationsToUse = profile.locations;
+        } else if (typeof profile.locations === 'object' && profile.locations !== null) {
+          locationsToUse = [profile.locations];
+        }
+      }
+
+      const locationLines = locationsToUse
         .filter((l) => l?.value)
-        .map(
-          (l) => `ADR;TYPE=${(l.label || "WORK").toUpperCase()}:;;${l.value}`,
-        )
+        .map((l) => `ADR;TYPE=${(l.label || "WORK").toUpperCase()}:;;${l.value};;;;`)
         .join("\r\n");
 
       const socialLinks = (profile?.socialMedia || [])
@@ -143,13 +151,13 @@ const SaveContactConnect = ({ profile, user, company }) => {
         )
         .join("\r\n");
 
-      // Compose vCard with proper formatting for iOS (PHOTO after FN, no extra spaces)
-      let vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nN:${user.fullName}\r\nFN:${user.fullName}`;
+      // Create vCard 3.0 (most compatible)
+      let vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nFN:${user.fullName}\r\nN:${user.fullName};;;;`;
 
       if (photoData) {
         vcard += `\r\n${photoData}`;
-        console.log("📸 Photo added to vCard");
       }
+
       if (companyName) vcard += `\r\nORG:${companyName}`;
       if (profile?.designation) vcard += `\r\nTITLE:${profile.designation}`;
       if (emailLines) vcard += `\r\n${emailLines}`;
@@ -159,9 +167,7 @@ const SaveContactConnect = ({ profile, user, company }) => {
       if (profile?.bio) vcard += `\r\nNOTE:${profile.bio}`;
       vcard += `\r\nEND:VCARD`;
 
-      console.log("📄 vCard created, length:", vcard.length);
-
-      // Trigger file download
+      // Download the file
       const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
       const fileName = `${user.fullName.replace(/\s+/g, "_")}_contact.vcf`;
 
@@ -176,13 +182,10 @@ const SaveContactConnect = ({ profile, user, company }) => {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      const photoStatus = photoData ? "with photo" : "without photo";
-      console.log(`✅ Contact saved ${photoStatus}`);
     } catch (error) {
-      console.error("❌ Error saving contact:", error);
-      alert("Something went wrong while saving contact.");
     }
   };
+
 
   return (
     <div className={"flex items-center justify-center gap-5 mt-5 mb-5"}>
@@ -209,30 +212,27 @@ const SaveContactConnect = ({ profile, user, company }) => {
         fullWidth
         PaperProps={{
           sx: {
-            backgroundColor: "#212F35", // light cyan
+            backgroundColor: "#212F35",
           },
         }}
       >
-				<DialogTitle className="relative text-white px-6 pt-6 pb-4">
-					{/* Close button absolutely positioned in top right */}
-					<IconButton
-						onClick={handleClose}
-						className="!absolute top-2 right-2"
-						aria-label="close"
-					>
-						<CloseIcon sx={{ color: "#fff" }} />
-					</IconButton>
+        <DialogTitle className="relative text-white px-6 pt-6 pb-4">
+          <IconButton
+            onClick={handleClose}
+            className="!absolute top-2 right-2"
+            aria-label="close"
+          >
+            <CloseIcon sx={{ color: "#fff" }} />
+          </IconButton>
 
-					{/* Centered content */}
-					<div className="flex flex-col gap-2 items-center justify-center">
-						<ImageComponent
-							imageName={profile?.profilePhoto}
-							className="h-40 w-40 object-cover rounded-full"
-						/>
-						<p>Connect with {user.fullName}</p>
-					</div>
-				</DialogTitle>
-
+          <div className="flex flex-col gap-2 items-center justify-center">
+            <ImageComponent
+              imageName={profile?.profilePhoto}
+              className="h-40 w-40 object-cover rounded-full"
+            />
+            <p>Connect with {user.fullName}</p>
+          </div>
+        </DialogTitle>
 
         <DialogContent dividers>
           <ConnectForm userId={user._id} onSuccess={handleClose} />
@@ -243,3 +243,4 @@ const SaveContactConnect = ({ profile, user, company }) => {
 };
 
 export default SaveContactConnect;
+

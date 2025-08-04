@@ -45,6 +45,14 @@ const corsOptions = {
   exposedHeaders: ["Content-Length", "X-Favicon"],
 };
 
+
+app.use("/uploads", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+
 // Middleware setup
 
 // Trust proxy to handle X-Forwarded-For header in reverse proxies (e.g., Render)

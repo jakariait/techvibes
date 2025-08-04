@@ -130,8 +130,9 @@ const UserPublicProfile = () => {
     }
   }, [userId]);
 
-  if (loading) return <LoadingLottie />;
-  if (!user) return <UserNotFound />;
+  if (loading || user === undefined) return <LoadingLottie />;
+  if (user === null) return <UserNotFound />;
+
 
   // Filter sections that have actual content
   const validSections = (profile?.sectionOrder || []).filter((key) => {
