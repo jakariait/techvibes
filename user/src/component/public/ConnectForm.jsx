@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
 const ConnectForm = ({ userId, onSuccess }) => {
+  const { theme } = useTheme();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -59,7 +62,7 @@ const ConnectForm = ({ userId, onSuccess }) => {
 
   return (
     <div className="max-w-xl   rounded-xl">
-      <form onSubmit={handleSubmit} className="space-y-4 text-white">
+      <form onSubmit={handleSubmit} className="space-y-4 ">
         <input
           type="text"
           name="fullName"
@@ -67,7 +70,7 @@ const ConnectForm = ({ userId, onSuccess }) => {
           value={formData.fullName}
           onChange={handleChange}
           required
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
+          className={`${theme.connectFormBg} ${theme.text} p-2 rounded border flex-1 focus:outline-none w-full`}
         />
 
         <input
@@ -77,7 +80,7 @@ const ConnectForm = ({ userId, onSuccess }) => {
           value={formData.email}
           onChange={handleChange}
           required
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
+          className={`${theme.connectFormBg} ${theme.text} p-2 rounded border flex-1 focus:outline-none w-full`}
         />
 
         <input
@@ -87,7 +90,7 @@ const ConnectForm = ({ userId, onSuccess }) => {
           value={formData.phone}
           onChange={handleChange}
           required
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
+          className={`${theme.connectFormBg} ${theme.text} p-2 rounded border flex-1 focus:outline-none w-full`}
         />
 
         <input
@@ -96,7 +99,7 @@ const ConnectForm = ({ userId, onSuccess }) => {
           placeholder="Social Media Link"
           value={formData.socialLink}
           onChange={handleChange}
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
+          className={`${theme.connectFormBg} ${theme.text} p-2 rounded border flex-1 focus:outline-none w-full`}
         />
 
         <textarea
@@ -104,8 +107,9 @@ const ConnectForm = ({ userId, onSuccess }) => {
           placeholder="Your Message"
           value={formData.message}
           onChange={handleChange}
-          className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none w-full"
+          className={`${theme.connectFormBg} ${theme.text} p-2 rounded border flex-1 focus:outline-none w-full`}
         />
+
         <div className={"flex items-center justify-center"}>
           <button
             type="submit"

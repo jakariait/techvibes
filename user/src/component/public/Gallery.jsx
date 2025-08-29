@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { ImageIcon } from "lucide-react";
 import ImageComponent from "./ImageComponent.jsx";
 import LoadingLottie from "./LoadingLottie.jsx";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const Gallery = ({ userId }) => {
+  const { theme } = useTheme();
+
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,22 +34,26 @@ const Gallery = ({ userId }) => {
     fetchGallery();
   }, [userId, apiUrl]);
 
-  if (loading) return <LoadingLottie/>;
+  if (loading) return <LoadingLottie />;
   if (photos.length === 0) return null;
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
-      <div className="flex items-center justify-center gap-2 mb-4">
-        <ImageIcon className="w-5 h-5 text-yellow-400" />
-        <h2 className="text-base font-medium text-yellow-400">Gallery</h2>
+    <div
+      className={`${theme.connectFormBg} inner-glow p-4 rounded-xl overflow-hidden h-full`}
+    >
+      <div className={`flex items-center justify-center gap-2 mb-4`}>
+        <ImageIcon className={`w-5 h-5 ${theme.iconColor}`} />
+        <h2 className={`text-base font-medium ${theme.iconColor}`}>Gallery</h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 items-center justify-center">
+      <div
+        className={`grid grid-cols-2 md:grid-cols-4 gap-2 items-center justify-center`}
+      >
         {photos.map((photo, idx) => (
-          <div key={idx} className="overflow-hidden rounded-md">
+          <div key={idx} className={`overflow-hidden rounded-md`}>
             <ImageComponent
               imageName={photo}
-              className="object-contain rounded-md transition-transform hover:scale-105 cursor-pointer"
+              className={`object-contain rounded-md transition-transform hover:scale-105 cursor-pointer`}
               altName={`Gallery photo ${idx + 1}`}
               skeletonHeight="200"
             />

@@ -1,15 +1,20 @@
 import React from "react";
 import { UserRound } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const Bio = ({ profile }) => {
+  const { theme } = useTheme();
+
   return profile?.bio ? (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden">
+    <div
+      className={` ${theme.connectFormBg} inner-glow p-4 rounded-xl overflow-hidden`}
+    >
       {/* Header */}
       <div className="flex items-center gap-2 mb-4">
-        <UserRound className="w-5 h-5 text-white" />
-        <h2 className="text-base font-medium text-white">Bio</h2>
+        <UserRound className={` ${theme.iconColor} w-5 h-5`} />
+        <h2 className={` ${theme.iconColor} text-base font-medium `}>Bio</h2>
       </div>
-      <div className="text-white">{profile?.bio}</div>
+      <div className={` ${theme.text} `}>{profile?.bio}</div>
     </div>
   ) : null;
 };

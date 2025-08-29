@@ -41,6 +41,7 @@ import { SiTinder } from "react-icons/si";
 import { Globe } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const SOCIAL_ICONS = {
   facebook: { icon: FaFacebookF, color: "#1877F2" },
@@ -161,14 +162,17 @@ const SocialMediaLinks = ({ profile, user, company }) => {
       </a>
     );
   };
+  const { theme } = useTheme();
 
   return (
     allSorted.length > 0 && (
       <div className="relative p-4 rounded-xl overflow-hidden h-full max-w-2xl mx-auto">
         {/* Header */}
         <span className="flex gap-4 mb-4 items-center">
-          <Globe className="text-green-600" />
-          <span className="text-white text-lg font-medium">Connect Online</span>
+          <Globe className={` ${theme.iconColor} `} />
+          <span className={` ${theme.iconColor} text-lg font-medium`}>
+            Connect Online
+          </span>
         </span>
 
         {/* Arrows */}

@@ -27,6 +27,7 @@ import UserNotFound from "../component/public/UserNotFound.jsx";
 import RequirePermission from "../component/public/RequirePermission.jsx";
 import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
 import UserProductGalleryViewer from "../component/public/UserProductGalleryViewer.jsx";
+import { useTheme } from "../context/ThemeContext.jsx";
 
 const sectionComponentMap = {
   designations: (props) => <Designations {...props} />,
@@ -86,6 +87,8 @@ const hasContent = (key, profile, user, company) => {
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const UserPublicProfile = () => {
+  const { theme } = useTheme();
+
   const { slug } = useParams();
   const { user, loading, error, fetchUserBySlug, profile } =
     useUserProfileStore();
@@ -133,7 +136,6 @@ const UserPublicProfile = () => {
   if (loading || user === undefined) return <LoadingLottie />;
   if (user === null) return <UserNotFound />;
 
-
   // Filter sections that have actual content
   const validSections = (profile?.sectionOrder || []).filter((key) => {
     const Component = sectionComponentMap[key];
@@ -142,8 +144,8 @@ const UserPublicProfile = () => {
 
   return (
     <>
-      <div className="bg-[#0E191E]">
-        <div className={"max-w-6xl mx-auto"}>
+      <div className={`${theme.homePageBgColor}`}>
+        <div className={`max-w-6xl mx-auto`}>
           <ProfileCoverPhoto profile={profile} user={user} company={company} />
           <NameTitle profile={profile} user={user} company={company} />
 
@@ -151,7 +153,7 @@ const UserPublicProfile = () => {
 
           <SocialMediaLinks profile={profile} user={user} company={company} />
 
-          <div className={"p-2"}>
+          <div className={`p-2`}>
             <Bio profile={profile} />
           </div>
 
@@ -159,7 +161,7 @@ const UserPublicProfile = () => {
 
           {/*Re-Arranged Sections Will Print Here*/}
           {validSections.length > 0 && (
-            <div className="grid md:grid-cols-2 gap-2 mt-2 p-2">
+            <div className={`grid md:grid-cols-2 gap-2 mt-2 p-2`}>
               {validSections.map((key) => {
                 const Component = sectionComponentMap[key];
                 return (
@@ -179,7 +181,7 @@ const UserPublicProfile = () => {
             permission="gallery"
             userPermissions={user.permission}
           >
-            <div className={"px-2"}>
+            <div className={`px-2`}>
               <Gallery userId={user._id} />
             </div>
           </RequirePermission>
@@ -187,12 +189,12 @@ const UserPublicProfile = () => {
             permission="productgallery"
             userPermissions={user.permission}
           >
-            <div className={"p-2"}>
+            <div className={`p-2`}>
               <UserProductGalleryViewer userId={user._id} />
             </div>
           </RequirePermission>
 
-          <div className={"p-2"}>
+          <div className={`p-2`}>
             <TechVibesCard />
           </div>
         </div>

@@ -1,10 +1,15 @@
 import React from "react";
 import { Check } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const NameTitle = ({ profile, user, company }) => {
+  const { theme } = useTheme();
+
   return (
     <div className={"pt-18 md:pt-27 px-2 "}>
-      <div className="text-white  flex items-center justify-center flex-col">
+      <div
+        className={` ${theme.text} flex items-center justify-center flex-col`}
+      >
         <div className="text-2xl text-center lg:text-left">
           <span className="break-words">
             {profile?.prefix && `${profile.prefix} `}
@@ -42,7 +47,9 @@ const NameTitle = ({ profile, user, company }) => {
 
         {/* ID Number — Corporate Only and Must Exist */}
         {user?.role === "corporate" && profile.idNumber && (
-          <div className="text-white bg-[rgba(255,255,255,0.18)] px-7 py-1 rounded-lg mt-4">
+          <div
+            className={`${theme.background} ${theme.text} px-7 py-1 rounded-lg mt-4`}
+          >
             ID: {profile.idNumber}
           </div>
         )}

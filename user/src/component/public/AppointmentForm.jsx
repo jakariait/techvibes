@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Snackbar, Alert } from "@mui/material";
 import dayjs from "dayjs";
 import axios from "axios";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
 const AppointmentForm = ({ userId, onSuccess }) => {
+  const { theme } = useTheme();
+
   const [formData, setFormData] = useState({
     requesterName: "",
     requesterEmail: "",
@@ -71,8 +74,8 @@ const AppointmentForm = ({ userId, onSuccess }) => {
   };
 
   return (
-    <div className="max-w-xl mx-auto">
-      <form onSubmit={handleSubmit} className="text-white space-y-4">
+    <div className={`max-w-xl mx-auto`}>
+      <form onSubmit={handleSubmit} className={`text-white space-y-4`}>
         <input
           type="text"
           name="requesterName"
@@ -80,7 +83,7 @@ const AppointmentForm = ({ userId, onSuccess }) => {
           required
           value={formData.requesterName}
           onChange={(e) => handleChange("requesterName", e.target.value)}
-          className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 placeholder-gray-400 focus:outline-none"
+          className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
         />
 
         <input
@@ -89,7 +92,7 @@ const AppointmentForm = ({ userId, onSuccess }) => {
           placeholder="Email Address"
           value={formData.requesterEmail}
           onChange={(e) => handleChange("requesterEmail", e.target.value)}
-          className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 placeholder-gray-400 focus:outline-none"
+          className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
         />
 
         <input
@@ -99,11 +102,14 @@ const AppointmentForm = ({ userId, onSuccess }) => {
           required
           value={formData.requesterPhone}
           onChange={(e) => handleChange("requesterPhone", e.target.value)}
-          className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 placeholder-gray-400 focus:outline-none"
+          className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
         />
 
         <div>
-          <label htmlFor="appointmentDate" className="block text-white mb-1">
+          <label
+            htmlFor="appointmentDate"
+            className={`block ${theme.text} mb-1`}
+          >
             Select Date
           </label>
           <input
@@ -113,12 +119,15 @@ const AppointmentForm = ({ userId, onSuccess }) => {
             required
             value={formData.appointmentDate}
             onChange={(e) => handleChange("appointmentDate", e.target.value)}
-            className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 text-white focus:outline-none"
+            className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
           />
         </div>
 
         <div>
-          <label htmlFor="appointmentTime" className="block text-white mb-1">
+          <label
+            htmlFor="appointmentTime"
+            className={`block ${theme.text} mb-1`}
+          >
             Select Time
           </label>
           <input
@@ -128,7 +137,7 @@ const AppointmentForm = ({ userId, onSuccess }) => {
             required
             value={formData.appointmentTime}
             onChange={(e) => handleChange("appointmentTime", e.target.value)}
-            className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 text-white focus:outline-none"
+            className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
           />
         </div>
 
@@ -138,7 +147,7 @@ const AppointmentForm = ({ userId, onSuccess }) => {
           placeholder="Location"
           value={formData.location}
           onChange={(e) => handleChange("location", e.target.value)}
-          className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 placeholder-gray-400 focus:outline-none"
+          className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
         />
 
         <textarea
@@ -147,13 +156,13 @@ const AppointmentForm = ({ userId, onSuccess }) => {
           rows={4}
           value={formData.message}
           onChange={(e) => handleChange("message", e.target.value)}
-          className="w-full p-3 rounded-md bg-[#212F35] border border-gray-600 placeholder-gray-400 focus:outline-none resize-none"
+          className={`w-full p-3 rounded-md ${theme.connectFormBg} ${theme.text} border   focus:outline-none`}
         />
 
-        <div className="flex justify-center">
+        <div className={`flex justify-center`}>
           <button
             type="submit"
-            className="border-2 border-white text-white px-6 py-2 rounded cursor-pointer "
+            className={`border-2  ${theme.text} px-6 py-2 rounded cursor-pointer `}
           >
             Submit
           </button>

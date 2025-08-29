@@ -68,43 +68,43 @@ const QRCodeSection = ({
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      <div className="flex flex-col items-center justify-center text-center space-y-6">
+      <div className={`flex flex-col items-center justify-center text-center space-y-6`}>
         {/* QR Image */}
-        <div className="bg-white rounded-2xl p-4 shadow">
+        <div className={`bg-white rounded-2xl p-4 shadow`}>
           {qrCodeUrl ? (
             <img
               src={qrCodeUrl}
               alt="QR Code"
               loading="lazy"
-              className="w-48 h-48"
+              className={`w-48 h-48`}
             />
           ) : (
-            <div className="w-48 h-48 bg-gray-200 animate-pulse rounded flex items-center justify-center">
-              <span className="text-gray-500 text-sm">Loading...</span>
+            <div className={`w-48 h-48 bg-gray-200 animate-pulse rounded flex items-center justify-center`}>
+              <span className={`text-gray-500 text-sm`}>Loading...</span>
             </div>
           )}
         </div>
 
         {/* Tagline */}
-        <div className="text-white text-sm font-light tracking-widest uppercase">
+        <div className={`text-white text-sm font-light tracking-widest uppercase`}>
           Scan • Save • Connect
         </div>
 
         {/* Buttons */}
-        <div className="flex  gap-4 justify-center items-center">
+        <div className={`flex  gap-4 justify-center items-center`}>
           <button
             onClick={downloadQR}
-            className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer"
+            className={`bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer`}
           >
-            <Download className="w-5 h-5" />
+            <Download className={`w-5 h-5`} />
             {downloadStatus || "Download"}
           </button>
 
           <button
             onClick={shareQR}
-            className="bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer"
+            className={`bg-[#4E4E4E] text-white font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer`}
           >
-            <Share2 className="w-5 h-5" />
+            <Share2 className={`w-5 h-5`} />
             {shareStatus || "Share"}
           </button>
         </div>

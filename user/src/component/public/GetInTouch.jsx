@@ -1,13 +1,14 @@
-import React from 'react';
-import {MessagesSquare} from "lucide-react";
+import React from "react";
+import { MessagesSquare } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const GetInTouch = () => {
+  const { theme } = useTheme();
+
   return (
     <div className={"p-2"}>
       <h1
-        className={
-          "text-white flex gap-2 text-xl font-medium  items-center"
-        }
+        className={` ${theme.text} flex gap-2 text-xl font-medium  items-center `}
       >
         <MessagesSquare />
         Get In Touch

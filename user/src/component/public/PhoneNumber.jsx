@@ -1,7 +1,10 @@
 import React from "react";
 import { ExternalLink, Phone } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const PhoneNumber = ({ profile, user, company }) => {
+  const { theme } = useTheme();
+
   const phones = profile?.phones || [];
   const linkPrefix = "tel:";
 
@@ -11,24 +14,28 @@ const PhoneNumber = ({ profile, user, company }) => {
   return (
     (visiblePhones.length > 0 ||
       (user?.role === "corporate" && company?.phoneNumber?.value)) && (
-      <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
+      <div
+        className={` ${theme.connectFormBg} inner-glow p-4 rounded-xl overflow-hidden h-full`}
+      >
         {/* Header */}
-        <div className="flex items-center gap-3 mb-4">
-          <Phone className="w-5 h-5 text-green-400" />
-          <h2 className="text-xl font-medium text-green-400">Phone</h2>
+        <div className={`flex items-center gap-3 mb-4`}>
+          <Phone className={`w-5 h-5 ${theme.iconColor}`} />
+          <h2 className={`text-xl font-medium ${theme.iconColor}`}>Phone</h2>
         </div>
 
         {/* Phone List */}
-        <div className="flex flex-col gap-2 w-full">
+        <div className={`flex flex-col gap-2 w-full`}>
           {/* Company Phone First */}
           {user?.role === "corporate" && company?.phoneNumber?.value && (
-            <div className="flex flex-wrap items-center justify-between gap-2 w-full">
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="text-white text-md w-[80px]">
+            <div
+              className={`flex flex-wrap items-center justify-between gap-2 w-full`}
+            >
+              <div className={`flex flex-wrap items-center gap-1`}>
+                <span className={`${theme.text} text-md w-[80px]`}>
                   {company.phoneNumber.label}
                 </span>
-                <span className="text-white">:</span>
-                <span className="text-white text-sm">
+                <span className={`${theme.text}`}>:</span>
+                <span className={`${theme.text} text-sm`}>
                   {company.phoneNumber.value}
                 </span>
               </div>
@@ -37,9 +44,9 @@ const PhoneNumber = ({ profile, user, company }) => {
                 href={`tel:${company.phoneNumber.value.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className={`${theme.externalLinkColor} transition-colors`}
               >
-                <ExternalLink className="w-5 h-5" />
+                <ExternalLink className={`w-5 h-5`} />
               </a>
             </div>
           )}
@@ -48,12 +55,14 @@ const PhoneNumber = ({ profile, user, company }) => {
           {visiblePhones.map(({ label, value, _id }) => (
             <div
               key={_id}
-              className="flex flex-wrap items-center justify-between gap-2 w-full"
+              className={`flex flex-wrap items-center justify-between gap-2 w-full`}
             >
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="text-white text-md w-[80px]">{label}</span>
-                <span className="text-white">:</span>
-                <span className="text-white text-sm">{value}</span>
+              <div className={`flex flex-wrap items-center gap-1`}>
+                <span className={`${theme.text} text-md w-[80px]`}>
+                  {label}
+                </span>
+                <span className={`${theme.text}`}>:</span>
+                <span className={`${theme.text} text-sm`}>{value}</span>
               </div>
 
               {value && (
@@ -61,9 +70,9 @@ const PhoneNumber = ({ profile, user, company }) => {
                   href={`tel:${value.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className={`${theme.externalLinkColor} transition-colors`}
                 >
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className={`w-5 h-5`} />
                 </a>
               )}
             </div>

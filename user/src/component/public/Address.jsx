@@ -1,7 +1,10 @@
 import React from "react";
 import { ExternalLink, MapPin } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 const Address = ({ profile, user, company }) => {
+  const { theme } = useTheme();
+
   const locations = profile?.locations || [];
 
   const isCorporate = user?.role === "corporate";
@@ -15,38 +18,44 @@ const Address = ({ profile, user, company }) => {
 
   return (
     shouldShow && (
-      <div className="bg-[#212F35] inner-glow p-4 rounded-xl overflow-hidden h-full">
+      <div
+        className={`${theme.connectFormBg} inner-glow p-4 rounded-xl overflow-hidden h-full`}
+      >
         {/* Header */}
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <MapPin className="w-5 h-5 text-yellow-400" />
-          <h2 className="text-base font-medium text-yellow-400">Location</h2>
+        <div className={`flex items-center justify-center gap-2 mb-4`}>
+          <MapPin className={`w-5 h-5 ${theme.iconColor}`} />
+          <h2 className={`text-base font-medium ${theme.iconColor}`}>
+            Location
+          </h2>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className={`flex flex-col gap-4`}>
           {/* Company Location (for corporate users) */}
           {isCorporate && hasCompanyLocation && (
-            <div className="w-full">
+            <div className={`w-full`}>
               {/* Label line */}
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-white">
+              <div className={`flex items-center justify-center gap-2`}>
+                <span className={`${theme.text}`}>
                   {company.locations.label || "Office"}
                 </span>
-                <span className="text-white">:</span>
+                <span className={`${theme.text}`}>:</span>
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    company.locations.value
+                    company.locations.value,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
+                  className={`${theme.externalLinkColor} transition-colors flex-shrink-0`}
                 >
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className={`w-5 h-5`} />
                 </a>
               </div>
 
               {/* Address value */}
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <p className="text-white text-sm">
+              <div
+                className={`flex items-center justify-center gap-2 flex-wrap`}
+              >
+                <p className={`${theme.text} text-sm`}>
                   {company.locations.value}
                 </p>
               </div>
@@ -55,26 +64,28 @@ const Address = ({ profile, user, company }) => {
 
           {/* User Locations (if any) */}
           {visibleLocations.map(({ label, value, _id }) => (
-            <div key={_id} className="w-full">
+            <div key={_id} className={`w-full`}>
               {/* Label line */}
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-white">{label}</span>
-                <span className="text-white">:</span>
+              <div className={`flex items-center justify-center gap-2`}>
+                <span className={`${theme.text}`}>{label}</span>
+                <span className={`${theme.text}`}>:</span>
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    value
+                    value,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
+                  className={`${theme.externalLinkColor} transition-colors flex-shrink-0`}
                 >
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className={`w-5 h-5`} />
                 </a>
               </div>
 
               {/* Address value */}
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <p className="text-white text-sm">{value}</p>
+              <div
+                className={`flex items-center justify-center gap-2 flex-wrap`}
+              >
+                <p className={`${theme.text} text-sm`}>{value}</p>
               </div>
             </div>
           ))}
@@ -85,4 +96,3 @@ const Address = ({ profile, user, company }) => {
 };
 
 export default Address;
-
