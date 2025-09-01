@@ -190,6 +190,8 @@ const SaveContactConnect = ({ profile, user, company }) => {
       if (locationLines) vcard += `\r\n${locationLines}`;
       if (socialLinks) vcard += `\r\n${socialLinks}`;
       if (profile?.bio) vcard += `\r\nNOTE:${profile.bio}`;
+      if (profile?.bloodGroup)
+        vcard += `\r\nNOTE:Blood Group: ${profile.bloodGroup}`;
       vcard += `\r\nEND:VCARD`;
 
       // Download the file
@@ -210,7 +212,6 @@ const SaveContactConnect = ({ profile, user, company }) => {
   };
 
   const { theme } = useTheme();
-
   return (
     <div className={"flex items-center justify-center gap-5 mt-5 mb-5"}>
       <button

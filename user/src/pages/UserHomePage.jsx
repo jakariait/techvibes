@@ -34,13 +34,14 @@ const UserHomePage = () => {
 
   // If no authUser (should be rare here because of redirect), render nothing
   if (!authUser) return null;
-
   return (
     <UserLayout>
       <div className="xl:container mx-auto space-y-4 ">
         <Analytics userId={authUser._id} token={token} />
         <ConnectRequestsSection  userId={authUser._id} />
-        <AppointmentRequestsSection userId={authUser._id} />
+        {authUser?.role === "corporate" && (
+          <AppointmentRequestsSection userId={authUser._id} />
+        )}
       </div>
     </UserLayout>
   );
