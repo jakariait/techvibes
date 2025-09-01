@@ -7,7 +7,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   // Hardcoded default theme for now
   const [themeName, setThemeName] = useState("dark");
-  const [theme, setTheme] = useState(themeConfig.teal);
+  const [theme, setTheme] = useState(themeConfig.gray);
 
   return (
     <ThemeContext.Provider value={{ themeName, theme, setThemeName }}>
