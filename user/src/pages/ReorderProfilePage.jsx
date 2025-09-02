@@ -8,7 +8,7 @@ const ReorderProfilePage = () => {
 
   return (
     <UserLayout>
-      <SectionOrderEditor slug={authUser?.slug} />
+      <SectionOrderEditor slug={authUser?.slug} user={authUser} />
     </UserLayout>
   );
 };

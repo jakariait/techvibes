@@ -23,7 +23,7 @@ import useAuthUserStore from "../../store/AuthUserStore.jsx";
 const apiURL = import.meta.env.VITE_API_URL;
 
 // Define your available sections with readable labels
-const AVAILABLE_SECTIONS = [
+const allSections = [
   { key: "designations", label: "Designations" },
   { key: "skills", label: "Skills" },
   { key: "productAndServices", label: "Products & Services" },
@@ -61,7 +61,20 @@ const SortableItem = ({ id, label }) => {
   );
 };
 
-const SectionOrderEditor = ({ slug }) => {
+const SectionOrderEditor = ({ slug, user }) => {
+  const isCorporate = user?.role === "corporate";
+
+
+  const AVAILABLE_SECTIONS = React.useMemo(() => {
+    return isCorporate
+      ? allSections
+      : allSections.filter(
+          (section) =>
+            !["skills","sisterConcerns", "businessHours"].includes(section.key),
+        );
+  }, [isCorporate]);
+
+
   const { token } = useAuthUserStore();
   const [sectionOrder, setSectionOrder] = useState([]);
   const [snackbar, setSnackbar] = useState({
@@ -98,7 +111,7 @@ const SectionOrderEditor = ({ slug }) => {
       }
     };
     fetchSectionOrder();
-  }, [slug]);
+  }, [slug, AVAILABLE_SECTIONS]);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;

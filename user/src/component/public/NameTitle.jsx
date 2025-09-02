@@ -10,8 +10,8 @@ const NameTitle = ({ profile, user, company }) => {
       <div
         className={` ${theme.text} flex items-center justify-center flex-col`}
       >
-        <div className="text-2xl text-center lg:text-left">
-          <span className="break-words">
+        <div className="text-2xl  text-center lg:text-left">
+          <span className="break-words font-bold ">
             {profile?.prefix && `${profile.prefix} `}
             {user.fullName}
             {profile?.suffix && (
@@ -28,21 +28,21 @@ const NameTitle = ({ profile, user, company }) => {
 
         {/*Designation*/}
         {profile?.designation && (
-          <h1 className={"text-xl"}>{profile.designation}</h1>
+          <h1 className={"text-xl text-center"}>{profile.designation}</h1>
         )}
 
         {/*Department Corporate Only*/}
         {user?.role === "corporate" && profile.department && (
-          <h1>{profile.department}</h1>
+          <h1 className="text-center">{profile.department}</h1>
         )}
 
         {/*Company Name*/}
         {user?.role === "normal" && profile.companyName && (
-          <h1 className={"font-bold"}>{profile.companyName}</h1>
+          <h1 className={"font-bold text-center"}>{profile.companyName}</h1>
         )}
 
         {user?.role === "corporate" && company?.companyName && (
-          <h1 className={"font-bold"}>{company?.companyName}</h1>
+          <h1 className={"font-bold text-center"}>{company?.companyName}</h1>
         )}
 
         {/* ID Number — Corporate Only and Must Exist */}

@@ -26,42 +26,39 @@ const LoginForm = () => {
   }, [attemptedLogin, user, navigate]);
 
   return (
-    <div className="flex items-center justify-center bg-white px-4 mt-20 mb-20 md:m-50">
-      <div className="bg-[#EEF5F6] rounded-2xl shadow-md p-8 w-full max-w-md text-center relative">
-        {/* Lock Icon */}
-        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
-          <div className="accentBgColor p-4 rounded-full">
-            <FaLock className="primaryTextColor text-5xl" />
-          </div>
-        </div>
-
+    <div className="flex items-center justify-center  px-4 mt-20 mb-20 md:m-50">
+      <div className="bg-transparent  rounded-2xl shadow-2xl p-8 w-full max-w-md text-center relative">
         <h2 className="text-2xl font-semibold m-7">Sign in</h2>
-
         {error && (
           <div className="bg-red-100 text-red-600 px-4 py-2 mb-4 rounded">
             {error}
           </div>
         )}
-        {/* Important Notice */}
-        {/*<div className="bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-3 rounded mb-6 text-sm text-left">*/}
-        {/*  <div className="flex items-start gap-2">*/}
-        {/*    <span className="text-lg">🔐</span>*/}
-        {/*    <div>*/}
-        {/*      <strong className="block mb-1">Important Notice for Login</strong>*/}
-        {/*      <p className="mb-1">*/}
-        {/*        We’ve upgraded your Digital Profile with new features and enhanced sections to serve you better.*/}
-        {/*      </p>*/}
-        {/*      <p className="mb-1">*/}
-        {/*        To access your updated profile, please reset your password during login for security and compatibility reasons.*/}
-        {/*      </p>*/}
-        {/*      <p className="mb-1">*/}
-        {/*        👉 Click on <strong>“Forgot Password?”</strong> to reset and enjoy the new experience.*/}
-        {/*      </p>*/}
-        {/*      <p className="mt-2">Thank you for being with us.<br />— Team TechVibes</p>*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-
+        Important Notice
+        <div className="bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-3 rounded mb-6 text-sm text-left">
+          <div className="flex items-start gap-2">
+            <span className="text-lg">🔐</span>
+            <div>
+              <strong className="block mb-1">Important Notice for Login</strong>
+              <p className="mb-1">
+                We’ve upgraded your Digital Profile with new features and
+                enhanced sections to serve you better.
+              </p>
+              <p className="mb-1">
+                To access your updated profile, please reset your password
+                during login for security and compatibility reasons.
+              </p>
+              <p className="mb-1">
+                👉 Click on <strong>“Forgot Password?”</strong> to reset and
+                enjoy the new experience.
+              </p>
+              <p className="mt-2">
+                Thank you for being with us.
+                <br />— Team TechVibes
+              </p>
+            </div>
+          </div>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           {/* Email / Phone */}
           <div className="flex items-center bg-white rounded-md shadow-sm px-4 py-4">

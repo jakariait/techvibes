@@ -165,7 +165,7 @@ const UserPublicProfile = () => {
               {validSections.map((key) => {
                 const Component = sectionComponentMap[key];
                 return (
-                  <div key={key}>
+                  <div key={key} style={{ display: "contents" }}>
                     <Component
                       profile={profile}
                       user={user}

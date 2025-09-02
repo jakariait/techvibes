@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginForm from "./component/public/LoginForm.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage.jsx";
 import ResetPasswordPage from "./pages/ResetPasswordPage.jsx";
@@ -26,6 +25,7 @@ import AdminEditCompanyPage from "./pages/AdminEditCompanyPage.jsx";
 import TechVibesUserPages from "./pages/TechVibesUserPages.jsx";
 import TechVibesCompanyPage from "./pages/TechVibesCompanyPage.jsx";
 import ReorderProfilePage from "./pages/ReorderProfilePage.jsx";
+import LogInPage from "./pages/LogInPage.jsx";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         {/* General User Routes */}
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<LogInPage />} />
         <Route path="/forgot-password" element={<ForgetPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
 
