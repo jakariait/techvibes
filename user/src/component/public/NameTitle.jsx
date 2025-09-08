@@ -6,7 +6,7 @@ const NameTitle = ({ profile, user, company }) => {
   const { theme } = useTheme();
 
   return (
-    <div className={"pt-18 md:pt-27 px-2 "}>
+    <div >
       <div
         className={` ${theme.text} flex items-center justify-center flex-col`}
       >

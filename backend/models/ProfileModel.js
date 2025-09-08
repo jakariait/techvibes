@@ -16,8 +16,8 @@ const profileSchema = new mongoose.Schema(
 
     profilePhotoShape: {
       type: String,
-      enum: ["square", "circle"],
-      default: "square",
+      enum: ["square", "circle", "without-cover-photo"],
+      default: "without-cover-photo",
     },
 
     suffix: String,

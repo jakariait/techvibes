@@ -27,7 +27,7 @@ const GeneralProfileInfoSection = ({ slug }) => {
     bloodGroup: "",
     youtubeUrl: "",
     skills: [],
-    profilePhotoShape: "square",
+    profilePhotoShape: "without-cover-photo",
     qrCodeIsActive: true,
     themeAccessLevel: "dark",
     businessHours: { start: "", end: "" },
@@ -209,6 +209,7 @@ const GeneralProfileInfoSection = ({ slug }) => {
           >
             <option value="square">Square</option>
             <option value="circle">Circle</option>
+            <option value="without-cover-photo">Without Cover Photo</option>
           </select>
         </div>
       )}

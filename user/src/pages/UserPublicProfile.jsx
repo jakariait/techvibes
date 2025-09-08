@@ -28,6 +28,7 @@ import RequirePermission from "../component/public/RequirePermission.jsx";
 import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
 import UserProductGalleryViewer from "../component/public/UserProductGalleryViewer.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
+import WithoutCoverPhoto from "../component/public/WithoutCoverPhoto.jsx";
 
 const sectionComponentMap = {
   designations: (props) => <Designations {...props} />,
@@ -146,8 +147,26 @@ const UserPublicProfile = () => {
     <>
       <div className={`${theme.homePageBgColor}`}>
         <div className={`max-w-6xl mx-auto`}>
-          <ProfileCoverPhoto profile={profile} user={user} company={company} />
-          <NameTitle profile={profile} user={user} company={company} />
+          {profile?.profilePhotoShape === "without-cover-photo" ? (
+            // Without Cover Photo Layout
+            <WithoutCoverPhoto
+              profile={profile}
+              user={user}
+              company={company}
+            />
+          ) : (
+            // With Cover Photo Layout
+            <>
+              <ProfileCoverPhoto
+                profile={profile}
+                user={user}
+                company={company}
+              />
+              <div className="pt-18 md:pt-27 px-2">
+                <NameTitle profile={profile} user={user} company={company} />
+              </div>
+            </>
+          )}
 
           <SaveContactConnect profile={profile} user={user} company={company} />
 
