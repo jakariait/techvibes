@@ -9,6 +9,10 @@ exports.getConnectsByUserId = async (userId) => {
   return await Connect.find({ userId }).sort({ createdAt: -1 });
 };
 
+exports.getAllConnects = async () => {
+  return await Connect.find({}).sort({ createdAt: -1 });
+};
+
 
 
 exports.updateConnect = async (id, data) => {

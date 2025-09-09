@@ -4,6 +4,8 @@ import RegisterUserForm from "../component/protected/RegisterUserForm.jsx";
 import AllUsersSection from "../component/protected/AllUsersSection.jsx";
 import useAuthUserStore from "../store/AuthUserStore.jsx";
 import LoadingLottie from "../component/public/LoadingLottie.jsx";
+import AllAppointment from "../component/protected/AllAppointment.jsx";
+import AllConnect from "../component/protected/AllConnect.jsx";
 
 const TechVibesUserPages = () => {
   const { user } = useAuthUserStore();
@@ -23,6 +25,8 @@ const TechVibesUserPages = () => {
     <UserLayout>
       <div className="space-y-4">
         <RegisterUserForm onUserCreated={() => setReloadUsers((prev) => !prev)} />
+        <AllConnect/>
+        <AllAppointment />
         <AllUsersSection reload={reloadUsers} />
       </div>
     </UserLayout>

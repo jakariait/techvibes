@@ -20,3 +20,7 @@ exports.updateAppointment = async (id, data) => {
 exports.deleteAppointment = async (id) => {
   return await Appointment.findByIdAndDelete(id);
 };
+
+exports.getAllAppointments = async () => {
+  return await Appointment.find({}).sort({ createdAt: -1 });
+};

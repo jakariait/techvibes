@@ -82,3 +82,16 @@ exports.deleteAppointment = async (req, res) => {
     res.status(500).json({ message: "Delete error", error: err.message });
   }
 };
+
+exports.getAllAppointments = async (req, res) => {
+  try {
+    const appointments = await appointmentService.getAllAppointments();
+    res.json({
+      message: "All appointments fetched",
+      count: appointments.length,
+      data: appointments,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Fetch error", error: err.message });
+  }
+};

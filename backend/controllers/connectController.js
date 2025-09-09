@@ -14,6 +14,21 @@ exports.createConnect = async (req, res) => {
 };
 
 
+exports.getAllConnects = async (req, res) => {
+  try {
+    const connects = await connectService.getAllConnects();
+
+    res.status(200).json({
+      message: `${connects.length} connect${connects.length !== 1 ? 's' : ''} found.`,
+      total: connects.length,
+      data: connects,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 exports.getConnectsByUserId = async (req, res) => {
   try {
     const connects = await connectService.getConnectsByUserId(req.params.userId);

@@ -143,10 +143,6 @@ const upload = multer({ storage }).fields([
 // Serve images from the 'uploads' folder as static files
 // router.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-
-
-
-
 //   Routes for General Information
 router.get("/getGeneralInfo", generalInfoController.getGeneralInfo);
 
@@ -801,6 +797,7 @@ router.delete(
 );
 
 // Connect Routes
+router.get("/connect", userProtect, connectController.getAllConnects);
 router.post("/connect", connectController.createConnect);
 router.get(
   "/connect/user/:userId",
@@ -812,6 +809,12 @@ router.delete("/connect/:id", userProtect, connectController.deleteConnect);
 
 // === Appointment API Routes ===
 router.post("/appointments", appointmentController.createAppointment);
+router.get(
+  "/appointments",
+  userProtect,
+  appointmentController.getAllAppointments,
+);
+
 router.get(
   "/appointments/user/:userId",
   userProtect,
