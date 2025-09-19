@@ -20,9 +20,28 @@ const RegisterUserForm = ({ onUserCreated }) => {
     isVarified: false,
     baseUrl: "user.techvibesbd.com",
     permission: [],
+    themePermission: ["yellow", "green", "black", "red", "gray"],
   });
 
-  const [permissionsList] = useState(["gallery", "productgallery", "brandLogo"]);
+  const [permissionsList] = useState([
+    "gallery",
+    "productgallery",
+    "brandLogo",
+  ]);
+
+  const [themePermissionsList] = useState([
+    "magenta",
+    "teal",
+    "royalBlue",
+    "purpleHaze",
+    "yellow",
+    "cream",
+    "marrsGreen",
+    "green",
+    "black",
+    "red",
+    "gray",
+  ]);
 
   const [companies, setCompanies] = useState([]);
   const [submitting, setSubmitting] = useState(false);
@@ -65,6 +84,13 @@ const RegisterUserForm = ({ onUserCreated }) => {
           : prev.permission.filter((p) => p !== value);
         return { ...prev, permission: newPermissions };
       });
+    } else if (type === "checkbox" && name === "themePermission") {
+      setFormData((prev) => {
+        const newThemePermissions = checked
+          ? [...prev.themePermission, value]
+          : prev.themePermission.filter((p) => p !== value);
+        return { ...prev, themePermission: newThemePermissions };
+      });
     } else {
       setFormData((prev) => ({
         ...prev,
@@ -99,6 +125,7 @@ const RegisterUserForm = ({ onUserCreated }) => {
         isVarified: false,
         baseUrl: "user.techvibesbd.com",
         permission: [],
+        themePermission: ["yellow", "green", "black", "red", "gray"],
       });
     } catch (err) {
       showSnackbar(
@@ -216,6 +243,24 @@ const RegisterUserForm = ({ onUserCreated }) => {
                   name="permission"
                   value={perm}
                   checked={formData.permission.includes(perm)}
+                  onChange={handleChange}
+                />
+                <span>{perm}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="font-semibold mb-1">Theme Permissions:</p>
+          <div className="grid grid-cols-2 gap-2">
+            {themePermissionsList.map((perm) => (
+              <label key={perm} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="themePermission"
+                  value={perm}
+                  checked={formData.themePermission.includes(perm)}
                   onChange={handleChange}
                 />
                 <span>{perm}</span>

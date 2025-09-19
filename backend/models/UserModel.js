@@ -42,7 +42,6 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
 
-
     password: {
       type: String,
       required: true,
@@ -72,14 +71,13 @@ const userSchema = new mongoose.Schema(
 
     themePermission: {
       type: [String],
-      default: [],
+      default: ["yellow", "green", "black", "red", "gray"],
     },
 
     company: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",
     },
-
   },
   { timestamps: true, versionKey: false },
 );

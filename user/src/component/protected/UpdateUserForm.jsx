@@ -19,6 +19,21 @@ const UpdateUserForm = ({ slug }) => {
     type: "success",
   });
 
+  const permissionsList = ["gallery", "productgallery", "brandLogo"];
+  const themePermissionsList = [
+    "magenta",
+    "teal",
+    "royalBlue",
+    "purpleHaze",
+    "yellow",
+    "cream",
+    "marrsGreen",
+    "green",
+    "black",
+    "red",
+    "gray",
+  ];
+
   const showSnackbar = (message, type = "success") => {
     setSnackbar({ open: true, message, type });
   };
@@ -39,7 +54,11 @@ const UpdateUserForm = ({ slug }) => {
           }),
         ]);
 
-        setUser(userRes.data.user);
+        const fetchedUser = userRes.data.user;
+        fetchedUser.permission = fetchedUser.permission || [];
+        fetchedUser.themePermission = fetchedUser.themePermission || [];
+        setUser(fetchedUser);
+
         setCompanies(companyRes.data.companies || []);
       } catch (error) {
         showSnackbar("Failed to fetch user or companies", "error");
@@ -47,17 +66,27 @@ const UpdateUserForm = ({ slug }) => {
     };
 
     fetchUserAndCompanies();
-  }, [slug]);
+  }, [slug, token]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (type === "checkbox" && name === "permission") {
-      setUser((prev) => {
-        const newPermissions = checked
-          ? [...prev.permission, value]
-          : prev.permission.filter((p) => p !== value);
-        return { ...prev, permission: newPermissions };
-      });
+
+    if (type === "checkbox") {
+      if (name === "permission") {
+        setUser((prev) => {
+          const newPermissions = checked
+            ? [...prev.permission, value]
+            : prev.permission.filter((p) => p !== value);
+          return { ...prev, permission: newPermissions };
+        });
+      } else if (name === "themePermission") {
+        setUser((prev) => {
+          const newThemePermissions = checked
+            ? [...prev.themePermission, value]
+            : prev.themePermission.filter((p) => p !== value);
+          return { ...prev, themePermission: newThemePermissions };
+        });
+      }
     } else {
       setUser((prev) => ({
         ...prev,
@@ -176,13 +205,31 @@ const UpdateUserForm = ({ slug }) => {
         <div>
           <p className="font-semibold mb-1">Permissions:</p>
           <div className="grid grid-cols-2 gap-2">
-            {["gallery", "productgallery", "brandLogo"].map((perm) => (
+            {permissionsList.map((perm) => (
               <label key={perm} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   name="permission"
                   value={perm}
-                  checked={user.permission.includes(perm)}
+                  checked={user.permission?.includes(perm)}
+                  onChange={handleChange}
+                />
+                <span>{perm}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="font-semibold mb-1">Theme Permissions:</p>
+          <div className="grid grid-cols-2 gap-2">
+            {themePermissionsList.map((perm) => (
+              <label key={perm} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="themePermission"
+                  value={perm}
+                  checked={user.themePermission?.includes(perm)}
                   onChange={handleChange}
                 />
                 <span>{perm}</span>

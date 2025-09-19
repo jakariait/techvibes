@@ -146,6 +146,14 @@ const GeneralProfileInfoSection = ({ slug }) => {
     { value: "gray", label: "Gray" },
   ];
 
+  const availableThemeOptions = isMainAdmin
+    ? themeOptions
+    : themeOptions.filter(
+        (theme) =>
+          theme.value === "dark" ||
+          theme.value === "light" ||
+          user?.themePermission?.includes(theme.value),
+      );
 
   if (loading) return <LoadingLottie />;
 
@@ -236,10 +244,12 @@ const GeneralProfileInfoSection = ({ slug }) => {
         <label className="text-white md:w-[180px]">Theme Access:</label>
         <select
           value={fields.themeAccessLevel}
-          onChange={(e) => handleFieldChange("themeAccessLevel", e.target.value)}
+          onChange={(e) =>
+            handleFieldChange("themeAccessLevel", e.target.value)
+          }
           className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none"
         >
-          {themeOptions.map((theme) => (
+          {availableThemeOptions.map((theme) => (
             <option key={theme.value} value={theme.value}>
               {theme.label}
             </option>
