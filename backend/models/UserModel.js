@@ -70,6 +70,11 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
 
+    themePermission: {
+      type: [String],
+      default: [],
+    },
+
     company: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",

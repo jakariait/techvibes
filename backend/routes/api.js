@@ -750,6 +750,7 @@ router.get("/by-company/:companyId", userController.getUsersByCompany);
 
 // Get All Registered Users
 router.get("/getAllUsers", userController.getAllUsers);
+router.get("/exportUsersCSV", userController.exportUsersCSV);
 
 // 🚀 Protected Routes (Requires Authentication)
 router.patch("/change-password", userProtect, userController.changePassword);

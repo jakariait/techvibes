@@ -130,6 +130,23 @@ const GeneralProfileInfoSection = ({ slug }) => {
   const corporateFields = ["department", "idNumber"];
   const normalUserFields = ["companyName"];
 
+  const themeOptions = [
+    { value: "dark", label: "Dark" },
+    { value: "light", label: "Light" },
+    { value: "magenta", label: "Magenta" },
+    { value: "teal", label: "Teal" },
+    { value: "royalBlue", label: "Royal Blue" },
+    { value: "purpleHaze", label: "Purple Haze" },
+    { value: "yellow", label: "Yellow" },
+    { value: "cream", label: "Cream" },
+    { value: "marrsGreen", label: "Marrs Green" },
+    { value: "green", label: "Green" },
+    { value: "black", label: "Black" },
+    { value: "red", label: "Red" },
+    { value: "gray", label: "Gray" },
+  ];
+
+
   if (loading) return <LoadingLottie />;
 
   return (
@@ -219,13 +236,14 @@ const GeneralProfileInfoSection = ({ slug }) => {
         <label className="text-white md:w-[180px]">Theme Access:</label>
         <select
           value={fields.themeAccessLevel}
-          onChange={(e) =>
-            handleFieldChange("themeAccessLevel", e.target.value)
-          }
+          onChange={(e) => handleFieldChange("themeAccessLevel", e.target.value)}
           className="bg-[#212F35] text-white p-2 rounded border border-gray-600 flex-1 focus:outline-none"
         >
-          <option value="dark">Dark</option>
-          <option value="light">Light</option>
+          {themeOptions.map((theme) => (
+            <option key={theme.value} value={theme.value}>
+              {theme.label}
+            </option>
+          ))}
         </select>
       </div>
 

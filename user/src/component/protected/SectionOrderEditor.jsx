@@ -15,7 +15,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { GripVertical, Link2 } from "lucide-react";
+import { GripVertical, ArrowUp, ArrowDown } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import useAuthUserStore from "../../store/AuthUserStore.jsx";
@@ -33,12 +33,11 @@ const allSections = [
   { key: "locations", label: "Address" },
   { key: "sisterConcerns", label: "Sister Concerns" },
   { key: "businessHours", label: "Business Hours" },
-  { key: "qrcode", label: "QR Code" },
   { key: "portfolio", label: "Portfolio & CV" },
   { key: "youtube", label: "YouTube Video" },
 ];
 
-const SortableItem = ({ id, label }) => {
+const SortableItem = ({ id, label, index, onMove, isFirst, isLast }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -51,12 +50,34 @@ const SortableItem = ({ id, label }) => {
     <li
       ref={setNodeRef}
       style={style}
-      className="flex items-center justify-between bg-[#1a2a30] text-white p-2 cursor-pointer rounded shadow mb-2"
+      className="flex items-center justify-between bg-[#1a2a30] text-white p-3 rounded-lg shadow"
     >
-      <span className="flex items-center gap-2" {...attributes} {...listeners}>
-        <GripVertical className="w-4 h-4" />
-        {label}
+      <span
+        className="flex flex-1 items-center gap-3 cursor-grab"
+        {...attributes}
+        {...listeners}
+      >
+        <GripVertical className="w-5 h-5 text-gray-400" />
+        <span className="font-medium">{label}</span>
       </span>
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => onMove(index, "up")}
+          disabled={isFirst}
+          className="p-1.5 rounded-full text-gray-300 hover:bg-gray-700 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+          aria-label="Move up"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </button>
+        <button
+          onClick={() => onMove(index, "down")}
+          disabled={isLast}
+          className="p-1.5 rounded-full text-gray-300 hover:bg-gray-700 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+          aria-label="Move down"
+        >
+          <ArrowDown className="w-5 h-5" />
+        </button>
+      </div>
     </li>
   );
 };
@@ -64,16 +85,16 @@ const SortableItem = ({ id, label }) => {
 const SectionOrderEditor = ({ slug, user }) => {
   const isCorporate = user?.role === "corporate";
 
-
   const AVAILABLE_SECTIONS = React.useMemo(() => {
     return isCorporate
       ? allSections
       : allSections.filter(
           (section) =>
-            !["skills","sisterConcerns", "businessHours"].includes(section.key),
+            !["skills", "sisterConcerns", "businessHours"].includes(
+              section.key,
+            ),
         );
   }, [isCorporate]);
-
 
   const { token } = useAuthUserStore();
   const [sectionOrder, setSectionOrder] = useState([]);
@@ -123,6 +144,15 @@ const SectionOrderEditor = ({ slug, user }) => {
     setSectionOrder(newOrder);
   };
 
+  const moveSection = (index, direction) => {
+    const newIndex = direction === "up" ? index - 1 : index + 1;
+    if (newIndex < 0 || newIndex >= sectionOrder.length) {
+      return;
+    }
+    const newOrder = arrayMove(sectionOrder, index, newIndex);
+    setSectionOrder(newOrder);
+  };
+
   const handleSave = async () => {
     try {
       await axios.patch(
@@ -139,15 +169,15 @@ const SectionOrderEditor = ({ slug, user }) => {
 
   return (
     <div className="bg-[#212F35] inner-glow p-4 rounded-xl max-w-7xl mx-auto">
-      <div className="flex flex-col items-center justify-center mb-2">
+      <div className="flex flex-col items-center justify-center mb-4">
         <div className="flex items-center justify-start gap-2">
           <GripVertical className="w-5 h-5 text-yellow-400" />
-          <h2 className="text-base font-medium text-yellow-400">
+          <h2 className="text-lg font-semibold text-yellow-400">
             Reorder Profile Sections
           </h2>
         </div>
-        <span className="text-sm text-gray-500">
-          Drag and drop to rearrange the links
+        <span className="text-sm text-gray-400 mt-1">
+          Drag and drop or use arrows to rearrange
         </span>
       </div>
 
@@ -160,18 +190,26 @@ const SectionOrderEditor = ({ slug, user }) => {
           items={sectionOrder}
           strategy={verticalListSortingStrategy}
         >
-          <ul>
-            {sectionOrder.map((key) => {
+          <ul className="space-y-2">
+            {sectionOrder.map((key, index) => {
               const section = AVAILABLE_SECTIONS.find((s) => s.key === key);
               return section ? (
-                <SortableItem key={key} id={key} label={section.label} />
+                <SortableItem
+                  key={key}
+                  id={key}
+                  label={section.label}
+                  index={index}
+                  onMove={moveSection}
+                  isFirst={index === 0}
+                  isLast={index === sectionOrder.length - 1}
+                />
               ) : null;
             })}
           </ul>
         </SortableContext>
       </DndContext>
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-6">
         <button
           onClick={handleSave}
           className="border-2 border-white text-white cursor-pointer px-4 py-2 rounded transition-colors"

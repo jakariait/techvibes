@@ -101,7 +101,7 @@ const profileSchema = new mongoose.Schema(
     // Theme
     themeAccessLevel: {
       type: String,
-      enum: ["dark", "light"],
+      enum: ["dark", "light", "magenta", "teal", "royalBlue", "purpleHaze","yellow", "cream", "marrsGreen", "green", "black", "red", "gray" ],
       default: "dark",
     },
 

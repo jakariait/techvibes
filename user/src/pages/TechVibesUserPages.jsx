@@ -25,9 +25,9 @@ const TechVibesUserPages = () => {
     <UserLayout>
       <div className="space-y-4">
         <RegisterUserForm onUserCreated={() => setReloadUsers((prev) => !prev)} />
+        <AllUsersSection reload={reloadUsers} />
         <AllConnect/>
         <AllAppointment />
-        <AllUsersSection reload={reloadUsers} />
       </div>
     </UserLayout>
   );

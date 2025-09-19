@@ -29,6 +29,8 @@ import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
 import UserProductGalleryViewer from "../component/public/UserProductGalleryViewer.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
 import WithoutCoverPhoto from "../component/public/WithoutCoverPhoto.jsx";
+import HomePageLoading from "../component/public/HomePageLoading.jsx";
+import OrderNFCCard from "../component/public/OrderNFCCard.jsx";
 
 const sectionComponentMap = {
   designations: (props) => <Designations {...props} />,
@@ -40,7 +42,6 @@ const sectionComponentMap = {
   locations: (props) => <Address {...props} />,
   sisterConcerns: (props) => <SisterConcerns {...props} />,
   businessHours: (props) => <BusinessHoursCard {...props} />,
-  qrcode: (props) => <QRCodeSection {...props} />,
   portfolio: (props) => <PortfolioAndCV {...props} />,
   youtube: (props) => <YouTubeEmbed url={props.profile?.youtubeUrl} />,
 };
@@ -73,8 +74,6 @@ const hasContent = (key, profile, user, company) => {
       return (
         profile?.businessHours && Object.keys(profile.businessHours).length > 0
       );
-    case "qrcode":
-      return profile?.qrCode || user?.qrCode;
     case "portfolio":
       return profile?.portfolio || profile?.cv;
     case "youtube":
@@ -134,8 +133,13 @@ const UserPublicProfile = () => {
     }
   }, [userId]);
 
-  if (loading || user === undefined) return <LoadingLottie />;
-  if (user === null) return <UserNotFound />;
+  if (loading || (user === null && !error)) {
+    return <HomePageLoading />;
+  }
+
+  if (user === null) {
+    return <UserNotFound />;
+  }
 
   // Filter sections that have actual content
   const validSections = (profile?.sectionOrder || []).filter((key) => {
@@ -213,7 +217,12 @@ const UserPublicProfile = () => {
             </div>
           </RequirePermission>
 
-          <div className={`p-2`}>
+          <div className={`px-2`}>
+            <QRCodeSection profile={profile} user={user} />
+          </div>
+
+          <div className={`p-2 flex-col gap-2 flex`}>
+            <OrderNFCCard/>
             <TechVibesCard />
           </div>
         </div>

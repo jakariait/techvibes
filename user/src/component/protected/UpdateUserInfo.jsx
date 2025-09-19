@@ -95,7 +95,7 @@ const UpdateUserInfo = ({slug}) => {
   if (loading) return <LoadingLottie />;
 
   return (
-    <div className="max-w-6xl mx-auto bg-[#212F35] p-6 rounded-xl text-white">
+    <div className="max-w-7xl mx-auto bg-[#212F35] p-6 rounded-xl text-white">
       <h2 className="flex items-center justify-center text-green-400 text-center mb-6 gap-2">
         <User className="w-5 h-5" />
         Update User Info

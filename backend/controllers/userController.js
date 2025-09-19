@@ -3,6 +3,7 @@ const userService = require("../services/UserService");
 const UserModel = require("../models/UserModel");
 const generateToken = require("../utility/generateToken");
 const profileService = require("../services/profileService");
+const json2csv = require('json2csv').parse;
 
 // 🔐 Login user email
 const loginUser = asyncHandler(async (req, res) => {
@@ -194,10 +195,10 @@ const getUsersByCompany = async (req, res) => {
 
 const getAllUsers = asyncHandler(async (req, res) => {
   try {
-    const { page, limit, search } = req.query;
+    const { page, limit, search, filterType, startDate, endDate, month, year, company } = req.query;
 
     const { users, totalUsers, allTimeUsers, pages } =
-      await userService.getAllUsers({ page, limit, search });
+      await userService.getAllUsers({ page, limit, search, filterType, startDate, endDate, month, year, company });
 
     res.status(200).json({
       message: `${totalUsers} user${totalUsers.length !== 1 ? "s" : ""} found`,
@@ -215,6 +216,28 @@ const getAllUsers = asyncHandler(async (req, res) => {
   }
 });
 
+const exportUsersCSV = asyncHandler(async (req, res) => {
+  try {
+    const { search, filterType, startDate, endDate, month, year, company } = req.query;
+
+    const users = await userService.getAllUsersForExport({ search, filterType, startDate, endDate, month, year, company });
+
+    const fields = ['fullName', 'email', 'phone', 'role', 'createdAt'];
+    const opts = { fields };
+    const csv = json2csv(users, opts);
+
+    res.header('Content-Type', 'text/csv');
+    res.attachment('users.csv');
+    res.send(csv);
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to export users",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = {
   loginUser,
   createUser,
@@ -226,4 +249,5 @@ module.exports = {
   getLoggedInUser,
   getUsersByCompany,
   getAllUsers,
+  exportUsersCSV,
 };

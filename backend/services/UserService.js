@@ -1,5 +1,6 @@
 const UserModel = require("../models/UserModel");
 const ProfileModel = require("../models/ProfileModel");
+const CompanyModel = require("../models/CompanyModel");
 
 const userService = {
   createUser: async (userData) => await UserModel.create(userData),
@@ -83,15 +84,54 @@ const userService = {
   },
 
   // New: Get all users with pagination and search
-  getAllUsers: async ({ page = 1, limit = 10, search = "" }) => {
+  getAllUsers: async ({ page = 1, limit = 10, search = "", filterType, startDate, endDate, month, year, company }) => {
     const searchRegex = new RegExp(search, "i");
 
-    const query = {
+    let query = {
       $or: [{ fullName: searchRegex }, { email: searchRegex }],
     };
 
-    const totalUsers = await UserModel.countDocuments(query); // filtered
-    const allTimeUsers = await UserModel.countDocuments();    // all time
+    // Date-based filters
+    if (filterType === "lastDay") {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      query.createdAt = { $gte: yesterday };
+    } else if (filterType === "lastWeek") {
+      const lastWeek = new Date();
+      lastWeek.setDate(lastWeek.getDate() - 7);
+      query.createdAt = { $gte: lastWeek };
+    } else if (filterType === "lastMonth") {
+      const lastMonth = new Date();
+      lastMonth.setMonth(lastMonth.getMonth() - 1);
+      query.createdAt = { $gte: lastMonth };
+    } else if (filterType === "lastYear") {
+      const lastYear = new Date();
+      lastYear.setFullYear(lastYear.getFullYear() - 1);
+      query.createdAt = { $gte: lastYear };
+    } else if (filterType === "dateToDate" && startDate && endDate) {
+      query.createdAt = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    } else if (filterType === "month" && month && year) {
+      const start = new Date(year, month - 1, 1);
+      const end = new Date(year, month, 0, 23, 59, 59);
+      query.createdAt = { $gte: start, $lte: end };
+    } else if (filterType === "year" && year) {
+      const start = new Date(year, 0, 1);
+      const end = new Date(year, 11, 31, 23, 59, 59);
+      query.createdAt = { $gte: start, $lte: end };
+    }
+
+    // Company filter
+    if (filterType === "company" && company) {
+      const companyDoc = await CompanyModel.findOne({ companyName: company }).lean();
+      if (companyDoc) {
+        query.company = companyDoc._id;
+      } else {
+        query.company = null;
+      }
+    }
+
+    const totalUsers = await UserModel.countDocuments(query);
+    const allTimeUsers = await UserModel.countDocuments();
 
     const pages = Math.ceil(totalUsers / limit);
     const users = await UserModel.find(query)
@@ -107,6 +147,60 @@ const userService = {
       allTimeUsers,
       pages,
     };
+  },
+
+  getAllUsersForExport: async ({ search = "", filterType, startDate, endDate, month, year, company }) => {
+    const searchRegex = new RegExp(search, "i");
+
+    let query = {
+      $or: [{ fullName: searchRegex }, { email: searchRegex }],
+    };
+
+    // Date-based filters
+    if (filterType === "lastDay") {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      query.createdAt = { $gte: yesterday };
+    } else if (filterType === "lastWeek") {
+      const lastWeek = new Date();
+      lastWeek.setDate(lastWeek.getDate() - 7);
+      query.createdAt = { $gte: lastWeek };
+    } else if (filterType === "lastMonth") {
+      const lastMonth = new Date();
+      lastMonth.setMonth(lastMonth.getMonth() - 1);
+      query.createdAt = { $gte: lastMonth };
+    } else if (filterType === "lastYear") {
+      const lastYear = new Date();
+      lastYear.setFullYear(lastYear.getFullYear() - 1);
+      query.createdAt = { $gte: lastYear };
+    } else if (filterType === "dateToDate" && startDate && endDate) {
+      query.createdAt = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    } else if (filterType === "month" && month && year) {
+      const start = new Date(year, month - 1, 1);
+      const end = new Date(year, month, 0, 23, 59, 59);
+      query.createdAt = { $gte: start, $lte: end };
+    } else if (filterType === "year" && year) {
+      const start = new Date(year, 0, 1);
+      const end = new Date(year, 11, 31, 23, 59, 59);
+      query.createdAt = { $gte: start, $lte: end };
+    }
+
+    // Company filter
+    if (filterType === "company" && company) {
+      const companyDoc = await CompanyModel.findOne({ companyName: company }).lean();
+      if (companyDoc) {
+        query.company = companyDoc._id;
+      } else {
+        query.company = null;
+      }
+    }
+
+    const users = await UserModel.find(query)
+      .sort({ createdAt: -1 })
+      .select("fullName email phone role createdAt")
+      .lean();
+
+    return users;
   },
 
 
