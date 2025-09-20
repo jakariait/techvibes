@@ -222,7 +222,7 @@ const UserPublicProfile = () => {
           </div>
 
           <div className={`p-2 flex-col gap-2 flex`}>
-            <OrderNFCCard/>
+            <OrderNFCCard />
             <TechVibesCard />
           </div>
         </div>

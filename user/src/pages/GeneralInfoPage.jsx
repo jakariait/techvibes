@@ -7,6 +7,7 @@ import PhotoUploadSection from "../component/protected/PhotoUploadSection.jsx";
 const GeneralInfoPage = () => {
   const { user } = useAuthUserStore();
 
+
   return (
     <UserLayout>
       <GeneralProfileInfoSection slug={user?.slug} />

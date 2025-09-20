@@ -19,12 +19,14 @@ const userService = {
   },
 
   getUserBySlug: async (slug) => {
-    const user = await UserModel.findOne({ slug }).select(
+    const user = await UserModel.findOne({ slug })
+      .populate("lastUpdatedBy", "fullName email")
+      .select(
       "-password -resetOTP -resetOTPExpiry ",
     );
     if (!user) return null;
 
-    const profile = await ProfileModel.findOne({ user: user._id });
+    const profile = await ProfileModel.findOne({ user: user._id }).populate("lastUpdatedBy", "fullName email");
     return { user, profile };
   },
 
@@ -40,12 +42,13 @@ const userService = {
   },
 
   updateUserOnlyBySlug: async (slug, userUpdates = {}) => {
-    const user = await UserModel.findOneAndUpdate({ slug }, userUpdates, {
-      new: true,
-      runValidators: true,
-    });
-
+    const user = await UserModel.findOne({ slug });
     if (!user) throw new Error("User not found");
+
+    Object.assign(user, userUpdates);
+    await user.save();
+
+    await user.populate("lastUpdatedBy", "fullName email");
 
     return {
       message: "User updated successfully",
@@ -58,13 +61,13 @@ const userService = {
     const user = await UserModel.findOne({ slug });
     if (!user) throw new Error("User not found");
 
-    const profile = await ProfileModel.findOneAndUpdate(
-      { user: user._id },
-      profileData,
-      { new: true, runValidators: true },
-    );
-
+    const profile = await ProfileModel.findOne({ user: user._id });
     if (!profile) throw new Error("Profile not found");
+
+    Object.assign(profile, profileData);
+    await profile.save();
+
+    await profile.populate("lastUpdatedBy", "fullName email");
 
     return profile;
   },
@@ -75,6 +78,8 @@ const userService = {
 
     const profile = await ProfileModel.findOne({ user: user._id });
     if (!profile) throw new Error("Profile not found");
+
+    await profile.populate("lastUpdatedBy", "fullName email");
 
     return profile;
   },
@@ -138,6 +143,7 @@ const userService = {
       .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
+      .populate("lastUpdatedBy", "fullName email")
       .select("-password -resetOTP -resetOTPExpiry -qrCode")
       .lean();
 
@@ -197,10 +203,16 @@ const userService = {
 
     const users = await UserModel.find(query)
       .sort({ createdAt: -1 })
-      .select("fullName email phone role createdAt")
+      .populate("lastUpdatedBy", "fullName email")
+      .select("fullName email phone role createdAt lastUpdatedBy")
       .lean();
 
-    return users;
+    return users.map(user => {
+      if (user.lastUpdatedBy) {
+        user.lastUpdatedBy = `${user.lastUpdatedBy.fullName} (${user.lastUpdatedBy.email})`;
+      }
+      return user;
+    });
   },
 
 

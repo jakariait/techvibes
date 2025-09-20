@@ -118,6 +118,7 @@ const deleteUserBySlug = asyncHandler(async (req, res) => {
 const updateUserOnlyBySlug = asyncHandler(async (req, res) => {
   try {
     const { slug } = req.params;
+    req.body.lastUpdatedBy = req.user._id;
     const updatedUser = await userService.updateUserOnlyBySlug(slug, req.body);
 
     res.status(200).json({
@@ -146,6 +147,8 @@ const updateProfileBySlug = asyncHandler(async (req, res) => {
     if (req.files?.brandLogo?.[0]) {
       req.body.brandLogo = req.files.brandLogo[0].filename;
     }
+
+    req.body.lastUpdatedBy = req.user._id;
 
     // Update profile
     const updatedProfile = await userService.updateProfileBySlug(
@@ -222,7 +225,7 @@ const exportUsersCSV = asyncHandler(async (req, res) => {
 
     const users = await userService.getAllUsersForExport({ search, filterType, startDate, endDate, month, year, company });
 
-    const fields = ['fullName', 'email', 'phone', 'role', 'createdAt'];
+    const fields = ['fullName', 'email', 'phone', 'role', 'createdAt', { label: 'Last Updated By', value: 'lastUpdatedBy' }];
     const opts = { fields };
     const csv = json2csv(users, opts);
 

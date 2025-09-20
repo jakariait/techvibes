@@ -7,6 +7,7 @@ import RequirePermission from "../component/public/RequirePermission.jsx";
 const GalleryPage = () => {
   const { user, token } = useAuthUserStore();
 
+
   return (
     <UserLayout>
       <RequirePermission permission="gallery" userPermissions={user?.permission}>

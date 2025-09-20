@@ -237,6 +237,10 @@ const profileSchema = new mongoose.Schema(
         "youtube",
       ],
     },
+    lastUpdatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true, versionKey: false },
 );

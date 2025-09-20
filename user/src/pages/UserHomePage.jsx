@@ -9,6 +9,7 @@ import ConnectRequestsSection from "../component/protected/ConnectRequestsSectio
 const UserHomePage = () => {
   const { initialize, user: authUser, token } = useAuthUserStore();
 
+
   const navigate = useNavigate();
   const [isInitialized, setIsInitialized] = useState(false);
 

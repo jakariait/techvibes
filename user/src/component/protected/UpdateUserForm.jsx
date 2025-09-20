@@ -238,6 +238,13 @@ const UpdateUserForm = ({ slug }) => {
           </div>
         </div>
 
+        <div className="text-sm ">
+          <p>
+            Last update by: {user?.lastUpdatedBy?.fullName || "Unknown"} (
+            {user?.lastUpdatedBy?.email || "No email"})
+          </p>
+        </div>
+
         <div className="flex items-center justify-center gap-2">
           <button
             type="submit"
