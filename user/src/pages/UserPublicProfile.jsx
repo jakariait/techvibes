@@ -147,6 +147,7 @@ const UserPublicProfile = () => {
     return Component && hasContent(key, profile, user, company);
   });
 
+
   return (
     <>
       <div className={`${theme.homePageBgColor}`}>

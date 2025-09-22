@@ -13,7 +13,6 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     const newThemeName = profile?.themeAccessLevel;
-
     if (newThemeName && themeConfig[newThemeName]) {
       setThemeName(newThemeName);
       setTheme(themeConfig[newThemeName]);

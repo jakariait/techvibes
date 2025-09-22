@@ -54,7 +54,7 @@ const themeConfig = {
     homePageBgColor: "bg-[linear-gradient(to_bottom,#091015_00%,#5C0B5C_100%)]",
   },
   yellow: {
-    background: "bg-[linear-gradient(to_bottom,#161102_00%,#7A0051_100%)]",
+    background: "bg-[linear-gradient(to bottom,#161102_00%,#7A0051_100%)]",
     text: "text-white",
     connectFormBg: "bg-[linear-gradient(to_bottom,#161102_00%,#7A0051_100%)]",
     iconColor: "text-white",
@@ -117,7 +117,7 @@ const themeConfig = {
       "bg-[linear-gradient(to_bottom,#091015_0%,#35091C_50%,#AC0048_100%)]",
   },
   gray: {
-    background: "bg-[linear-gradient(to_bottom,#0808080_00%,#808080_100%)]",
+    background: "bg-[linear-gradient(to_bottom,#080808_00%,#808080_100%)]",
     text: "text-white",
     connectFormBg: "bg-[linear-gradient(to_bottom,#808080_00%,#808080_100%)]",
     iconColor: "text-white",
