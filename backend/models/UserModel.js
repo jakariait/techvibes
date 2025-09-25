@@ -99,9 +99,9 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// Slug + counter generation and uniqueness check
+// Slug generation on user creation. It will not be updated later.
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("fullName")) return next();
+  if (!this.isNew) return next();
 
   const baseSlug = slugify(this.fullName, { lower: true, strict: true });
 

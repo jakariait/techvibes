@@ -86,11 +86,16 @@ const UpdateUserForm = ({ slug }) => {
             : prev.themePermission.filter((p) => p !== value);
           return { ...prev, themePermission: newThemePermissions };
         });
+      } else {
+        setUser((prev) => ({
+          ...prev,
+          [name]: checked,
+        }));
       }
     } else {
       setUser((prev) => ({
         ...prev,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: value,
       }));
     }
   };

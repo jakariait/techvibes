@@ -20,7 +20,7 @@ const themeConfig = {
   magenta: {
     background: "bg-[linear-gradient(to_bottom,#091015_00%,#7A0051_100%)]",
     text: "text-white",
-    connectFormBg: "bg-[linear-gradient(to_bottom,#091015_00%,#7A0051_100%)]",
+    connectFormBg: "bg-[#7A0051]",
     iconColor: "text-white",
     externalLinkColor: "text-white hover:text-gray-400",
     skillBgColor: "bg-white/10",
@@ -29,7 +29,7 @@ const themeConfig = {
   teal: {
     background: "bg-[linear-gradient(to_bottom,#091015_00%,#008080_100%)]",
     text: "text-white",
-    connectFormBg: "bg-[linear-gradient(to_bottom,#091015_00%,#008080_100%)]",
+    connectFormBg: "bg-[#008080]",
     iconColor: "text-white",
     externalLinkColor: "text-white hover:text-gray-400",
     skillBgColor: "bg-white/10",
@@ -100,7 +100,7 @@ const themeConfig = {
     text: "text-white",
     connectFormBg: "bg-[linear-gradient(to_bottom,#091015_00%,#000000_100%)]",
     iconColor: "text-white",
-    externalLinkColor: "text-black hover:text-gray-400",
+    externalLinkColor: "text-white hover:text-gray-400",
     skillBgColor: "bg-white/10",
     homePageBgColor: "bg-[linear-gradient(to_bottom,#091015_00%,#000000_100%)]",
   },

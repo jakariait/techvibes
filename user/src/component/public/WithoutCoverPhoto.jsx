@@ -12,7 +12,7 @@ const WithoutCoverPhoto = ({ profile, user, company }) => {
   return (
     <div className="w-full">
       {/* Top bar: Logo + Login */}
-      <div className="flex justify-between items-center px-10 pt-3">
+      <div className="flex justify-between  items-center px-10 pt-3">
         {/* Left: Logo */}
         {user?.role === "corporate" ? (
           <ImageComponent
@@ -47,7 +47,7 @@ const WithoutCoverPhoto = ({ profile, user, company }) => {
       </div>
 
       {/* Main Profile Section */}
-      <div className="flex items-center justify-center p-2 gap-2">
+      <div className="flex inner-glow m-2  rounded-xl items-center justify-center p-2 gap-2">
         {/* Profile Image */}
         {profile?.profilePhoto ? (
           <ImageComponent
@@ -62,11 +62,11 @@ const WithoutCoverPhoto = ({ profile, user, company }) => {
         )}
 
         {/* Name & Title */}
-        <div>
+        <div className={"mt-10"}>
           <div
-            className={` ${theme.text} flex items-center justify-center flex-col`}
+            className={` ${theme.text} flex  items-center justify-center flex-col`}
           >
-            <div className="text-xl  text-center lg:text-left">
+            <div className="text-xl font-bold  text-center lg:text-left">
               <span className="break-words font-bold ">
                 {profile?.prefix && `${profile.prefix} `}
                 {user.fullName}
@@ -84,7 +84,7 @@ const WithoutCoverPhoto = ({ profile, user, company }) => {
 
             {/*Designation*/}
             {profile?.designation && (
-              <h1 className={"text-lg text-center"}>{profile.designation}</h1>
+              <h1 className={"text text-center"}>{profile.designation}</h1>
             )}
 
             {/*Department Corporate Only*/}
@@ -98,7 +98,7 @@ const WithoutCoverPhoto = ({ profile, user, company }) => {
             )}
 
             {user?.role === "corporate" && company?.companyName && (
-              <h1 className={"font-bold text-center"}>
+              <h1 className={"font-bold text-lg text-center"}>
                 {company?.companyName}
               </h1>
             )}
