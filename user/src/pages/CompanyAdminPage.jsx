@@ -11,6 +11,7 @@ const CompanyAdminPage = () => {
 
   const companyId = user?.company;
 
+
   return (
     <UserLayout>
       {isAdmin && (

@@ -303,7 +303,7 @@ const CompanyUserListSection = ({ companyId }) => {
   );
 
   return (
-    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-5xl mx-auto">
+    <div className="bg-[#212F35] inner-glow p-4 rounded-xl mb-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
