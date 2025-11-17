@@ -4,7 +4,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthUserStore from "../../store/AuthUserStore.jsx";
 
-import logo from "../../assets/TechVibes.png"; // adjust path
+import logo from "../../assets/TechVibes.png";
 
 const LoginForm = () => {
   const navigate = useNavigate();
