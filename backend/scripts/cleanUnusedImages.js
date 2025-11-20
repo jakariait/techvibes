@@ -16,7 +16,6 @@ import ProfileModel from "../models/ProfileModel.js";
 import GalleryModel from "../models/GalleryModel.js";
 import CompanyModel from "../models/CompanyModel.js";
 
-
 // Setup __dirname for ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,7 +47,10 @@ const collectUsedImages = async () => {
   features.forEach(({ imgSrc }) => addImage(imgSrc));
 
   // General info logos
-  const infos = await GeneralInfoModel.find({}, "PrimaryLogo SecondaryLogo Favicon");
+  const infos = await GeneralInfoModel.find(
+    {},
+    "PrimaryLogo SecondaryLogo Favicon",
+  );
   infos.forEach(({ PrimaryLogo, SecondaryLogo, Favicon }) => {
     addImage(PrimaryLogo);
     addImage(SecondaryLogo);
@@ -63,7 +65,10 @@ const collectUsedImages = async () => {
   });
 
   // Profiles
-  const profiles = await ProfileModel.find({}, "profilePhoto galleryPhotos coverPhoto brandLogo");
+  const profiles = await ProfileModel.find(
+    {},
+    "profilePhoto galleryPhotos coverPhoto brandLogo",
+  );
   profiles.forEach(({ profilePhoto, galleryPhotos, coverPhoto, brandLogo }) => {
     addImage(profilePhoto);
     addImage(coverPhoto);
@@ -83,14 +88,11 @@ const collectUsedImages = async () => {
   const company = await CompanyModel.find({}, "companyLogo");
   company.forEach(({ companyLogo }) => addImage(companyLogo));
 
-
-// Gallery
+  // Gallery
   const gallery = await GalleryModel.find({}, "galleryImages");
   gallery.forEach(({ galleryImages }) =>
-    galleryImages.forEach((image) => addImage(image))
+    galleryImages.forEach((image) => addImage(image)),
   );
-
-
 };
 
 await collectUsedImages();
@@ -119,7 +121,9 @@ fs.readdir(uploadsDir, (err, allFiles) => {
       } else {
         deletedCount++;
         if (deletedCount === unusedFiles.length) {
-          console.log(`✅ Cleanup complete. ${deletedCount} unused image(s) deleted.`);
+          console.log(
+            `✅ Cleanup complete. ${deletedCount} unused image(s) deleted.`,
+          );
           process.exit(0);
         }
       }
