@@ -1,42 +1,23 @@
-// const nodemailer = require("nodemailer");
-
-// const sendEmail = async ({ to, subject, text }) => {
-//   let transporter = nodemailer.createTransport({
-//     service: "Gmail", // or your email provider
-//     auth: {
-//       user: process.env.EMAIL_USER,
-//       pass: process.env.EMAIL_PASS,
-//     },
-//   });
-
-//   await transporter.sendMail({
-//     from: `"TechVibes" <${process.env.EMAIL_USER}>`,
-//     to,
-//     subject,
-//     text,
-//   });
-// };
-
-// module.exports = sendEmail;
-
 const nodemailer = require("nodemailer");
+require("dotenv").config(); // if using Node.js
 
-const sendEmail = async ({ to, subject, text }) => {
+const sendEmail = async ({ to, subject, text, html }) => {
   let transporter = nodemailer.createTransport({
-    host: "mail.techvibesbd.com",      // ✅ NOT Gmail
-    port: 465,                     // ✅ Secure SSL port
-    secure: true,                  // ✅ true because port 465
+    host: "smtp-relay.brevo.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: "otp@techvibesbd.com",     // ✅ full email
-      pass: "fm#!#6bStkW}",         // ✅ your real password
+      user: process.env.BREVO_USER,
+      pass: process.env.BREVO_SMTP_KEY,
     },
   });
 
   await transporter.sendMail({
-    from: '"Techvibes" <otp@techvibesbd.com>', // Optional display name
+    from: '"Techvibes" <no-reply@techvibesbd.com>',
     to,
     subject,
     text,
+    html,
   });
 };
 
