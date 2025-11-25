@@ -10,8 +10,10 @@ import useAuthUserStore from "../../store/AuthUserStore.jsx";
 const apiURL = import.meta.env.VITE_API_URL;
 
 const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
-  const { token } = useAuthUserStore();
+  const { token, user } = useAuthUserStore();
+
   const [designation, setDesignation] = useState("");
+  const [idNumber, setIdNumber] = useState(""); // New state for ID number
   const [editDesignationCompany, setEditDesignationCompany] = useState(false);
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({
@@ -36,6 +38,7 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
         });
         const profile = res.data?.profile || {};
         setDesignation(profile.designation || "");
+        setIdNumber(profile.idNumber || ""); // Fetch ID number
         setEditDesignationCompany(profile.editDesignationCompany || false);
       } catch (err) {
         showSnackbar("Failed to load data", "error");
@@ -49,9 +52,19 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
   const handleSave = async () => {
     setLoading(true);
     try {
+      const payload = {
+        designation,
+      };
+
+      if (user?.company === "691b46700f3b99a078f08b46") {
+        payload.idNumber = idNumber;
+      } else {
+        payload.editDesignationCompany = editDesignationCompany;
+      }
+
       await axios.patch(
         `${apiURL}/profilebyslug/${slug}`,
-        { designation, editDesignationCompany },
+        payload,
         { headers: { Authorization: `Bearer ${token}` } },
       );
       showSnackbar("Updated successfully!");
@@ -64,33 +77,72 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
     }
   };
 
+  const renderFields = () => {
+    if (user?.company === "691b46700f3b99a078f08b46") {
+      return (
+        <>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-200">
+              Designation
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Designation"
+              value={designation}
+              onChange={(e) => setDesignation(e.target.value)}
+              className="bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-200">
+              ID Number
+            </label>
+            <input
+              type="text"
+              placeholder="Enter ID Number"
+              value={idNumber}
+              onChange={(e) => setIdNumber(e.target.value)}
+              className="bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
+            />
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-200">
+              Designation
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Designation"
+              value={designation}
+              onChange={(e) => setDesignation(e.target.value)}
+              className="bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
+            />
+          </div>
+          <div className="flex items-center gap-2 mt-2">
+            <input
+              type="checkbox"
+              checked={editDesignationCompany}
+              onChange={(e) => setEditDesignationCompany(e.target.checked)}
+              className="w-5 h-5"
+              id="editDesigComp"
+            />
+            <label htmlFor="editDesigComp" className="text-gray-200 text-sm">
+              User Can Change Designation
+            </label>
+          </div>
+        </>
+      );
+    }
+  };
+
   return (
     <div>
       <div className="bg-[#212F35]  p-4 flex flex-col gap-3 mt-2 mb-2">
-        <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-gray-200">
-            Designation
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Designation"
-            value={designation}
-            onChange={(e) => setDesignation(e.target.value)}
-            className="bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
-          />
-        </div>
-        <div className="flex items-center gap-2 mt-2">
-          <input
-            type="checkbox"
-            checked={editDesignationCompany}
-            onChange={(e) => setEditDesignationCompany(e.target.checked)}
-            className="w-5 h-5"
-            id="editDesigComp"
-          />
-          <label htmlFor="editDesigComp" className="text-gray-200 text-sm">
-            User Can Change Designation
-          </label>
-        </div>
+        {renderFields()}
       </div>
 
       <div className="flex justify-end gap-2 mt-4">

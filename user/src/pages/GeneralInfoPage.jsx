@@ -15,6 +15,7 @@ const GeneralInfoPage = () => {
       {user?.role === "normal" && user?.permission?.includes("brandLogo") && (
         <PhotoUploadSection slug={user?.slug} type="brandLogo" />
       )}
+
     </UserLayout>
   );
 };

@@ -10,9 +10,12 @@ const apiURL = import.meta.env.VITE_API_URL;
 
 const GeneralProfileInfoSection = ({ slug }) => {
   const { user, token } = useAuthUserStore();
+
   const isMainAdmin = user?.isMainAdmin;
   const isCorporate = user?.role === "corporate";
   const isNormal = user?.role === "normal";
+
+  const [profileData, setProfileData] = useState(null);
 
   const [fields, setFields] = useState({
     prefix: "",
@@ -58,6 +61,7 @@ const GeneralProfileInfoSection = ({ slug }) => {
         const res = await axios.get(`${apiURL}/userbyslug/${slug}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        setProfileData(res.data);
         const profile = res.data?.profile || {};
         setFields((prev) => ({
           ...prev,
@@ -122,12 +126,21 @@ const GeneralProfileInfoSection = ({ slug }) => {
       .replace(/^./, (s) => s.toUpperCase())
       .trim();
 
-  // Designation visibility logic
+  // Designation and ID visibility logic works only for KlothStudio
+  const shouldHideForCompany = user?.company === "691b46700f3b99a078f08b46";
+
   const showDesignationField =
-    isNormal || isMainAdmin || (isCorporate && fields.editDesignationCompany);
+    (isNormal ||
+      isMainAdmin ||
+      (isCorporate && fields.editDesignationCompany)) &&
+    !shouldHideForCompany;
 
   const alwaysFields = ["prefix", "suffix", "bloodGroup"];
-  const corporateFields = ["department", "idNumber"];
+
+  const corporateFields = shouldHideForCompany
+    ? ["department"]
+    : ["department", "idNumber"];
+
   const normalUserFields = ["companyName"];
 
   const themeOptions = [

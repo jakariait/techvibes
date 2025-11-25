@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)https://techvibesbd.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This site is under construction. We&#39;ll be live soon!">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Under Construction</title>
+  <link rel="icon" href="https://techvibesbd.com/favicon.ico">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: #111729;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-2: #22d3ee;
+      --ring: #1f2937;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f8fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569; --ring:#e2e8f0; }
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text); background: radial-gradient(1200px 800px at 10% 10%, rgba(96,165,250,.08), transparent),
+              radial-gradient(900px 600px at 90% 20%, rgba(34,211,238,.10), transparent), var(--bg);
+      display: grid; place-items: center; padding: 2rem; line-height: 1.5;
+    }
+    .card {
+      width: 100%; max-width: 760px; background: color-mix(in oklab, var(--panel) 92%, transparent);
+      border: 1px solid var(--ring); border-radius: 24px; padding: clamp(1.25rem, 2.5vw, 2rem);
+      box-shadow: 0 10px 30px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(6px);
+    }
+    .row { display: grid; gap: .75rem }
+    .logo {
+      display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .2px; text-transform: uppercase;
+    }
+    .logo-mark { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid; place-items: center; color: white; font-weight: 900; box-shadow: 0 6px 16px rgba(34,211,238,.35);
+    }
+    h1 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); margin: .25rem 0 0; letter-spacing: -.02em }
+    p.lead { color: var(--muted); margin: .25rem 0 1rem }
+
+    .progress {
+      position: relative; height: 10px; background: color-mix(in oklab, var(--ring), transparent 25%);
+      border-radius: 999px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--ring), #000 10%);
+    }
+    .bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 30px color-mix(in oklab, var(--accent-2) 40%, transparent); transition: width 1s ease;
+    }
+
+    .grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 720px) {
+      .grid { grid-template-columns: 1.2fr .8fr; align-items: start; }
+    }
+
+    .panel { border: 1px solid var(--ring); background: color-mix(in oklab, var(--panel) 96%, transparent); border-radius: 18px; padding: 1rem }
+    .muted { color: var(--muted) }
+
+    .list { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none }
+    .list li { display:flex; align-items:center; gap:.6rem }
+    .k { display:inline-flex; gap:.35rem; align-items:center; padding:.35rem .6rem; border-radius:999px; font-size:.78rem; border:1px dashed var(--ring) }
+
+    .social { display:flex; gap:.65rem }
+    .social a { width: 36px; height:36px; border-radius: 10px; display:grid; place-items:center; border:1px solid var(--ring); color: var(--muted); text-decoration:none }
+    .footer { margin-top: 1.25rem; font-size: .9rem }
+  </style>
+</head>
+<body cz-shortcut-listen="true">
+  <main class="card" role="main" aria-labelledby="headline">
+    <div class="row">
+      <div class="logo" aria-label="Brand">
+        <div class="logo-mark" aria-hidden="true">★</div>
+        <span>TechVibes</span>
+      </div>
+      <h1 id="headline">We’re building something awesome</h1>
+      <p class="lead">Our site is under construction. We’ll be live soon. Stay tuned for the launch!</p>
+
+      <div class="grid">
+        <!-- Left: Status -->
+        <section class="panel" aria-labelledby="status-title">
+          <h2 id="status-title" style="margin:0 0 .5rem">Status</h2>
+          <ul class="list">
+            <li><span class="k">🚧</span><span class="muted">Development in progress</span></li>
+            <li><span class="k">⚡</span><span class="muted">Performance tuning</span></li>
+            <li><span class="k">🔒</span><span class="muted">Security review</span></li>
+          </ul>
+          
+        </section>
+
+        
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // --- Simple countdown (set your target date here) ---
+    const launchDate = new Date('2025-09-31T00:00:00'); // 🎯 Change launch date here
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = Math.max(0, launchDate - now);
+      const s = Math.floor(diff / 1000);
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+      const pad = (n) => String(n).padStart(2, '0');
+      document.getElementById('countdown').textContent = `${pad(days)}d : ${pad(hours)}h : ${pad(mins)}m : ${pad(secs)}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // --- Fake progress pulse (optional aesthetic) ---
+    const bar = document.getElementById('bar');
+    let pct = 62;
+    setInterval(() => {
+      const delta = (Math.random() * 2 - 1) * 1.5; // jitter
+      pct = Math.max(40, Math.min(95, pct + delta));
+      bar.style.width = pct.toFixed(1) + '%';
+      document.getElementById('progressLabel').textContent = pct.toFixed(0) + '%';
+    }, 2200);
+  </script>
+
+
+</body></html>
