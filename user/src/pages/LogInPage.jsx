@@ -14,7 +14,6 @@ const LogInPage = () => {
       className="flex items-center justify-center"
     >
       <LoginForm />
-      <div>Jakaria</div>
     </div>
   );
 };
