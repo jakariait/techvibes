@@ -14,6 +14,7 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
 
   const [designation, setDesignation] = useState("");
   const [idNumber, setIdNumber] = useState(""); // New state for ID number
+  const [department, setDepartment] = useState("");
   const [editDesignationCompany, setEditDesignationCompany] = useState(false);
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({
@@ -39,6 +40,7 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
         const profile = res.data?.profile || {};
         setDesignation(profile.designation || "");
         setIdNumber(profile.idNumber || ""); // Fetch ID number
+        setDepartment(profile.department || "");
         setEditDesignationCompany(profile.editDesignationCompany || false);
       } catch (err) {
         showSnackbar("Failed to load data", "error");
@@ -58,6 +60,7 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
 
       if (user?.company === "691b46700f3b99a078f08b46") {
         payload.idNumber = idNumber;
+        payload.department = department;
       } else {
         payload.editDesignationCompany = editDesignationCompany;
       }
@@ -102,6 +105,18 @@ const EditUserDesignationSection = ({ slug, onClose, onSaved }) => {
               placeholder="Enter ID Number"
               value={idNumber}
               onChange={(e) => setIdNumber(e.target.value)}
+              className="bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-200">
+              Department
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Department"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
               className="bg-[#212F35] text-white p-2 rounded border border-gray-600 focus:outline-none"
             />
           </div>

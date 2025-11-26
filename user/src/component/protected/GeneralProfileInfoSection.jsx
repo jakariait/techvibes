@@ -137,9 +137,7 @@ const GeneralProfileInfoSection = ({ slug }) => {
 
   const alwaysFields = ["prefix", "suffix", "bloodGroup"];
 
-  const corporateFields = shouldHideForCompany
-    ? ["department"]
-    : ["department", "idNumber"];
+  const corporateFields = shouldHideForCompany ? [] : ["department", "idNumber"];
 
   const normalUserFields = ["companyName"];
 

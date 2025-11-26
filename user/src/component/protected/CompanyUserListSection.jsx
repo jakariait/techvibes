@@ -221,7 +221,7 @@ const CompanyUserListSection = ({ companyId }) => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 6;
 
   // Edit dialog state
   const [editUserSlug, setEditUserSlug] = useState(null);
