@@ -138,3 +138,6 @@ dist
 .pnp.*
 
 mongo_backup.sh
+
+# Ignore uploaded files
+uploads/
