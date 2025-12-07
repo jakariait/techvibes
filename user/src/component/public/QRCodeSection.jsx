@@ -142,7 +142,7 @@ const QRCodeSection = ({ user, profile }) => {
               className={`${theme.skillBgColor} ${theme.text} font-semibold py-2 px-5 rounded-lg inner-glow flex justify-center items-center gap-4 cursor-pointer`}
             >
               <Share2 className={`w-5 h-5`} />
-              {shareStatus || "Share"}
+              {"Share"}
             </button>
           </div>
         </div>
