@@ -30,25 +30,45 @@ const QRCodeSection = ({ user, profile }) => {
   };
 
   const shareQR = async () => {
-    if (navigator.share) {
-      try {
+    if (typeof qrCodeUrl !== "string" || !qrCodeUrl.trim()) {
+      setShareStatus("Error!");
+      setTimeout(() => setShareStatus(""), 2000);
+      return;
+    }
+
+    try {
+      const response = await fetch(qrCodeUrl);
+      const blob = await response.blob();
+      const file = new File([blob], "qr-code.png", { type: blob.type });
+
+      // Check if the browser supports sharing files
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
+          files: [file],
           title: "QR Code",
           text: "Scan this code to connect",
-          url: qrCodeUrl,
         });
-      } catch (error) {
-        console.error("Error sharing:", error);
+      } else {
+        // Fallback for browsers that don't support sharing files
+        try {
+          // Attempt to copy the image to the clipboard
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              [blob.type]: blob,
+            }),
+          ]);
+          setShareStatus("Copied!");
+          setTimeout(() => setShareStatus(""), 2000);
+        } catch (copyError) {
+          console.error("Could not copy image to clipboard.", copyError);
+          setShareStatus("Cannot Share!");
+          setTimeout(() => setShareStatus(""), 2000);
+        }
       }
-    } else {
-      try {
-        await navigator.clipboard.writeText(qrCodeUrl);
-        setShareStatus("Copied!");
-        setTimeout(() => setShareStatus(""), 2000);
-      } catch {
-        setShareStatus("Error!");
-        setTimeout(() => setShareStatus(""), 2000);
-      }
+    } catch (error) {
+      console.error("Error preparing/sharing QR Code:", error);
+      setShareStatus("Error!");
+      setTimeout(() => setShareStatus(""), 2000);
     }
   };
 
