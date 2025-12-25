@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Bruno Ace", sans-serif;
+}
+
+.menuTextColor {
+  color: #4e52fb;
+}
+
+.get-now-btn {
+  padding: 6px;
+  background: linear-gradient(180deg, #b3eff7 0%, #5718f2 100%);
+  border-bottom: 2px solid #9c43ca;
+  box-shadow: 2px 2px 21.1px #6b519d;
+  border-radius: 4px;
+  color: #ebecff;
+  cursor: pointer;
+}
