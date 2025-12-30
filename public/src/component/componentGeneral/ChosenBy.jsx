@@ -16,6 +16,7 @@ import imgRectangle5256 from "../../assets/rectangle-5256.png";
 import imgRectangle5257 from "../../assets/rectangle-5257.png";
 import imgRectangle5258 from "../../assets/rectangle-5258.png";
 import imgRectangle5259 from "../../assets/rectangle-5259.png";
+import DownloadCompanyProfile from "./DownloadCompanyProfile.jsx";
 
 const images = [
   imgRectangle5242,
@@ -65,6 +66,9 @@ export default function ChosenBy() {
             />
           </div>
         ))}
+      </div>
+      <div className="flex items-center py-11.75 justify-center">
+        <DownloadCompanyProfile />
       </div>
     </div>
   );

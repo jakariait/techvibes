@@ -1,10 +1,9 @@
 import Menu from "./component/componentGeneral/Menu.jsx";
-
 import NewCorporateHero from "./component/componentGeneral/NewCorporateHero.jsx";
 import ChosenBy from "./component/componentGeneral/ChosenBy.jsx";
 import backgroundImages from "../src/assets/background.jpg";
 import TestMCP from "./component/componentGeneral/TestMCP.jsx";
-import DownloadCompanyProfile from "./component/componentGeneral/DownloadCompanyProfile.jsx";
+import ComparePackage from "./component/componentGeneral/ComparePackage.jsx";
 
 function App() {
   return (
@@ -22,9 +21,7 @@ function App() {
         <Menu />
         <NewCorporateHero />
         <ChosenBy />
-        <div className="flex items-center py-11.75 justify-center">
-          <DownloadCompanyProfile />
-        </div>
+        <ComparePackage />
         {/*<TestMCP />*/}
       </div>
     </div>
