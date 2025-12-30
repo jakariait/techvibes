@@ -24,20 +24,24 @@ const PackageCard = ({
     ${isFeatured ? "top-[191px]" : "top-[144px]"}
   `;
 
-  const contentGap = isFeatured ? "gap-[194px]" : "gap-[161px]";
-  const featuresPartGap = isFeatured ? "gap-[67px]" : "gap-[53px]";
-  const featureListGap = isFeatured ? "gap-[15px]" : "gap-[48px]";
+  const featuresPartGap = isFeatured ? "gap-[67px]" : "gap-[40px]";
+
+  const featureListGap = isFeatured ? "gap-[15px]" : "gap-[15px]";
 
   return (
     <div className={cardClasses}>
       <div className={innerBgClasses} />
+
       <div
-        className={`relative z-10 flex flex-col items-center text-center p-5 h-full ${isFeatured ? "py-8.75" : "py-2.5"} ${contentGap}`}
+        className={`relative z-10 flex flex-col items-center text-center p-5 h-full py-8`}
       >
         <div className="flex flex-col gap-1.75">
           <p className="text-[24px]">{title}</p>
+
           <p className="text-[24px]">{subtitle}</p>
         </div>
+
+        <div className="flex-grow" />
 
         <div className={`flex flex-col items-center ${featuresPartGap}`}>
           <div className={`flex flex-col items-center ${featureListGap}`}>
