@@ -1,0 +1,40 @@
+/* public/src/component/componentGeneral/EcoImpactCalculator.css */
+
+.custom-range-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px; /* Adjust size as needed */
+  height: 48px; /* Adjust size as needed */
+  background-image: url("../../assets/slider.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  margin-top: -20px; /* Adjust to vertically center the thumb on the track */
+  border-radius: 50%; /* If the image is square, make it round */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); /* Add some shadow for depth */
+}
+
+.custom-range-thumb::-moz-range-thumb {
+  width: 48px; /* Adjust size as needed */
+  height: 48px; /* Adjust size as needed */
+  background-image: url("../../assets/slider.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: none; /* Remove default border */
+  border-radius: 50%; /* If the image is square, make it round */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Optional: styling the track */
+.custom-range-thumb::-webkit-slider-runnable-track {
+  height: 8px; /* Tailwinds h-2 */
+  background: #4a5568; /* Tailwind's bg-slate-600 */
+  border-radius: 9999px; /* Rounded-lg */
+}
+
+.custom-range-thumb::-moz-range-track {
+  height: 8px;
+  background: #4a5568;
+  border-radius: 9999px;
+}
