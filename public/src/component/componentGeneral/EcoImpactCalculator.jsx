@@ -33,7 +33,7 @@ export default function EcoImpactCalculator() {
                   />
                 </div>
               </div>
-              <div className="bg-[rgba(47,75,166,0.2)] border border-gray-200 rounded px-6 sm:px-8 py-4 sm:py-6 min-w-[100px] sm:min-w-[120px] text-center">
+              <div className="bg-[rgba(47,75,166,0.2)] border border-gray-200 rounded px-6 sm:px-8 py-4 sm:py-6 min-w-25 sm:w-30 text-center">
                 <p className=" text-white text-lg sm:text-xl">{employees}</p>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function EcoImpactCalculator() {
                   />
                 </div>
               </div>
-              <div className="bg-[rgba(47,75,165,0.2)] border border-gray-200 rounded px-6 sm:px-8 py-4 sm:py-6 min-w-[100px] sm:min-w-[120px] text-center">
+              <div className="bg-[rgba(47,75,165,0.2)] border border-gray-200 rounded px-6 sm:px-8 py-4 sm:py-6 min-w-25 sm:w-30 text-center">
                 <p className=" text-white text-lg sm:text-xl">
                   ${printingCost}
                 </p>
@@ -69,22 +69,22 @@ export default function EcoImpactCalculator() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-8">
             {/* Bottom Line Card */}
             <div className="bg-[rgba(47,75,165,0.2)] border border-gray-200 rounded-lg p-6 sm:p-8 transform transition-transform hover:scale-105">
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-                <div className="size-12 sm:size-16 shrink-0">
+              <div className="flex flex-col sm:flex-row items-center gap-4 ">
+                <div className="size-12  shrink-0">
                   <img
                     alt="Savings icon"
                     className="block w-full h-full"
                     src={img2}
                   />
                 </div>
-                <div className="text-center sm:text-left flex-1">
-                  <p className=" text-white text-base sm:text-xl mb-2">
+                <div className="text-center flex-1">
+                  <p className=" text-white text-base  mb-2">
                     Bottom Line
                   </p>
-                  <p className=" text-white text-2xl sm:text-4xl mb-2">
+                  <p className=" text-white text-2xl  mb-2">
                     ${annualSavings.toLocaleString()}
                   </p>
-                  <p className=" text-gray-400 text-xs sm:text-sm">
+                  <p className=" text-gray-400 text-xs">
                     savings per year
                   </p>
                 </div>
@@ -92,23 +92,23 @@ export default function EcoImpactCalculator() {
             </div>
 
             {/* Trees Saved Card */}
-            <div className="bg-[rgba(47,75,165,0.2)] border-2 border-gray-200 rounded-lg p-6 sm:p-8 transform transition-transform hover:scale-105">
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-                <div className="size-12 sm:size-16 shrink-0">
+            <div className="bg-[rgba(47,75,165,0.2)] border-2 border-gray-200 rounded-lg p-4  transform transition-transform hover:scale-105">
+              <div className="flex flex-col sm:flex-row items-center gap-4 ">
+                <div className="size-12  shrink-0">
                   <img
                     alt="Tree icon"
                     className="block w-full h-full"
                     src={img1}
                   />
                 </div>
-                <div className="text-center sm:text-left flex-1">
-                  <p className=" text-white text-base sm:text-xl mb-2">
+                <div className="text-center  flex-1">
+                  <p className=" text-white text-base mb-2">
                     Trees Saved
                   </p>
-                  <p className=" text-white text-2xl sm:text-4xl mb-2">
+                  <p className=" text-white text-2xl mb-2">
                     {treesSaved}
                   </p>
-                  <p className="text-gray-400 text-xs sm:text-sm">
+                  <p className="text-gray-400 text-xs ">
                     eco-friendly impact per year
                   </p>
                 </div>

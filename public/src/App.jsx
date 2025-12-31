@@ -7,6 +7,7 @@ import ComparePackage from "./component/componentGeneral/ComparePackage.jsx";
 import AddressGrid from "./component/componentGeneral/AddressGrid.jsx";
 import QuotaSection from "./component/componentGeneral/QuotaSection.jsx";
 import EcoImpactCalculator from "./component/componentGeneral/EcoImpactCalculator.jsx";
+import EcoImpactSections from "./component/componentGeneral/EcoImpactSections.jsx";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         <ComparePackage />
         <AddressGrid />
         <QuotaSection />
-        <EcoImpactCalculator />
+        <EcoImpactSections/>
 
         {/*<TestMCP />*/}
       </div>
