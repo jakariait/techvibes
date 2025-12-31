@@ -4,6 +4,7 @@ import ChosenBy from "./component/componentGeneral/ChosenBy.jsx";
 import backgroundImages from "../src/assets/background.jpg";
 import TestMCP from "./component/componentGeneral/TestMCP.jsx";
 import ComparePackage from "./component/componentGeneral/ComparePackage.jsx";
+import AddressGrid from "./component/componentGeneral/AddressGrid.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <NewCorporateHero />
         <ChosenBy />
         <ComparePackage />
+        <AddressGrid />
         {/*<TestMCP />*/}
       </div>
     </div>
