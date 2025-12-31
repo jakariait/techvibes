@@ -2,12 +2,13 @@ import Menu from "./component/componentGeneral/Menu.jsx";
 import NewCorporateHero from "./component/componentGeneral/NewCorporateHero.jsx";
 import ChosenBy from "./component/componentGeneral/ChosenBy.jsx";
 import backgroundImages from "../src/assets/background.jpg";
-import TestMCP from "./component/componentGeneral/TestMCP.jsx";
 import ComparePackage from "./component/componentGeneral/ComparePackage.jsx";
 import AddressGrid from "./component/componentGeneral/AddressGrid.jsx";
 import QuotaSection from "./component/componentGeneral/QuotaSection.jsx";
-import EcoImpactCalculator from "./component/componentGeneral/EcoImpactCalculator.jsx";
+
 import EcoImpactSections from "./component/componentGeneral/EcoImpactSections.jsx";
+import FooterMenu from "./component/componentGeneral/FooterMenu.jsx";
+import TechVibesFooter from "./component/componentGeneral/TechVibesFooter.jsx";
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
         <AddressGrid />
         <QuotaSection />
         <EcoImpactSections />
-
-        {/*<TestMCP />*/}
+        <FooterMenu />
+        <TechVibesFooter />
       </div>
     </div>
   );
