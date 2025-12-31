@@ -6,6 +6,7 @@ import TestMCP from "./component/componentGeneral/TestMCP.jsx";
 import ComparePackage from "./component/componentGeneral/ComparePackage.jsx";
 import AddressGrid from "./component/componentGeneral/AddressGrid.jsx";
 import QuotaSection from "./component/componentGeneral/QuotaSection.jsx";
+import FigmaDesign from "./components/FigmaDesign.jsx";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
         <ComparePackage />
         <AddressGrid />
         <QuotaSection />
+        <div className={"p-10"}>
+          <FigmaDesign />
+        </div>
+
         {/*<TestMCP />*/}
       </div>
     </div>
