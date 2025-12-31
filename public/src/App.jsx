@@ -28,7 +28,7 @@ function App() {
         <ComparePackage />
         <AddressGrid />
         <QuotaSection />
-        <EcoImpactSections/>
+        <EcoImpactSections />
 
         {/*<TestMCP />*/}
       </div>
