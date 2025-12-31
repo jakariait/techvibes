@@ -5,6 +5,7 @@ import backgroundImages from "../src/assets/background.jpg";
 import TestMCP from "./component/componentGeneral/TestMCP.jsx";
 import ComparePackage from "./component/componentGeneral/ComparePackage.jsx";
 import AddressGrid from "./component/componentGeneral/AddressGrid.jsx";
+import Footer from "./component/componentGeneral/Footer.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <ChosenBy />
         <ComparePackage />
         <AddressGrid />
+        <Footer />
         {/*<TestMCP />*/}
       </div>
     </div>

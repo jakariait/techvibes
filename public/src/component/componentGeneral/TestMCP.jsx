@@ -67,7 +67,7 @@ const imgStreamlineFlexTiktokSolid =
 const imgLogosYoutubeIcon =
   "https://www.figma.com/api/mcp/asset/432445cd-c4e6-4b9b-84fb-123f0789e0a3";
 
-function Ellipse({ className, property1 = "Default" }) {
+function Ellipse({ className }) {
   return (
     <div data-node-id="1:2555" className={className}>
       <div className="absolute inset-[-4.19%]">
