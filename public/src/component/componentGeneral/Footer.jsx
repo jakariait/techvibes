@@ -97,11 +97,11 @@ const Footer = () => {
         data-node-id="1:7207"
       />
       <div
-        className="absolute content-stretch flex items-start justify-between left-[59.5px] top-[326px] w-[1320px]"
+        className="container mx-auto flex flex-col lg:flex-row items-start justify-between px-4 lg:px-0 gap-8 lg:gap-16 mt-16"
         data-node-id="1:7208"
       >
         <div
-          className="content-stretch flex flex-col gap-[41px] items-start relative shrink-0 w-[394px]"
+          className="flex flex-col gap-10 items-start relative shrink-0 w-full lg:w-[394px]"
           data-node-id="1:7209"
         >
           <p
@@ -115,7 +115,7 @@ const Footer = () => {
             data-node-id="1:7211"
           >
             <p
-              className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[16px] text-white w-[min-content] whitespace-pre-wrap"
+              className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] min-w-full not-italic relative shrink-0 text-[16px] text-white whitespace-pre-wrap"
               data-node-id="1:7212"
             >
               Calculate your company’s savings and environmental impactCalculate
@@ -126,7 +126,7 @@ const Footer = () => {
               environmental impact
             </p>
             <div
-              className="bg-gradient-to-b border-[#9c43ca] border-b-2 border-l-0 border-r-0 border-solid border-t-0 content-stretch flex from-[#b1eaf5] items-center justify-center p-[10px] relative rounded-[12px] shadow-[2px_2px_21.1px_0px_#6b519d] shrink-0 to-[#5c22e9] w-[376px]"
+              className="bg-gradient-to-b border-[#9c43ca] border-b-2 border-l-0 border-r-0 border-solid border-t-0 content-stretch flex from-[#b1eaf5] items-center justify-center p-[10px] relative rounded-[12px] shadow-[2px_2px_21.1px_0px_#6b519d] shrink-0 to-[#5c22e9] w-full hover:scale-105 transition-transform duration-300"
               data-node-id="1:7213"
             >
               <p
@@ -139,50 +139,75 @@ const Footer = () => {
           </div>
         </div>
         <button
-          className="bg-[rgba(0,0,0,0)] border-2 border-[#f0f0f0] border-solid content-stretch cursor-pointer flex flex-col h-[495px] items-start px-[42px] py-[49px] relative rounded-[8px] shrink-0 w-[866px]"
+          className="bg-[rgba(0,0,0,0)] border-2 border-[#f0f0f0] border-solid content-stretch cursor-pointer flex flex-col h-auto items-start p-4 lg:p-[49px] relative rounded-[8px] shrink-0 w-full lg:w-[866px]"
           data-node-id="1:7215"
         >
           <div
-            className="h-[396px] relative shrink-0 w-[782px]"
+            className="flex flex-col gap-4 p-4 w-full"
             data-node-id="I1:7215;1745:2212"
           >
-            <div
-              className="absolute h-[64px] left-0 top-[25px] w-[648px]"
-              data-node-id="I1:7215;1745:2175"
-            >
-              <div
-                className="absolute bg-[#152d5f] h-[43px] left-0 rounded-[20px] shadow-[0px_4px_10.6px_0px_rgba(242,239,239,0.25)] top-[10px] w-[648px]"
-                data-node-id="I1:7215;1745:2176"
-              />
-              <div
-                className="absolute left-[27px] size-[64px] top-0"
-                data-node-id="I1:7215;1745:2177"
+            {/* Amount of employees row */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+              <p
+                className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic text-[#f9f6f6] text-[12px] text-left w-full md:w-auto"
+                data-node-id="I1:7215;1745:2211"
               >
-                <div className="absolute inset-[-1.56%]">
-                  <img
-                    alt=""
-                    className="block max-w-none size-full"
-                    height="66"
-                    src={img}
-                    width="66"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              className="absolute h-[64px] left-0 top-[166px] w-[648px]"
-              data-node-id="I1:7215;1745:2178"
-            >
+                Amount of employees
+              </p>
               <div
-                className="absolute contents left-0 top-0"
-                data-node-id="I1:7215;1745:2222"
+                className="relative h-[64px] w-full md:w-[648px] flex items-center"
+                data-node-id="I1:7215;1745:2175"
               >
                 <div
-                  className="absolute bg-[#152d5f] h-[43px] left-0 rounded-[20px] shadow-[0px_4px_7.7px_0px_rgba(255,244,244,0.25)] top-[10px] w-[648px]"
+                  className="bg-[#152d5f] h-[43px] rounded-[20px] shadow-[0px_4px_10.6px_0px_rgba(242,239,239,0.25)] w-full absolute top-1/2 -translate-y-1/2 left-0"
+                  data-node-id="I1:7215;1745:2176"
+                />
+                <div
+                  className="size-[64px] relative z-10 ml-2" // Adjust margin as needed
+                  data-node-id="I1:7215;1745:2177"
+                >
+                  <div className="absolute inset-[-1.56%]">
+                    <img
+                      alt=""
+                      className="block max-w-none size-full"
+                      height="66"
+                      src={img}
+                      width="66"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="bg-[rgba(47,75,166,0.2)] border border-[#f0f0f0] border-solid flex h-[73px] items-center justify-center px-4 py-2 rounded-[4px] w-auto text-white"
+                data-node-id="I1:7215;1745:2191"
+              >
+                <p
+                  className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic text-[20px] text-center"
+                  data-node-id="I1:7215;1745:2187"
+                >
+                  100
+                </p>
+              </div>
+            </div>
+
+            {/* Printing cost row */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+              <p
+                className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic text-[#f9f6f6] text-[12px] text-left w-full md:w-auto"
+                data-node-id="I1:7215;1745:2210"
+              >
+                Printing cost
+              </p>
+              <div
+                className="relative h-[64px] w-full md:w-[648px] flex items-center"
+                data-node-id="I1:7215;1745:2178"
+              >
+                <div
+                  className="bg-[#152d5f] h-[43px] rounded-[20px] shadow-[0px_4px_7.7px_0px_rgba(255,244,244,0.25)] w-full absolute top-1/2 -translate-y-1/2 left-0"
                   data-node-id="I1:7215;1745:2179"
                 />
                 <div
-                  className="absolute left-[192px] size-[64px] top-0"
+                  className="size-[64px] relative z-10 ml-2" // Adjust margin as needed
                   data-node-id="I1:7215;1753:2167"
                 >
                   <div className="absolute inset-[-1.56%]">
@@ -196,159 +221,140 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="absolute bg-[rgba(47,75,166,0.2)] border border-[#f0f0f0] border-solid content-stretch flex h-[73px] items-center justify-center left-[669px] px-[35px] py-[24px] rounded-[4px] top-[20px] w-[113px]"
-              data-node-id="I1:7215;1745:2191"
-            >
-              <p
-                className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#f9f6f6] text-[20px] text-left"
-                data-node-id="I1:7215;1745:2187"
-              >
-                100
-              </p>
-            </div>
-            <div
-              className="absolute bg-[rgba(47,75,165,0.2)] border border-[#f0f0f0] border-solid content-stretch flex h-[73px] items-center justify-center left-[669px] px-[26px] py-[24px] rounded-[4px] top-[161px] w-[113px]"
-              data-node-id="I1:7215;1745:2190"
-            >
-              <p
-                className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#f9f6f6] text-[20px] text-left"
-                data-node-id="I1:7215;1745:2188"
-              >
-                100 $
-              </p>
-            </div>
-            <div
-              className="absolute bg-[rgba(47,75,165,0.2)] border-2 border-[#f0f0f0] border-solid content-stretch flex flex-col h-[115px] items-start left-[422px] p-[12px] rounded-[4px] top-[281px] w-[360px]"
-              data-node-id="I1:7215;1745:2197"
-            >
               <div
-                className="content-stretch flex gap-[39px] items-center relative shrink-0"
-                data-node-id="I1:7215;1745:2217"
+                className="bg-[rgba(47,75,165,0.2)] border border-[#f0f0f0] border-solid flex h-[73px] items-center justify-center px-4 py-2 rounded-[4px] w-auto text-white"
+                data-node-id="I1:7215;1745:2190"
               >
-                <div
-                  className="relative shrink-0 size-[60px]"
-                  data-name="ph:tree-fill"
-                  data-node-id="I1:7215;1745:2195"
+                <p
+                  className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic text-[20px] text-center"
+                  data-node-id="I1:7215;1745:2188"
                 >
-                  <img
-                    alt=""
-                    className="block max-w-none size-full"
-                    src={img1}
-                  />
-                </div>
-                <div
-                  className="content-stretch flex flex-col items-center relative shrink-0 w-[214px]"
-                  data-node-id="I1:7215;1745:2216"
-                >
-                  <p
-                    className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#f9f6f6] text-[20px] text-center w-full whitespace-pre-wrap"
-                    data-node-id="I1:7215;1745:2192"
-                  >
-                    Trees Saved
-                  </p>
-                  <div
-                    className="content-stretch flex flex-col font-['Bruno_Ace:Regular',sans-serif] gap-[6px] items-center leading-[normal] not-italic relative shrink-0 w-full whitespace-pre-wrap"
-                    data-node-id="I1:7215;1745:2215"
-                  >
-                    <p
-                      className="relative shrink-0 text-[#f9f6f6] text-[36px] text-center w-full"
-                      data-node-id="I1:7215;1745:2193"
-                    >
-                      4
-                    </p>
-                    <p
-                      className="relative shrink-0 text-[12px] text-[rgba(249,246,246,0.71)] text-left w-full"
-                      data-node-id="I1:7215;1745:2194"
-                    >
-                      eco-friendly impact per year
-                    </p>
-                  </div>
-                </div>
+                  100 $
+                </p>
               </div>
             </div>
-            <div
-              className="absolute bg-[rgba(47,75,165,0.2)] border border-[#f0f0f0] border-solid content-stretch flex flex-col h-[115px] items-start left-0 px-[35px] py-[12px] rounded-[4px] top-[281px] w-[360px]"
-              data-node-id="I1:7215;1745:2198"
-            >
-              <div
-                className="content-stretch flex gap-[63px] items-center relative shrink-0"
-                data-node-id="I1:7215;1745:2220"
-              >
+
+            {/* Trees Saved and Bottom Line sections */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
                 <div
-                  className="relative shrink-0 size-[60px]"
-                  data-name="pixel:box-usd-solid"
-                  data-node-id="I1:7215;1745:2207"
-                >
-                  <img
-                    alt=""
-                    className="block max-w-none size-full"
-                    src={img2}
-                  />
-                </div>
-                <div
-                  className="content-stretch flex flex-col font-['Bruno_Ace:Regular',sans-serif] gap-[5px] items-center leading-[normal] not-italic relative shrink-0 w-[165px] whitespace-pre-wrap"
-                  data-node-id="I1:7215;1745:2219"
+                  className="bg-[rgba(47,75,165,0.2)] border-2 border-[#f0f0f0] border-solid flex flex-col h-auto items-start p-3 rounded-[4px] w-full md:w-[360px]"
+                  data-node-id="I1:7215;1745:2197"
                 >
                   <div
-                    className="content-stretch flex flex-col items-center relative shrink-0 text-[#f9f6f6] w-full"
-                    data-node-id="I1:7215;1745:2218"
+                    className="flex gap-4 items-center w-full"
+                    data-node-id="I1:7215;1745:2217"
                   >
-                    <p
-                      className="relative shrink-0 text-[20px] text-center w-full"
-                      data-node-id="I1:7215;1745:2200"
+                    <div
+                      className="shrink-0 size-[60px]"
+                      data-name="ph:tree-fill"
+                      data-node-id="I1:7215;1745:2195"
                     >
-                      Bottom Line
-                    </p>
-                    <p
-                      className="relative shrink-0 text-[36px] text-left w-full"
-                      data-node-id="I1:7215;1745:2201"
+                      <img
+                        alt=""
+                        className="block max-w-none size-full"
+                        src={img1}
+                      />
+                    </div>
+                    <div
+                      className="flex flex-col items-center w-full"
+                      data-node-id="I1:7215;1745:2216"
                     >
-                      $ 12900
-                    </p>
+                      <p
+                        className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic text-[#f9f6f6] text-[20px] text-center w-full whitespace-pre-wrap"
+                        data-node-id="I1:7215;1745:2192"
+                      >
+                        Trees Saved
+                      </p>
+                      <div
+                        className="flex flex-col font-['Bruno_Ace:Regular',sans-serif] gap-[6px] items-center leading-[normal] not-italic w-full whitespace-pre-wrap"
+                        data-node-id="I1:7215;1745:2215"
+                      >
+                        <p
+                          className="text-[#f9f6f6] text-[36px] text-center w-full"
+                          data-node-id="I1:7215;1745:2193"
+                        >
+                          4
+                        </p>
+                        <p
+                          className="text-[12px] text-[rgba(249,246,246,0.71)] text-center w-full"
+                          data-node-id="I1:7215;1745:2194"
+                        >
+                          eco-friendly impact per year
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <p
-                    className="relative shrink-0 text-[12px] text-[rgba(249,246,246,0.71)] text-center w-full"
-                    data-node-id="I1:7215;1745:2202"
-                  >
-                    savings per year
-                  </p>
                 </div>
-              </div>
+                <div
+                  className="bg-[rgba(47,75,165,0.2)] border border-[#f0f0f0] border-solid flex flex-col h-auto items-start p-3 rounded-[4px] w-full md:w-[360px]"
+                  data-node-id="I1:7215;1745:2198"
+                >
+                  <div
+                    className="flex gap-4 items-center w-full"
+                    data-node-id="I1:7215;1745:2220"
+                  >
+                    <div
+                      className="shrink-0 size-[60px]"
+                      data-name="pixel:box-usd-solid"
+                      data-node-id="I1:7215;1745:2207"
+                    >
+                      <img
+                        alt=""
+                        className="block max-w-none size-full"
+                        src={img2}
+                      />
+                    </div>
+                    <div
+                      className="flex flex-col font-['Bruno_Ace:Regular',sans-serif] gap-[5px] items-center leading-[normal] not-italic w-full whitespace-pre-wrap"
+                      data-node-id="I1:7215;1745:2219"
+                    >
+                      <div
+                        className="flex flex-col items-center text-[#f9f6f6] w-full"
+                        data-node-id="I1:7215;1745:2218"
+                      >
+                        <p
+                          className="text-[20px] text-center w-full"
+                          data-node-id="I1:7215;1745:2200"
+                        >
+                          Bottom Line
+                        </p>
+                        <p
+                          className="text-[36px] text-center w-full"
+                          data-node-id="I1:7215;1745:2201"
+                        >
+                          $ 12900
+                        </p>
+                      </div>
+                      <p
+                        className="text-[12px] text-[rgba(249,246,246,0.71)] text-center w-full"
+                        data-node-id="I1:7215;1745:2202"
+                      >
+                        savings per year
+                      </p>
+                    </div>
+                  </div>
+                </div>
             </div>
-            <p
-              className="absolute font-['Bruno_Ace:Regular',sans-serif] leading-[normal] left-0 not-italic text-[#f9f6f6] text-[12px] text-left top-[141px]"
-              data-node-id="I1:7215;1745:2210"
-            >
-              Printing cost
-            </p>
-            <p
-              className="absolute font-['Bruno_Ace:Regular',sans-serif] leading-[normal] left-0 not-italic text-[#f9f6f6] text-[12px] text-left top-0"
-              data-node-id="I1:7215;1745:2211"
-            >
-              Amount of employees
-            </p>
           </div>
         </button>
       </div>
       <p
-        className="absolute bg-clip-text bg-gradient-to-r font-['Bruno_Ace:Regular',sans-serif] from-[#4e52fb] leading-[normal] left-1/2 not-italic text-[64px] text-center to-[#20acf7] top-[186px] translate-x-[-50%]"
+        className="bg-clip-text bg-gradient-to-r font-['Bruno_Ace:Regular',sans-serif] from-[#4e52fb] leading-[normal] mx-auto not-italic text-4xl sm:text-5xl lg:text-6xl text-center to-[#20acf7] mt-16"
         data-node-id="1:7216"
         style={{ WebkitTextFillColor: "transparent" }}
       >
         Heading
       </p>
       <div
-        className="absolute h-[880px] left-[calc(50%-0.5px)] top-[738px] translate-x-[-50%] w-[1440px]"
+        className="relative mx-auto mt-16 w-full max-w-[1440px] px-4"
         data-node-id="1:7217"
       >
         <div
-          className="absolute content-end flex flex-wrap gap-[45px_104px] items-end justify-end left-[60px] top-0 w-[1320px]"
+          className="flex flex-wrap justify-center lg:justify-between items-start gap-8 lg:gap-16 w-full"
           data-node-id="1:7218"
         >
           <div
-            className="content-stretch flex flex-col gap-[99px] items-start relative shrink-0 w-[1320px]"
+            className="flex flex-col gap-10 lg:gap-20 items-start relative shrink-0 w-full"
             data-node-id="1:7219"
           >
             <div
@@ -367,11 +373,11 @@ const Footer = () => {
                 TechVibes
               </p>
               <div
-                className="content-stretch flex gap-[133px] items-center relative shrink-0 w-full"
+                className="flex flex-wrap justify-around lg:justify-between gap-8 lg:gap-16 items-start relative shrink-0 w-full"
                 data-node-id="1:7223"
               >
                 <div
-                  className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-[131px]"
+                  className="flex flex-col gap-4 items-start relative shrink-0 w-full sm:w-auto"
                   data-node-id="1:7224"
                 >
                   <p
@@ -416,7 +422,7 @@ const Footer = () => {
                   </div>
                 </div>
                 <div
-                  className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[140px]"
+                  className="flex flex-col gap-4 items-start relative shrink-0 w-full sm:w-auto"
                   data-node-id="1:7232"
                 >
                   <p
@@ -461,7 +467,7 @@ const Footer = () => {
                   </div>
                 </div>
                 <div
-                  className="content-stretch flex flex-col gap-[24px] items-start justify-end relative shrink-0 w-[136px]"
+                  className="flex flex-col gap-4 items-start justify-end relative shrink-0 w-full sm:w-auto"
                   data-node-id="1:7240"
                 >
                   <p
@@ -499,7 +505,7 @@ const Footer = () => {
                   </div>
                 </div>
                 <div
-                  className="content-stretch flex flex-col gap-[73px] items-start relative shrink-0 w-[139px]"
+                  className="flex flex-col gap-4 items-start relative shrink-0 w-full sm:w-auto"
                   data-node-id="1:7247"
                 >
                   <p
@@ -537,7 +543,7 @@ const Footer = () => {
           </p>
         </div>
         <div
-          className="absolute content-stretch flex gap-[24px] items-center left-[1104px] top-[463px]"
+          className="flex justify-center items-center gap-6 mt-8 w-full"
           data-node-id="1:7253"
         >
           <div
@@ -597,7 +603,7 @@ const Footer = () => {
           </div>
         </div>
         <div
-          className="absolute h-[372px] left-0 top-[508px] w-[1440px]"
+          className="relative mt-16 py-8 w-full overflow-hidden"
           data-node-id="1:7272"
         >
           <div
@@ -605,54 +611,13 @@ const Footer = () => {
             data-node-id="1:7273"
           />
           <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[#0f149e] h-[275px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[#20acf7] to-[25.45%] top-0 w-[1368px] whitespace-pre-wrap"
+            className="bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[#0f149e] leading-none not-italic text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl to-[#20acf7] to-[25.45%] w-full whitespace-pre-wrap"
             data-node-id="1:7274"
             style={{ WebkitTextFillColor: "transparent" }}
           >
             TechVibes
           </p>
-          <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[rgba(15,20,158,0.54)] h-[275px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[25.45%] to-[rgba(32,172,247,0.54)] top-[13px] w-[1368px] whitespace-pre-wrap"
-            data-node-id="1:7275"
-            style={{ WebkitTextFillColor: "transparent" }}
-          >
-            TechVibes
-          </p>
-          <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[rgba(15,20,158,0.34)] h-[275px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[25.45%] to-[rgba(32,172,247,0.34)] top-[24px] w-[1368px] whitespace-pre-wrap"
-            data-node-id="1:7276"
-            style={{ WebkitTextFillColor: "transparent" }}
-          >
-            TechVibes
-          </p>
-          <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[rgba(15,20,158,0.26)] h-[262px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[25.45%] to-[rgba(32,172,247,0.26)] top-[49px] w-[1368px] whitespace-pre-wrap"
-            data-node-id="1:7277"
-            style={{ WebkitTextFillColor: "transparent" }}
-          >
-            TechVibes
-          </p>
-          <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[rgba(15,20,158,0.2)] h-[275px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[25.45%] to-[rgba(32,172,247,0.2)] top-[57px] w-[1368px] whitespace-pre-wrap"
-            data-node-id="1:7278"
-            style={{ WebkitTextFillColor: "transparent" }}
-          >
-            TechVibes
-          </p>
-          <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[rgba(15,20,158,0.15)] h-[275px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[25.45%] to-[rgba(32,172,247,0.15)] top-[78px] w-[1368px] whitespace-pre-wrap"
-            data-node-id="1:7279"
-            style={{ WebkitTextFillColor: "transparent" }}
-          >
-            TechVibes
-          </p>
-          <p
-            className="absolute bg-clip-text bg-gradient-to-r font-['Source_Serif_Pro:SemiBold',sans-serif] from-[rgba(15,20,158,0.11)] h-[275px] leading-[normal] left-[calc(50%-684px)] not-italic text-[300px] to-[25.45%] to-[rgba(32,172,247,0.11)] top-[97px] w-[1368px] whitespace-pre-wrap"
-            data-node-id="1:7280"
-            style={{ WebkitTextFillColor: "transparent" }}
-          >
-            TechVibes
-          </p>
+
         </div>
       </div>
     </div>
