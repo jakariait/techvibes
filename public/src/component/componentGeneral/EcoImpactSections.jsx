@@ -5,13 +5,19 @@ import eclipse from "../../assets/eclipse.png";
 
 const EcoImpactSections = () => {
   return (
-    <div>
-      <h1 className="text-center  text-[64px] font-normal leading-normal bg-linear-to-r from-[#4E52FB] to-[#20ACF7] bg-clip-text text-transparent">
+    <div className="relative overflow-hidden">
+      <img
+        src={eclipse}
+        alt=""
+        className="absolute inset-0 w-full h-full opacity-30 animate-[spin_20s_linear_infinite] z-10"
+      />
+
+      <h1 className="relative z-20 text-center  text-[64px] font-normal leading-normal bg-linear-to-r from-[#4E52FB] to-[#20ACF7] bg-clip-text text-transparent">
         Heading
       </h1>
 
       <div
-        className={"lg:grid items-center p-4 justify-center grid-cols-6 gap-4"}
+        className={"lg:grid items-center p-4 justify-center grid-cols-6 gap-4 relative z-20"}
       >
         <div
           className={
