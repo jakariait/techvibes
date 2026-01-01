@@ -1,58 +1,32 @@
-import React from 'react';
+import React from "react";
 
-import linkedinIcon from "../../assets/skill-icons_linkedin.svg"
+import linkedinIcon from "../../assets/skill-icons_linkedin.svg";
+import facebookIcon from "../../assets/logos_facebook.svg";
+import instagramIcon from "../../assets/skill-icons_instagram.svg";
+import tiktokIcon from "../../assets/streamline-flex_tiktok-solid.svg";
+import youTubeIcon from "../../assets/logos_youtube-icon.svg";
 
 
 const socialLinks = [
   {
     href: "#",
-    icon: (
-      <img
-        src={linkedinIcon}
-        alt="LinkedIn"
-        className="w-6 h-6"
-      />
-    ),
+    icon: <img src={linkedinIcon} alt="LinkedIn" className="w-6 h-6" />,
   },
   {
     href: "#",
-    icon: (
-      <img
-        src="/src/assets/logos_facebook.svg"
-        alt="Facebook"
-        className="w-6 h-6"
-      />
-    ),
+    icon: <img src={facebookIcon} alt="Facebook" className="w-6 h-6" />,
   },
   {
     href: "#",
-    icon: (
-      <img
-        src="/src/assets/skill-icons_instagram.svg"
-        alt="Instagram"
-        className="w-6 h-6"
-      />
-    ),
+    icon: <img src={instagramIcon} alt="Instagram" className="w-6 h-6" />,
   },
   {
     href: "#",
-    icon: (
-      <img
-        src="/src/assets/streamline-flex_tiktok-solid.svg"
-        alt="TikTok"
-        className="w-6 h-6"
-      />
-    ),
+    icon: <img src={tiktokIcon} alt="TikTok" className="w-6 h-6" />,
   },
   {
     href: "#",
-    icon: (
-      <img
-        src="/src/assets/logos_youtube-icon.svg"
-        alt="Youtube"
-        className="w-6 h-6"
-      />
-    ),
+    icon: <img src={youTubeIcon} alt="Youtube" className="w-6 h-6" />,
   },
 ];
 const FollowUs = () => {
