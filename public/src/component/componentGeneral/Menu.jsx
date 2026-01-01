@@ -17,7 +17,7 @@ const Menu = () => {
   };
 
   return (
-    <nav className="py-10">
+    <nav className="px-4 py-10">
       <div className="flex justify-between items-center">
         <div className="bg-linear-to-r from-[#0F0C9A] to-[#20ACF7] bg-clip-text text-transparent font-semibold text-[36px] leading-none ">
           <Link to="/">TechVibes</Link>

@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         </div>
       </div>
       <div className={"xl:container xl:mx-auto relative z-10"}>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen ">
           <Menu />
 
           {/* Main Content */}
