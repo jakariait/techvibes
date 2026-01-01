@@ -1,10 +1,14 @@
 import React from 'react';
+
+import linkedinIcon from "../../assets/skill-icons_linkedin.svg"
+
+
 const socialLinks = [
   {
     href: "#",
     icon: (
       <img
-        src="/src/assets/skill-icons_linkedin.svg"
+        src={linkedinIcon}
         alt="LinkedIn"
         className="w-6 h-6"
       />
