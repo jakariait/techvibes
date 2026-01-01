@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./EcoImpactCalculator.css";
 import img1 from "../../assets/img1.svg";
 import img2 from "../../assets/img2.svg";
 

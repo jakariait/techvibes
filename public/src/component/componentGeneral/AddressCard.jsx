@@ -1,8 +1,8 @@
 import React from "react";
 
+import imgGroup from "../../assets/imgGroup.svg";
+
 const AddressCard = ({ country, address }) => {
-  const imgGroup =
-    "https://www.figma.com/api/mcp/asset/a76ea742-5cde-4174-8ff6-4c5a614073f4";
   return (
     <div className="bg-[rgba(93,178,186,0.24)] content-stretch flex flex-col h-46.5 items-center justify-between px-13.25 py-14 relative rounded-[13px] shadow-[0px_0px_28px_0px_rgba(98,166,255,0.25)]">
       <div className="content-stretch flex flex-col gap-3 items-center relative shrink-0">

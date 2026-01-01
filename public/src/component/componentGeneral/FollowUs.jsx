@@ -31,7 +31,7 @@ const socialLinks = [
 ];
 const FollowUs = () => {
   return (
-    <div className="flex flex-col gap-[16px] items-end w-full md:flex-1">
+    <div className="flex flex-col gap-4 items-end w-full md:flex-1">
       <p className=" leading-[normal] not-italic relative shrink-0 text-[#d1d2f1] text-[24px] whitespace-pre-wrap">
         Follow Us
       </p>
