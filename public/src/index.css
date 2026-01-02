@@ -57,3 +57,44 @@ body {
   border-radius: 9999px;
 }
 
+
+.inception-container {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  margin: 50px auto;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+  left: 0;
+  top: 0;
+}
+
+.card-front img,
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-front {
+  z-index: 2;
+}
+
+.card-back {
+  z-index: 1;
+  opacity: 0;
+}
+
+.inception-container:hover .card-back {
+  opacity: 1;
+  rotate: 25deg;
+  transform: translateX(-20%) translateY(-70%);
+}
+
+

@@ -5,6 +5,7 @@ import NotFoundPage from "./pagesUser/NotFoundPage.jsx";
 import ReturnPolicyPage from "./pagesUser/ReturnPolicyPage.jsx";
 import PrivacyPolicyPage from "./pagesUser/PrivacyPolicyPage.jsx";
 import TermsConditionPage from "./pagesUser/TermsConditionPage.jsx";
+import AboutUsPage from "./pagesUser/AboutUsPage.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/return-policy" element={<ReturnPolicyPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-condition" element={<TermsConditionPage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
 
         {/* Not Found */}
         <Route path="*" element={<NotFoundPage />} />
