@@ -59,7 +59,7 @@ const PricingCard = () => {
         {cardData.map((card, index) => (
           <div
             key={index}
-            className="flex flex-col bg-gradient-to-b border-2 border-solid border-white from-[#2c3498] to-[#090b3d] rounded-[12px] w-[424px] max-w-full"
+            className="flex flex-col bg-linear-to-b border-2 border-solid border-white from-[#2c3498] to-[#090b3d] rounded-xl w-106 max-w-full"
           >
             <div className="flex flex-col items-center px-6 pb-6 text-center">
               <img
@@ -68,12 +68,7 @@ const PricingCard = () => {
                 src={card.imageUrl}
               />
               <p className={` text-[#f0f0f0] text-[36px] mt-4`}>{card.title}</p>
-              <p
-                className={` text-[#f0f0f0] text-[36px] my-4`}
-                style={{ fontVariationSettings: '"wdth" 100, "wght" 400' }}
-              >
-                {card.price}
-              </p>
+              <p className={` text-[#f0f0f0] text-[36px] my-4`}>{card.price}</p>
               <div
                 className={` ${card.featureTextColor} text-[16px] space-y-2 text-left`}
               >
@@ -81,7 +76,7 @@ const PricingCard = () => {
                   <div key={featureIndex} className="flex items-center gap-2">
                     {feature.showIcon && (
                       <img
-                        className="shrink-0 size-[24px]"
+                        className="shrink-0 size-6"
                         alt="check"
                         src={imgIconoirCheck}
                       />
@@ -92,7 +87,7 @@ const PricingCard = () => {
               </div>
             </div>
             <div className="mt-auto flex justify-center pb-8">
-              <div className="bg-gradient-to-b border border-[#4fdceb] border-solid from-[#b7f8f8] to-[#5511f2] rounded-[8px] px-8 py-2">
+              <div className="bg-linear-to-b border border-[#4fdceb] border-solid from-[#b7f8f8] to-[#5511f2] rounded-lg px-8 py-2">
                 <p className={` text-[#f0f0f0] text-[16px] text-center`}>
                   BUY NOW
                 </p>
