@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../component/componentGeneral/Layout.jsx";
 import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
 import imgProperty1Default from "../assets/eclipse.png";
+import ReturnPolicyContent from "../component/componentGeneral/ReturnPolicyContent.jsx";
 function Ellipse({ className }) {
   return (
     <div data-node-id="1:2555" className={className}>
@@ -20,6 +21,7 @@ function Ellipse({ className }) {
 const ReturnPolicyPage = () => {
   return (
     <Layout>
+      <ReturnPolicyContent />
       <div className="relative overflow-hidden">
         <Ellipse className="absolute  left-0 size-[1440px]" />
         <div className={"pt-20"}>
