@@ -4,7 +4,7 @@ import businessCardBack from "../../assets/businessCardBack.png";
 
 const Inception = () => {
   return (
-    <div className={"grid grid-cols-2 pt-30"}>
+    <div className={"md:grid grid-cols-2 p-4 pt-30"}>
       <div className="inception-container">
         <div className="card-front">
           <img src={businessCardFront} alt="Business Card Front" />
