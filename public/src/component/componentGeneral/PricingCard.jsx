@@ -3,6 +3,7 @@ import imgFrame3473919D6 from "../../assets/Frame3473919D6.png";
 import imgIconoirCheck from "../../assets/iconoir_check.svg";
 import blackMaterial from "../../assets/Black Material.png";
 import metalCard from "../../assets/Metal Card.png";
+import AddressGrid from "./AddressGrid.jsx";
 
 const PricingCard = () => {
   const cardData = [
@@ -56,6 +57,7 @@ const PricingCard = () => {
   return (
     <div className="w-full px-4 py-24">
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch gap-20 lg:gap-8">
+
         {cardData.map((card, index) => (
           <div
             key={index}

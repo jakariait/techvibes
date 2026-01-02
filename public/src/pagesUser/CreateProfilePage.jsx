@@ -23,6 +23,9 @@ const CreateProfilePage = () => {
   return (
     <Layout>
       <Congratulations />
+
+
+
       <PricingCard />
       <div className="relative overflow-hidden">
         <Ellipse className="absolute  left-0 size-[1440px]" />

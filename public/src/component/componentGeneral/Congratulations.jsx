@@ -24,6 +24,9 @@ const Congratulations = () => {
           01906906000
         </p>
       </div>
+      <span className="bg-[linear-gradient(90deg,#4E52FB_0%,#20ACF7_100%)] bg-clip-text text-transparent text-2xl md:text-[48px] flex justify-center items-center pb-10">
+        💳 Pricing Cards (3-Tier Best Setup)
+      </span>
     </div>
   );
 };
