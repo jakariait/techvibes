@@ -2,9 +2,12 @@ import React from "react";
 
 import imgGroup from "../../assets/imgGroup.svg";
 
-const AddressCard = ({ country, address }) => {
+const AddressCard = ({ country, address, isBackground }) => {
   return (
-    <div className="bg-[rgba(93,178,186,0.24)] content-stretch flex flex-col h-46.5 items-center justify-between px-13.25 py-14 relative rounded-[13px] shadow-[0px_0px_28px_0px_rgba(98,166,255,0.25)]">
+    <div
+      className={`flex flex-col items-center justify-between relative content-stretch h-46.5 px-13.25 py-14 rounded-[13px] shadow-[0px_0px_28px_0px_rgba(98,166,255,0.25)]
+    ${isBackground ? "bg-[rgba(93,178,186,0.24)] " : ""}`}
+    >
       <div className="content-stretch flex flex-col gap-3 items-center relative shrink-0">
         <div className="overflow-clip relative shrink-0 size-6">
           <div className="absolute inset-[14.58%_10.42%_16.67%_8.33%]">
