@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import useMenu from "../../utils/useMenu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { Menu as MuiMenu, MenuItem } from "@mui/material";
 
 const Menu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const menuItems = useMenu();
+  const location = useLocation();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -14,6 +15,14 @@ const Menu = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const activeLinkStyle = {
+    borderRadius: "8px",
+    border: "1px solid #4FDCEB",
+    background: "linear-gradient(180deg, #B7F8F8 0%, #5511F2 100%)",
+    padding: "8px 12px", // Add some padding for better visual
+    color: "#F0F0F0",
   };
 
   return (
@@ -24,7 +33,12 @@ const Menu = () => {
         </div>
         <div className="hidden md:flex items-center space-x-4">
           {menuItems.map((item) => (
-            <Link key={item.label} to={item.link} className="menuTextColor">
+            <Link
+              key={item.label}
+              to={item.link}
+              className="menuTextColor"
+              style={location.pathname === item.link ? activeLinkStyle : {}}
+            >
               {item.label}
             </Link>
           ))}
@@ -64,7 +78,12 @@ const Menu = () => {
           >
             {menuItems.map((item) => (
               <MenuItem onClick={handleClose} key={item.label}>
-                <Link to={item.link}>{item.label}</Link>
+                <Link
+                  to={item.link}
+                  style={location.pathname === item.link ? activeLinkStyle : {}}
+                >
+                  {item.label}
+                </Link>
               </MenuItem>
             ))}
           </MuiMenu>
