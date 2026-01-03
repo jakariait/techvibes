@@ -1,96 +1,116 @@
-import React from 'react';
+import React from "react";
 
-const imgChatGptImageDec192025064142PmRemovebgPreview1 = "https://www.figma.com/api/mcp/asset/d949f7ef-867d-4b4c-9d2b-7512ebac4ac5";
-const imgPngPngtreeRemovebgPreview1 = "https://www.figma.com/api/mcp/asset/50a20d35-d268-4d91-9b3a-860156f104a1";
-const imgMaterialSymbolsOrderApprove = "https://www.figma.com/api/mcp/asset/92341c87-3648-4644-af65-7981a6299735";
-const imgCryptocurrencyUsd = "https://www.figma.com/api/mcp/asset/4388ea06-f497-4fb9-92ad-7b02f7071dd3";
-const imgIconamoonDeliveryFastFill = "https://www.figma.com/api/mcp/asset/adc0e9ab-09ca-4687-89cf-6e27c3e6fb49";
-const imgFluentNextFrame24Filled = "https://www.figma.com/api/mcp/asset/b8b1a2fb-47de-4595-a7d2-256af94fc99d";
+import imgChatGptImageDec192025064142PmRemovebgPreview1 from "../../assets/imgChatGptImageDec192025064142PmRemovebgPreview1.png";
+import imgPngPngtreeRemovebgPreview1 from "../../assets/imgPngPngtreeRemovebgPreview1.png";
+import imgMaterialSymbolsOrderApprove from "../../assets/imgMaterialSymbolsOrderApprove.svg";
+import imgCryptocurrencyUsd from "../../assets/imgCryptocurrencyUsd.svg";
+import imgIconamoonDeliveryFastFill from "../../assets/imgIconamoonDeliveryFastFill.svg";
+import imgFluentNextFrame24Filled from "../../assets//imgFluentNextFrame24Filled.svg";
 
 const OrderCongratulation = () => {
   return (
-    <div className="content-stretch flex flex-col gap-[28px] items-center relative size-full" data-node-id="1:5703">
-      <div className="h-[755px] relative shrink-0 w-[718px]" data-node-id="1:5704">
-        <div className="absolute h-[234px] left-1/2 top-[373px] translate-x-[-50%] w-[718px]" data-name="ChatGPT_Image_Dec_19__2025__06_41_42_PM-removebg-preview 1" data-node-id="1:5705">
+    <div className="flex flex-col pb-40 gap-8 items-center w-full p-4 overflow-x-hidden">
+      {/* Image and congratulations text section */}
+      <div className="relative w-full max-w-179.5 aspect-718/755">
+        {/* Bottom decoration image */}
+        <div className="absolute h-[31%] left-1/2 top-[49.5%] -translate-x-1/2 w-full">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <img alt="" className="absolute h-[577.36%] left-[-12.31%] max-w-none top-[-148.11%] w-[125.54%]" src={imgChatGptImageDec192025064142PmRemovebgPreview1} />
+            <img
+              alt=""
+              className="absolute h-[577.36%] left-[-12.31%] max-w-none top-[-148.11%] w-[125.54%]"
+              src={imgChatGptImageDec192025064142PmRemovebgPreview1}
+            />
           </div>
         </div>
-        <div className="absolute h-[534px] left-1/2 top-0 translate-x-[-50%] w-[684px]" data-name="お祝いの背景テーマイラスト画像とPNGフリー素材透過の無料ダウンロード_-_Pngtree-removebg-preview 1" data-node-id="1:5706">
+        {/* Top celebration image */}
+        <div className="absolute h-[70.7%] left-1/2 top-0 -translate-x-1/2 w-[95.3%]">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <img alt="" className="absolute h-[127.89%] left-0 max-w-none top-0 w-full" src={imgPngPngtreeRemovebgPreview1} />
+            <img
+              alt=""
+              className="absolute h-[127.89%] left-0 max-w-none top-0 w-full"
+              src={imgPngPngtreeRemovebgPreview1}
+            />
           </div>
         </div>
-        <div className="absolute content-stretch flex flex-col font-['Bruno_Ace:Regular',sans-serif] gap-[21px] items-center leading-[normal] left-[28px] not-italic top-[628px] w-[662px] whitespace-pre-wrap" data-node-id="1:5707">
-          <p className="bg-clip-text bg-gradient-to-r from-[#4e52fb] relative shrink-0 text-[64px] to-[#20acf7] w-full" data-node-id="1:5708" style={{ WebkitTextFillColor: "transparent" }}>
+        {/* Congratulations Text */}
+        <div className="absolute flex flex-col gap-5 items-center text-center left-1/2 top-[83%] -translate-x-1/2 w-[92.2%]">
+          <p
+            className="bg-clip-text bg-linear-to-r from-[#4e52fb] to-[#20acf7] text-4xl sm:text-5xl md:text-6xl w-full"
+            style={{ WebkitTextFillColor: "transparent" }}
+          >
             Congratulations!
           </p>
-          <p className="relative shrink-0 text-[#f2ecec] text-[24px] text-center w-full" data-node-id="1:5709">
+          <p className="text-[#f2ecec] text-lg sm:text-xl md:text-2xl w-full">
             Your NFC Card is on the way!
           </p>
         </div>
       </div>
-      <p className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#f2f8ff] text-[32px] text-center" data-node-id="1:5710">
+
+      {/* Contact info section */}
+      <p className="text-[#f2f8ff] text-lg sm:text-xl md:text-2xl text-center max-w-2xl">
         {`Our designer will contact you through WhatsApp `}
-        <br aria-hidden="true" />
+        <br />
         Or Send Text us - 01906906000
       </p>
-      <div className="bg-[rgba(0,0,0,0)] content-stretch flex flex-col h-[509px] items-start px-[88px] py-[51px] relative rounded-[12px] shrink-0 w-full" data-node-id="1:5711">
-        <div className="content-stretch flex flex-col gap-[67px] items-center relative shrink-0 w-[920px]" data-node-id="1:5712">
-          <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 w-full" data-node-id="1:5713">
-            <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-node-id="1:5714">
-              <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full" data-node-id="1:5715">
-                <div className="bg-[rgba(24,20,44,0.2)] border border-[#d8d8eb] border-solid content-stretch flex flex-col h-[60px] items-start px-[18px] py-[7px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:5716">
-                  <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:5717">
-                    <div className="relative shrink-0 size-[46px]" data-name="material-symbols:order-approve" data-node-id="1:5718">
-                      <img alt="" className="block max-w-none size-full" src={imgMaterialSymbolsOrderApprove} />
-                    </div>
-                    <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#d8d8eb] text-[20px]" data-node-id="1:5720">
-                      Order Number: #123455
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-[rgba(24,20,44,0.2)] border border-[#d8d8eb] border-solid content-stretch flex flex-col h-[60px] items-start px-[24px] py-[7px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:5721">
-                  <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:5722">
-                    <div className="relative shrink-0 size-[46px]" data-name="cryptocurrency:usd" data-node-id="1:5723">
-                      <img alt="" className="block max-w-none size-full" src={imgCryptocurrencyUsd} />
-                    </div>
-                    <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#d8d8eb] text-[20px]" data-node-id="1:5725">
-                      Total Amount: $1200
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-[rgba(24,20,44,0.2)] border border-[#d8d8eb] border-solid content-stretch flex flex-col h-[60px]. items-start px-[24px] py-[7px] relative rounded-[8px] shrink-0 w-full" data-node-id="1:5726">
-                <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:5727">
-                  <div className="relative shrink-0 size-[46px]" data-name="iconamoon:delivery-fast-fill" data-node-id="1:5728">
-                    <img alt="" className="block max-w-none size-full" src={imgIconamoonDeliveryFastFill} />
-                  </div>
-                  <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#d8d8eb] text-[20px]" data-node-id="1:5730">
-                    Estimated Delivery: 3-5 Business Days
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="content-stretch flex gap-[12px] items-center relative shrink-0" data-node-id="1:5731">
-              <div className="relative shrink-0 size-[36px]" data-name="fluent:next-frame-24-filled" data-node-id="1:5732">
-                <img alt="" className="block max-w-none size-full" src={imgFluentNextFrame24Filled} />
-              </div>
-              <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#d8d8eb] text-[14px]" data-node-id="1:5734">
-                Track your order through the email confirmation sent to you.
-              </p>
-            </div>
-          </div>
-          <div className="content-stretch flex flex-col gap-[15px] items-center relative shrink-0 w-[436px]" data-node-id="1:5735">
-            <div className="bg-gradient-to-b border-[#9c43ca] border-b-2 border-l-0 border-r-0 border-solid border-t-0 content-stretch flex from-[#b0eaf5] items-center justify-center p-[10px] relative rounded-[4px] shadow-[2px_2px_21.1px_0px_#6b519d] shrink-0 to-[#5516ee] w-full" data-node-id="1:5736">
-              <p className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#ebecff] text-[16px] text-center" data-node-id="1:5737">
-                Back to Home
-              </p>
-            </div>
-            <p className="font-['Bruno_Ace:Regular',sans-serif] leading-[normal] not-italic relative shrink-0 text-[#d8d8eb] text-[10px] text-center w-full whitespace-pre-wrap" data-node-id="1:5738">
-              Get started by creating your digital profile now!
+
+      {/* Order details section */}
+      <div className="flex flex-col gap-8 items-start w-full max-w-3xl mx-auto p-6 sm:p-8 rounded-lg bg-[rgba(0,0,0,0.1)] ">
+        <div className="flex flex-col gap-4 w-full">
+          {/* Order Number */}
+          <div className="bg-[rgba(24,20,44,0.2)] border border-[#d8d8eb] border-solid flex items-center gap-3 p-3 rounded-lg w-full">
+            <img
+              alt="Order"
+              className="shrink-0 size-10"
+              src={imgMaterialSymbolsOrderApprove}
+            />
+            <p className="text-[#d8d8eb] text-base sm:text-lg">
+              Order Number: #123455
             </p>
           </div>
+          {/* Total Amount */}
+          <div className="bg-[rgba(24,20,44,0.2)] border border-[#d8d8eb] border-solid flex items-center gap-3 p-3 rounded-lg w-full">
+            <img
+              alt="Amount"
+              className="shrink-0 size-10"
+              src={imgCryptocurrencyUsd}
+            />
+            <p className=" text-[#d8d8eb] text-base sm:text-lg">
+              Total Amount: 200
+            </p>
+          </div>
+          {/* Estimated Delivery */}
+          <div className="bg-[rgba(24,20,44,0.2)] border border-[#d8d8eb] border-solid flex items-center gap-3 p-3 rounded-lg w-full">
+            <img
+              alt="Delivery"
+              className="shrink-0 size-10"
+              src={imgIconamoonDeliveryFastFill}
+            />
+            <p className=" text-[#d8d8eb] text-base sm:text-lg">
+              Estimated Delivery: 3-5 Business Days
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-3 items-center">
+          <img
+            alt="Track"
+            className="shrink-0 size-8"
+            src={imgFluentNextFrame24Filled}
+          />
+          <p className="text-[#d8d8eb] text-sm">
+            Track your order through the email confirmation sent to you.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-4 items-center w-full pt-4">
+          <button className="bg-linear-to-b from-[#b0eaf5] to-[#5516ee] border-b-2 border-[#9c43ca] rounded-md shadow-[2px_2px_21.1px_0px_#6b519d] w-full max-w-md py-2.5 px-4">
+            <p className=" text-[#ebecff] text-base text-center">
+              Back to Home
+            </p>
+          </button>
+          <p className=" text-[#d8d8eb] text-xs text-center w-full">
+            Get started by creating your digital profile now!
+          </p>
         </div>
       </div>
     </div>
