@@ -21,8 +21,9 @@ function Ellipse({ className }) {
 const ReturnPolicyPage = () => {
   return (
     <Layout>
-      <ReturnPolicyContent />
       <div className="relative overflow-hidden">
+        <ReturnPolicyContent />
+
         <Ellipse className="absolute  left-0 size-[1440px]" />
         <div className={"pt-20"}>
           <AddressGrid isBackground={false} />

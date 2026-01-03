@@ -26,8 +26,9 @@ const SuccessCreateProfilePage = () => {
 
 
 
-      <PricingCard />
       <div className="relative overflow-hidden">
+        <PricingCard />
+
         <Ellipse className="absolute  left-0 size-[1440px]" />
         <div className={"pt-20"}>
           <AddressGrid isBackground={false} />

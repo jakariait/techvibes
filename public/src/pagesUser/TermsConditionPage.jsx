@@ -21,8 +21,9 @@ function Ellipse({ className }) {
 const TermsConditionPage = () => {
   return (
     <Layout>
-      <TermsConditionContent/>
       <div className="relative overflow-hidden">
+        <TermsConditionContent/>
+
         <Ellipse className="absolute  left-0 size-[1440px]" />
         <div className={"pt-20"}>
           <AddressGrid isBackground={false} />
