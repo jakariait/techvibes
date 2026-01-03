@@ -7,6 +7,7 @@ import PrivacyPolicyPage from "./pagesUser/PrivacyPolicyPage.jsx";
 import TermsConditionPage from "./pagesUser/TermsConditionPage.jsx";
 import AboutUsPage from "./pagesUser/AboutUsPage.jsx";
 import HowWorksPage from "./pagesUser/HowWorksPage.jsx";
+import SuccessCreateProfilePage from "./pagesUser/SuccessCreateProfilePage.jsx";
 import CreateProfilePage from "./pagesUser/CreateProfilePage.jsx";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/terms-condition" element={<TermsConditionPage />} />
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/how-it-works" element={<HowWorksPage />} />
+        <Route path="/success-create-profile" element={<SuccessCreateProfilePage />} />
         <Route path="/create-profile" element={<CreateProfilePage />} />
 
         {/* Not Found */}
