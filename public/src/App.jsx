@@ -9,6 +9,7 @@ import AboutUsPage from "./pagesUser/AboutUsPage.jsx";
 import HowWorksPage from "./pagesUser/HowWorksPage.jsx";
 import SuccessCreateProfilePage from "./pagesUser/SuccessCreateProfilePage.jsx";
 import CreateProfilePage from "./pagesUser/CreateProfilePage.jsx";
+import OrderCongratulationPage from "./pagesUser/OrderCongratulationPage.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           element={<SuccessCreateProfilePage />}
         />
         <Route path="/create-profile" element={<CreateProfilePage />} />
+        <Route path="/thank-you" element={<OrderCongratulationPage />} />
 
         {/* Not Found */}
         <Route path="*" element={<NotFoundPage />} />
