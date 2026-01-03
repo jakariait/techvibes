@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 
 const PackageCard = ({
   title,
@@ -71,19 +71,5 @@ const PackageCard = ({
   );
 };
 
-PackageCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  features: PropTypes.arrayOf(PropTypes.string).isRequired,
-  moq: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-  isFeatured: PropTypes.bool,
-  customFeatures: PropTypes.arrayOf(PropTypes.string),
-};
-
-PackageCard.defaultProps = {
-  isFeatured: false,
-  customFeatures: [],
-};
 
 export default PackageCard;
