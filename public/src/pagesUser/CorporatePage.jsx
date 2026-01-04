@@ -12,8 +12,8 @@ import PaperVsNfc from "../component/componentGeneral/PaperVsNFC.jsx";
 const CorporatePage = () => {
   return (
     <Layout>
-      <PaperVsNfc />
       <WhyChooseUs />
+      <PaperVsNfc />
       <NewCorporateHero />
       <ChosenBy />
       <ComparePackage />

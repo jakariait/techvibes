@@ -12,7 +12,7 @@ import imgSiCheckCircleFill1 from "../../assets/PaperVsNFC/siCheckCircleFill1.sv
 
 const PaperVsNfc = () => {
   return (
-    <div>
+    <div className={"pb-15"}>
       <h1
         style={{
           width: "100%",
