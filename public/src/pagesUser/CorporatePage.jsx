@@ -7,11 +7,13 @@ import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
 import QuotaSection from "../component/componentGeneral/QuotaSection.jsx";
 import EcoImpactSections from "../component/componentGeneral/EcoImpactSections.jsx";
 import WhyChooseUs from "../component/componentGeneral/WhyChooseUs.jsx";
+import PaperVsNfc from "../component/componentGeneral/PaperVsNFC.jsx";
 
 const CorporatePage = () => {
   return (
     <Layout>
       <WhyChooseUs />
+      <PaperVsNfc />
       <NewCorporateHero />
       <ChosenBy />
       <ComparePackage />
