@@ -3,6 +3,8 @@ import Layout from "../component/componentGeneral/Layout.jsx";
 import CreateProfileForm from "../component/componentGeneral/CreateProfileForm.jsx";
 import imgProperty1Default from "../assets/eclipse.png";
 import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
+
+
 function Ellipse({ className }) {
   return (
     <div data-node-id="1:2555" className={className}>
@@ -18,6 +20,8 @@ function Ellipse({ className }) {
     </div>
   );
 }
+
+
 const CreateProfilePage = () => {
   return (
     <Layout>

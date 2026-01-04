@@ -1,5 +1,7 @@
 import React from "react";
 import imgProperty1Default from "../../assets/eclipse.png";
+
+
 function Ellipse({ className }) {
   return (
     <div data-node-id="1:2555" className={className}>
