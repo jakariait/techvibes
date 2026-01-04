@@ -9,11 +9,13 @@ import EcoImpactSections from "../component/componentGeneral/EcoImpactSections.j
 import WhyChooseUs from "../component/componentGeneral/WhyChooseUs.jsx";
 import PaperVsNfc from "../component/componentGeneral/PaperVsNFC.jsx";
 import AtAGlance from "../component/componentGeneral/AtAGlance.jsx";
+import DigitalProfileDemo from "../component/componentGeneral/DigitalProfileDemo.jsx";
 
 const CorporatePage = () => {
   return (
     <Layout>
       <AtAGlance />
+      <DigitalProfileDemo />
       <WhyChooseUs />
       <PaperVsNfc />
       <NewCorporateHero />
