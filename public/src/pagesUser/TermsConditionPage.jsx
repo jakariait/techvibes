@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../component/componentGeneral/Layout.jsx";
 import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
-import imgProperty1Default from "../assets/eclipse.png";
 import TermsConditionContent from "../component/componentGeneral/TermsConditionContent.jsx";
-
+import imgProperty1Default from "../assets/eclipse.png";
+import GlobeEllipse from "../component/GlobeEllipse.jsx";
 
 function Ellipse({ className }) {
   return (
@@ -21,15 +21,14 @@ function Ellipse({ className }) {
   );
 }
 
-
 const TermsConditionPage = () => {
   return (
     <Layout>
       <div className="relative overflow-hidden">
-        <TermsConditionContent/>
+        <TermsConditionContent />
 
-        <Ellipse className="absolute  left-0 size-[1440px]" />
         <div className={"pt-20"}>
+          <GlobeEllipse className="absolute left-0" />
           <AddressGrid isBackground={false} />
         </div>
       </div>
