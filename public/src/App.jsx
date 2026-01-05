@@ -10,12 +10,15 @@ import HowWorksPage from "./pagesUser/HowWorksPage.jsx";
 import SuccessCreateProfilePage from "./pagesUser/SuccessCreateProfilePage.jsx";
 import CreateProfilePage from "./pagesUser/CreateProfilePage.jsx";
 import OrderCongratulationPage from "./pagesUser/OrderCongratulationPage.jsx";
+import FinalDesignPage from "./pagesUser/FinalDesignPage.jsx";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CorporatePage />} />
+        <Route path="/" element={<FinalDesignPage />} />
+        <Route path="/corporate" element={<CorporatePage />} />
+
         <Route path="/return-policy" element={<ReturnPolicyPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-condition" element={<TermsConditionPage />} />

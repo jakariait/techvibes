@@ -5,7 +5,6 @@ import imgProperty1Default from "../assets/eclipse.png";
 import Congratulations from "../component/componentGeneral/Congratulations.jsx";
 import PricingCard from "../component/componentGeneral/PricingCard.jsx";
 
-
 function Ellipse({ className }) {
   return (
     <div data-node-id="1:2555" className={className}>
@@ -22,13 +21,10 @@ function Ellipse({ className }) {
   );
 }
 
-
 const SuccessCreateProfilePage = () => {
   return (
     <Layout>
       <Congratulations />
-
-
 
       <div className="relative overflow-hidden">
         <PricingCard />
