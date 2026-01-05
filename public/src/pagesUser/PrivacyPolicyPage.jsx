@@ -4,7 +4,6 @@ import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
 import imgProperty1Default from "../assets/eclipse.png";
 import PrivacyPolicyContent from "../component/componentGeneral/PrivacyPolicyContent.jsx";
 
-
 function Ellipse({ className }) {
   return (
     <div data-node-id="1:2555" className={className}>
@@ -20,7 +19,6 @@ function Ellipse({ className }) {
     </div>
   );
 }
-
 
 const PrivacyPolicyPage = () => {
   return (
