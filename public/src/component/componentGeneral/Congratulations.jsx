@@ -20,7 +20,7 @@ const Congratulations = () => {
 
       <div className={"max-w-2xl mx-auto flex flex-col justify-center gap-4"}>
         <p className={"text-[#F2ECEC] text-[22px]"}>
-          Our designer will contact you through WhatsApp  Or Send Text us -
+          Our designer will contact you through WhatsApp Or Send Text us -
           01906906000
         </p>
       </div>

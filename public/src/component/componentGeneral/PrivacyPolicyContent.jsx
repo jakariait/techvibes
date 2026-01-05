@@ -99,7 +99,7 @@ const PrivacyPolicyContent = () => {
             <li className={"list-disc"}>
               <span>
                 Request data removal or account deactivation <br /> To exercise
-                these rights, contact us at: 📧 [your-email@techvibes.com]
+                these rights, contact us at:📧 [your-email@techvibes.com]
               </span>
             </li>
           </ul>
@@ -132,8 +132,8 @@ const PrivacyPolicyContent = () => {
             <span>
               If you have any questions about this Privacy Policy, please
               contact us:
-              <br /> TechVibes 📧 Email: [your-email@techvibes.com] <br />
-               🌐 Website: www.techvibes.com
+              <br /> TechVibes📧 Email: [your-email@techvibes.com] <br />
+              🌐 Website: www.techvibes.com
             </span>
           </div>
         </div>
