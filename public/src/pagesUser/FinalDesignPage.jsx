@@ -16,7 +16,6 @@ const FinalDesignPage = () => {
       <WhyChooseUs />
       <PaperVsNfc />
       <PricingCard />
-
       <HowWorks />
       <EcoImpactSections />
     </Layout>

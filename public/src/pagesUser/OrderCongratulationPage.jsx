@@ -24,7 +24,7 @@ const OrderCongratulationPage = () => {
       <div className="relative overflow-hidden">
         <OrderCongratulation/>
 
-        <Ellipse className="absolute  left-0 size-[1440px]" />
+        <Ellipse className="absolute  left-0 size-[1440px] globe-bg" />
         <div className={"pt-20"}>
           <AddressGrid isBackground={false} />
         </div>

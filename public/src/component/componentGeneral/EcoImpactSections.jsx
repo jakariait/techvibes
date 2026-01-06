@@ -21,7 +21,7 @@ function Ellipse({ className }) {
 const EcoImpactSections = () => {
   return (
     <div className="relative overflow-hidden">
-      <Ellipse className="absolute  left-0 size-[1440px] top-[64px]" />
+      <Ellipse className="absolute  left-0 size-[1440px] top-[64px] globe-bg" />
 
       <h1 className="relative z-20 text-center  text-[64px] font-normal leading-normal bg-linear-to-r from-[#4E52FB] to-[#20ACF7] bg-clip-text text-transparent">
         Heading

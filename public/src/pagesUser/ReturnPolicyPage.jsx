@@ -26,7 +26,7 @@ const ReturnPolicyPage = () => {
       <div className="relative overflow-hidden">
         <ReturnPolicyContent />
 
-        <Ellipse className="absolute  left-0 size-[1440px]" />
+        <Ellipse className="absolute  left-0 size-[1440px] globe-bg" />
 
         <div className={"pt-20"}>
           <AddressGrid isBackground={false} />

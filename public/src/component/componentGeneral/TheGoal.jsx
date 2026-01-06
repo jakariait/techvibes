@@ -21,7 +21,7 @@ function Ellipse({ className }) {
 const TheGoal = () => {
   return (
     <div className={"relative overflow-hidden"}>
-      <Ellipse className="absolute  left-0 size-360 top-16" />
+      <Ellipse className="absolute  left-0 size-360 top-16 globe-bg" />
 
       <div className={"md:w-2/3 mx-auto text-center p-4 py-40 relative z-20"}>
         <h1 className="bg-[linear-gradient(90deg,#4E52FB_32.39%,#20ACF7_68.01%)] bg-clip-text text-transparent text-[64px]  ">
