@@ -95,3 +95,18 @@ body {
   rotate: 25deg;
   transform: translateX(-20%) translateY(-70%);
 }
+
+@keyframes globeRotate {
+  from {
+    transform: rotate(0deg) scale(1.05);
+  }
+  to {
+    transform: rotate(20deg) scale(1.05);
+  }
+}
+
+.globe-bg {
+  animation: globeRotate 5s linear infinite;
+  transform-origin: center center;
+  pointer-events: none;
+}

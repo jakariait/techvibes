@@ -3,8 +3,6 @@ import Layout from "../component/componentGeneral/Layout.jsx";
 import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
 import TermsConditionContent from "../component/componentGeneral/TermsConditionContent.jsx";
 import imgProperty1Default from "../assets/eclipse.png";
-import GlobeEllipse from "../component/GlobeEllipse.jsx";
-import WorldGlobe from "../component/WorldGlobe.jsx";
 
 function Ellipse({ className }) {
   return (
@@ -22,15 +20,16 @@ function Ellipse({ className }) {
   );
 }
 
+
 const TermsConditionPage = () => {
   return (
     <Layout>
-      <WorldGlobe />
       <div className="relative overflow-hidden">
         <TermsConditionContent />
 
-        <div className={"pt-20 relative w-full min-h-[500px] overflow-hidden"}>
-          <GlobeEllipse className="absolute top-0 left-0 w-[200%] h-full z-[-1]" />
+        <Ellipse className="absolute  left-0 size-[1440px] globe-bg" />
+
+        <div className={"pt-20"}>
           <AddressGrid isBackground={false} />
         </div>
       </div>
