@@ -3,6 +3,8 @@ import Layout from "../component/componentGeneral/Layout.jsx";
 import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
 import imgProperty1Default from "../assets/eclipse.png";
 import ReturnPolicyContent from "../component/componentGeneral/ReturnPolicyContent.jsx";
+import FooterMenu from "../component/componentGeneral/FooterMenu.jsx";
+import TechVibesFooter from "../component/componentGeneral/TechVibesFooter.jsx";
 
 function Ellipse({ className }) {
   return (
