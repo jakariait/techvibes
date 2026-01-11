@@ -20,7 +20,6 @@ function Ellipse({ className }) {
   );
 }
 
-
 const TermsConditionPage = () => {
   return (
     <Layout>
