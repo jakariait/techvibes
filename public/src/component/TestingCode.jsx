@@ -1,9 +1,10 @@
 import React from "react";
+import imgVector7 from "../assets/feature/lucide_nfc.svg"
+import imgVector1 from "../assets/feature/lucide_nfc (1).svg"
+import imgVector from "../assets/feature/ic_round-phone-iphone.svg"
 
-const imgVector =
-  "https://www.figma.com/api/mcp/asset/a323ff44-eec6-423d-b0a1-05854781a4d4";
-const imgVector1 =
-  "https://www.figma.com/api/mcp/asset/0b76893c-a9eb-4ee6-a8ea-df33d7086756";
+
+
 const imgEllipse201 =
   "https://www.figma.com/api/mcp/asset/81148610-345f-46e7-94d1-b4d9540e2e3b";
 const imgEllipse202 =
@@ -22,8 +23,7 @@ const imgVector5 =
   "https://www.figma.com/api/mcp/asset/fe566b87-85ec-4b9b-b578-9dbbae447ea3";
 const imgVector6 =
   "https://www.figma.com/api/mcp/asset/befb707c-6a7e-4b02-9e65-ac6cbd6066a6";
-const imgVector7 =
-  "https://www.figma.com/api/mcp/asset/9dac1a13-172a-43ab-b8b2-a303e2257c3a";
+
 const imgVector8 =
   "https://www.figma.com/api/mcp/asset/87442265-1f1f-4bfa-948f-e083937dad13";
 const imgVector9 =
@@ -39,7 +39,7 @@ const TestingCode = () => {
     >
       <div
         data-node-id="1:141"
-        className="absolute top-0 left-0 w-full h-full bg-gray-800"
+        className="absolute top-0 left-0 w-full h-full "
       >
         <div className="absolute inset-[89.76%_44.87%_0_44.87%] flex items-center justify-center bg-[#4e52fb] rounded-[12px] p-1">
           <p
@@ -129,11 +129,16 @@ const TestingCode = () => {
             <img className="w-1/2 h-1/2" alt="" src={img} />
           </div>
         </div>
+        <div className="absolute inset-[23.56%_57.31%_70.04%_36.28%]">
+          <img className="absolute w-full h-full" alt="" src={imgEllipse203} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img className="w-1/2 h-1/2" alt="" src={imgVector4} />
+          </div>
+        </div>
         <div className="absolute inset-[23.56%_36.03%_70.04%_57.56%]">
           <img className="absolute w-full h-full" alt="" src={imgEllipse203} />
           <div className="absolute inset-0 flex items-center justify-center">
-            <img className="w-1/2" alt="" src={imgVector4} />
-            <img className="w-1/2" alt="" src={imgVector5} />
+            <img className="w-1/2 h-1/2" alt="" src={imgVector5} />
           </div>
         </div>
         <div className="absolute inset-[36.75%_23.59%_56.85%_70%]">
@@ -162,7 +167,13 @@ const TestingCode = () => {
         </div>
 
         <div className="absolute aspect-square w-[25%] top-[37.5%] left-[37.5%]">
-          <img className="w-full h-full" alt="" src={imgVector} />
+          <div className={"flex items-center justify-center gap-3"}>
+            <img className="w-full h-full" alt="" src={imgVector1} />
+
+            <img className="w-full h-full -ml-10 -mr-10" alt="" src={imgVector} />
+            <img className="w-full h-full" alt="" src={imgVector7} />
+          </div>
+
         </div>
       </div>
     </div>
