@@ -11,6 +11,7 @@ import SuccessCreateProfilePage from "./pagesUser/SuccessCreateProfilePage.jsx";
 import CreateProfilePage from "./pagesUser/CreateProfilePage.jsx";
 import OrderCongratulationPage from "./pagesUser/OrderCongratulationPage.jsx";
 import FinalDesignPage from "./pagesUser/FinalDesignPage.jsx";
+import BlogPage from "./pagesUser/BlogPage.jsx";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         />
         <Route path="/create-profile" element={<CreateProfilePage />} />
         <Route path="/thank-you" element={<OrderCongratulationPage />} />
+        <Route path="/blog" element={<BlogPage />} />
 
         {/* Not Found */}
         <Route path="*" element={<NotFoundPage />} />
