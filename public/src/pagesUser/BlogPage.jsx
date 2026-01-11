@@ -4,6 +4,7 @@ import AddressGrid from "../component/componentGeneral/AddressGrid.jsx";
 import imgProperty1Default from "../assets/eclipse.png";
 import AllBlog from "../component/componentGeneral/AllBlog.jsx";
 import BlogSingle from "../component/componentGeneral/BlogSingle.jsx";
+import TestingCode from "../component/TestingCode.jsx";
 
 function Ellipse({ className }) {
   return (
@@ -25,6 +26,8 @@ const BlogPage = () => {
   return (
     <Layout>
       <div className="relative overflow-hidden">
+
+        <TestingCode/>
         <AllBlog />
         <BlogSingle />
         <Ellipse className="absolute  left-0 size-[1440px] globe-bg" />
