@@ -33,7 +33,7 @@ function App() {
         <Route path="/create-profile" element={<CreateProfilePage />} />
         <Route path="/thank-you" element={<OrderCongratulationPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/test" element={<div className="h-screen flex items-center justify-center"><TestingCode /></div>} />
+        <Route path="/test" element={<div className="h-screen flex items-center justify-center p-8"><div className="w-full max-w-[781px]"><TestingCode /></div></div>} />
 
         {/* Not Found */}
         <Route path="*" element={<NotFoundPage />} />
