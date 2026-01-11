@@ -1,37 +1,21 @@
 import React from "react";
-import imgVector7 from "../assets/feature/lucide_nfc.svg"
-import imgVector1 from "../assets/feature/lucide_nfc (1).svg"
-import imgVector from "../assets/feature/ic_round-phone-iphone.svg"
+import imgVector7 from "../../assets/feature/lucide_nfc.svg";
+import imgVector1 from "../../assets/feature/lucide_nfc (1).svg";
+import imgVector from "../../assets/feature/ic_round-phone-iphone.svg";
+import imgEllipse201 from "../../assets/feature/imgEllipse201.svg";
+import imgEllipse202 from "../../assets/feature/imgEllipse202.svg";
+import imgEllipse203 from "../../assets/feature/imgEllipse203.svg";
+import imgVector2 from "../../assets/feature/imgVector2.svg";
+import imgVector3 from "../../assets/feature/imgVector3.svg";
+import img from "../../assets/feature/img.svg";
+import imgVector4 from "../../assets/feature/imgVector4.svg";
+import imgVector5 from "../../assets/feature/imgVector5.svg";
+import imgVector6 from "../../assets/feature/imgVector6.svg";
+import imgVector8 from "../../assets/feature/imgVector8.svg";
+import imgVector9 from "../../assets/feature/imgVector9.svg";
+import imgVector10 from "../../assets/feature/imgVector10.svg";
 
-
-
-const imgEllipse201 =
-  "https://www.figma.com/api/mcp/asset/81148610-345f-46e7-94d1-b4d9540e2e3b";
-const imgEllipse202 =
-  "https://www.figma.com/api/mcp/asset/d72aa18d-96ed-472c-87ec-5da72c21a5cc";
-const imgEllipse203 =
-  "https://www.figma.com/api/mcp/asset/1d51a23e-0974-49b9-b1aa-7761ac58406c";
-const imgVector2 =
-  "https://www.figma.com/api/mcp/asset/981d50d2-c998-4d7b-b187-cac902f9820c";
-const imgVector3 =
-  "https://www.figma.com/api/mcp/asset/caa328e7-9d07-42e7-8016-a489bf8deb5f";
-const img =
-  "https://www.figma.com/api/mcp/asset/5fb59d76-fb18-4290-8651-48fa33961975";
-const imgVector4 =
-  "https://www.figma.com/api/mcp/asset/987c8d7a-b4bb-4a50-9f6f-2af242d2b057";
-const imgVector5 =
-  "https://www.figma.com/api/mcp/asset/fe566b87-85ec-4b9b-b578-9dbbae447ea3";
-const imgVector6 =
-  "https://www.figma.com/api/mcp/asset/befb707c-6a7e-4b02-9e65-ac6cbd6066a6";
-
-const imgVector8 =
-  "https://www.figma.com/api/mcp/asset/87442265-1f1f-4bfa-948f-e083937dad13";
-const imgVector9 =
-  "https://www.figma.com/api/mcp/asset/0bb83226-b999-49f6-bc31-527bf2eb2faf";
-const imgVector10 =
-  "https://www.figma.com/api/mcp/asset/c009376c-9e1e-49a1-86ca-d01b92cd3e9f";
-
-const TestingCode = () => {
+const FeatureCircle = () => {
   return (
     <div
       className="w-full max-w-[781px] relative"
@@ -170,14 +154,17 @@ const TestingCode = () => {
           <div className={"flex items-center justify-center gap-3"}>
             <img className="w-full h-full" alt="" src={imgVector1} />
 
-            <img className="w-full h-full -ml-10 -mr-10" alt="" src={imgVector} />
+            <img
+              className="w-full h-full -ml-10 -mr-10"
+              alt=""
+              src={imgVector}
+            />
             <img className="w-full h-full" alt="" src={imgVector7} />
           </div>
-
         </div>
       </div>
     </div>
   );
 };
 
-export default TestingCode;
+export default FeatureCircle;

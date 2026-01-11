@@ -7,14 +7,12 @@ import AtAGlance from "../component/componentGeneral/AtAGlance.jsx";
 import DigitalProfileDemo from "../component/componentGeneral/DigitalProfileDemo.jsx";
 import HowWorks from "../component/componentGeneral/HowWorks.jsx";
 import PricingCard from "../component/componentGeneral/PricingCard.jsx";
-import TestingCode from "../component/TestingCode.jsx";
+import Feature from "../component/componentGeneral/Feature.jsx";
 
 const FinalDesignPage = () => {
   return (
     <Layout>
-      <div className="w-full max-w-[781px] mx-auto p-4">
-        <TestingCode />
-      </div>
+      <Feature/>
       <AtAGlance />
       <DigitalProfileDemo />
       <WhyChooseUs />
