@@ -9,13 +9,11 @@ import HowWorks from "../component/componentGeneral/HowWorks.jsx";
 import PricingCard from "../component/componentGeneral/PricingCard.jsx";
 import Feature from "../component/componentGeneral/Feature.jsx";
 import AtAGlanceGraphic from "../component/componentGeneral/AtAGlanceGraphic.jsx";
-import AIDesignSystem from "../component/AIDesignSystem.jsx";
 
 const FinalDesignPage = () => {
   return (
     <Layout>
-      <AIDesignSystem/>
-      <div className={"py-50"}>
+      <div className={"px-4 max-w-7xl mx-auto py-50"}>
         <AtAGlanceGraphic />
       </div>
 

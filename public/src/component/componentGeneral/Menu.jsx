@@ -31,7 +31,7 @@ const Menu = () => {
         <div className="bg-linear-to-r from-[#0F0C9A] to-[#20ACF7] bg-clip-text text-transparent font-semibold text-[36px] leading-none ">
           <Link to="/">TechVibes</Link>
         </div>
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-4">
           {menuItems.map((item) => (
             <Link
               key={item.label}
@@ -44,7 +44,7 @@ const Menu = () => {
           ))}
           <button className={"get-now-btn"}>Get Now</button>
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button
             onClick={handleClick}
             className="text-white focus:outline-none"
