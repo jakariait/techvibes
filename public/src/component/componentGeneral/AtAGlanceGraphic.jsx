@@ -15,7 +15,7 @@ const imgGroup1686554533 =
 const imgGroup1686554528 =
   "https://www.figma.com/api/mcp/asset/0fc01698-1939-427c-bcba-cd751bbcc27c";
 
-const Card1 = (
+const Card1 = () => (
   <div className="bg-slate-900/50 backdrop-blur border border-indigo-500/20 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 h-full">
     <h3 className="text-indigo-200 font-medium mb-2 text-sm tracking-wide">
       UX Copy That Clicks
@@ -31,7 +31,7 @@ const Card1 = (
   </div>
 );
 
-const Card2 = (
+const Card2 = () => (
   <div className="bg-slate-900/50 backdrop-blur border border-indigo-500/20 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 h-full">
     <h3 className="text-indigo-200 font-medium mb-2 text-sm tracking-wide">
       Visuals, Instantly on Point
@@ -48,12 +48,12 @@ const Card2 = (
           <path
             d="M 50 10 Q 30 40 50 60 Q 70 40 50 10 M 50 60 Q 30 80 50 110 Q 70 80 50 60"
             fill="none"
-            stroke="url(#gradient)"
+            stroke="url(#card2_gradient)"
             strokeWidth="3"
             className="drop-shadow-[0_0_10px_rgba(139,92,246,0.8)]"
           />
           <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="card2_gradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#8b5cf6" />
               <stop offset="50%" stopColor="#a78bfa" />
               <stop offset="100%" stopColor="#8b5cf6" />
@@ -68,7 +68,7 @@ const Card2 = (
   </div>
 );
 
-const Card3 = (
+const Card3 = () => (
   <div className="bg-slate-900/50 backdrop-blur border border-indigo-500/20 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 h-full">
     <h3 className="text-indigo-200 font-medium mb-2 text-sm tracking-wide">
       Data-Led Design Decisions
@@ -85,7 +85,7 @@ const Card3 = (
   </div>
 );
 
-const Card4 = (
+const Card4 = () => (
   <div className="bg-slate-900/50 backdrop-blur border border-indigo-500/20 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 h-full">
     <h3 className="text-indigo-200 font-medium mb-2 text-sm tracking-wide">
       Efficient Wireframe Generation
@@ -105,7 +105,7 @@ const Card4 = (
   </div>
 );
 
-const Card5 = (
+const Card5 = () => (
   <div className="bg-slate-900/50 backdrop-blur border border-indigo-500/20 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 h-full">
     <h3 className="text-indigo-200 font-medium mb-2 text-sm tracking-wide">
       Dynamic Layouts with AI
@@ -126,7 +126,7 @@ const Card5 = (
   </div>
 );
 
-const Card6 = (
+const Card6 = () => (
   <div className="bg-slate-900/50 backdrop-blur border border-indigo-500/20 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 h-full">
     <h3 className="text-indigo-200 font-medium mb-2 text-sm tracking-wide">
       Structured Design Grids
@@ -148,237 +148,249 @@ const Card6 = (
 
 const AtAGlanceGraphic = () => {
   return (
-    <div data-node-id="1:1645" className="relative aspect-square w-full ">
-      {" "}
-      {/* 1 */}
-      <div
-        data-node-id="1:1646"
-        className="absolute contents inset-[30.87%_15.91%_30.87%_15.68%]"
-      >
+    <div className="w-full">
+      {/* Mobile/Tablet View */}
+      <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        <Card1 />
+        <Card2 />
+        <Card3 />
+        <Card4 />
+        <Card5 />
+        <Card6 />
+      </div>
+
+      <div data-node-id="1:1645" className="hidden lg:block relative aspect-square w-full">
         {" "}
-        {/* 2 */}
+        {/* 1 */}
         <div
-          data-node-id="1:1647"
-          className="absolute bg-[#474ad7] inset-[51.13%_49.77%_30.87%_49.85%]"
-        />{" "}
-        {/* 3 */}
-        <div
-          data-node-id="1:1648"
-          className="absolute bg-[#474ad7] inset-[30.87%_49.77%_51.13%_49.85%]"
-        />{" "}
-        {/* 4 */}
-        <div
-          data-node-id="1:1649"
-          className="absolute bg-[#474ad7] inset-[31.02%_15.91%_57.28%_83.71%]"
-        />{" "}
-        {/* 5 */}
-        <div
-          data-node-id="1:1650"
-          className="absolute bg-[#474ad7] inset-[42.36%_32.12%_50.11%_67.5%]"
-        />{" "}
-        {/* 6 */}
-        <div
-          data-node-id="1:1651"
-          className="absolute bg-[#474ad7] inset-[49.74%_32.12%_42.28%_67.5%]"
-        />{" "}
-        {/* 7 */}
-        <div
-          data-node-id="1:1652"
-          className="absolute bg-[#474ad7] inset-[31.02%_83.94%_57.28%_15.68%]"
-        />{" "}
-        {/* 8 */}
-        <div className="absolute flex inset-[49.74%_51.14%_49.89%_32.73%] items-center justify-center">
-          <div className="flex-none h-[212.677px] rotate-[90deg] w-[4.622px]">
-            <div data-node-id="1:1653" className="bg-[#474ad7] size-full" />{" "}
-            {/* 9 */}
-          </div>
-        </div>
-        <div className="absolute flex inset-[42.36%_66.89%_57.28%_15.68%] items-center justify-center">
-          <div className="flex-none h-[229.652px] rotate-[90deg] w-[4.622px]">
-            <div data-node-id="1:1654" className="bg-[#474ad7] size-full" />{" "}
-            {/* 10 */}
-          </div>
-        </div>
-        <div className="absolute flex inset-[57.35%_66.89%_42.28%_15.68%] items-center justify-center">
-          <div className="flex-none h-[229.652px] rotate-[90deg] w-[4.622px]">
-            <div data-node-id="1:1655" className="bg-[#474ad7] size-full" />{" "}
-            {/* 11 */}
-          </div>
-        </div>
-        <div className="absolute flex inset-[49.52%_32.12%_50.11%_50.76%] items-center justify-center">
-          <div className="flex-none h-[225.658px] rotate-[90deg] w-[4.622px]">
-            <div data-node-id="1:1656" className="bg-[#474ad7] size-full" />{" "}
-            {/* 12 */}
-          </div>
-        </div>
-        <div className="absolute flex inset-[57.35%_15.91%_42.28%_67.5%] items-center justify-center">
-          <div className="flex-none h-[218.668px] rotate-[90deg] w-[4.622px]">
-            <div data-node-id="1:1657" className="bg-[#474ad7] size-full" />{" "}
-            {/* 13 */}
-          </div>
-        </div>
-        <div className="absolute flex inset-[42.36%_15.91%_57.28%_67.65%] items-center justify-center">
-          <div className="flex-none h-[216.671px] rotate-[90deg] w-[4.622px]">
-            <div data-node-id="1:1658" className="bg-[#474ad7] size-full" />{" "}
-            {/* 14 */}
-          </div>
-        </div>
-        <div
-          data-node-id="1:1659"
-          className="absolute bg-[#474ad7] inset-[57.35%_15.91%_30.94%_83.71%]"
-        />{" "}
-        {/* 15 */}
-        <div
-          data-node-id="1:1660"
-          className="absolute bg-[#474ad7] inset-[57.35%_83.94%_30.94%_15.68%]"
-        />{" "}
-        {/* 16 */}
-        <div
-          data-node-id="1:1661"
-          className="absolute bg-[#474ad7] inset-[49.74%_66.89%_42.28%_32.73%]"
-        />{" "}
-        {/* 17 */}
-        <div
-          data-node-id="1:1662"
-          className="absolute bg-[#474ad7] inset-[42.36%_66.89%_50.18%_32.73%]"
-        />{" "}
-        {/* 18 */}
-        <div
-          data-node-id="1:1663"
-          className="absolute inset-[44.18%_43.94%_44.11%_43.94%]"
+          data-node-id="1:1646"
+          className="absolute contents inset-[30.87%_15.91%_30.87%_15.68%]"
         >
           {" "}
-          {/* 19 */}
-          <div className="absolute inset-[-16.4%_-15.18%]">
+          {/* 2 */}
+          <div
+            data-node-id="1:1647"
+            className="absolute bg-[#474ad7] inset-[51.13%_49.77%_30.87%_49.85%]"
+          />{" "}
+          {/* 3 */}
+          <div
+            data-node-id="1:1648"
+            className="absolute bg-[#474ad7] inset-[30.87%_49.77%_51.13%_49.85%]"
+          />{" "}
+          {/* 4 */}
+          <div
+            data-node-id="1:1649"
+            className="absolute bg-[#474ad7] inset-[31.02%_15.91%_57.28%_83.71%]"
+          />{" "}
+          {/* 5 */}
+          <div
+            data-node-id="1:1650"
+            className="absolute bg-[#474ad7] inset-[42.36%_32.12%_50.11%_67.5%]"
+          />{" "}
+          {/* 6 */}
+          <div
+            data-node-id="1:1651"
+            className="absolute bg-[#474ad7] inset-[49.74%_32.12%_42.28%_67.5%]"
+          />{" "}
+          {/* 7 */}
+          <div
+            data-node-id="1:1652"
+            className="absolute bg-[#474ad7] inset-[31.02%_83.94%_57.28%_15.68%]"
+          />{" "}
+          {/* 8 */}
+          <div className="absolute flex inset-[49.74%_51.14%_49.89%_32.73%] items-center justify-center">
+            <div className="flex-none h-[212.677px] rotate-[90deg] w-[4.622px]">
+              <div data-node-id="1:1653" className="bg-[#474ad7] size-full" />{" "}
+              {/* 9 */}
+            </div>
+          </div>
+          <div className="absolute flex inset-[42.36%_66.89%_57.28%_15.68%] items-center justify-center">
+            <div className="flex-none h-[229.652px] rotate-[90deg] w-[4.622px]">
+              <div data-node-id="1:1654" className="bg-[#474ad7] size-full" />{" "}
+              {/* 10 */}
+            </div>
+          </div>
+          <div className="absolute flex inset-[57.35%_66.89%_42.28%_15.68%] items-center justify-center">
+            <div className="flex-none h-[229.652px] rotate-[90deg] w-[4.622px]">
+              <div data-node-id="1:1655" className="bg-[#474ad7] size-full" />{" "}
+              {/* 11 */}
+            </div>
+          </div>
+          <div className="absolute flex inset-[49.52%_32.12%_50.11%_50.76%] items-center justify-center">
+            <div className="flex-none h-[225.658px] rotate-[90deg] w-[4.622px]">
+              <div data-node-id="1:1656" className="bg-[#474ad7] size-full" />{" "}
+              {/* 12 */}
+            </div>
+          </div>
+          <div className="absolute flex inset-[57.35%_15.91%_42.28%_67.5%] items-center justify-center">
+            <div className="flex-none h-[218.668px] rotate-[90deg] w-[4.622px]">
+              <div data-node-id="1:1657" className="bg-[#474ad7] size-full" />{" "}
+              {/* 13 */}
+            </div>
+          </div>
+          <div className="absolute flex inset-[42.36%_15.91%_57.28%_67.65%] items-center justify-center">
+            <div className="flex-none h-[216.671px] rotate-[90deg] w-[4.622px]">
+              <div data-node-id="1:1658" className="bg-[#474ad7] size-full" />{" "}
+              {/* 14 */}
+            </div>
+          </div>
+          <div
+            data-node-id="1:1659"
+            className="absolute bg-[#474ad7] inset-[57.35%_15.91%_30.94%_83.71%]"
+          />{" "}
+          {/* 15 */}
+          <div
+            data-node-id="1:1660"
+            className="absolute bg-[#474ad7] inset-[57.35%_83.94%_30.94%_15.68%]"
+          />{" "}
+          {/* 16 */}
+          <div
+            data-node-id="1:1661"
+            className="absolute bg-[#474ad7] inset-[49.74%_66.89%_42.28%_32.73%]"
+          />{" "}
+          {/* 17 */}
+          <div
+            data-node-id="1:1662"
+            className="absolute bg-[#474ad7] inset-[42.36%_66.89%_50.18%_32.73%]"
+          />{" "}
+          {/* 18 */}
+          <div
+            data-node-id="1:1663"
+            className="absolute inset-[44.18%_43.94%_44.11%_43.94%]"
+          >
+            {" "}
+            {/* 19 */}
+            <div className="absolute inset-[-16.4%_-15.18%]">
+              <img
+                className="block max-w-none size-full"
+                alt=""
+                src={imgGroup1686554526}
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          data-node-id="1:1666"
+          className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[0_67.88%_68.98%_0] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+        >
+          <Card1 />
+        </div>{" "}
+        {/* 20 */}
+        <div
+          data-node-id="1:1667"
+          className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_67.88%_0_0] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+        >
+          <Card4 />
+        </div>
+        <div
+          data-node-id="1:1668"
+          className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[0_33.94%_68.98%_33.94%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+        >
+          <Card2 />
+        </div>{" "}
+        {/* 22 */}
+        <div
+          data-node-id="1:1669"
+          className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_33.94%_0_33.94%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+        >
+          <Card5 />
+        </div>
+        <div
+          data-node-id="1:1670"
+          className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[0_0_68.98%_67.88%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+        >
+          <Card3 />
+        </div>{" "}
+        {/* 24 */}
+        <div
+          data-node-id="1:1671"
+          className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_0_0_67.88%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+        >
+          <Card6 />
+        </div>
+        <div
+          data-node-id="1:1672"
+          className="absolute inset-[67.89%_83.03%_29.92%_14.7%]"
+        >
+          {" "}
+          {/* 26 */}
+          <div className="absolute inset-[-14.92%_-13.82%]">
             <img
               className="block max-w-none size-full"
               alt=""
-              src={imgGroup1686554526}
+              src={imgGroup1686554529}
             />
           </div>
         </div>
-      </div>
-      <div
-        data-node-id="1:1666"
-        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[0_67.88%_68.98%_0] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
-      >
-        {Card1}
-      </div>{" "}
-      {/* 20 */}
-      <div
-        data-node-id="1:1667"
-        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_67.88%_0_0] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
-      >
-        {Card4}
-      </div>
-      <div
-        data-node-id="1:1668"
-        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[0_33.94%_68.98%_33.94%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
-      >
-        {Card2}
-      </div>{" "}
-      {/* 22 */}
-      <div
-        data-node-id="1:1669"
-        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_33.94%_0_33.94%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
-      >
-        {Card5}
-      </div>
-      <div
-        data-node-id="1:1670"
-        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[0_0_68.98%_67.88%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
-      >
-        {Card3}
-      </div>{" "}
-      {/* 24 */}
-      <div
-        data-node-id="1:1671"
-        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_0_0_67.88%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
-      >
-        {Card6}
-      </div>
-      <div
-        data-node-id="1:1672"
-        className="absolute inset-[67.89%_83.03%_29.92%_14.7%]"
-      >
-        {" "}
-        {/* 26 */}
-        <div className="absolute inset-[-14.92%_-13.82%]">
-          <img
-            className="block max-w-none size-full"
-            alt=""
-            src={imgGroup1686554529}
-          />
+        <div
+          data-node-id="1:1675"
+          className="absolute inset-[67.89%_48.86%_29.92%_48.86%]"
+        >
+          {" "}
+          {/* 27 */}
+          <div className="absolute inset-[-14.92%_-13.82%_-14.93%_-13.82%]">
+            <img
+              className="block max-w-none size-full"
+              alt=""
+              src={imgGroup1686554530}
+            />
+          </div>
         </div>
-      </div>
-      <div
-        data-node-id="1:1675"
-        className="absolute inset-[67.89%_48.86%_29.92%_48.86%]"
-      >
-        {" "}
-        {/* 27 */}
-        <div className="absolute inset-[-14.92%_-13.82%_-14.93%_-13.82%]">
-          <img
-            className="block max-w-none size-full"
-            alt=""
-            src={imgGroup1686554530}
-          />
+        <div
+          data-node-id="1:1678"
+          className="absolute inset-[29.92%_48.86%_67.89%_48.86%]"
+        >
+          {" "}
+          {/* 28 */}
+          <div className="absolute inset-[-14.92%_-13.82%]">
+            <img
+              className="block max-w-none size-full"
+              alt=""
+              src={imgGroup1686554531}
+            />
+          </div>
         </div>
-      </div>
-      <div
-        data-node-id="1:1678"
-        className="absolute inset-[29.92%_48.86%_67.89%_48.86%]"
-      >
-        {" "}
-        {/* 28 */}
-        <div className="absolute inset-[-14.92%_-13.82%]">
-          <img
-            className="block max-w-none size-full"
-            alt=""
-            src={imgGroup1686554531}
-          />
+        <div
+          data-node-id="1:1681"
+          className="absolute inset-[29.92%_15%_67.89%_82.73%]"
+        >
+          {" "}
+          {/* 29 */}
+          <div className="absolute inset-[-14.92%_-13.82%_-14.92%_-13.81%]">
+            <img
+              className="block max-w-none size-full"
+              alt=""
+              src={imgGroup1686554532}
+            />
+          </div>
         </div>
-      </div>
-      <div
-        data-node-id="1:1681"
-        className="absolute inset-[29.92%_15%_67.89%_82.73%]"
-      >
-        {" "}
-        {/* 29 */}
-        <div className="absolute inset-[-14.92%_-13.82%_-14.92%_-13.81%]">
-          <img
-            className="block max-w-none size-full"
-            alt=""
-            src={imgGroup1686554532}
-          />
+        <div
+          data-node-id="1:1684"
+          className="absolute inset-[67.89%_14.92%_29.92%_82.8%]"
+        >
+          {" "}
+          {/* 30 */}
+          <div className="absolute inset-[-14.92%_-13.82%]">
+            <img
+              className="block max-w-none size-full"
+              alt=""
+              src={imgGroup1686554533}
+            />
+          </div>
         </div>
-      </div>
-      <div
-        data-node-id="1:1684"
-        className="absolute inset-[67.89%_14.92%_29.92%_82.8%]"
-      >
-        {" "}
-        {/* 30 */}
-        <div className="absolute inset-[-14.92%_-13.82%]">
-          <img
-            className="block max-w-none size-full"
-            alt=""
-            src={imgGroup1686554533}
-          />
-        </div>
-      </div>
-      <div
-        data-node-id="1:1687"
-        className="absolute inset-[29.92%_83.03%_67.89%_14.7%]"
-      >
-        {" "}
-        {/* 31 */}
-        <div className="absolute inset-[-14.92%_-13.82%]">
-          <img
-            className="block max-w-none size-full"
-            alt=""
-            src={imgGroup1686554528}
-          />
+        <div
+          data-node-id="1:1687"
+          className="absolute inset-[29.92%_83.03%_67.89%_14.7%]"
+        >
+          {" "}
+          {/* 31 */}
+          <div className="absolute inset-[-14.92%_-13.82%]">
+            <img
+              className="block max-w-none size-full"
+              alt=""
+              src={imgGroup1686554528}
+            />
+          </div>
         </div>
       </div>
     </div>
