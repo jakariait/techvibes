@@ -91,7 +91,8 @@ const Card4 = (
       Efficient Wireframe Generation
     </h3>
     <p className="text-indigo-300/60 text-xs mb-6 leading-relaxed">
-      Leverage AI for rapid wireframing, streamlining your design process with smart and fast tools.
+      Leverage AI for rapid wireframing, streamlining your design process with
+      smart and fast tools.
     </p>
     <div className="space-y-4">
       <div className="h-12 bg-indigo-600/30 rounded border border-indigo-500/40 flex items-center justify-center text-sm font-medium text-indigo-200">
@@ -110,7 +111,8 @@ const Card5 = (
       Dynamic Layouts with AI
     </h3>
     <p className="text-indigo-300/60 text-xs mb-6 leading-relaxed">
-      Create adaptable and responsive layouts quickly using AI-powered tools for dynamic design.
+      Create adaptable and responsive layouts quickly using AI-powered tools for
+      dynamic design.
     </p>
     <div className="space-y-3">
       <div className="flex gap-3">
@@ -130,7 +132,8 @@ const Card6 = (
       Structured Design Grids
     </h3>
     <p className="text-indigo-300/60 text-xs mb-6 leading-relaxed">
-      Build robust and structured designs with AI-assisted grid systems for perfect alignment.
+      Build robust and structured designs with AI-assisted grid systems for
+      perfect alignment.
     </p>
     <div className="space-y-3">
       <div className="grid grid-cols-3 gap-2">
@@ -262,16 +265,11 @@ const AtAGlanceGraphic = () => {
         {Card1}
       </div>{" "}
       {/* 20 */}
-      <div className="absolute flex inset-[68.98%_67.88%_0_0] items-center justify-center">
-        <div className="flex-none h-[391.952px] scale-y-[-100%] w-[423.358px]">
-          <div
-            data-node-id="1:1667"
-            className="bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] rounded-[19.401px] size-full to-[64.904%] to-[rgba(11,13,82,0.33)]"
-          >
-            <div className="scale-y-[-100%] h-full">{Card4}</div>
-          </div>{" "}
-          {/* 21 */}
-        </div>
+      <div
+        data-node-id="1:1667"
+        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_67.88%_0_0] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+      >
+        {Card4}
       </div>
       <div
         data-node-id="1:1668"
@@ -280,16 +278,11 @@ const AtAGlanceGraphic = () => {
         {Card2}
       </div>{" "}
       {/* 22 */}
-      <div className="absolute flex inset-[68.98%_33.94%_0_33.94%] items-center justify-center">
-        <div className="flex-none h-[391.952px] scale-y-[-100%] w-[423.358px]">
-          <div
-            data-node-id="1:1669"
-            className="bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] rounded-[19.401px] size-full to-[64.904%] to-[rgba(11,13,82,0.33)]"
-          >
-            <div className="scale-y-[-100%] h-full">{Card5}</div>
-          </div>{" "}
-          {/* 23 */}
-        </div>
+      <div
+        data-node-id="1:1669"
+        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_33.94%_0_33.94%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+      >
+        {Card5}
       </div>
       <div
         data-node-id="1:1670"
@@ -298,16 +291,11 @@ const AtAGlanceGraphic = () => {
         {Card3}
       </div>{" "}
       {/* 24 */}
-      <div className="absolute flex inset-[68.98%_0_0_67.88%] items-center justify-center">
-        <div className="flex-none h-[391.952px] scale-y-[-100%] w-[423.358px]">
-          <div
-            data-node-id="1:1671"
-            className="bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] rounded-[19.401px] size-full to-[64.904%] to-[rgba(11,13,82,0.33)]"
-          >
-            <div className="scale-y-[-100%] h-full">{Card6}</div>
-          </div>{" "}
-          {/* 25 */}
-        </div>
+      <div
+        data-node-id="1:1671"
+        className="absolute bg-gradient-to-b border-[2.587px] border-[rgba(0,0,0,0)] border-solid from-[rgba(54,56,121,0.21)] inset-[68.98%_0_0_67.88%] rounded-[19.401px] to-[64.904%] to-[rgba(11,13,82,0.33)]"
+      >
+        {Card6}
       </div>
       <div
         data-node-id="1:1672"
