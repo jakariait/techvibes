@@ -4,6 +4,20 @@ import FeatureCircle from "./FeatureCircle.jsx";
 const Feature = () => {
   return (
     <div>
+      <h1
+        style={{
+          width: "100%",
+          textAlign: "center",
+          color: "#4E52FB",
+          fontSize: 48,
+          fontFamily: "Bruno Ace",
+          fontWeight: "400",
+          wordWrap: "break-word",
+        }}
+        className={"pb-5"}
+      >
+        TechVibes at a Glance
+      </h1>
       <div
         className={"max-w-3xl mx-auto flex items-center justify-center py-5"}
       >
