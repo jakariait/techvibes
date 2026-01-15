@@ -187,6 +187,7 @@ const AdminManagementSection = ({companyId}) => {
     );
   });
 
+
   // Clear search
   const clearSearch = () => {
     setSearchQuery("");
