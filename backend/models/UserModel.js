@@ -74,6 +74,16 @@ const userSchema = new mongoose.Schema(
       default: ["yellow", "green", "black", "red", "gray"],
     },
 
+    nfccard: {
+      type: Boolean,
+      default: true,
+    },
+
+    powerdby: {
+      type: Boolean,
+      default: true,
+    },
+
     company: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Company",

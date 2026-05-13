@@ -22,7 +22,6 @@ import Gallery from "../component/public/Gallery.jsx";
 import PortfolioAndCV from "../component/public/PortfolioAndCV.jsx";
 import YouTubeEmbed from "../component/public/YouTubeEmbed.jsx";
 import useCompanyStore from "../store/useCompanyStore.jsx";
-import LoadingLottie from "../component/public/LoadingLottie.jsx";
 import UserNotFound from "../component/public/UserNotFound.jsx";
 import RequirePermission from "../component/public/RequirePermission.jsx";
 import SaveContactConnect from "../component/public/SaveContactConnect.jsx";
@@ -147,7 +146,6 @@ const UserPublicProfile = () => {
     return Component && hasContent(key, profile, user, company);
   });
 
-
   return (
     <>
       <div className={`${theme.homePageBgColor}`}>
@@ -223,8 +221,8 @@ const UserPublicProfile = () => {
           </div>
 
           <div className={`p-2 flex-col gap-2 flex`}>
-            <OrderNFCCard />
-            <TechVibesCard />
+            {user.nfccard && <OrderNFCCard />}
+            {user.powerdby && <TechVibesCard />}
           </div>
         </div>
       </div>

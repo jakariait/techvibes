@@ -57,6 +57,8 @@ const UpdateUserForm = ({ slug }) => {
         const fetchedUser = userRes.data.user;
         fetchedUser.permission = fetchedUser.permission || [];
         fetchedUser.themePermission = fetchedUser.themePermission || [];
+        fetchedUser.nfccard = fetchedUser.nfccard ?? true;
+        fetchedUser.powerdby = fetchedUser.powerdby ?? true;
         setUser(fetchedUser);
 
         setCompanies(companyRes.data.companies || []);
@@ -196,6 +198,26 @@ const UpdateUserForm = ({ slug }) => {
             onChange={handleChange}
           />
           <span>Is Verified</span>
+        </label>
+
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="nfccard"
+            checked={user.nfccard}
+            onChange={handleChange}
+          />
+          <span>NFC Card</span>
+        </label>
+
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="powerdby"
+            checked={user.powerdby}
+            onChange={handleChange}
+          />
+          <span>Powered By</span>
         </label>
 
         <input
