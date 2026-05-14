@@ -52,7 +52,7 @@ const BusinessHoursCard = ({ profile, user }) => {
             className={`bg-gradient-to-r ${theme.skillBgColor} ${theme.text} px-6 py-3 rounded-2xl font-bold shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-3 whitespace-nowrap cursor-pointer`}
           >
             <Calendar className={`w-6 h-6`} />
-            <span>Appointment</span>
+            <span>Meeting Booking</span>
           </button>
         </div>
 
