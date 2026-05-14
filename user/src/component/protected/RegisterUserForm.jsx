@@ -18,6 +18,8 @@ const RegisterUserForm = ({ onUserCreated }) => {
     company: "",
     isMainAdmin: false,
     isVarified: false,
+    nfccard: true,
+    powerdby: true,
     baseUrl: "user.techvibesbd.com",
     permission: [],
     themePermission: ["yellow", "green", "black", "red", "gray"],
@@ -123,6 +125,8 @@ const RegisterUserForm = ({ onUserCreated }) => {
         company: "",
         isMainAdmin: false,
         isVarified: false,
+        nfccard: true,
+        powerdby: true,
         baseUrl: "user.techvibesbd.com",
         permission: [],
         themePermission: ["yellow", "green", "black", "red", "gray"],
@@ -222,6 +226,26 @@ const RegisterUserForm = ({ onUserCreated }) => {
             onChange={handleChange}
           />
           <span>Is Verified</span>
+        </label>
+
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="nfccard"
+            checked={formData.nfccard}
+            onChange={handleChange}
+          />
+          <span>NFC Card</span>
+        </label>
+
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="powerdby"
+            checked={formData.powerdby}
+            onChange={handleChange}
+          />
+          <span>Powered By</span>
         </label>
 
         <input
